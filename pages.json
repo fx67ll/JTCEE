@@ -1,9 +1,122 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		// 登录
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 忘记密码
+		{
+			"path": "pages/user/forget_password",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 通知列表
+		{
+			"path": "pages/notice/notice_index",
+			"style": {
+				"navigationBarTitleText": "通知"
+			}
+		},
+		// 通知详情
+		{
+			"path": "pages/notice/notice_detail",
+			"style": {
+				"navigationBarTitleText": "通知详情"
+			}
+		},
+		// 首页
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationStyle": "custom"
+			}
+		},
+		// 运费计算
+		{
+			"path": "pages/index/express_bill",
+			"style": {
+				"navigationBarTitleText": "个人设置"
+			}
+		},
+		// 我的
+		{
+			"path": "pages/user/user_index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 个人设置
+		{
+			"path": "pages/user/user_setting",
+			"style": {
+				"navigationBarTitleText": "个人设置"
+			}
+		},
+		// 地址一览
+		{
+			"path": "pages/address/address_index",
+			"style": {
+				"navigationBarTitleText": "地址一览"
+			}
+		},
+		// 地址添加
+		{
+			"path": "pages/address/address_add",
+			"style": {
+				"navigationBarTitleText": "地址添加"
+			}
+		},
+		// 地址详情
+		{
+			"path": "pages/address/address_detail",
+			"style": {
+				"navigationBarTitleText": "地址详情"
+			}
+		},
+		// 凭证一览
+		{
+			"path": "pages/address/id_index",
+			"style": {
+				"navigationBarTitleText": "凭证一览"
+			}
+		},
+		// 凭证添加
+		{
+			"path": "pages/address/id_add",
+			"style": {
+				"navigationBarTitleText": "凭证添加"
+			}
+		},
+		// 凭证详情
+		{
+			"path": "pages/address/id_detail",
+			"style": {
+				"navigationBarTitleText": "凭证详情"
+			}
+		},
+		// 运单一览
+		{
+			"path": "pages/invoice/invoice_index",
+			"style": {
+				"navigationBarTitleText": "运单一览"
+			}
+		},
+		// 运单详情
+		{
+			"path": "pages/invoice/invoice_detail",
+			"style": {
+				"navigationBarTitleText": "运单详情"
+			}
+		},
+		// 运单二维码
+		{
+			"path": "pages/invoice/invoice_qr",
+			"style": {
+				"navigationBarTitleText": "运单二维码"
 			}
 		}
 	],
