@@ -14,18 +14,33 @@
 				"navigationStyle": "custom"
 			}
 		},
-		// 通知列表
+		// 通知
 		{
-			"path": "pages/notice/notice_index",
+			"path": "pages/notice/notice_catagory",
 			"style": {
 				"navigationBarTitleText": "通知"
 			}
 		},
-		// 通知详情
+		// 快递消息
+		{
+			"path": "pages/notice/notice_index",
+			"style": {
+				"navigationBarTitleText": "快递消息",
+				// H5开启下拉刷新，不可以自定义设置下拉样式，只可以使用circle样式  
+				"enablePullDownRefresh": true,
+				"h5": {
+					"pullToRefresh": {
+						"color": "#5bc797",
+						"offset": "0px"
+					}
+				}
+			}
+		},
+		// 消息详情
 		{
 			"path": "pages/notice/notice_detail",
 			"style": {
-				"navigationBarTitleText": "通知详情"
+				"navigationBarTitleText": "消息详情"
 			}
 		},
 		// 首页
