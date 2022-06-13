@@ -10,7 +10,20 @@
 						注 册
 					</view>
 				</view>
-				<view class="login-card-content login-card-login" v-if="islc"><view class="login-card-content-title">登录</view></view>
+				<view class="login-card-content login-card-login" v-if="islc">
+					<view class="login-card-content-title">登录</view>
+					<!-- 这里需要重新确定，因为没看设计，开始 -->
+					<view class="login-form">
+						<view class="login-form-title">账号</view>
+						<input class="uni-input login-input" type="text" placeholder="请输入您的账号" />
+					</view>
+					<view class="login-form">
+						<view class="login-form-title">密码</view>
+						<input class="uni-input login-input" password type="text" placeholder="请输入您的密码" />
+					</view>
+					<view class="login-change-password" @click="changePassword">忘记密码？</view>
+					<!-- 这里需要重新确定，因为没看设计，结束 -->
+				</view>
 				<view class="login-card-content login-card-register" v-if="!islc"><view class="login-card-content-title">注册</view></view>
 			</view>
 			<view class="login-btn">
@@ -51,13 +64,22 @@ export default {
 		isLoginCard(val) {
 			this.islc = val;
 		},
+		changePassword() {
+			console.log('修改密码中...');
+			uni.navigateTo({
+				url: '/pages/user/forget_password'
+			});
+		},
 		isRememberUser() {
 			this.isru = !this.isru;
 			console.log('是否记住密码：' + this.isru);
-			s;
 		},
 		submitLogin() {
 			console.log('登录中ing...');
+			// 登录后关闭所有页面跳转首页
+			uni.reLaunch({
+				url: '/pages/index/index'
+			});
 		},
 		wxLogin() {
 			console.log('微信登录中ing...');
@@ -67,12 +89,10 @@ export default {
 </script>
 
 <style lang="less">
+@import url('../../static/style/mixin.less');
+
 // 标准左右间隔
 @width-gap: 120rpx;
-// 主题色
-@topic-green: #5bc797;
-// 测试用线
-@test-line-height: 4rpx;
 
 .login-box {
 	display: flex;
@@ -149,7 +169,7 @@ export default {
 				width: 100%;
 				.login-card-content-title {
 					width: calc(100% - @width-gap);
-					margin: 39rpx auto 53rpx auto;
+					margin: 39rpx auto 33rpx auto;
 					line-height: 72rpx;
 					font-size: 48rpx;
 					color: #3e4a59;
@@ -157,6 +177,20 @@ export default {
 				}
 			}
 			.login-card-login {
+				.login-form {
+					width: calc(100% - @width-gap);
+					margin: 0 auto;
+					.login-input {
+						padding: 20rpx 20rpx 20rpx 20rpx;
+						border-bottom: 4rpx solid @topic-green;
+					}
+				}
+				.login-change-password {
+					width: calc(100% - @width-gap);
+					margin: 0 auto;
+					text-align: right;
+					color: @topic-green;
+				}
 			}
 			.login-card-register {
 			}
