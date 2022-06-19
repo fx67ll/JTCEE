@@ -102,9 +102,6 @@ export default {
 // 标准左右间隔
 @width-gap: 60rpx;
 
-// 标准字体大小
-@font-size: 24rpx;
-
 // 卡片空隙
 @card-gap: 36rpx;
 
@@ -165,7 +162,7 @@ export default {
 				width: 100%;
 				height: 30rpx;
 				margin-top: 15rpx;
-				font-size: @font-size;
+				font-size: @base-font-size;
 				line-height: 30rpx;
 				text-align: center;
 				color: @topic-text;
@@ -192,7 +189,7 @@ export default {
 				color: @topic-text;
 			}
 			.index-notice-more {
-				font-size: @font-size;
+				font-size: @base-font-size;
 				color: @topic-green;
 			}
 		}
@@ -203,7 +200,7 @@ export default {
 			display: flex;
 			justify-content: space-between;
 			line-height: 40rpx;
-			font-size: @font-size;
+			font-size: @base-font-size;
 			.index-notice-catagory {
 				width: 80rpx;
 				height: 100%;

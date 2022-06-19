@@ -3,7 +3,7 @@
 		<view class="status_bar"><!-- 这里是状态栏 --></view>
 		<view class="login-img"><!-- <img src="" alt=""> --></view>
 		<view class="login-info">
-			<view class="login-card">
+			<view class="login-card" :class="{ 'login-card-long': !islc }">
 				<view class="login-card-head">
 					<view class="login-card-head-item" :class="{ 'login-card-head-item-active': islc, 'login-card-head-item-login': !islc }" @click="isLoginCard(true)">登 录</view>
 					<view class="login-card-head-item" :class="{ 'login-card-head-item-active': !islc, 'login-card-head-item-register': islc }" @click="isLoginCard(false)">
@@ -12,19 +12,92 @@
 				</view>
 				<view class="login-card-content login-card-login" v-if="islc">
 					<view class="login-card-content-title">登录</view>
-					<!-- 这里需要重新确定，因为没看设计，开始 -->
 					<view class="login-form">
 						<view class="login-form-title">账号</view>
-						<input class="uni-input login-input" type="text" placeholder="请输入您的账号" />
+						<input
+							id="user-input"
+							class="uni-input login-input login-input-blur"
+							type="text"
+							value=""
+							placeholder="请输入您的账号"
+							placeholder-class="login-input-placeholder"
+							@blur="inputBlur('user')"
+							@focus="inputFocus('user')"
+						/>
 					</view>
 					<view class="login-form">
 						<view class="login-form-title">密码</view>
-						<input class="uni-input login-input" password type="text" placeholder="请输入您的密码" />
+						<input
+							id="password-input"
+							class="uni-input login-input login-input-blur"
+							password
+							type="text"
+							value=""
+							placeholder="请输入您的密码"
+							placeholder-class="login-input-placeholder"
+							@blur="inputBlur('password')"
+							@focus="inputFocus('password')"
+						/>
 					</view>
 					<view class="login-change-password" @click="changePassword">忘记密码？</view>
-					<!-- 这里需要重新确定，因为没看设计，结束 -->
 				</view>
-				<view class="login-card-content login-card-register" v-if="!islc"><view class="login-card-content-title">注册</view></view>
+				<view class="login-card-content login-card-register" v-if="!islc">
+					<view class="login-card-content-title">注册</view>
+					<view class="login-form">
+						<view class="login-form-title">账号</view>
+						<input
+							id="user-input"
+							class="uni-input login-input login-input-blur"
+							type="text"
+							value=""
+							placeholder="请输入您的账号名称"
+							placeholder-class="login-input-placeholder"
+							@blur="inputBlur('user')"
+							@focus="inputFocus('user')"
+						/>
+					</view>
+					<view class="login-form">
+						<view class="login-form-title">邮箱</view>
+						<input
+							id="mail-input"
+							class="uni-input login-input login-input-blur"
+							type="text"
+							value=""
+							placeholder="请输入您的邮箱"
+							placeholder-class="login-input-placeholder"
+							@blur="inputBlur('mail')"
+							@focus="inputFocus('mail')"
+						/>
+					</view>
+					<view class="login-form">
+						<view class="login-form-title">密码</view>
+						<input
+							id="password-input"
+							class="uni-input login-input login-input-blur"
+							password
+							type="text"
+							value=""
+							placeholder="请输入您的密码"
+							placeholder-class="login-input-placeholder"
+							@blur="inputBlur('password')"
+							@focus="inputFocus('password')"
+						/>
+					</view>
+					<view class="login-form">
+						<view class="login-form-title">确认密码</view>
+						<input
+							id="check-input"
+							class="uni-input login-input login-input-blur"
+							password
+							type="text"
+							value=""
+							placeholder="请重新输入密码"
+							placeholder-class="login-input-placeholder"
+							@blur="inputBlur('check')"
+							@focus="inputFocus('check')"
+						/>
+					</view>
+				</view>
 			</view>
 			<view class="login-btn">
 				<view class="login-btn-rp" @click="isRememberUser">
@@ -64,6 +137,12 @@ export default {
 		isLoginCard(val) {
 			this.islc = val;
 		},
+		inputBlur(id) {
+			document.getElementById(id + '-input').className = 'uni-input login-input login-input-blur';
+		},
+		inputFocus(id) {
+			document.getElementById(id + '-input').className = 'uni-input login-input login-input-focus';
+		},
 		changePassword() {
 			console.log('修改密码中...');
 			uni.navigateTo({
@@ -95,10 +174,7 @@ export default {
 @width-gap: 120rpx;
 
 .login-box {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	.flex-box();
 
 	// 参考资料：https://uniapp.dcloud.net.cn/collocation/pages.html#style
 	// uni-app提供了状态栏高度的css变量--status-bar-height
@@ -110,7 +186,7 @@ export default {
 	.login-img {
 		width: 100%;
 		height: 300rpx;
-		// border: @test-line-height solid @topic-green;
+		// border: @test-line-width solid @topic-green;
 		background-color: @topic-green;
 		opacity: 0.3;
 		img {
@@ -121,12 +197,10 @@ export default {
 
 	.login-info {
 		width: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+		.flex-box();
 		position: relative;
 		top: -50rpx;
+
 		.login-card {
 			width: calc(100% - @width-gap);
 			height: 600rpx;
@@ -177,24 +251,45 @@ export default {
 				}
 			}
 			.login-card-login {
-				.login-form {
-					width: calc(100% - @width-gap);
-					margin: 0 auto;
-					.login-input {
-						padding: 20rpx 20rpx 20rpx 20rpx;
-						border-bottom: 4rpx solid @topic-green;
-					}
-				}
 				.login-change-password {
 					width: calc(100% - @width-gap);
 					margin: 0 auto;
-					text-align: right;
+					margin-top: 35rpx;
 					color: @topic-green;
+					font-size: @base-font-size;
+					text-align: right;
 				}
 			}
 			.login-card-register {
 			}
+			.login-form {
+				width: calc(100% - @width-gap);
+				margin: 0 auto;
+				.login-form-title {
+					font-size: @base-font-size;
+					margin-top: 27rpx;
+					color: #3e4a59;
+				}
+				.login-input {
+					padding: 20rpx 20rpx 20rpx 20rpx;
+				}
+				.login-input-focus {
+					border-bottom: 4rpx solid @topic-green;
+				}
+				.login-input-blur {
+					border-bottom: 4rpx solid #d3dfef;
+				}
+				.login-input-placeholder {
+					font-size: 24rpx;
+					color: #3e4a59;
+					opacity: 0.45;
+				}
+			}
 		}
+		.login-card-long {
+			height: 850rpx;
+		}
+
 		.login-btn {
 			width: calc(100% - @width-gap);
 			height: 100rpx;
@@ -203,18 +298,18 @@ export default {
 			justify-content: space-between;
 			.login-btn-rp {
 				line-height: 115rpx;
-				font-size: 28rpx;
+				font-size: @base-font-size;
 				color: #666666;
 				opacity: 0.45;
 				.login-btn-rp-checkbox {
-					width: 25rpx;
-					height: 25rpx;
+					width: 22rpx;
+					height: 22rpx;
 					display: inline-block;
-					border: 6rpx solid @topic-green;
+					border: 4rpx solid @topic-green;
 					border-radius: 50%;
 					position: relative;
 					top: 7rpx;
-					margin: 0 20rpx 0 40rpx;
+					margin: 0 19rpx 0 40rpx;
 				}
 			}
 			.login-btn-submit {
@@ -245,7 +340,7 @@ export default {
 				opacity: 0.5;
 			}
 			.login-wx-title-text {
-				font-size: 28rpx;
+				font-size: @base-font-size;
 				color: @topic-green;
 				margin: 0 20rpx;
 				position: relative;
@@ -256,7 +351,7 @@ export default {
 			width: 90rpx;
 			height: 90rpx;
 			border-radius: 50%;
-			border: @test-line-height solid @topic-green;
+			border: @test-line-width solid @topic-green;
 			margin: 60rpx auto 0 auto;
 			overflow: hidden;
 			img {
