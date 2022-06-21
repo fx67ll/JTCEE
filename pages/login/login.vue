@@ -280,6 +280,7 @@ export default {
 				}
 				.login-input {
 					padding: 20rpx 20rpx 20rpx 20rpx;
+					font-size: 24rpx;
 				}
 				.login-input-focus {
 					border-bottom: 4rpx solid @topic-green;
