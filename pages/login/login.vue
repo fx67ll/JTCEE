@@ -185,13 +185,6 @@ export default {
 .login-box {
 	.flex-box();
 
-	// 参考资料：https://uniapp.dcloud.net.cn/collocation/pages.html#style
-	// uni-app提供了状态栏高度的css变量--status-bar-height
-	.status_bar {
-		height: var(--status-bar-height);
-		width: 100%;
-	}
-
 	.login-img {
 		width: 100%;
 		height: 300rpx;

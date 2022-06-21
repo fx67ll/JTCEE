@@ -57,7 +57,7 @@
 		<view class="index-notice">
 			<view class="index-notice-head">
 				<view class="index-notice-title">消息中心</view>
-				<view class="index-notice-more">更多</view>
+				<view class="index-notice-more" @click="getMoreNotice">更多</view>
 			</view>
 			<view class="index-notice-item">
 				<view class="index-notice-catagory index-notice-yellow">公告</view>
@@ -93,7 +93,6 @@
 <script>
 export default {
 	onShow() {
-		// console.log(document.body.clientHeight);
 		if (document.body.clientHeight / document.body.clientWidth >= 2) {
 			this.clientHeight = document.body.clientHeight + 'px';
 		}
@@ -108,15 +107,19 @@ export default {
 			interval: 5000,
 			duration: 500
 		};
+	},
+	methods: {
+		getMoreNotice() {
+			uni.navigateTo({
+				url: '/pages/notice/notice_catagory'
+			});
+		}
 	}
 };
 </script>
 
 <style lang="less">
 @import url('../../static/style/mixin.less');
-
-// 标准左右间隔
-@width-gap: 60rpx;
 
 // 卡片空隙
 @card-gap: 36rpx;
@@ -125,13 +128,6 @@ export default {
 	width: 100%;
 	height: var(--clientHeight);
 	background-color: @topic-bgc;
-
-	// 参考资料：https://uniapp.dcloud.net.cn/collocation/pages.html#style
-	// uni-app提供了状态栏高度的css变量--status-bar-height
-	.status_bar {
-		height: var(--status-bar-height);
-		width: 100%;
-	}
 
 	.index-search {
 		width: 100%;
@@ -182,7 +178,7 @@ export default {
 
 	@swiper-width: 380rpx;
 	.index-swiper {
-		width: calc(100% - @width-gap);
+		width: calc(100% - @base-gap * 2);
 		height: @swiper-width;
 		// border: @test-line-width solid @topic-green;
 		margin: 30rpx auto 40rpx auto;
@@ -202,7 +198,7 @@ export default {
 	}
 
 	.index-function-alpha {
-		width: calc(100% - (@width-gap * 2));
+		width: calc(100% - (@base-gap * 2 * 2));
 		height: 140rpx;
 		margin: 0 auto calc(@card-gap + 14rpx) auto;
 		display: flex;
@@ -232,7 +228,7 @@ export default {
 	}
 
 	.index-notice {
-		width: calc(100% - @width-gap);
+		width: calc(100% - @base-gap * 2);
 		height: 230rpx;
 		margin: 0 auto @card-gap auto;
 		background-color: #ffffff;
@@ -284,7 +280,7 @@ export default {
 	}
 
 	.index-function-beta {
-		width: calc(100% - @width-gap);
+		width: calc(100% - @base-gap * 2);
 		height: 410rpx;
 		margin: 0 auto;
 		display: flex;
