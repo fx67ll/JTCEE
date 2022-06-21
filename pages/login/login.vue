@@ -41,7 +41,7 @@
 					</view>
 					<view class="login-change-password" @click="changePassword">忘记密码？</view>
 				</view>
-				<view class="login-card-content login-card-register" v-if="!islc">
+				<view class="login-card-content" v-if="!islc">
 					<view class="login-card-content-title">注册</view>
 					<view class="login-form">
 						<view class="login-form-title">账号</view>
@@ -96,12 +96,13 @@
 							@blur="inputBlur('check')"
 							@focus="inputFocus('check')"
 						/>
+						<img class="login-form-icon" src="/static/img/login/warning.png">
 					</view>
 				</view>
 			</view>
-			<view class="login-btn">
+			<view class="login-btn" v-if="islc">
 				<view class="login-btn-rp" @click="isRememberUser">
-					<text class="login-btn-rp-checkbox"></text>
+					<text class="login-btn-rp-checkbox" :class="{ 'login-btn-rp-checkbox-active': isru }"></text>
 					记住账号
 				</view>
 				<view class="login-btn-submit" @click="submitLogin">
@@ -110,14 +111,22 @@
 					录
 				</view>
 			</view>
+			<view class="login-btn" v-if="!islc">
+				<view class="login-btn-left"><!-- 占位 --></view>
+				<view class="login-btn-submit" @click="submitLogin">
+					注
+					<text class="login-btn-submit-space"></text>
+					册
+				</view>
+			</view>
 		</view>
-		<view class="login-wx">
+		<view class="login-wx" v-if="islc">
 			<view class="login-wx-title">
 				<text class="login-wx-title-line"></text>
 				<text class="login-wx-title-text">第三方登录</text>
 				<text class="login-wx-title-line"></text>
 			</view>
-			<view class="login-wx-icon" @click="wxLogin"><!-- <img src="" alt=""> --></view>
+			<view class="login-wx-icon" @click="wxLogin"><img src="/static/img/login/wx.png" /></view>
 		</view>
 	</view>
 </template>
@@ -146,7 +155,7 @@ export default {
 		changePassword() {
 			console.log('修改密码中...');
 			uni.navigateTo({
-				url: '/pages/user/forget_password'
+				url: '/pages/login/forget_password'
 			});
 		},
 		isRememberUser() {
@@ -260,11 +269,10 @@ export default {
 					text-align: right;
 				}
 			}
-			.login-card-register {
-			}
 			.login-form {
 				width: calc(100% - @width-gap);
 				margin: 0 auto;
+				position: relative;
 				.login-form-title {
 					font-size: @base-font-size;
 					margin-top: 27rpx;
@@ -283,6 +291,14 @@ export default {
 					font-size: 24rpx;
 					color: #3e4a59;
 					opacity: 0.45;
+				}
+				.login-form-icon{
+					width: 40rpx;
+					height: 40rpx;
+					float: right;
+					position: absolute;
+					right: 0;
+					top: 50rpx;
 				}
 			}
 		}
@@ -310,6 +326,10 @@ export default {
 					position: relative;
 					top: 7rpx;
 					margin: 0 19rpx 0 40rpx;
+				}
+				.login-btn-rp-checkbox-active {
+					background-color: @topic-green;
+					border-color: #ffffff;
 				}
 			}
 			.login-btn-submit {
@@ -351,7 +371,7 @@ export default {
 			width: 90rpx;
 			height: 90rpx;
 			border-radius: 50%;
-			border: @test-line-width solid @topic-green;
+			// border: @test-line-width solid @topic-green;
 			margin: 60rpx auto 0 auto;
 			overflow: hidden;
 			img {
