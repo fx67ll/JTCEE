@@ -9,7 +9,7 @@
 		},
 		// 忘记密码
 		{
-			"path": "pages/user/forget_password",
+			"path": "pages/login/forget_password",
 			"style": {
 				"navigationStyle": "custom"
 			}
@@ -26,6 +26,7 @@
 			"path": "pages/notice/notice_index",
 			"style": {
 				"navigationBarTitleText": "快递消息",
+				"backgroundColor": "#fff",
 				// H5开启下拉刷新，不可以自定义设置下拉样式，只可以使用circle样式  
 				"enablePullDownRefresh": true,
 				"h5": {
