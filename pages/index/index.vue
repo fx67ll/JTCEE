@@ -2,7 +2,11 @@
 	<view class="index-box" :style="{ '--clientHeight': clientHeight }">
 		<view class="status_bar"><!-- 这里是状态栏 --></view>
 		<view class="index-search">
-			
+			<view class="index-search-logo"><!-- <img src=""> --></view>
+			<view class="index-search-box">
+				<text class="index-search-icon"><!-- <img src=""> --></text>
+				<input class="uni-input index-search-input" confirm-type="search" placeholder="商品搜索" placeholder-class="login-input-placeholder" />
+			</view>
 		</view>
 		<view class="index-swiper">
 			<swiper
@@ -15,26 +19,38 @@
 				indicator-color="#B0B0B0"
 				indicator-active-color="#50B38C"
 			>
-				<swiper-item><view class="swiper-item">A</view></swiper-item>
-				<swiper-item><view class="swiper-item">B</view></swiper-item>
-				<swiper-item><view class="swiper-item">C</view></swiper-item>
+				<swiper-item>
+					<view class="swiper-item"><img src="/static/img/index/index-banner.png" /></view>
+				</swiper-item>
+				<swiper-item>
+					<view class="swiper-item">
+						B
+						<!-- <img src=""> -->
+					</view>
+				</swiper-item>
+				<swiper-item>
+					<view class="swiper-item">
+						C
+						<!-- <img src=""> -->
+					</view>
+				</swiper-item>
 			</swiper>
 		</view>
 		<view class="index-function-alpha">
 			<view class="index-alpha-item">
-				<view class="index-alpha-item-img"><img src="" /></view>
+				<view class="index-alpha-item-img"><img src="/static/img/index/bill-count.png" /></view>
 				<view class="index-alpha-item-text">运费计算</view>
 			</view>
 			<view class="index-alpha-item">
-				<view class="index-alpha-item-img"><img src="" /></view>
+				<view class="index-alpha-item-img"><img src="/static/img/index/bill-explain.png" /></view>
 				<view class="index-alpha-item-text">运费标准</view>
 			</view>
 			<view class="index-alpha-item">
-				<view class="index-alpha-item-img"><img src="" /></view>
+				<view class="index-alpha-item-img"><img src="/static/img/index/shop-search.png" /></view>
 				<view class="index-alpha-item-text">网点查询</view>
 			</view>
 			<view class="index-alpha-item">
-				<view class="index-alpha-item-img"><img src="" /></view>
+				<view class="index-alpha-item-img"><img src="/static/img/index/get-service.png" /></view>
 				<view class="index-alpha-item-text">联络客服</view>
 			</view>
 		</view>
@@ -54,19 +70,19 @@
 		</view>
 		<view class="index-function-beta">
 			<view class="index-beta-item">
-				<view class="index-beta-item-img"><img src="/static/img/index/use.png" /></view>
+				<view class="index-beta-item-img"><img src="/static/img/index/express-use.png" /></view>
 				<view class="index-beta-item-text">寄快递</view>
 			</view>
 			<view class="index-beta-item">
-				<view class="index-beta-item-img"><img src="/static/img/index/search.png" /></view>
+				<view class="index-beta-item-img"><img src="/static/img/index/express-search.png" /></view>
 				<view class="index-beta-item-text">查快递</view>
 			</view>
 			<view class="index-beta-item">
-				<view class="index-beta-item-img"><img src="/static/img/index/get.png" /></view>
+				<view class="index-beta-item-img"><img src="/static/img/index/express-get.png" /></view>
 				<view class="index-beta-item-text">包裹代收</view>
 			</view>
 			<view class="index-beta-item">
-				<view class="index-beta-item-img"><img src="/static/img/index/scan.png" /></view>
+				<view class="index-beta-item-img"><img src="/static/img/index/express-scan.png" /></view>
 				<view class="index-beta-item-text">扫一扫</view>
 			</view>
 		</view>
@@ -77,7 +93,7 @@
 <script>
 export default {
 	onShow() {
-		console.log(document.body.clientHeight);
+		// console.log(document.body.clientHeight);
 		if (document.body.clientHeight / document.body.clientWidth >= 2) {
 			this.clientHeight = document.body.clientHeight + 'px';
 		}
@@ -121,14 +137,55 @@ export default {
 		width: 100%;
 		height: 88rpx;
 		background-color: #ffffff;
+		display: flex;
+		justify-content: space-between;
+		.index-search-logo {
+			width: 150rpx;
+			border: @test-line-width solid @topic-green;
+			margin-left: 30rpx;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.index-search-box {
+			width: calc(100% - 210rpx);
+			height: calc(100% - 30rpx);
+			border: 1rpx solid #e9e9e9;
+			border-radius: 34rpx;
+			margin-right: 30rpx;
+			margin-top: 14rpx;
+			display: flex;
+			justify-content: space-between;
+			.index-search-icon {
+				width: 34rpx;
+				height: 34rpx;
+				display: inline-block;
+				margin: 12rpx 0 0 26rpx;
+				border: @test-line-width solid @topic-green;
+				img {
+					width: 100%;
+					height: 100%;
+				}
+			}
+			.index-search-input {
+				width: calc(100% - 80rpx);
+				height: 100%;
+				font-size: 24rpx;
+			}
+			.login-input-placeholder {
+				font-size: 28rpx;
+				color: #c8c8c8;
+			}
+		}
 	}
 
 	@swiper-width: 380rpx;
 	.index-swiper {
 		width: calc(100% - @width-gap);
 		height: @swiper-width;
-		border: @test-line-width solid @topic-green;
-		margin: 20rpx auto 40rpx auto;
+		// border: @test-line-width solid @topic-green;
+		margin: 30rpx auto 40rpx auto;
 		.swiper {
 			height: 100%;
 		}
@@ -137,6 +194,10 @@ export default {
 			height: 100%;
 			line-height: calc(@swiper-width - 50rpx);
 			text-align: center;
+			img {
+				width: 100%;
+				height: 100%;
+			}
 		}
 	}
 
@@ -152,7 +213,7 @@ export default {
 			.index-alpha-item-img {
 				width: 100%;
 				height: calc(100% - 45rpx);
-				border: @test-line-width solid @topic-green;
+				// border: @test-line-width solid @topic-green;
 				img {
 					width: 100%;
 					height: 100%;
@@ -243,7 +304,7 @@ export default {
 				width: 80rpx;
 				height: 80rpx;
 				margin: 0 38rpx 0 50rpx;
-				img{
+				img {
 					width: 100%;
 					height: 100%;
 					position: relative;
