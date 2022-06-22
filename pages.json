@@ -54,7 +54,7 @@
 		{
 			"path": "pages/index/express_bill",
 			"style": {
-				"navigationBarTitleText": "个人设置"
+				"navigationStyle": "custom"
 			}
 		},
 		// 我的
@@ -90,27 +90,6 @@
 			"path": "pages/address/address_detail",
 			"style": {
 				"navigationBarTitleText": "地址详情"
-			}
-		},
-		// 凭证一览
-		{
-			"path": "pages/address/id_index",
-			"style": {
-				"navigationBarTitleText": "凭证一览"
-			}
-		},
-		// 凭证添加
-		{
-			"path": "pages/address/id_add",
-			"style": {
-				"navigationBarTitleText": "凭证添加"
-			}
-		},
-		// 凭证详情
-		{
-			"path": "pages/address/id_detail",
-			"style": {
-				"navigationBarTitleText": "凭证详情"
 			}
 		},
 		// 运单一览
