@@ -9,7 +9,7 @@
 		<view class="index-search">
 			<view class="index-search-logo"><!-- <img src=""> --></view>
 			<view class="index-search-box">
-				<text class="index-search-icon"><!-- <img src=""> --></text>
+				<text class="index-search-icon"><uni-icons type="search" size="23" color="#A0A0A0"></uni-icons></text>
 				<input class="uni-input index-search-input" confirm-type="search" placeholder="商品搜索" placeholder-class="login-input-placeholder" />
 			</view>
 		</view>
@@ -43,22 +43,26 @@
 		</view>
 		<view class="index-function-alpha">
 			<view class="index-alpha-item">
-				<view class="index-alpha-item-img"><img src="/static/img/index/bill-count.png" /></view>
+				<view class="index-alpha-item-img" @click="countExpressBill"><img src="/static/img/index/bill-count.png" /></view>
 				<view class="index-alpha-item-text">运费计算</view>
 			</view>
-			<view class="index-alpha-item">
+			<view class="index-alpha-item" @click="openDialog('运费标准')">
 				<view class="index-alpha-item-img"><img src="/static/img/index/bill-explain.png" /></view>
 				<view class="index-alpha-item-text">运费标准</view>
 			</view>
-			<view class="index-alpha-item">
+			<view class="index-alpha-item" @click="openDialog('运费标准')">
 				<view class="index-alpha-item-img"><img src="/static/img/index/shop-search.png" /></view>
 				<view class="index-alpha-item-text">网点查询</view>
 			</view>
-			<view class="index-alpha-item">
+			<view class="index-alpha-item" @click="openDialog('运费标准')">
 				<view class="index-alpha-item-img"><img src="/static/img/index/get-service.png" /></view>
 				<view class="index-alpha-item-text">联络客服</view>
 			</view>
 		</view>
+		<!-- 临时使用 -->
+		<uni-popup ref="popup" type="dialog">
+			<uni-popup-dialog type="info" mode="base" title="系统提示" content="该功能正在开发中，敬请期待..." confirmText="确定" cancelText="取消"></uni-popup-dialog>
+		</uni-popup>
 		<view class="index-notice">
 			<view class="index-notice-head">
 				<view class="index-notice-title">消息中心</view>
@@ -96,12 +100,10 @@
 </template>
 
 <script>
+import uniPopup from '@/uni_modules/uni-popup/components/uni-popup/uni-popup.vue';
 export default {
-	onShow() {
-		if (uni.getWindowInfo().windowHeight / uni.getWindowInfo().windowWidth >= 2) {
-			this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
-		}
-		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
+	components: {
+		uniPopup
 	},
 	data() {
 		return {
@@ -116,11 +118,25 @@ export default {
 			duration: 500
 		};
 	},
+	onShow() {
+		if (uni.getWindowInfo().windowHeight / uni.getWindowInfo().windowWidth >= 2) {
+			this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
+		}
+		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
+	},
 	methods: {
 		getMoreNotice() {
 			uni.navigateTo({
 				url: '/pages/notice/notice_catagory'
 			});
+		},
+		countExpressBill() {
+			uni.navigateTo({
+				url: '/pages/index/express_bill'
+			});
+		},
+		openDialog(val) {
+			this.$refs.popup.open();
 		}
 	}
 };
@@ -136,7 +152,7 @@ export default {
 	width: 100%;
 	height: var(--clientheight);
 	background-color: @topic-bgc;
-	
+
 	.status-bar-wx {
 		height: var(--statusbarheight);
 		width: 100%;
@@ -170,12 +186,7 @@ export default {
 				width: 34rpx;
 				height: 34rpx;
 				display: inline-block;
-				margin: 12rpx 0 0 26rpx;
-				border: @test-line-width solid @topic-green;
-				img {
-					width: 100%;
-					height: 100%;
-				}
+				margin: 10rpx 0 0 26rpx;
 			}
 			.index-search-input {
 				width: calc(100% - 80rpx);

@@ -7,7 +7,9 @@
 		<view class="status-bar-wx" :style="{ '--statusbarheight': statusBarHeight }"><!-- 这里是状态栏，用于微信端的状态栏抵消 --></view>
 		<!-- #endif -->
 		<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
-			<view class="top-nav-back"><img src="" @click="goBack" /></view>
+			<view class="top-nav-back">
+				<uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons>
+			</view>
 			<view class="top-nav-title">通知</view>
 			<view class="top-nav-btn" @click="readAll">全部已读</view>
 		</view>
@@ -38,12 +40,10 @@
 </template>
 
 <script>
+import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
 export default {
-	onShow() {
-		if (uni.getWindowInfo().windowHeight / uni.getWindowInfo().windowWidth >= 2) {
-			this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
-		}
-		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
+	components: {
+		uniIcons
 	},
 	data() {
 		return {
@@ -52,6 +52,12 @@ export default {
 			// 状态栏高度，用于微信小程序适配
 			statusBarHeight: 0
 		};
+	},
+	onShow() {
+		if (uni.getWindowInfo().windowHeight / uni.getWindowInfo().windowWidth >= 2) {
+			this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
+		}
+		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 	},
 	methods: {
 		goBack() {

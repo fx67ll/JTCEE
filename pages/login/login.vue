@@ -98,13 +98,15 @@
 							@blur="inputBlur('check')"
 							@focus="inputFocus('check')"
 						/>
-						<img class="login-form-icon" src="/static/img/login/warning.png">
+						<img class="login-form-icon" src="/static/img/login/warning.png" />
 					</view>
 				</view>
 			</view>
 			<view class="login-btn" v-if="islc">
 				<view class="login-btn-rp" @click="isRememberUser">
-					<text class="login-btn-rp-checkbox" :class="{ 'login-btn-rp-checkbox-active': isru }"></text>
+					<view class="login-btn-rp-checkbox">
+						<uni-icons v-if="isru" class="login-btn-rp-checkbox-icon" type="checkmarkempty" size="14" color="#5BC797"></uni-icons>
+					</view>
 					记住账号
 				</view>
 				<view class="login-btn-submit" @click="submitLogin">
@@ -288,7 +290,7 @@ export default {
 					color: #3e4a59;
 					opacity: 0.45;
 				}
-				.login-form-icon{
+				.login-form-icon {
 					width: 40rpx;
 					height: 40rpx;
 					float: right;
@@ -314,18 +316,19 @@ export default {
 				color: #666666;
 				opacity: 0.45;
 				.login-btn-rp-checkbox {
-					width: 22rpx;
-					height: 22rpx;
+					width: 25rpx;
+					height: 25rpx;
 					display: inline-block;
 					border: 4rpx solid @topic-green;
 					border-radius: 50%;
 					position: relative;
 					top: 7rpx;
 					margin: 0 19rpx 0 40rpx;
-				}
-				.login-btn-rp-checkbox-active {
-					background-color: @topic-green;
-					border-color: #ffffff;
+					.login-btn-rp-checkbox-icon {
+						position: absolute;
+						top: -43rpx;
+						left: -1rpx;
+					}
 				}
 			}
 			.login-btn-submit {

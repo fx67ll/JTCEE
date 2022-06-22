@@ -1,19 +1,23 @@
 <template>
 	<view class="notice-box">
-		<!-- #ifdef APP-PLUS -->
-		<view class="status_bar"><!-- 这里是状态栏，用于app端的状态栏抵消 --></view>
-		<!-- #endif -->
-		<!-- #ifdef MP-WEIXIN || H5 -->
-		<view class="status-bar-wx" :style="{ '--statusbarheight': statusBarHeight }"><!-- 这里是状态栏，用于微信端的状态栏抵消 --></view>
-		<view class="status-bar-wx-fake" :style="{ '--statusbarheight': statusBarHeight }"><!-- 这里是状态栏，用于微信端的状态栏占位 --></view>
-		<!-- #endif -->
-		<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
-			<view class="top-nav-back"><img src="" @click="goBack" /></view>
-			<view class="top-nav-title">{{ pageTitle }}</view>
-			<view class="top-nav-btn"></view>
+		<view class="common-box">
+			<!-- #ifdef APP-PLUS -->
+			<view class="status_bar"><!-- 这里是状态栏，用于app端的状态栏抵消 --></view>
+			<!-- #endif -->
+			<!-- #ifdef MP-WEIXIN || H5 -->
+			<view class="status-bar-wx" :style="{ '--statusbarheight': statusBarHeight }"><!-- 这里是状态栏，用于微信端的状态栏抵消 --></view>
+			<view class="status-bar-wx-fake" :style="{ '--statusbarheight': statusBarHeight }"><!-- 这里是状态栏，用于微信端的状态栏占位 --></view>
+			<!-- #endif -->
+			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
+				<view class="top-nav-back">
+					<uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons>
+				</view>
+				<view class="top-nav-title">{{ pageTitle }}</view>
+				<view class="top-nav-btn"></view>
+			</view>
+			<view class="top-nav-fake"></view>
+			<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		</view>
-		<view class="top-nav-fake"></view>
-		<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		<view class="notice-index">
 			<view class="notice-item" v-for="(num, index) in data" :key="index">
 				<view class="notice-item-title">签收成功通知 - {{ num }}</view>
@@ -34,7 +38,11 @@
 	</view>
 </template>
 <script>
+import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
 export default {
+	components: {
+		uniIcons
+	},
 	data() {
 		return {
 			// 屏幕高度，用于自适应
@@ -117,45 +125,43 @@ export default {
 <style lang="less">
 @import url('../../static/style/mixin.less');
 
-// 这里是为了保证页面没有撑开也能有灰色的背景
-.page-bg {
-	width: 100%;
-	height: var(--clientheight);
-	position: absolute;
-	top: 0;
-	background-color: @topic-bgc;
-	z-index: 1;
-}
-
 .notice-box {
 	width: 100%;
 	height: auto;
 	background-color: @topic-bgc;
 	padding-bottom: 30rpx;
-	position: relative;
-	z-index: 2;
-
-	.status-bar-wx {
-		height: var(--statusbarheight);
-		width: 100%;
-		background-color: #ffffff;
-		position: fixed;
-		top: 0;
-		z-index: 3;
-	}
-	.status-bar-wx-fake{
-		height: var(--statusbarheight);
-		width: 100%;
-	}
-	.top-nav {
-		top: var(--statusbarheight);
+	
+	.common-box{
+		// 这里是状态栏，用于微信端的状态栏抵消
+		.status-bar-wx {
+			height: var(--statusbarheight);
+			width: 100%;
+			background-color: #ffffff;
+			position: fixed;
+			top: 0;
+		}
+		.status-bar-wx-fake{
+			height: var(--statusbarheight);
+			width: 100%;
+		}
+		.top-nav {
+			top: var(--statusbarheight);
+		}
+		
+		// 这里是为了保证页面没有撑开也能有灰色的背景
+		.page-bg {
+			width: 100%;
+			height: var(--clientheight);
+			position: absolute;
+			top: 0;
+			background-color: @topic-bgc;
+			z-index: -1;
+		}
 	}
 
 	.notice-index {
 		width: calc(100% - @base-gap * 2);
 		margin: 0 auto;
-		position: relative;
-		z-index: 2;
 		.notice-item {
 			width: 100%;
 			background-color: #ffffff;
