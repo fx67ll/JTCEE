@@ -306,7 +306,6 @@ export default {
 			border-radius: 20rpx;
 			margin-bottom: @card-gap;
 			line-height: 190rpx;
-			font-size: 36rpx;
 			display: flex;
 			align-items: center;
 			.index-beta-item-img {
@@ -321,13 +320,15 @@ export default {
 				}
 			}
 			.index-beta-item-text {
+				font-size: 36rpx;
+				color: #313131;
 			}
 		}
 	}
 
 	.index-gap {
 		width: 100%;
-		height: 150rpx;
+		height: 125rpx;
 	}
 }
 </style>
