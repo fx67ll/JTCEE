@@ -8,10 +8,20 @@
 		<!-- #endif -->
 		<view class="index-search">
 			<view class="index-search-logo"><!-- <img src=""> --></view>
+			<!-- 微信小程序特供搜索框，避开关闭按钮 -->
+			<!-- #ifdef MP-WEIXIN -->
+			<view class="index-search-box index-search-box-wx">
+				<text class="index-search-icon"><uni-icons type="search" size="23" color="#A0A0A0"></uni-icons></text>
+				<input class="uni-input index-search-input" confirm-type="search" placeholder="商品搜索" placeholder-class="login-input-placeholder" />
+			</view>
+			<!-- #endif -->
+			<!-- 除了微信小程序其他平台使用的搜索框 -->
+			<!-- #ifndef MP-WEIXIN -->
 			<view class="index-search-box">
 				<text class="index-search-icon"><uni-icons type="search" size="23" color="#A0A0A0"></uni-icons></text>
 				<input class="uni-input index-search-input" confirm-type="search" placeholder="商品搜索" placeholder-class="login-input-placeholder" />
 			</view>
+			<!-- #endif -->
 		</view>
 		<view class="index-swiper">
 			<swiper
@@ -163,7 +173,7 @@ export default {
 		height: 88rpx;
 		background-color: #ffffff;
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-start;
 		.index-search-logo {
 			width: 150rpx;
 			border: @test-line-width solid @topic-green;
@@ -178,7 +188,6 @@ export default {
 			height: calc(100% - 30rpx);
 			border: 1rpx solid #e9e9e9;
 			border-radius: 34rpx;
-			margin-right: 30rpx;
 			margin-top: 14rpx;
 			display: flex;
 			justify-content: space-between;
@@ -197,6 +206,9 @@ export default {
 				font-size: 28rpx;
 				color: #c8c8c8;
 			}
+		}
+		.index-search-box-wx{
+			width: calc(100% - 385rpx);
 		}
 	}
 
