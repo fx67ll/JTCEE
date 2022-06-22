@@ -28,7 +28,7 @@
 							{{ billShopIndex == -1 ? '请选择' : billShopData[billShopIndex] }}
 						</view>
 					</picker>
-					<uni-icons class="bill-address-item-icon" type="right" size="18" color="#BFBFBF" @click="goBack"></uni-icons>
+					<uni-icons class="bill-address-item-icon" type="right" size="18" color="#BFBFBF"></uni-icons>
 				</view>
 			</view>
 			<view class="bill-address-item">
@@ -42,8 +42,24 @@
 							{{ billExpressIndex == -1 ? '请选择' : billExpressData[billExpressIndex] }}
 						</view>
 					</picker>
-					<uni-icons class="bill-address-item-icon" type="right" size="18" color="#BFBFBF" @click="goBack"></uni-icons>
+					<uni-icons class="bill-address-item-icon" type="right" size="18" color="#BFBFBF"></uni-icons>
 				</view>
+			</view>
+		</view>
+
+		<view class="bill-count">
+			<view class="form-picker">
+				<view class="form-picker-title">寄件时间</view>
+				<view class="form-picker-choose">
+					<picker mode="date" :value="expressDate" :start="expressStartDate" :end="expressEndDate" @change="bindExpressDateChange">
+						<view :class="expressDate == 1 ? 'form-picker-text-placeholder' : 'form-picker-text'">{{ expressDate == 1 ? '请选择' : expressDate }}</view>
+					</picker>
+					<uni-icons class="form-picker-icon" type="right" size="18" color="#BFBFBF"></uni-icons>
+				</view>
+			</view>
+			<view class="form-number">
+				<view class="form-number-title">包裹重量（kg）</view>
+				<view class="form-number-count"><uni-number-box></uni-number-box></view>
 			</view>
 		</view>
 	</view>
@@ -51,15 +67,20 @@
 
 <script>
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
+import uniNumberBox from '@/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.vue';
 export default {
 	components: {
-		uniIcons
+		uniIcons,
+		uniNumberBox
 	},
 	onShow() {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 	},
 	data() {
+		const currentDate = this.getDate({
+			format: true
+		});
 		return {
 			// 屏幕高度，用于自适应
 			clientHeight: 'auto',
@@ -72,12 +93,23 @@ export default {
 			// 落地配数据
 			billExpressData: ['落地配一', '落地配二', '落地配三'],
 			// 落地配索引
-			billExpressIndex: -1
+			billExpressIndex: -1,
+			// 寄件时间
+			// expressDate: currentDate,
+			expressDate: 1
 		};
+	},
+	computed: {
+		expressStartDate() {
+			return this.getDate('start');
+		},
+		expressEndDate() {
+			return this.getDate('end');
+		}
 	},
 	methods: {
 		goBack() {
-			uni.navigateTo({
+			uni.redirectTo({
 				url: '../index/index'
 			});
 		},
@@ -88,6 +120,25 @@ export default {
 		bindExpressPickerChange: function(e) {
 			console.log('落地配picker发送选择改变，携带值为', e.detail.value);
 			this.billExpressIndex = e.detail.value;
+		},
+		getDate(type) {
+			const date = new Date();
+			let year = date.getFullYear();
+			let month = date.getMonth() + 1;
+			let day = date.getDate();
+
+			if (type === 'start') {
+				year = year - 60;
+			} else if (type === 'end') {
+				year = year + 2;
+			}
+			month = month > 9 ? month : '0' + month;
+			day = day > 9 ? day : '0' + day;
+			return `${year}-${month}-${day}`;
+		},
+		bindExpressDateChange: function(e) {
+			console.log('寄件时间picker发送选择改变，携带值为', e.detail.value);
+			this.expressDate = e.detail.value;
 		}
 	}
 };
@@ -184,6 +235,14 @@ export default {
 		.bill-address-item:nth-child(1) {
 			border-bottom: 1rpx solid @topic-split;
 		}
+	}
+
+	.bill-count {
+		width: calc(100% - @base-gap * 2);
+		height: 490rpx;
+		border-radius: 20rpx;
+		background-color: #ffffff;
+		margin: 25rpx auto 0 auto;
 	}
 }
 </style>
