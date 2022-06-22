@@ -1,17 +1,23 @@
 <template>
 	<view class="notice-box">
-		<view class="status_bar"><!-- 这里是状态栏 --></view>
-		<view class="top-nav">
+		<!-- #ifdef APP-PLUS -->
+		<view class="status_bar"><!-- 这里是状态栏，用于app端的状态栏抵消 --></view>
+		<!-- #endif -->
+		<!-- #ifdef MP-WEIXIN || H5 -->
+		<view class="status-bar-wx" :style="{ '--statusbarheight': statusBarHeight }"><!-- 这里是状态栏，用于微信端的状态栏抵消 --></view>
+		<view class="status-bar-wx-fake" :style="{ '--statusbarheight': statusBarHeight }"><!-- 这里是状态栏，用于微信端的状态栏占位 --></view>
+		<!-- #endif -->
+		<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 			<view class="top-nav-back"><img src="" @click="goBack" /></view>
 			<view class="top-nav-title">{{ pageTitle }}</view>
 			<view class="top-nav-btn"></view>
 		</view>
 		<view class="top-nav-fake"></view>
-		<view class="page-bg" :style="{ '--clientHeight': clientHeight }"></view>
+		<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		<view class="notice-index">
 			<view class="notice-item" v-for="(num, index) in data" :key="index">
 				<view class="notice-item-title">签收成功通知 - {{ num }}</view>
-				<view class="notice-item-content">您有来自<南京市>的快递已被签收，感谢您神鹰快递，后续快件问题可以联系客服查询</view>
+				<view class="notice-item-content">您有来自南京市的快递已被签收，感谢您神鹰快递，后续快件问题可以联系客服查询</view>
 				<view class="notice-item-info">
 					<view class="notice-item-info-title">快递单号</view>
 					<view class="notice-item-info-text">ST31246576879</view>
@@ -33,6 +39,8 @@ export default {
 		return {
 			// 屏幕高度，用于自适应
 			clientHeight: 'auto',
+			// 状态栏高度，用于微信小程序适配
+			statusBarHeight: 0,
 			// 标题分类
 			pageTitle: '通知',
 			data: [],
@@ -42,7 +50,8 @@ export default {
 		};
 	},
 	onShow() {
-		this.clientHeight = document.body.clientHeight + 'px';
+		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
+		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 	},
 	onLoad(option) {
 		if (option.noticeType === '0') {
@@ -111,7 +120,7 @@ export default {
 // 这里是为了保证页面没有撑开也能有灰色的背景
 .page-bg {
 	width: 100%;
-	height: var(--clientHeight);
+	height: var(--clientheight);
 	position: absolute;
 	top: 0;
 	background-color: @topic-bgc;
@@ -125,6 +134,23 @@ export default {
 	padding-bottom: 30rpx;
 	position: relative;
 	z-index: 2;
+
+	.status-bar-wx {
+		height: var(--statusbarheight);
+		width: 100%;
+		background-color: #ffffff;
+		position: fixed;
+		top: 0;
+		z-index: 3;
+	}
+	.status-bar-wx-fake{
+		height: var(--statusbarheight);
+		width: 100%;
+	}
+	.top-nav {
+		top: var(--statusbarheight);
+	}
+
 	.notice-index {
 		width: calc(100% - @base-gap * 2);
 		margin: 0 auto;

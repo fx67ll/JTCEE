@@ -1,6 +1,11 @@
 <template>
-	<view class="index-box" :style="{ '--clientHeight': clientHeight }">
-		<view class="status_bar"><!-- 这里是状态栏 --></view>
+	<view class="index-box" :style="{ '--clientheight': clientHeight }">
+		<!-- #ifdef APP-PLUS -->
+		<view class="status_bar"><!-- 这里是状态栏，用于app端的状态栏抵消 --></view>
+		<!-- #endif -->
+		<!-- #ifdef MP-WEIXIN || H5 -->
+		<view class="status-bar-wx" :style="{ '--statusbarheight': statusBarHeight }"><!-- 这里是状态栏，用于微信端的状态栏抵消 --></view>
+		<!-- #endif -->
 		<view class="index-search">
 			<view class="index-search-logo"><!-- <img src=""> --></view>
 			<view class="index-search-box">
@@ -61,11 +66,11 @@
 			</view>
 			<view class="index-notice-item">
 				<view class="index-notice-catagory index-notice-yellow">公告</view>
-				<view class="index-notice-content">每周六寄件享免费领取100元寄件礼包，更有惊喜。您有来自<南京市>的快递已被签收，感谢您使用。</view>
+				<view class="index-notice-content">每周六寄件享免费领取100元寄件礼包，更有惊喜。您有来自南京市的快递已被签收，感谢您使用。</view>
 			</view>
 			<view class="index-notice-item">
 				<view class="index-notice-catagory index-notice-red">消息</view>
-				<view class="index-notice-content">每周六寄件享免费领取100元寄件礼包，更有惊喜。您有来自<南京市>的快递已被签收，感谢您使用。</view>
+				<view class="index-notice-content">每周六寄件享免费领取100元寄件礼包，更有惊喜。您有来自南京市的快递已被签收，感谢您使用。</view>
 			</view>
 		</view>
 		<view class="index-function-beta">
@@ -93,14 +98,17 @@
 <script>
 export default {
 	onShow() {
-		if (document.body.clientHeight / document.body.clientWidth >= 2) {
-			this.clientHeight = document.body.clientHeight + 'px';
+		if (uni.getWindowInfo().windowHeight / uni.getWindowInfo().windowWidth >= 2) {
+			this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		}
+		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 	},
 	data() {
 		return {
 			// 屏幕高度，用于自适应
 			clientHeight: 'auto',
+			// 状态栏高度，用于微信小程序适配
+			statusBarHeight: 0,
 			// 轮播组件参数
 			indicatorDots: true,
 			autoplay: false,
@@ -126,8 +134,13 @@ export default {
 
 .index-box {
 	width: 100%;
-	height: var(--clientHeight);
+	height: var(--clientheight);
 	background-color: @topic-bgc;
+	
+	.status-bar-wx {
+		height: var(--statusbarheight);
+		width: 100%;
+	}
 
 	.index-search {
 		width: 100%;

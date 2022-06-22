@@ -1,6 +1,8 @@
 <template>
 	<view class="login-box">
-		<view class="status_bar"><!-- 这里是状态栏 --></view>
+		<!-- #ifdef APP-PLUS -->
+		<view class="status_bar"><!-- 这里是状态栏，用于app端的状态栏抵消 --></view>
+		<!-- #endif -->
 		<view class="login-img"><!-- <img src="" alt=""> --></view>
 		<view class="login-info">
 			<view class="login-card" :class="{ 'login-card-long': !islc }">

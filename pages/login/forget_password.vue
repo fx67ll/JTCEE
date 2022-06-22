@@ -1,6 +1,8 @@
 <template>
 	<view class="login-box">
-		<view class="status_bar"><!-- 这里是状态栏 --></view>
+		<!-- #ifdef APP-PLUS -->
+		<view class="status_bar"><!-- 这里是状态栏，用于app端的状态栏抵消 --></view>
+		<!-- #endif -->
 		<view class="login-info">
 			<view class="login-card login-card-long">
 				<view class="login-card-content login-card-register">
@@ -67,7 +69,7 @@
 			</view>
 			<view class="login-btn">
 				<view class="login-btn-gb" @click="backLogin">
-					<text class="login-btn-gb-arrow"><img src="/static/img/login/arrow.png"></text>
+					<view class="login-btn-gb-arrow"><img src="/static/img/login/arrow.png"></view>
 					前往登录
 				</view>
 				<view class="login-btn-submit" @click="submitPassword">修 改 密 码</view>

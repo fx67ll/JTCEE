@@ -1,7 +1,12 @@
 <template>
-	<view class="notice-box" :style="{ '--clientHeight': clientHeight }">
-		<view class="status_bar"><!-- 这里是状态栏 --></view>
-		<view class="top-nav">
+	<view class="notice-box" :style="{ '--clientheight': clientHeight }">
+		<!-- #ifdef APP-PLUS -->
+		<view class="status_bar"><!-- 这里是状态栏，用于app端的状态栏抵消 --></view>
+		<!-- #endif -->
+		<!-- #ifdef MP-WEIXIN || H5 -->
+		<view class="status-bar-wx" :style="{ '--statusbarheight': statusBarHeight }"><!-- 这里是状态栏，用于微信端的状态栏抵消 --></view>
+		<!-- #endif -->
+		<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 			<view class="top-nav-back"><img src="" @click="goBack" /></view>
 			<view class="top-nav-title">通知</view>
 			<view class="top-nav-btn" @click="readAll">全部已读</view>
@@ -15,7 +20,7 @@
 						<view class="notice-item-right-title">快递消息</view>
 						<view class="notice-item-right-date">2022-06-18</view>
 					</view>
-					<view class="notice-item-right-content">每周六寄件享免费领取100元寄件礼包，更有惊喜。您有来自<南京市>的快递已被签收，感谢您使用。</view>
+					<view class="notice-item-right-content">每周六寄件享免费领取100元寄件礼包，更有惊喜。您有来自南京市的快递已被签收，感谢您使用。</view>
 				</view>
 			</view>
 			<view class="notice-item" @click="goNoticeList(1)">
@@ -25,7 +30,7 @@
 						<view class="notice-item-right-title">公告</view>
 						<view class="notice-item-right-date">2022-06-12</view>
 					</view>
-					<view class="notice-item-right-content">每周六寄件享免费领取100元寄件礼包，更有惊喜。您有来自<南京市>的快递已被签收，感谢您使用。</view>
+					<view class="notice-item-right-content">每周六寄件享免费领取100元寄件礼包，更有惊喜。您有来自南京市的快递已被签收，感谢您使用。</view>
 				</view>
 			</view>
 		</view>
@@ -35,15 +40,17 @@
 <script>
 export default {
 	onShow() {
-		if (document.body.clientHeight / document.body.clientWidth >= 2) {
-			this.clientHeight = document.body.clientHeight + 'px';
+		if (uni.getWindowInfo().windowHeight / uni.getWindowInfo().windowWidth >= 2) {
+			this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		}
+		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 	},
 	data() {
 		return {
 			// 屏幕高度，用于自适应
 			clientHeight: 'auto',
-			isShow: false
+			// 状态栏高度，用于微信小程序适配
+			statusBarHeight: 0
 		};
 	},
 	methods: {
@@ -69,8 +76,17 @@ export default {
 
 .notice-box {
 	width: 100%;
-	height: var(--clientHeight);
+	height: var(--clientheight);
 	background-color: @topic-bgc;
+
+	.status-bar-wx {
+		height: var(--statusbarheight);
+		width: 100%;
+		background-color: #ffffff;
+	}
+	.top-nav {
+		top: var(--statusbarheight);
+	}
 
 	.notice-catagory {
 		width: calc(100% - @base-gap * 2);
