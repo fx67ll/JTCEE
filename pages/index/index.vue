@@ -100,7 +100,7 @@ export default {
 	data() {
 		return {
 			// 屏幕高度，用于自适应
-			clientHeight: '100%',
+			clientHeight: 'auto',
 			// 轮播组件参数
 			indicatorDots: true,
 			autoplay: false,
@@ -237,7 +237,7 @@ export default {
 			width: calc(100% - 40rpx);
 			height: 70rpx;
 			margin: 0 auto;
-			border-bottom: 1rpx solid #e9e9e9;
+			border-bottom: 1rpx solid @topic-split;
 			display: flex;
 			justify-content: space-between;
 			line-height: 70rpx;
