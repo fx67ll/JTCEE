@@ -90,7 +90,7 @@ export default {
 	},
 	methods: {
 		goBack() {
-			uni.navigateTo({
+			uni.redirectTo({
 				url: './notice_catagory'
 			});
 		},
