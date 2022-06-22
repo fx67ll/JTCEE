@@ -15,5 +15,5 @@
 </script>
 
 <style lang="less">
-
+@import url('../../static/style/mixin.less');
 </style>
