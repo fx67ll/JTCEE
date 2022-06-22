@@ -8,7 +8,7 @@
 		</view>
 		<view class="top-nav-fake"></view>
 		<view class="notice-catagory">
-			<view class="notice-item" @click="goNoticeList">
+			<view class="notice-item" @click="goNoticeList(0)">
 				<view class="notice-item-left"><img src="/static/img/notice/notice_express.png" /></view>
 				<view class="notice-item-right">
 					<view class="notice-item-right-top">
@@ -18,7 +18,7 @@
 					<view class="notice-item-right-content">每周六寄件享免费领取100元寄件礼包，更有惊喜。您有来自<南京市>的快递已被签收，感谢您使用。</view>
 				</view>
 			</view>
-			<view class="notice-item" @click="goNoticeList">
+			<view class="notice-item" @click="goNoticeList(1)">
 				<view class="notice-item-left"><img src="/static/img/notice/notice_office.png" /></view>
 				<view class="notice-item-right">
 					<view class="notice-item-right-top">
@@ -42,7 +42,8 @@ export default {
 	data() {
 		return {
 			// 屏幕高度，用于自适应
-			clientHeight: '100%'
+			clientHeight: 'auto',
+			isShow: false
 		};
 	},
 	methods: {
@@ -54,9 +55,9 @@ export default {
 		readAll() {
 			console.log('全部已读ing...');
 		},
-		goNoticeList() {
+		goNoticeList(type) {
 			uni.navigateTo({
-				url: './notice_index'
+				url: `./notice_index?noticeType=${type}`
 			});
 		}
 	}
