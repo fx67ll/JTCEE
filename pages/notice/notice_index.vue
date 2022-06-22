@@ -1,30 +1,64 @@
 <template>
-	<view>
-		<view class="uni-padding-wrap uni-common-mt">
-			<view class="text" v-for="(num, index) in data" :key="index">list - {{ num }}</view>
-			<view class="uni-loadmore notice-loadmore" v-if="showLoadMore">{{ loadMoreText }}</view>
+	<view class="notice-box">
+		<view class="status_bar"><!-- 这里是状态栏 --></view>
+		<view class="top-nav">
+			<view class="top-nav-back"><img src="" @click="goBack" /></view>
+			<view class="top-nav-title">{{ pageTitle }}</view>
+			<view class="top-nav-btn"></view>
 		</view>
+		<view class="top-nav-fake"></view>
+		<view class="page-bg" :style="{ '--clientHeight': clientHeight }"></view>
+		<view class="notice-index">
+			<view class="notice-item" v-for="(num, index) in data" :key="index">
+				<view class="notice-item-title">签收成功通知 - {{ num }}</view>
+				<view class="notice-item-content">您有来自<南京市>的快递已被签收，感谢您神鹰快递，后续快件问题可以联系客服查询</view>
+				<view class="notice-item-info">
+					<view class="notice-item-info-title">快递单号</view>
+					<view class="notice-item-info-text">ST31246576879</view>
+				</view>
+				<view class="notice-item-info">
+					<view class="notice-item-info-title">签收时间</view>
+					<view class="notice-item-info-text">2022-05-29 11:32</view>
+				</view>
+				<view class="notice-item-thanks">感谢您对神通速递的支持，期待下次见面吧！</view>
+				<view class="notice-item-more" @click="getNoticeDetail">查看详细</view>
+			</view>
+		</view>
+		<view class="uni-loadmore notice-loadmore" v-if="showLoadMore">{{ loadMoreText }}</view>
 	</view>
 </template>
 <script>
 export default {
 	data() {
 		return {
+			// 屏幕高度，用于自适应
+			clientHeight: 'auto',
+			// 标题分类
+			pageTitle: '通知',
 			data: [],
 			loadMoreText: '加载中...',
 			showLoadMore: false,
 			max: 0
 		};
 	},
-	onLoad() {
+	onShow() {
+		this.clientHeight = document.body.clientHeight + 'px';
+	},
+	onLoad(option) {
+		if (option.noticeType === '0') {
+			this.pageTitle = '快递消息';
+		}
+		if (option.noticeType === '1') {
+			this.pageTitle = '公告';
+		}
 		this.initData();
 	},
 	onUnload() {
 		(this.max = 0), (this.data = []), (this.loadMoreText = '加载更多'), (this.showLoadMore = false);
 	},
 	onReachBottom() {
-		console.log('onReachBottom');
-		if (this.max > 40) {
+		console.log('正在执行 `onReachBottom` 事件ing...');
+		if (this.max > 19) {
 			this.loadMoreText = '没有更多数据了!';
 			return;
 		}
@@ -34,17 +68,25 @@ export default {
 		}, 300);
 	},
 	onPullDownRefresh() {
-		console.log('onPullDownRefresh');
+		console.log('正在执行 `onPullDownRefresh` 事件ing...');
 		this.initData();
 	},
 	methods: {
+		goBack() {
+			uni.navigateTo({
+				url: './notice_catagory'
+			});
+		},
+		getNoticeDetail() {
+			console.log('正在获取快递详情ing...');
+		},
 		initData() {
 			setTimeout(() => {
 				this.max = 0;
 				this.data = [];
 				let data = [];
-				this.max += 20;
-				for (var i = this.max - 19; i < this.max + 1; i++) {
+				this.max += 5;
+				for (var i = this.max - 4; i < this.max + 1; i++) {
 					data.push(i);
 				}
 				this.data = this.data.concat(data);
@@ -53,8 +95,8 @@ export default {
 		},
 		setListData() {
 			let data = [];
-			this.max += 10;
-			for (var i = this.max - 9; i < this.max + 1; i++) {
+			this.max += 5;
+			for (var i = this.max - 4; i < this.max + 1; i++) {
 				data.push(i);
 			}
 			this.data = this.data.concat(data);
@@ -66,19 +108,91 @@ export default {
 <style lang="less">
 @import url('../../static/style/mixin.less');
 
-.text {
-	margin: 16rpx 0;
+// 这里是为了保证页面没有撑开也能有灰色的背景
+.page-bg {
 	width: 100%;
-	background-color: #fff;
-	height: 120rpx;
-	line-height: 120rpx;
-	text-align: center;
-	color: #555;
-	border-radius: 8rpx;
+	height: var(--clientHeight);
+	position: absolute;
+	top: 0;
+	background-color: @topic-bgc;
+	z-index: 1;
 }
+
+.notice-box {
+	width: 100%;
+	height: auto;
+	background-color: @topic-bgc;
+	padding-bottom: 30rpx;
+	position: relative;
+	z-index: 2;
+	.notice-index {
+		width: calc(100% - @base-gap * 2);
+		margin: 0 auto;
+		position: relative;
+		z-index: 2;
+		.notice-item {
+			width: 100%;
+			background-color: #ffffff;
+			border-radius: 20rpx;
+			margin-top: 25rpx;
+			.notice-item-title {
+				width: calc(100% - 40rpx);
+				height: 100rpx;
+				margin: 0 auto;
+				font-size: 30rpx;
+				color: #303031;
+				line-height: 100rpx;
+				text-indent: 10rpx;
+				border-bottom: 1rpx solid @topic-split;
+			}
+			.notice-item-content {
+				width: calc(100% - 40rpx);
+				margin: 15rpx auto 30rpx auto;
+				font-size: 30rpx;
+				color: #a6a6a6;
+				line-height: 35rpx;
+			}
+			.notice-item-info {
+				width: calc(100% - 40rpx);
+				margin: 0 auto 39rpx auto;
+				display: flex;
+				justify-content: flex-start;
+				.notice-item-info-title {
+					width: 120rpx;
+					font-size: 30rpx;
+					color: #a6a6a6;
+					margin-right: 30rpx;
+				}
+				.notice-item-info-text {
+					width: calc(100% - 150rpx);
+					font-size: 28rpx;
+					color: #000000;
+				}
+			}
+			.notice-item-thanks {
+				width: calc(100% - 40rpx);
+				margin: 0 auto 40rpx auto;
+				font-size: 28rpx;
+				color: #000000;
+			}
+			.notice-item-more {
+				width: calc(100% - 40rpx);
+				height: 90rpx;
+				margin: 0 auto;
+				font-size: 28rpx;
+				color: @topic-green;
+				line-height: 90rpx;
+				text-align: center;
+				border-top: 1rpx solid @topic-split;
+			}
+		}
+	}
+}
+
 .notice-loadmore {
 	font-size: 28rpx;
 	text-align: center;
 	color: @topic-green;
+	margin-top: 30rpx;
 }
 </style>
