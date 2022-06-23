@@ -26,6 +26,7 @@
 		<view class="index-swiper">
 			<swiper
 				circular
+				class="swiper"
 				:indicator-dots="indicatorDots"
 				:autoplay="autoplay"
 				:interval="interval"
@@ -104,7 +105,20 @@
 				<view class="index-beta-item-text">{{ $t('index.beta.scan') }}</view>
 			</view>
 		</view>
-		<view class="index-gap"></view>
+		<view class="bottom-gap"></view>
+		<view class="bottom-menu">
+			<view class="bottom-menu-box">
+				<view class="bottom-menu-item">
+					<view class="bottom-menu-icon"><img src="" /></view>
+					<view class="bottom-menu-text">首页</view>
+				</view>
+				<view class="bottom-menu-logo"><img src="" /></view>
+				<view class="bottom-menu-item" @click="goUserIndex">
+					<view class="bottom-menu-icon"><img src="" /></view>
+					<view class="bottom-menu-text">我的</view>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -146,6 +160,11 @@ export default {
 		},
 		openDialogTest(val) {
 			this.$refs.popup.open();
+		},
+		goUserIndex() {
+			uni.navigateTo({
+				url: '/pages/user/user_index'
+			});
 		}
 	}
 };
@@ -175,7 +194,7 @@ export default {
 		justify-content: flex-start;
 		.index-search-logo {
 			width: 150rpx;
-			border: @test-line-width solid @topic-green;
+			// border: @test-line-width solid @topic-green;
 			margin-left: 30rpx;
 			img {
 				width: 100%;
@@ -206,7 +225,7 @@ export default {
 				color: #c8c8c8;
 			}
 		}
-		.index-search-box-wx{
+		.index-search-box-wx {
 			width: calc(100% - 385rpx);
 		}
 	}
@@ -346,11 +365,6 @@ export default {
 				color: #313131;
 			}
 		}
-	}
-
-	.index-gap {
-		width: 100%;
-		height: 125rpx;
 	}
 }
 </style>
