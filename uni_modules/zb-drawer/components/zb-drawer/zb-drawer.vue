@@ -322,9 +322,8 @@ export default {
 	border-bottom-right-radius: 8rpx;
 }
 .content--visible_bottom {
-	// fx67ll
-	border-top-left-radius: 20rpx;
-	border-top-right-radius: 20rpx;
+	border-top-left-radius: 20rpx;  // fx67ll
+	border-top-right-radius: 20rpx;  // fx67ll
 }
 .mask {
 	//display: block;

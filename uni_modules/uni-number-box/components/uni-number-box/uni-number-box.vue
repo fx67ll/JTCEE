@@ -172,7 +172,8 @@ $color: #333;
 	align-items: center;
 	justify-content: center;
 	padding: 0 8px;
-	background-color: $bg;
+	// background-color: $bg;  // fx67ll
+	background-color: #ffffff !important;  // fx67ll
 	/* #ifdef H5 */
 	cursor: pointer;
 	/* #endif */
@@ -180,11 +181,14 @@ $color: #333;
 
 .uni-numbox__value {
 	margin: 0 2px;
-	background-color: $bg;
-	width: 40px;
+	// background-color: $bg;  // fx67ll
+	// width: 40px;  // fx67ll
+	background-color: #F8F8F8;  // fx67ll
+	width: 140rpx;  // fx67ll
 	height: $box-height;
 	text-align: center;
-	font-size: 14px;
+	// font-size: 14px;  // fx67ll
+	font-size: 14px;  // fx67ll
 	border-left-width: 0;
 	border-right-width: 0;
 	color: $color;

@@ -234,9 +234,8 @@ export default {
 }
 
 .uni-button-color {
-	// color: #007aff;
-	// fx67ll
-	color: #5bc797;
+	// color: #007aff;  // fx67ll
+	color: #5bc797;  // fx67ll
 }
 
 .uni-dialog-input {
