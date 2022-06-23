@@ -46,7 +46,6 @@
 				</view>
 			</view>
 		</view>
-
 		<view class="bill-count">
 			<view class="form-picker">
 				<view class="form-picker-title">寄件时间</view>
@@ -59,7 +58,67 @@
 			</view>
 			<view class="form-number">
 				<view class="form-number-title">包裹重量（kg）</view>
-				<view class="form-number-count"><uni-number-box></uni-number-box></view>
+				<uni-number-box :value="billExpressWeight"></uni-number-box>
+			</view>
+			<view class="form-volume">
+				<view class="form-volume-top">
+					<view class="form-volume-title">包裹体积（m³）</view>
+					<!-- <view class="form-volume-count">0</view> -->
+					<uni-number-box :disabled="true" :value="billExpressVolume"></uni-number-box>
+				</view>
+				<view class="form-volume-bottom">
+					<view class="form-volume-item">
+						<input class="uni-input form-volume-item-input" type="number" placeholder="长" />
+						<text class="form-volume-item-text">
+							CM
+							<uni-icons class="form-volume-item-icon" type="closeempty" size="16" color="#313131"></uni-icons>
+						</text>
+					</view>
+					<view class="form-volume-item">
+						<input class="uni-input form-volume-item-input" type="number" placeholder="宽" />
+						<text class="form-volume-item-text">
+							CM
+							<uni-icons class="form-volume-item-icon" type="closeempty" size="16" color="#313131"></uni-icons>
+						</text>
+					</view>
+					<view class="form-volume-item">
+						<input class="uni-input form-volume-item-input" type="number" placeholder="高" />
+						<text class="form-volume-item-text">CM</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="bill-submit" @click="getForecastPrice">查 询</view>
+		<view class="bill-catagory">
+			<view class="bill-catagory-tips">以下为估算值(不包含包装及保价费等)，实际揽收为准</view>
+			<view class="bill-catagory-card">
+				<v-tabs v-model="tabCurrentIndex" :tabs="tabDataList" :itemWidth="tabItemWidth" @change="changeTab"></v-tabs>
+				<view class="bill-catagory-content">
+					<swiper :current="tabCurrentIndex" circular :indicator-dots="false" :duration="300">
+						<swiper-item v-for="(num, index) in tabDataList" :key="index">
+							<view class="bill-catagory-info">
+								<view class="bill-catagory-info-type">特惠寄</view>
+								<view class="bill-catagory-info-bottom">
+									<view class="bill-catagory-info-left">
+										<view class="bill-catagory-info-time">2022-06-06 22:34</view>
+										<view class="bill-catagory-info-text">首重(1.0kg)180円，续重100円/kg</view>
+									</view>
+									<view class="bill-catagory-info-right">
+										<view class="bill-catagory-info-money">
+											{{ index + 1 }}280000
+											<text class="bill-catagory-info-unit">円</text>
+										</view>
+										<view class="bill-catagory-info-money-text">起</view>
+									</view>
+								</view>
+							</view>
+							<view class="bill-catagory-info-more" @click="getMoreInfo(index)">
+								运费计费说明
+								<uni-icons class="bill-catagory-info-more-icon" type="info" size="18" color="#BFBFBF"></uni-icons>
+							</view>
+						</swiper-item>
+					</swiper>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -68,14 +127,21 @@
 <script>
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
 import uniNumberBox from '@/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.vue';
+import vTabs from '@/uni_modules/v-tabs/v-tabs.vue';
 export default {
 	components: {
 		uniIcons,
-		uniNumberBox
+		uniNumberBox,
+		vTabs
 	},
 	onShow() {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
+
+		// 计算tab栏的宽度rpx值
+		let windowWidthRpx = (750 / uni.getWindowInfo().windowWidth) * uni.getWindowInfo().windowWidth;
+		this.tabItemWidth = Math.floor((windowWidthRpx - 100) / 3) + 'rpx';
+		// console.log(this.tabItemWidth);
 	},
 	data() {
 		const currentDate = this.getDate({
@@ -96,7 +162,21 @@ export default {
 			billExpressIndex: -1,
 			// 寄件时间
 			// expressDate: currentDate,
-			expressDate: 1
+			expressDate: 1,
+			// 寄件重量
+			billExpressWeight: 0,
+			// 寄件体积
+			billExpressVolume: 0,
+			// tab索引
+			tabCurrentIndex: 0,
+			// tab数据
+			tabDataList: ['杂货', '专线', '重货'],
+			// tab宽度，根据需要自行计算
+			tabItemWidth: '216rpx',
+			// tab说明图片地址
+			tabImgUrlList: ['/static/img/page/bill-sundry-goods.jpg', '/static/img/page/bill-special-line.png', '/static/img/page/bill-high-weight.png'],
+			// tab说明图片地址，微信必须使用http或者https的图片网络地址
+			tabImgUrlListWx: ['/static/img/page/bill-sundry-goods.jpg', '/static/img/page/bill-special-line.png', '/static/img/page/bill-high-weight.png']
 		};
 	},
 	computed: {
@@ -139,6 +219,45 @@ export default {
 		bindExpressDateChange: function(e) {
 			console.log('寄件时间picker发送选择改变，携带值为', e.detail.value);
 			this.expressDate = e.detail.value;
+		},
+		getForecastPrice() {
+			console.log('正在查询预测价格ing...');
+		},
+		changeTab(index) {
+			console.log('当前选中的项：' + index);
+		},
+		getMoreInfo(index) {
+			// #ifdef H5
+			let imgurl = this.tabImgUrlList[index];
+			uni.previewImage({
+				urls: [imgurl],
+				longPressActions: {
+					itemList: ['发送给朋友', '保存图片', '收藏'],
+					success: function(data) {
+						console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+					},
+					fail: function(err) {
+						console.log(err.errMsg);
+					}
+				}
+			});
+			// #endif
+			// #ifdef MP-WEIXIN
+			let imgurlwx = this.tabImgUrlListWx[index];
+			uni.previewImage({
+				urls: [imgurlwx],
+				longPressActions: {
+					itemList: ['发送给朋友', '保存图片', '收藏'],
+					success: function(data) {
+						console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+					},
+					fail: function(err) {
+						console.log(err.errMsg);
+					}
+				}
+			});
+			// #endif
+			console.log('正在获取运费计费说明ing...');
 		}
 	}
 };
@@ -151,7 +270,7 @@ export default {
 	width: 100%;
 	height: auto;
 	background-color: @topic-bgc;
-	padding-bottom: 30rpx;
+	padding-bottom: @base-bottom-gap;
 
 	.common-box {
 		// 这里是状态栏，用于微信端的状态栏抵消
@@ -239,10 +358,111 @@ export default {
 
 	.bill-count {
 		width: calc(100% - @base-gap * 2);
-		height: 490rpx;
+		// height: 490rpx;
 		border-radius: 20rpx;
 		background-color: #ffffff;
 		margin: 25rpx auto 0 auto;
+	}
+
+	.bill-submit {
+		width: calc(100% - @base-gap * 2);
+		height: 100rpx;
+		margin: 50rpx auto 70rpx auto;
+		border-radius: 70px;
+		background: #5bc797;
+		color: #ffffff;
+		text-align: center;
+		font-size: 34rpx;
+		line-height: 100rpx;
+	}
+
+	.bill-catagory {
+		width: calc(100% - @base-gap * 2);
+		margin: 0 auto;
+		.bill-catagory-tips {
+			font-size: 24rpx;
+			color: #bfbfbf;
+			margin-bottom: 15rpx;
+			text-indent: 6rpx;
+		}
+		.bill-catagory-card {
+			width: 100%;
+			min-height: 350rpx;
+			background-color: #ffffff;
+			border-radius: 20rpx;
+			.bill-catagory-content {
+				width: 100%;
+				height: calc(100% - 80rpx);
+				.bill-catagory-info {
+					width: calc(100% - 40rpx);
+					background: #ffffff;
+					box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.1);
+					border-radius: 10rpx;
+					border: 1px solid rgba(0, 0, 0, 0.05);
+					margin: 20rpx auto 28rpx auto;
+					.bill-catagory-info-type {
+						width: 148rpx;
+						height: 40rpx;
+						background: rgba(248, 187, 50, 0.15);
+						border-radius: 0 0 10rpx 0;
+						font-size: 24rpx;
+						color: #f8bb32;
+						text-align: center;
+						line-height: 40rpx;
+					}
+					.bill-catagory-info-bottom {
+						width: calc(100% - 40rpx);
+						margin: 18rpx auto 22rpx auto;
+						display: flex;
+						justify-content: space-between;
+						.bill-catagory-info-left {
+							width: 60%;
+							.bill-catagory-info-time {
+								font-size: 28rpx;
+								color: #303031;
+							}
+							.bill-catagory-info-text {
+								font-size: 24rpx;
+								color: #bfbfbf;
+								margin-top: 8rpx;
+							}
+						}
+						@money-font-size: 45rpx;
+						.bill-catagory-info-right {
+							width: 40%;
+							display: flex;
+							justify-content: flex-end;
+							.bill-catagory-info-money {
+								font-size: @money-font-size;
+								color: #ed4740;
+								line-height: 55rpx;
+								.bill-catagory-info-unit {
+									font-size: calc(@money-font-size / 2);
+									display: inline-block;
+								}
+							}
+							.bill-catagory-info-money-text {
+								font-size: 26rpx;
+								color: #4a4a4a;
+								line-height: 70rpx;
+								margin-left: 10rpx;
+							}
+						}
+					}
+				}
+				.bill-catagory-info-more {
+					width: calc(100% - 40rpx);
+					margin: 0 auto;
+					font-size: 26rpx;
+					color: #bfbfbf;
+					display: flex;
+					align-items: center;
+					.bill-catagory-info-more-icon {
+						margin-left: 8rpx;
+					}
+				}
+			}
+		}
 	}
 }
 </style>
