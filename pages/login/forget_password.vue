@@ -6,59 +6,59 @@
 		<view class="login-info">
 			<view class="login-card login-card-long">
 				<view class="login-card-content login-card-register">
-					<view class="login-card-content-title">修改密码</view>
+					<view class="login-card-content-title">{{ $t('forget_password.password.edit') }}</view>
 					<view class="login-form">
-						<view class="login-form-title">注册邮箱</view>
+						<view class="login-form-title">{{ $t('forget_password.mail') }}</view>
 						<input
 							id="mail-input"
 							class="uni-input login-input login-input-blur"
 							type="text"
 							value=""
-							placeholder="请输入您的注册邮箱"
+							:placeholder="$t('forget_password.mail.placeholder')"
 							placeholder-class="login-input-placeholder"
 							@blur="inputBlur('mail')"
 							@focus="inputFocus('mail')"
 						/>
 						<view class="login-form-send">
-							发送验证码
+							{{ $t('forget_password.code.send') }}
 						</view>
 					</view>
 					<view class="login-form">
-						<view class="login-form-title">验证码</view>
+						<view class="login-form-title">{{ $t('forget_password.code') }}</view>
 						<input
 							id="code-input"
 							class="uni-input login-input login-input-blur"
 							type="text"
 							value=""
-							placeholder="请输入您收到的验证码"
+							:placeholder="$t('forget_password.code.placeholder')"
 							placeholder-class="login-input-placeholder"
 							@blur="inputBlur('code')"
 							@focus="inputFocus('code')"
 						/>
 					</view>
 					<view class="login-form">
-						<view class="login-form-title">新密码</view>
+						<view class="login-form-title">{{ $t('forget_password.password.new') }}</view>
 						<input
 							id="password-input"
 							class="uni-input login-input login-input-blur"
 							password
 							type="text"
 							value=""
-							placeholder="请输入您的新密码"
+							:placeholder="$t('forget_password.password.new.placeholder')"
 							placeholder-class="login-input-placeholder"
 							@blur="inputBlur('password')"
 							@focus="inputFocus('password')"
 						/>
 					</view>
 					<view class="login-form">
-						<view class="login-form-title">确认新密码</view>
+						<view class="login-form-title">{{ $t('forget_password.password.new.check') }}</view>
 						<input
 							id="check-input"
 							class="uni-input login-input login-input-blur"
 							password
 							type="text"
 							value=""
-							placeholder="请重新输入新密码"
+							:placeholder="$t('forget_password.password.new.check.placeholder')"
 							placeholder-class="login-input-placeholder"
 							@blur="inputBlur('check')"
 							@focus="inputFocus('check')"
@@ -70,9 +70,9 @@
 			<view class="login-btn">
 				<view class="login-btn-gb" @click="backLogin">
 					<view class="login-btn-gb-arrow"><img src="/static/img/login/arrow.png"></view>
-					前往登录
+					{{ $t('forget_password.login') }}
 				</view>
-				<view class="login-btn-submit" @click="submitPassword">修 改 密 码</view>
+				<view class="login-btn-submit" @click="submitPassword">{{ $t('forget_password.password.edit') }}</view>
 			</view>
 		</view>
 	</view>
@@ -265,6 +265,8 @@ export default {
 				line-height: 100rpx;
 				color: #ffffff;
 				font-size: 36rpx;
+				letter-spacing: 15rpx;
+				text-indent: 15rpx;
 				.login-btn-submit-space {
 					padding: 0 15rpx;
 				}

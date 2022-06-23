@@ -10,7 +10,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">运费计算</view>
+				<view class="top-nav-title">{{ $t('express_bill.title') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake"></view>
@@ -20,7 +20,7 @@
 			<view class="bill-address-item">
 				<view class="bill-address-item-left">
 					<view class="bill-address-item-img"><img src="/static/img/index/bill-shop.png" /></view>
-					<view class="bill-address-item-title">代理店</view>
+					<view class="bill-address-item-title">{{ $t('express_bill.form.shop') }}</view>
 				</view>
 				<view class="bill-address-item-right">
 					<picker @change="bindShopPickerChange" :value="billShopIndex" :range="billShopData">
@@ -34,7 +34,7 @@
 			<view class="bill-address-item">
 				<view class="bill-address-item-left">
 					<view class="bill-address-item-img"><img src="/static/img/index/bill-express.png" /></view>
-					<view class="bill-address-item-title">落地配</view>
+					<view class="bill-address-item-title">{{ $t('express_bill.form.express') }}</view>
 				</view>
 				<view class="bill-address-item-right">
 					<picker @change="bindExpressPickerChange" :value="billExpressIndex" :range="billExpressData">
@@ -48,7 +48,7 @@
 		</view>
 		<view class="bill-count">
 			<view class="form-picker">
-				<view class="form-picker-title">寄件时间</view>
+				<view class="form-picker-title">{{ $t('express_bill.form.time') }}</view>
 				<view class="form-picker-choose">
 					<picker mode="date" :value="expressDate" :start="expressStartDate" :end="expressEndDate" @change="bindExpressDateChange">
 						<view :class="expressDate == 1 ? 'form-picker-text-placeholder' : 'form-picker-text'">{{ expressDate == 1 ? '请选择' : expressDate }}</view>
@@ -57,51 +57,51 @@
 				</view>
 			</view>
 			<view class="form-number">
-				<view class="form-number-title">包裹重量（kg）</view>
+				<view class="form-number-title">{{ $t('express_bill.form.weight') }}（kg）</view>
 				<uni-number-box :value="billExpressWeight"></uni-number-box>
 			</view>
 			<view class="form-volume">
 				<view class="form-volume-top">
-					<view class="form-volume-title">包裹体积（m³）</view>
+					<view class="form-volume-title">{{ $t('express_bill.form.volume') }}（m³）</view>
 					<!-- <view class="form-volume-count">0</view> -->
 					<uni-number-box :disabled="true" :value="billExpressVolume"></uni-number-box>
 				</view>
 				<view class="form-volume-bottom">
 					<view class="form-volume-item">
-						<input class="uni-input form-volume-item-input" type="number" placeholder="长" />
+						<input class="uni-input form-volume-item-input" type="number" :placeholder="$t('express_bill.form.volume.long')" />
 						<text class="form-volume-item-text">
 							CM
 							<uni-icons class="form-volume-item-icon" type="closeempty" size="16" color="#313131"></uni-icons>
 						</text>
 					</view>
 					<view class="form-volume-item">
-						<input class="uni-input form-volume-item-input" type="number" placeholder="宽" />
+						<input class="uni-input form-volume-item-input" type="number" :placeholder="$t('express_bill.form.volume.wide')" />
 						<text class="form-volume-item-text">
 							CM
 							<uni-icons class="form-volume-item-icon" type="closeempty" size="16" color="#313131"></uni-icons>
 						</text>
 					</view>
 					<view class="form-volume-item">
-						<input class="uni-input form-volume-item-input" type="number" placeholder="高" />
+						<input class="uni-input form-volume-item-input" type="number" :placeholder="$t('express_bill.form.volume.high')" />
 						<text class="form-volume-item-text">CM</text>
 					</view>
 				</view>
 			</view>
 		</view>
-		<view class="bill-submit" @click="getForecastPrice">查 询</view>
+		<view class="bill-submit" @click="getForecastPrice">{{ $t('express_bill.form.search') }}</view>
 		<view class="bill-catagory">
-			<view class="bill-catagory-tips">以下为估算值(不包含包装及保价费等)，实际揽收为准</view>
+			<view class="bill-catagory-tips">{{ $t('express_bill.catagory.tip') }}</view>
 			<view class="bill-catagory-card">
 				<v-tabs v-model="tabCurrentIndex" :tabs="tabDataList" :itemWidth="tabItemWidth" @change="changeTab"></v-tabs>
 				<view class="bill-catagory-content">
 					<swiper :current="tabCurrentIndex" circular :indicator-dots="false" :duration="300">
 						<swiper-item v-for="(num, index) in tabDataList" :key="index">
 							<view class="bill-catagory-info">
-								<view class="bill-catagory-info-type">特惠寄</view>
+								<view class="bill-catagory-info-type">{{ $t('express_bill.catagory.type') }}</view>
 								<view class="bill-catagory-info-bottom">
 									<view class="bill-catagory-info-left">
 										<view class="bill-catagory-info-time">2022-06-06 22:34</view>
-										<view class="bill-catagory-info-text">首重(1.0kg)180円，续重100円/kg</view>
+										<view class="bill-catagory-info-text">{{ $t('express_bill.catagory.info') }}</view>
 									</view>
 									<view class="bill-catagory-info-right">
 										<view class="bill-catagory-info-money">
@@ -113,7 +113,7 @@
 								</view>
 							</view>
 							<view class="bill-catagory-info-more" @click="getMoreInfo(index)">
-								运费计费说明
+								{{ $t('express_bill.catagory.more') }}
 								<uni-icons class="bill-catagory-info-more-icon" type="info" size="18" color="#BFBFBF"></uni-icons>
 							</view>
 						</swiper-item>
@@ -170,7 +170,7 @@ export default {
 			// tab索引
 			tabCurrentIndex: 0,
 			// tab数据
-			tabDataList: ['杂货', '专线', '重货'],
+			tabDataList: [this.$t('express_bill.catagory.sundry.goods'), this.$t('express_bill.catagory.special.line'), this.$t('express_bill.catagory.high.weight')],
 			// tab宽度，根据需要自行计算
 			tabItemWidth: '216rpx',
 			// tab说明图片地址
@@ -374,6 +374,8 @@ export default {
 		text-align: center;
 		font-size: 34rpx;
 		line-height: 100rpx;
+		letter-spacing: 12rpx;
+		text-indent: 12rpx;
 	}
 
 	.bill-catagory {

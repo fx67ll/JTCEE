@@ -7,93 +7,95 @@
 		<view class="login-info">
 			<view class="login-card" :class="{ 'login-card-long': !islc }">
 				<view class="login-card-head">
-					<view class="login-card-head-item" :class="{ 'login-card-head-item-active': islc, 'login-card-head-item-login': !islc }" @click="isLoginCard(true)">登 录</view>
+					<view class="login-card-head-item" :class="{ 'login-card-head-item-active': islc, 'login-card-head-item-login': !islc }" @click="isLoginCard(true)">
+						{{ $t('login.login') }}
+					</view>
 					<view class="login-card-head-item" :class="{ 'login-card-head-item-active': !islc, 'login-card-head-item-register': islc }" @click="isLoginCard(false)">
-						注 册
+						{{ $t('login.register') }}
 					</view>
 				</view>
 				<view class="login-card-content login-card-login" v-if="islc">
-					<view class="login-card-content-title">登录</view>
+					<view class="login-card-content-title">{{ $t('login.login') }}</view>
 					<view class="login-form">
-						<view class="login-form-title">账号</view>
+						<view class="login-form-title">{{ $t('login.user') }}</view>
 						<input
 							id="user-input"
 							class="uni-input login-input login-input-blur"
 							type="text"
 							value=""
-							placeholder="请输入您的账号"
+							:placeholder="$t('login.user.placeholder')"
 							placeholder-class="login-input-placeholder"
 							@blur="inputBlur('user')"
 							@focus="inputFocus('user')"
 						/>
 					</view>
 					<view class="login-form">
-						<view class="login-form-title">密码</view>
+						<view class="login-form-title">{{ $t('login.password') }}</view>
 						<input
 							id="password-input"
 							class="uni-input login-input login-input-blur"
 							password
 							type="text"
 							value=""
-							placeholder="请输入您的密码"
+							:placeholder="$t('login.password.placeholder')"
 							placeholder-class="login-input-placeholder"
 							@blur="inputBlur('password')"
 							@focus="inputFocus('password')"
 						/>
 					</view>
-					<view class="login-change-password" @click="changePassword">忘记密码？</view>
+					<view class="login-change-password" @click="changePassword">{{ $t('login.password.forget') }}？</view>
 				</view>
 				<view class="login-card-content" v-if="!islc">
-					<view class="login-card-content-title">注册</view>
+					<view class="login-card-content-title">{{ $t('login.register') }}</view>
 					<view class="login-form">
-						<view class="login-form-title">账号</view>
+						<view class="login-form-title">{{ $t('login.user') }}</view>
 						<input
 							id="user-input"
 							class="uni-input login-input login-input-blur"
 							type="text"
 							value=""
-							placeholder="请输入您的账号名称"
+							:placeholder="$t('login.user.placeholder')"
 							placeholder-class="login-input-placeholder"
 							@blur="inputBlur('user')"
 							@focus="inputFocus('user')"
 						/>
 					</view>
 					<view class="login-form">
-						<view class="login-form-title">邮箱</view>
+						<view class="login-form-title">{{ $t('login.mail') }}</view>
 						<input
 							id="mail-input"
 							class="uni-input login-input login-input-blur"
 							type="text"
 							value=""
-							placeholder="请输入您的邮箱"
+							:placeholder="$t('login.mail.placeholder')"
 							placeholder-class="login-input-placeholder"
 							@blur="inputBlur('mail')"
 							@focus="inputFocus('mail')"
 						/>
 					</view>
 					<view class="login-form">
-						<view class="login-form-title">密码</view>
+						<view class="login-form-title">{{ $t('login.password') }}</view>
 						<input
 							id="password-input"
 							class="uni-input login-input login-input-blur"
 							password
 							type="text"
 							value=""
-							placeholder="请输入您的密码"
+							:placeholder="$t('login.password.placeholder')"
 							placeholder-class="login-input-placeholder"
 							@blur="inputBlur('password')"
 							@focus="inputFocus('password')"
 						/>
 					</view>
 					<view class="login-form">
-						<view class="login-form-title">确认密码</view>
+						<view class="login-form-title">{{ $t('login.password.check') }}</view>
 						<input
 							id="check-input"
 							class="uni-input login-input login-input-blur"
 							password
 							type="text"
 							value=""
-							placeholder="请重新输入密码"
+							:placeholder="$t('login.password.check.placeholder')"
 							placeholder-class="login-input-placeholder"
 							@blur="inputBlur('check')"
 							@focus="inputFocus('check')"
@@ -107,27 +109,29 @@
 					<view class="login-btn-rp-checkbox">
 						<uni-icons v-if="isru" class="login-btn-rp-checkbox-icon" type="checkmarkempty" size="14" color="#5BC797"></uni-icons>
 					</view>
-					记住账号
+					{{ $t('login.user.remember') }}
 				</view>
 				<view class="login-btn-submit" @click="submitLogin">
-					登
+					<!-- 登
 					<text class="login-btn-submit-space"></text>
-					录
+					录 -->
+					{{ $t('login.login') }}
 				</view>
 			</view>
 			<view class="login-btn" v-if="!islc">
 				<view class="login-btn-left"><!-- 占位 --></view>
 				<view class="login-btn-submit" @click="submitLogin">
-					注
+					<!-- 注
 					<text class="login-btn-submit-space"></text>
-					册
+					册 -->
+					{{ $t('login.register') }}
 				</view>
 			</view>
 		</view>
 		<view class="login-wx" v-if="islc">
 			<view class="login-wx-title">
 				<text class="login-wx-title-line"></text>
-				<text class="login-wx-title-text">第三方登录</text>
+				<text class="login-wx-title-text">{{ $t('login.login.login') }}</text>
 				<text class="login-wx-title-line"></text>
 			</view>
 			<view class="login-wx-icon" @click="wxLogin"><img src="/static/img/login/wx.png" /></view>
@@ -151,10 +155,14 @@ export default {
 			this.islc = val;
 		},
 		inputBlur(id) {
+			// #ifdef H5
 			document.getElementById(id + '-input').className = 'uni-input login-input login-input-blur';
+			// #endif
 		},
 		inputFocus(id) {
+			// #ifdef H5
 			document.getElementById(id + '-input').className = 'uni-input login-input login-input-focus';
+			// #endif
 		},
 		changePassword() {
 			console.log('修改密码中...');
@@ -227,6 +235,7 @@ export default {
 					color: #ffffff;
 					background: @topic-green;
 					border-radius: 20px;
+					letter-spacing: 10rpx;
 				}
 				@active-top: 30rpx;
 				.login-card-head-item-active {
@@ -341,6 +350,8 @@ export default {
 				line-height: 100rpx;
 				color: #ffffff;
 				font-size: 36rpx;
+				letter-spacing: 30rpx;
+				text-indent: 30rpx;
 				.login-btn-submit-space {
 					padding: 0 15rpx;
 				}

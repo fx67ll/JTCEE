@@ -10,8 +10,8 @@
 			<view class="top-nav-back">
 				<uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons>
 			</view>
-			<view class="top-nav-title">通知</view>
-			<view class="top-nav-btn" @click="readAll">全部已读</view>
+			<view class="top-nav-title">{{ $t('notice_catagory.title') }}</view>
+			<view class="top-nav-btn" @click="readAll">{{ $t('notice_catagory.read') }}</view>
 		</view>
 		<view class="top-nav-fake"></view>
 		<view class="notice-catagory">
@@ -19,7 +19,7 @@
 				<view class="notice-item-left"><img src="/static/img/notice/notice_express.png" /></view>
 				<view class="notice-item-right">
 					<view class="notice-item-right-top">
-						<view class="notice-item-right-title">快递消息</view>
+						<view class="notice-item-right-title">{{ $t('notice_catagory.notice.express') }}</view>
 						<view class="notice-item-right-date">2022-06-18</view>
 					</view>
 					<view class="notice-item-right-content">每周六寄件享免费领取100元寄件礼包，更有惊喜。您有来自南京市的快递已被签收，感谢您使用。</view>
@@ -29,7 +29,7 @@
 				<view class="notice-item-left"><img src="/static/img/notice/notice_office.png" /></view>
 				<view class="notice-item-right">
 					<view class="notice-item-right-top">
-						<view class="notice-item-right-title">公告</view>
+						<view class="notice-item-right-title">{{ $t('notice_catagory.notice.public') }}</view>
 						<view class="notice-item-right-date">2022-06-12</view>
 					</view>
 					<view class="notice-item-right-content">每周六寄件享免费领取100元寄件礼包，更有惊喜。您有来自南京市的快递已被签收，感谢您使用。</view>

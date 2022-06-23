@@ -3,7 +3,7 @@ export default {
 	onLaunch: function() {
 		// console.log('App Launch')
 		uni.setLocale('zh-Hans');
-		// this.$i18n.locale = 'zh-Hans';
+		this.$i18n.locale = 'zh-Hans';
 	},
 	onShow: function() {
 		// console.log('App Show')

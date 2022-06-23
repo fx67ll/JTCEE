@@ -12,14 +12,14 @@
 			<!-- #ifdef MP-WEIXIN -->
 			<view class="index-search-box index-search-box-wx">
 				<text class="index-search-icon"><uni-icons type="search" size="23" color="#A0A0A0"></uni-icons></text>
-				<input class="uni-input index-search-input" confirm-type="search" placeholder="商品搜索" placeholder-class="login-input-placeholder" />
+				<input class="uni-input index-search-input" confirm-type="search" :placeholder="$t('index.search.goods')" placeholder-class="login-input-placeholder" />
 			</view>
 			<!-- #endif -->
 			<!-- 除了微信小程序其他平台使用的搜索框 -->
 			<!-- #ifndef MP-WEIXIN -->
 			<view class="index-search-box">
 				<text class="index-search-icon"><uni-icons type="search" size="23" color="#A0A0A0"></uni-icons></text>
-				<input class="uni-input index-search-input" confirm-type="search" placeholder="商品搜索" placeholder-class="login-input-placeholder" />
+				<input class="uni-input index-search-input" confirm-type="search" :placeholder="$t('index.search.goods')" placeholder-class="login-input-placeholder" />
 			</view>
 			<!-- #endif -->
 		</view>
@@ -53,19 +53,19 @@
 		<view class="index-function-alpha">
 			<view class="index-alpha-item">
 				<view class="index-alpha-item-img" @click="countExpressBill"><img src="/static/img/index/bill-count.png" /></view>
-				<view class="index-alpha-item-text">运费计算</view>
+				<view class="index-alpha-item-text">{{ $t('index.alpha.count') }}</view>
 			</view>
-			<view class="index-alpha-item" @click="openDialog('运费标准')">
+			<view class="index-alpha-item" @click="openDialogTest">
 				<view class="index-alpha-item-img"><img src="/static/img/index/bill-explain.png" /></view>
-				<view class="index-alpha-item-text">运费标准</view>
+				<view class="index-alpha-item-text">{{ $t('index.alpha.explain') }}</view>
 			</view>
-			<view class="index-alpha-item" @click="openDialog('运费标准')">
+			<view class="index-alpha-item" @click="openDialogTest">
 				<view class="index-alpha-item-img"><img src="/static/img/index/shop-search.png" /></view>
-				<view class="index-alpha-item-text">网点查询</view>
+				<view class="index-alpha-item-text">{{ $t('index.alpha.site') }}</view>
 			</view>
-			<view class="index-alpha-item" @click="openDialog('运费标准')">
+			<view class="index-alpha-item" @click="openDialogTest">
 				<view class="index-alpha-item-img"><img src="/static/img/index/get-service.png" /></view>
-				<view class="index-alpha-item-text">联络客服</view>
+				<view class="index-alpha-item-text">{{ $t('index.alpha.help') }}</view>
 			</view>
 		</view>
 		<!-- 临时使用 -->
@@ -74,34 +74,34 @@
 		</uni-popup>
 		<view class="index-notice">
 			<view class="index-notice-head">
-				<view class="index-notice-title">消息中心</view>
-				<view class="index-notice-more" @click="getMoreNotice">更多</view>
+				<view class="index-notice-title">{{ $t('index.notice.title') }}</view>
+				<view class="index-notice-more" @click="getMoreNotice">{{ $t('index.notice.more') }}</view>
 			</view>
 			<view class="index-notice-item">
-				<view class="index-notice-catagory index-notice-yellow">公告</view>
+				<view class="index-notice-catagory index-notice-yellow">{{ $t('index.notice.public') }}</view>
 				<view class="index-notice-content">每周六寄件享免费领取100元寄件礼包，更有惊喜。您有来自南京市的快递已被签收，感谢您使用。</view>
 			</view>
 			<view class="index-notice-item">
-				<view class="index-notice-catagory index-notice-red">消息</view>
+				<view class="index-notice-catagory index-notice-red">{{ $t('index.notice.express') }}</view>
 				<view class="index-notice-content">每周六寄件享免费领取100元寄件礼包，更有惊喜。您有来自南京市的快递已被签收，感谢您使用。</view>
 			</view>
 		</view>
 		<view class="index-function-beta">
 			<view class="index-beta-item">
 				<view class="index-beta-item-img"><img src="/static/img/index/express-use.png" /></view>
-				<view class="index-beta-item-text">寄快递</view>
+				<view class="index-beta-item-text">{{ $t('index.beta.use') }}</view>
 			</view>
 			<view class="index-beta-item">
 				<view class="index-beta-item-img"><img src="/static/img/index/express-search.png" /></view>
-				<view class="index-beta-item-text">查快递</view>
+				<view class="index-beta-item-text">{{ $t('index.beta.search') }}</view>
 			</view>
 			<view class="index-beta-item">
 				<view class="index-beta-item-img"><img src="/static/img/index/express-get.png" /></view>
-				<view class="index-beta-item-text">包裹代收</view>
+				<view class="index-beta-item-text">{{ $t('index.beta.get') }}</view>
 			</view>
 			<view class="index-beta-item">
 				<view class="index-beta-item-img"><img src="/static/img/index/express-scan.png" /></view>
-				<view class="index-beta-item-text">扫一扫</view>
+				<view class="index-beta-item-text">{{ $t('index.beta.scan') }}</view>
 			</view>
 		</view>
 		<view class="index-gap"></view>
@@ -144,7 +144,7 @@ export default {
 				url: '/pages/index/express_bill'
 			});
 		},
-		openDialog(val) {
+		openDialogTest(val) {
 			this.$refs.popup.open();
 		}
 	}

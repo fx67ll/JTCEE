@@ -9,9 +9,7 @@
 			<view class="status-bar-wx-fake" :style="{ '--statusbarheight': statusBarHeight }"><!-- 这里是状态栏，用于微信端的状态栏占位 --></view>
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
-				<view class="top-nav-back">
-					<uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons>
-				</view>
+				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
 				<view class="top-nav-title">{{ pageTitle }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
@@ -23,15 +21,15 @@
 				<view class="notice-item-title">签收成功通知 - {{ num }}</view>
 				<view class="notice-item-content">您有来自南京市的快递已被签收，感谢您神鹰快递，后续快件问题可以联系客服查询</view>
 				<view class="notice-item-info">
-					<view class="notice-item-info-title">快递单号</view>
+					<view class="notice-item-info-title">{{ $t('notice_index.express.id') }}</view>
 					<view class="notice-item-info-text">ST31246576879</view>
 				</view>
 				<view class="notice-item-info">
-					<view class="notice-item-info-title">签收时间</view>
+					<view class="notice-item-info-title">{{ $t('notice_index.express.time') }}</view>
 					<view class="notice-item-info-text">2022-05-29 11:32</view>
 				</view>
 				<view class="notice-item-thanks">感谢您对神通速递的支持，期待下次见面吧！</view>
-				<view class="notice-item-more" @click="getNoticeDetail">查看详细</view>
+				<view class="notice-item-more" @click="getNoticeDetail">{{ $t('notice_index.more') }}</view>
 			</view>
 		</view>
 		<view class="uni-loadmore notice-loadmore" v-if="showLoadMore">{{ loadMoreText }}</view>
@@ -50,7 +48,7 @@ export default {
 			// 状态栏高度，用于微信小程序适配
 			statusBarHeight: 0,
 			// 标题分类
-			pageTitle: '通知',
+			pageTitle: this.$t('notice_catagory.notice.express'),
 			data: [],
 			loadMoreText: '加载中...',
 			showLoadMore: false,
@@ -63,10 +61,10 @@ export default {
 	},
 	onLoad(option) {
 		if (option.noticeType === '0') {
-			this.pageTitle = '快递消息';
+			this.pageTitle = this.$t('notice_catagory.notice.express');
 		}
 		if (option.noticeType === '1') {
-			this.pageTitle = '公告';
+			this.pageTitle = this.$t('notice_catagory.notice.public');
 		}
 		this.initData();
 	},
@@ -130,8 +128,8 @@ export default {
 	height: auto;
 	background-color: @topic-bgc;
 	padding-bottom: @base-bottom-gap;
-	
-	.common-box{
+
+	.common-box {
 		// 这里是状态栏，用于微信端的状态栏抵消
 		.status-bar-wx {
 			height: var(--statusbarheight);
@@ -140,14 +138,14 @@ export default {
 			position: fixed;
 			top: 0;
 		}
-		.status-bar-wx-fake{
+		.status-bar-wx-fake {
 			height: var(--statusbarheight);
 			width: 100%;
 		}
 		.top-nav {
 			top: var(--statusbarheight);
 		}
-		
+
 		// 这里是为了保证页面没有撑开也能有灰色的背景
 		.page-bg {
 			width: 100%;
