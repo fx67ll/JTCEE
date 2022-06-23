@@ -54,9 +54,7 @@ export default {
 		};
 	},
 	onShow() {
-		if (uni.getWindowInfo().windowHeight / uni.getWindowInfo().windowWidth >= 2) {
-			this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
-		}
+		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 	},
 	methods: {
