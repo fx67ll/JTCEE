@@ -68,49 +68,49 @@
 		{
 			"path": "pages/user/user_setting",
 			"style": {
-				"navigationBarTitleText": "个人设置"
+				"navigationStyle": "custom"
 			}
 		},
 		// 地址一览
 		{
 			"path": "pages/address/address_index",
 			"style": {
-				"navigationBarTitleText": "地址一览"
+				"navigationStyle": "custom"
 			}
 		},
 		// 地址添加
 		{
 			"path": "pages/address/address_add",
 			"style": {
-				"navigationBarTitleText": "地址添加"
+				"navigationStyle": "custom"
 			}
 		},
 		// 地址详情
 		{
 			"path": "pages/address/address_detail",
 			"style": {
-				"navigationBarTitleText": "地址详情"
+				"navigationStyle": "custom"
 			}
 		},
 		// 运单一览
 		{
 			"path": "pages/invoice/invoice_index",
 			"style": {
-				"navigationBarTitleText": "运单一览"
+				"navigationStyle": "custom"
 			}
 		},
 		// 运单详情
 		{
 			"path": "pages/invoice/invoice_detail",
 			"style": {
-				"navigationBarTitleText": "运单详情"
+				"navigationStyle": "custom"
 			}
 		},
 		// 运单二维码
 		{
 			"path": "pages/invoice/invoice_qr",
 			"style": {
-				"navigationBarTitleText": "运单二维码"
+				"navigationStyle": "custom"
 			}
 		}
 	],
