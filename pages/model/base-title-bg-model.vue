@@ -57,7 +57,7 @@ export default {
 	width: 100%;
 	height: auto;
 	background-color: @topic-bgc;
-	padding-bottom: 30rpx;
+	padding-bottom: @base-bottom-gap;
 	
 	.common-box{
 		// 这里是状态栏，用于微信端的状态栏抵消

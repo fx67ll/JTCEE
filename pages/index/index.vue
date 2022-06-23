@@ -25,7 +25,6 @@
 		</view>
 		<view class="index-swiper">
 			<swiper
-				class="swiper"
 				circular
 				:indicator-dots="indicatorDots"
 				:autoplay="autoplay"
