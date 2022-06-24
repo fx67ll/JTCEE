@@ -68,5 +68,17 @@
 	"express_bill.catagory.high.weight": "重货",
 	"express_bill.catagory.type": "特惠寄",
 	"express_bill.catagory.info": "首重(1.0kg)180円，续重100円/kg",
-	"express_bill.catagory.more": "运费计费说明"
+	"express_bill.catagory.more": "运费计费说明",
+	
+	"bottom_menu.home": "首页",
+	"bottom_menu.user": "我的",
+	
+	"user_index.express.use": "已寄件数",
+	"user_index.express.get": "待取件数",
+	"user_index.express.money": "运费总计(円)",
+	"user_index.manager.express": "运单管理",
+	"user_index.manager.goods": "商品管理",
+	"user_index.manager.address": "地址管理",
+	"user_index.manager.notice": "消息管理",
+	"user_index.chart.title": "运费一览"
 }
