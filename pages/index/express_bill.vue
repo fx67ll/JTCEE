@@ -128,6 +128,7 @@
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
 import uniNumberBox from '@/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.vue';
 import vTabs from '@/uni_modules/v-tabs/v-tabs.vue';
+import { getDate, currentDate } from '@/static/utils/uni-date-picker.js';
 export default {
 	components: {
 		uniIcons,
@@ -144,9 +145,6 @@ export default {
 		// console.log(this.tabItemWidth);
 	},
 	data() {
-		const currentDate = this.getDate({
-			format: true
-		});
 		return {
 			// 屏幕高度，用于自适应
 			clientHeight: 'auto',
@@ -161,8 +159,8 @@ export default {
 			// 落地配索引
 			billExpressIndex: -1,
 			// 寄件时间
-			// expressDate: currentDate,
-			expressDate: 1,
+			expressDate: currentDate,
+			// expressDate: 1,  // 如果客户要先显示请选择就放开这里，目前是自动显示当天日期
 			// 寄件重量
 			billExpressWeight: 0,
 			// 寄件体积
@@ -181,10 +179,10 @@ export default {
 	},
 	computed: {
 		expressStartDate() {
-			return this.getDate('start');
+			return getDate('start');
 		},
 		expressEndDate() {
-			return this.getDate('end');
+			return getDate('end');
 		}
 	},
 	methods: {
@@ -200,21 +198,6 @@ export default {
 		bindExpressPickerChange: function(e) {
 			console.log('落地配picker发送选择改变，携带值为', e.detail.value);
 			this.billExpressIndex = e.detail.value;
-		},
-		getDate(type) {
-			const date = new Date();
-			let year = date.getFullYear();
-			let month = date.getMonth() + 1;
-			let day = date.getDate();
-
-			if (type === 'start') {
-				year = year - 60;
-			} else if (type === 'end') {
-				year = year + 2;
-			}
-			month = month > 9 ? month : '0' + month;
-			day = day > 9 ? day : '0' + day;
-			return `${year}-${month}-${day}`;
 		},
 		bindExpressDateChange: function(e) {
 			console.log('寄件时间picker发送选择改变，携带值为', e.detail.value);
