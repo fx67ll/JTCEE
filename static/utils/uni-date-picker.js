@@ -18,7 +18,7 @@ export const currentDate = getDate({
 	format: true
 });
 
-import moment from './moment.min.js';
+import moment from '@/static/utils/moment.min.js';
 let nowYear = moment().format('YYYY');
 let yearArray = [];
 for (var i = -10; i < 11; i++) {
