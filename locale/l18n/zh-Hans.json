@@ -80,5 +80,6 @@
 	"user_index.manager.goods": "商品管理",
 	"user_index.manager.address": "地址管理",
 	"user_index.manager.notice": "消息管理",
-	"user_index.chart.title": "运费一览"
+	"user_index.chart.title": "运费一览",
+	"user_index.chart.unit": "费用（円）"
 }

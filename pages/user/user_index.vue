@@ -3,10 +3,10 @@
 		<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		<view class="user-info">
 			<!-- #ifndef MP-WEIXIN -->
-			<view class="user-info-setting"><img src="/static/img/user/user-setting.png" /></view>
+			<view class="user-info-setting" @click="goUserSetting"><img src="/static/img/user/user-setting.png" /></view>
 			<!-- #endif -->
 			<!-- #ifdef MP-WEIXIN -->
-			<view class="user-info-setting user-info-setting-wx"><img src="/static/img/user/user-setting.png" /></view>
+			<view class="user-info-setting user-info-setting-wx" @click="goUserSetting"><img src="/static/img/user/user-setting.png" /></view>
 			<!-- #endif -->
 			<view class="user-info-content">
 				<view class="user-info-head"><img src="/static/img/user/user-head.png" /></view>
@@ -85,7 +85,17 @@
 					</view>
 				</picker>
 			</view>
-			<view class="user-chart-box"></view>
+			<!-- <view class="user-chart-unit">
+				{{ $t('user_index.chart.unit') }}
+			</view> -->
+			<!-- #ifndef MP-WEIXIN -->
+			<view class="user-chart-box" id="user-chart-id"></view>
+			<!-- #endif -->
+			<!-- #ifdef MP-WEIXIN -->
+			<view class="user-chart-box user-chart-box-wx" id="user-chart-id">
+				微信端暂未适配
+			</view>
+			<!-- #endif -->
 		</view>
 		<!-- 由于card做了偏移，底部不需要这么高的元素来垫了 -->
 		<view class="bottom-gap bottom-gap-offset"></view>
@@ -107,6 +117,7 @@
 
 <script>
 import { dateArray, dateIndex } from '@/static/utils/uni-date-picker.js';
+import * as echarts from '@/static/utils/echarts.min.js';
 export default {
 	data() {
 		return {
@@ -121,7 +132,15 @@ export default {
 	onShow() {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
-		console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
+	},
+	mounted() {
+		// H5端正常使用echarts
+		// #ifndef MP-WEIXIN 
+		this.initChart();
+		// #endif 
+		// 微信端后期再重新适配
+		// #ifdef MP-WEIXIN 
+		// #endif 
 	},
 	methods: {
 		goHome() {
@@ -129,10 +148,94 @@ export default {
 				url: '/pages/index/index'
 			});
 		},
+		goUserSetting() {
+			uni.navigateTo({
+				url: '/pages/user/user_setting'
+			});
+		},
 		chooseChartDate(e) {
 			console.log('修改的列为：' + e.detail.column + '，值为：' + e.detail.value);
 			this.chartIndex[e.detail.column] = e.detail.value;
 			this.$forceUpdate();
+		},
+		initChart() {
+			let chartDom = document.getElementById('user-chart-id');
+			let myChart = echarts.init(chartDom);
+			let option = {
+				grid: {
+					top: '6%',
+					bottom: '12%',
+					left: '5.5%',
+					right: '7%',
+					containLabel: true
+				},
+				xAxis: {
+					type: 'category',
+					data: ['2022-06-01', '2022-06-02', '2022-06-03', '2022-06-04', '2022-06-05', '2022-06-06', '2022-06-07', '2022-06-08', '2022-06-09', '2022-06-10'],
+					axisLine: {
+						lineStyle:{
+							color: '#E9E9E9'
+						}
+					},
+					axisTick: {
+						show: false
+					},
+					axisLabel: {
+						color: '#838383',
+						fontSize: 9,
+						rotate: 0
+					},
+					splitLine: {
+						show: false
+					}
+				},
+				yAxis: {
+					type: 'value',
+					splitLine: {
+						show: false
+					},
+					axisLabel: {
+						color: '#838383',
+						fontSize: 9
+					}
+				},
+				series: [
+					{
+						data: [100, 500, 550, 600, 420, 520, 400, 300, 500, 100],
+						type: 'line',
+						smooth: true,
+						color: '#5BC797',
+						symbol: 'circle',
+						symbolSize: 4,
+						lineStyle: {
+							color: '#5BC797'
+						},
+						areaStyle: {
+							normal: {
+								color: {
+									type: 'linear',
+									x: 0,
+									y: 0,
+									x2: 0,
+									y2: 1,
+									colorStops: [
+										{
+											offset: 0,
+											color: 'rgba(91, 199, 151, 0.5)'
+										},
+										{
+											offset: 1,
+											color: 'rgba(91, 199, 151, 0)'
+										}
+									],
+									global: false
+								}
+							}
+						}
+					}
+				]
+			};
+			myChart.setOption(option);
 		}
 	}
 };
@@ -328,7 +431,7 @@ export default {
 			.user-chart-title-text {
 				font-size: 30rpx;
 				color: #313131;
-				margin-left: 40rpx;
+				margin-left: 33rpx;
 				position: relative;
 				top: -5rpx;
 			}
@@ -336,6 +439,7 @@ export default {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
+				margin-right: 15rpx;
 				.user-chart-title-date {
 					font-size: 24rpx;
 					color: #838383;
@@ -348,9 +452,22 @@ export default {
 				}
 			}
 		}
+		// .user-chart-unit{
+		// 	width: 100%;
+		// 	margin-left: 33rpx;
+		// 	font-size: 20rpx;
+		// 	color: #838383;
+		// }
 		.user-chart-box {
 			width: 100%;
 			height: 480rpx;
+		}
+		.user-chart-box-wx{
+			font-size: 40rpx;
+			color: @topic-green;
+			text-align: center;
+			line-height: 420rpx;
+			border: @test-line-width solid @topic-green;
 		}
 	}
 }
