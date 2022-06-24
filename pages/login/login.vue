@@ -131,7 +131,7 @@
 		<view class="login-wx" v-if="islc">
 			<view class="login-wx-title">
 				<text class="login-wx-title-line"></text>
-				<text class="login-wx-title-text">{{ $t('login.login.login') }}</text>
+				<text class="login-wx-title-text">{{ $t('login.login') }}</text>
 				<text class="login-wx-title-line"></text>
 			</view>
 			<view class="login-wx-icon" @click="wxLogin"><img src="/static/img/login/wx.png" /></view>

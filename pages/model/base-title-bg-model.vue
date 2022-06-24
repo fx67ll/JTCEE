@@ -84,6 +84,7 @@ export default {
 			position: fixed;
 			top: 0;
 			background-color: @topic-bgc;
+			z-index: -1;
 		}
 	}
 	

@@ -1,11 +1,12 @@
 <template>
-	<view class="index-box" :style="{ '--clientheight': clientHeight }">
+	<view class="index-box">
 		<!-- #ifdef APP-PLUS -->
 		<view class="status_bar"><!-- 这里是状态栏，用于app端的状态栏抵消 --></view>
 		<!-- #endif -->
 		<!-- #ifdef MP-WEIXIN || H5 -->
 		<view class="status-bar-wx" :style="{ '--statusbarheight': statusBarHeight }"><!-- 这里是状态栏，用于微信端的状态栏抵消 --></view>
 		<!-- #endif -->
+		<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		<view class="index-search">
 			<view class="index-search-logo"><!-- <img src=""> --></view>
 			<!-- 微信小程序特供搜索框，避开关闭按钮 -->
@@ -51,6 +52,10 @@
 				</swiper-item>
 			</swiper>
 		</view>
+		<!-- 除了微信小程序的平台都增加一点高度适配全屏 -->
+		<!-- #ifndef MP-WEIXIN -->
+		<view class="index-swiper-gap"></view>
+		<!-- #endif -->
 		<view class="index-function-alpha">
 			<view class="index-alpha-item">
 				<view class="index-alpha-item-img" @click="countExpressBill"><img src="/static/img/index/bill-count.png" /></view>
@@ -69,6 +74,10 @@
 				<view class="index-alpha-item-text">{{ $t('index.alpha.help') }}</view>
 			</view>
 		</view>
+		<!-- 除了微信小程序的平台都增加一点高度适配全屏 -->
+		<!-- #ifndef MP-WEIXIN -->
+		<view class="index-function-alpha-gap"></view>
+		<!-- #endif -->
 		<!-- 临时使用 -->
 		<uni-popup ref="popup" type="dialog">
 			<uni-popup-dialog type="info" mode="base" title="系统提示" content="该功能正在开发中，敬请期待..." confirmText="确定" cancelText="取消"></uni-popup-dialog>
@@ -109,13 +118,15 @@
 		<view class="bottom-menu">
 			<view class="bottom-menu-box">
 				<view class="bottom-menu-item">
-					<view class="bottom-menu-icon"><img src="" /></view>
-					<view class="bottom-menu-text">首页</view>
+					<view class="bottom-menu-icon"><img src="/static/img/bottom/bottom-home-active.png" /></view>
+					<view class="bottom-menu-text">{{ $t('bottom_menu.home') }}</view>
 				</view>
-				<view class="bottom-menu-logo"><img src="" /></view>
+				<view class="bottom-menu-logo">
+					<!-- <img src="" /> -->
+				</view>
 				<view class="bottom-menu-item" @click="goUserIndex">
-					<view class="bottom-menu-icon"><img src="" /></view>
-					<view class="bottom-menu-text">我的</view>
+					<view class="bottom-menu-icon"><img src="/static/img/bottom/bottom-user.png" /></view>
+					<view class="bottom-menu-text">{{ $t('bottom_menu.user') }}</view>
 				</view>
 			</view>
 		</view>
@@ -142,9 +153,7 @@ export default {
 		};
 	},
 	onShow() {
-		if (uni.getWindowInfo().windowHeight / uni.getWindowInfo().windowWidth >= 2) {
-			this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
-		}
+		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 	},
 	methods: {
@@ -178,12 +187,21 @@ export default {
 
 .index-box {
 	width: 100%;
-	height: var(--clientheight);
 	background-color: @topic-bgc;
 
 	.status-bar-wx {
 		height: var(--statusbarheight);
 		width: 100%;
+	}
+
+	// 这里是为了保证页面没有撑开也能有灰色的背景
+	.page-bg {
+		width: 100%;
+		height: var(--clientheight);
+		position: fixed;
+		top: 0;
+		background-color: @topic-bgc;
+		z-index: -1;
 	}
 
 	.index-search {
@@ -235,7 +253,7 @@ export default {
 		width: calc(100% - @base-gap * 2);
 		height: @swiper-width;
 		// border: @test-line-width solid @topic-green;
-		margin: 30rpx auto 40rpx auto;
+		margin: 30rpx auto 20rpx auto;
 		.swiper {
 			height: 100%;
 		}
@@ -250,11 +268,15 @@ export default {
 			}
 		}
 	}
+	.index-swiper-gap {
+		width: 100%;
+		height: 20rpx;
+	}
 
 	.index-function-alpha {
 		width: calc(100% - (@base-gap * 2 * 2));
 		height: 140rpx;
-		margin: 0 auto calc(@card-gap + 14rpx) auto;
+		margin: 0 auto calc(@card-gap + 4rpx) auto;
 		display: flex;
 		justify-content: space-between;
 		.index-alpha-item {
@@ -279,6 +301,10 @@ export default {
 				color: @topic-text;
 			}
 		}
+	}
+	.index-function-alpha-gap {
+		width: 100%;
+		height: 10rpx;
 	}
 
 	.index-notice {

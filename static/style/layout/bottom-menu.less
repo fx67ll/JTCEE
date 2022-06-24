@@ -1,6 +1,7 @@
+@bottom-height: 120rpx;
 .bottom-menu {
 	width: 100%;
-	height: 120rpx;
+	height: @bottom-height;
 	background-color: #ffffff;
 	position: fixed;
 	bottom: 0;
@@ -40,5 +41,10 @@
 
 .bottom-gap {
 	width: 100%;
-	height: 160rpx;
+	height: calc(@bottom-height + 40rpx);
+}
+
+// 为user_index页面做的适配
+.bottom-gap-offset {
+	height: calc(@bottom-height - 70rpx);
 }
