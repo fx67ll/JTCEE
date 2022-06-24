@@ -41,8 +41,8 @@ export default {
 	},
 	methods: {
 		goBack() {
-			uni.navigateTo({
-				url: ''
+			uni.redirectTo({
+				url: '/pages/user/user_index'
 			});
 		}
 	}

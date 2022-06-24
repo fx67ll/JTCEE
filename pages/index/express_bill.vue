@@ -95,7 +95,7 @@
 			<view class="bill-catagory-card">
 				<v-tabs v-model="tabCurrentIndex" :tabs="tabDataList" :itemWidth="tabItemWidth" @change="changeTab"></v-tabs>
 				<view class="bill-catagory-content">
-					<swiper :current="tabCurrentIndex" circular :indicator-dots="false" :duration="300">
+					<swiper :current="tabCurrentIndex" circular :disable-touch="true" :indicator-dots="false" :duration="300">
 						<swiper-item v-for="(num, index) in tabDataList" :key="index">
 							<view class="bill-catagory-info">
 								<view class="bill-catagory-info-type">{{ $t('express_bill.catagory.type') }}</view>
