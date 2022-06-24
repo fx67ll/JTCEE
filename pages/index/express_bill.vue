@@ -53,6 +53,7 @@
 					<picker mode="date" :value="expressDate" :start="expressStartDate" :end="expressEndDate" @change="bindExpressDateChange">
 						<view :class="expressDate == 1 ? 'form-picker-text-placeholder' : 'form-picker-text'">{{ expressDate == 1 ? '请选择' : expressDate }}</view>
 					</picker>
+					<!-- <uni-datetime-picker type="date" :clear-icon="false" :border="false" v-model="single" @maskClick="maskClick" /> -->
 					<uni-icons class="form-picker-icon" type="right" size="18" color="#BFBFBF"></uni-icons>
 				</view>
 			</view>
@@ -129,6 +130,7 @@ import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue
 import uniNumberBox from '@/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.vue';
 import vTabs from '@/uni_modules/v-tabs/v-tabs.vue';
 import { getDate, currentDate } from '@/static/utils/uni-date-picker.js';
+import uniDatetimePicker from '@/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue';
 export default {
 	components: {
 		uniIcons,
