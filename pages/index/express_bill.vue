@@ -50,10 +50,15 @@
 			<view class="form-picker">
 				<view class="form-picker-title">{{ $t('express_bill.form.time') }}</view>
 				<view class="form-picker-choose">
+					<!-- #ifdef MP-WEIXIN -->
 					<picker mode="date" :value="expressDate" :start="expressStartDate" :end="expressEndDate" @change="bindExpressDateChange">
 						<view :class="expressDate === 1 ? 'form-picker-text-placeholder' : 'form-picker-text'">{{ expressDate === 1 ? '请选择' : expressDate }}</view>
 					</picker>
-					<!-- <uni-datetime-picker type="date" :clear-icon="false" :border="false" v-model="single" @maskClick="maskClick" /> -->
+					<!-- #endif -->
+					<!-- #ifdef H5 -->
+					<!-- uni-datetime-picker貌似不支持日语国际化，如果有要求可以重新启用上面那个选择 -->
+					<uni-datetime-picker class="form-picker-date" type="date" :clear-icon="false" :border="false" v-model="expressDateWx" @change="bindExpressDateChangeWx" />
+					<!-- #endif -->
 					<uni-icons class="form-picker-icon" type="right" size="18" color="#BFBFBF"></uni-icons>
 				</view>
 			</view>
@@ -131,6 +136,7 @@ import uniNumberBox from '@/uni_modules/uni-number-box/components/uni-number-box
 import vTabs from '@/uni_modules/v-tabs/v-tabs.vue';
 import { getDate, currentDate } from '@/static/utils/uni-date-picker.js';
 import uniDatetimePicker from '@/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue';
+import moment from '@/static/utils/moment.min.js';
 export default {
 	components: {
 		uniIcons,
@@ -161,8 +167,9 @@ export default {
 			// 落地配索引
 			billExpressIndex: -1,
 			// 寄件时间
-			expressDate: currentDate,
 			// expressDate: 1,  // 如果客户要先显示请选择就放开这里，目前是自动显示当天日期
+			expressDate: currentDate,
+			expressDateWx: moment().format('YYYY-MM-DD'),
 			// 寄件重量
 			billExpressWeight: 0,
 			// 寄件体积
@@ -201,9 +208,15 @@ export default {
 			console.log('落地配picker发送选择改变，携带值为', e.detail.value);
 			this.billExpressIndex = e.detail.value;
 		},
+		// 微信小程序特供
 		bindExpressDateChange: function(e) {
 			console.log('寄件时间picker发送选择改变，携带值为', e.detail.value);
 			this.expressDate = e.detail.value;
+		},
+		// h5特供
+		bindExpressDateChangeWx(e) {
+			console.log('寄件时间picker发送选择改变，携带值为', e);
+			this.expressDateWx = e;
 		},
 		getForecastPrice() {
 			console.log('正在查询预测价格ing...');

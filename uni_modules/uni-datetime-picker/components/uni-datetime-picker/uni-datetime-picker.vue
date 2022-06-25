@@ -5,7 +5,8 @@
 				<view class="uni-date-editor--x" :class="{'uni-date-editor--x__disabled': disabled,
 		'uni-date-x--border': border}">
 					<view v-if="!isRange" class="uni-date-x uni-date-single">
-						<uni-icons type="calendar" color="#e1e1e1" size="22"></uni-icons>
+						<!-- fx67ll -->
+						<!-- <uni-icons type="calendar" color="#e1e1e1" size="22"></uni-icons> -->
 						<input class="uni-date__x-input" type="text" v-model="singleVal"
 							:placeholder="singlePlaceholderText" :disabled="true" />
 					</view>
@@ -784,11 +785,17 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		padding: 0 10px;
+		/* fx67ll */
+		/* padding: 0 10px; */
+		padding: 0;
 		border-radius: 4px;
 		background-color: #fff;
-		color: #666;
-		font-size: 14px;
+		/* fx67ll */
+		/* color: #666; */
+		color: #000000;
+		/* fx67ll */
+		/* font-size: 14px; */
+		font-size: 28rpx;
 	}
 
 	.uni-date-x--border {
@@ -814,11 +821,15 @@
 	}
 
 	.uni-date__x-input {
-		padding: 0 8px;
+		/* fx67ll */
+		/* padding: 0 8px; */
+		padding: 0;
 		height: 40px;
 		width: 100%;
 		line-height: 40px;
-		font-size: 14px;
+		/* fx67ll */
+		/* font-size: 14px; */
+		font-size: 28rpx;
 	}
 
 	.t-c {
@@ -829,7 +840,9 @@
 		height: 40px;
 		width: 100%;
 		line-height: 40px;
-		font-size: 14px;
+		/* fx67ll */
+		/* font-size: 14px; */
+		font-size: 28rpx;
 	}
 
 	.uni-date-range__input {
@@ -846,7 +859,7 @@
 		bottom: 0;
 		box-sizing: border-box;
 		z-index: 996;
-		font-size: 14px; */
+		font-size: 28rpx; */
 	}
 
 	.uni-date-mask {
@@ -926,14 +939,18 @@
 	}
 
 	.popup-x-footer text:hover {
-		color: #007aff;
+		/* fx67ll */
+		/* color: #007aff; */
+		color: #5BC797;
 		cursor: pointer;
 		opacity: 0.8;
 	}
 
 	.popup-x-footer .confirm {
 		margin-left: 20px;
-		color: #007aff;
+		/* fx67ll */
+		/* color: #007aff; */
+		color: #5BC797;
 	}
 
 	.uni-date-changed {

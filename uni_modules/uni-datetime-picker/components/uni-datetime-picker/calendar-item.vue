@@ -138,7 +138,9 @@
 	}
 
 	.uni-calendar-item__weeks-box .uni-calendar-item--checked {
-		background-color: #007aff;
+		/* fx67ll */
+		/* background-color: #007aff; */
+		background-color: #5BC797;
 		border-radius: 50%;
 		box-sizing: border-box;
 		border: 3px solid #fff;
