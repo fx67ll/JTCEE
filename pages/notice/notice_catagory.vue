@@ -7,9 +7,7 @@
 		<view class="status-bar-wx" :style="{ '--statusbarheight': statusBarHeight }"><!-- 这里是状态栏，用于微信端的状态栏抵消 --></view>
 		<!-- #endif -->
 		<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
-			<view class="top-nav-back">
-				<uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons>
-			</view>
+			<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
 			<view class="top-nav-title">{{ $t('notice_catagory.title') }}</view>
 			<view class="top-nav-btn" @click="readAll">{{ $t('notice_catagory.read') }}</view>
 		</view>
@@ -36,22 +34,33 @@
 				</view>
 			</view>
 		</view>
+		<!-- 页面警告消息 -->
+		<uni-popup ref="popup" type="dialog">
+			<uni-popup-dialog type="error" mode="base" title="系统警告" content="出现未知错误，请联系管理员！" confirmText="确定" cancelText="取消"></uni-popup-dialog>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
+import uniPopup from '@/uni_modules/uni-popup/components/uni-popup/uni-popup.vue';
 export default {
 	components: {
-		uniIcons
+		uniIcons,
+		uniPopup
 	},
 	data() {
 		return {
 			// 屏幕高度，用于自适应
 			clientHeight: 'auto',
 			// 状态栏高度，用于微信小程序适配
-			statusBarHeight: 0
+			statusBarHeight: 0,
+			// 来自哪个位置按钮，1首页，2我的
+			fromType: '1'
 		};
+	},
+	onLoad(option) {
+		this.fromType = option.fromType;
 	},
 	onShow() {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
@@ -59,9 +68,17 @@ export default {
 	},
 	methods: {
 		goBack() {
-			uni.redirectTo({
-				url: '../index/index'
-			});
+			if (this.fromType === '1') {
+				uni.redirectTo({
+					url: '../index/index'
+				});
+			} else if (this.fromType === '2') {
+				uni.redirectTo({
+					url: '/pages/user/user_index'
+				});
+			} else {
+				this.$refs.popup.open();
+			}
 		},
 		readAll() {
 			console.log('全部已读ing...');

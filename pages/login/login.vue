@@ -167,7 +167,7 @@ export default {
 		changePassword() {
 			console.log('修改密码中...');
 			uni.navigateTo({
-				url: '/pages/login/forget_password'
+				url: '/pages/login/forget_password??fromType=1'
 			});
 		},
 		isRememberUser() {

@@ -6,7 +6,7 @@
 		<view class="login-info">
 			<view class="login-card login-card-long">
 				<view class="login-card-content login-card-register">
-					<view class="login-card-content-title">{{ $t('forget_password.password.edit') }}</view>
+					<view class="login-card-content-title">{{ fromType === '1' ? $t('forget_password.title.forget') : $t('forget_password.title.edit') }}</view>
 					<view class="login-form">
 						<view class="login-form-title">{{ $t('forget_password.mail') }}</view>
 						<input
@@ -19,9 +19,7 @@
 							@blur="inputBlur('mail')"
 							@focus="inputFocus('mail')"
 						/>
-						<view class="login-form-send">
-							{{ $t('forget_password.code.send') }}
-						</view>
+						<view class="login-form-send">{{ $t('forget_password.code.send') }}</view>
 					</view>
 					<view class="login-form">
 						<view class="login-form-title">{{ $t('forget_password.code') }}</view>
@@ -69,21 +67,34 @@
 			</view>
 			<view class="login-btn">
 				<view class="login-btn-gb" @click="backLogin">
-					<view class="login-btn-gb-arrow"><img src="/static/img/login/arrow.png"></view>
-					{{ $t('forget_password.login') }}
+					<view class="login-btn-gb-arrow"><img src="/static/img/login/arrow.png" /></view>
+					{{ fromType === '1' ? $t('forget_password.login') : $t('forget_password.back') }}
 				</view>
-				<view class="login-btn-submit" @click="submitPassword">{{ $t('forget_password.password.edit') }}</view>
+				<view class="login-btn-submit" @click="submitPassword">{{ $t('forget_password.title.edit') }}</view>
 			</view>
 		</view>
+		<!-- 页面警告消息 -->
+		<uni-popup ref="popup" type="dialog">
+			<uni-popup-dialog type="error" mode="base" title="系统警告" content="出现未知错误，请联系管理员！" confirmText="确定" cancelText="取消"></uni-popup-dialog>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
+import uniPopup from '@/uni_modules/uni-popup/components/uni-popup/uni-popup.vue';
 export default {
-	data() {
-		return {};
+	components: {
+		uniPopup
 	},
-	onLoad() {},
+	data() {
+		return {
+			// 来自哪个位置按钮，1登录忘记密码，2我的修改密码
+			fromType: '2'
+		};
+	},
+	onLoad(option) {
+		this.fromType = option.fromType;
+	},
 	methods: {
 		inputBlur(id) {
 			document.getElementById(id + '-input').className = 'uni-input login-input login-input-blur';
@@ -92,9 +103,17 @@ export default {
 			document.getElementById(id + '-input').className = 'uni-input login-input login-input-focus';
 		},
 		backLogin() {
-			uni.redirectTo({
-				url: '/pages/login/login'
-			});
+			if (this.fromType === '1') {
+				uni.redirectTo({
+					url: '/pages/login/login'
+				});
+			} else if (this.fromType === '2') {
+				uni.redirectTo({
+					url: '/pages/user/user_index'
+				});
+			} else {
+				this.$refs.popup.open();
+			}
 		},
 		submitPassword() {
 			console.log('修改密码中ing...');
@@ -242,14 +261,14 @@ export default {
 				color: @topic-green;
 				opacity: 0.45;
 				margin-left: 26rpx;
-				.login-btn-gb-arrow{
+				.login-btn-gb-arrow {
 					width: 40rpx;
 					height: 25rpx;
 					display: inline-block;
 					margin-right: 11rpx;
 					position: relative;
 					top: 3rpx;
-					img{
+					img {
 						width: 100%;
 						height: 100%;
 					}

@@ -63,7 +63,7 @@
 				</view>
 				<view class="user-manager-icon"><uni-icons type="right" size="16" color="#BFBFBF"></uni-icons></view>
 			</view>
-			<view class="user-manager-item">
+			<view class="user-manager-item" @click="goNoticeIndex">
 				<view class="user-manager-title">
 					<view class="user-manager-title-img"><img src="/static/img/user/user-notice.png" /></view>
 					<text class="user-manager-title-text">{{ $t('user_index.manager.notice') }}</text>
@@ -151,6 +151,11 @@ export default {
 		goUserSetting() {
 			uni.navigateTo({
 				url: '/pages/user/user_setting'
+			});
+		},
+		goNoticeIndex() {
+			uni.navigateTo({
+				url: '/pages/notice/notice_catagory?fromType=2'
 			});
 		},
 		chooseChartDate(e) {
