@@ -159,7 +159,7 @@ export default {
 	methods: {
 		getMoreNotice() {
 			uni.navigateTo({
-				url: '/pages/notice/notice_catagory?fromType=2'
+				url: '/pages/notice/notice_catagory?fromType=1'
 			});
 		},
 		countExpressBill() {

@@ -17,7 +17,7 @@
 			<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		</view>
 		<view class="notice-index">
-			<view class="notice-item" v-for="(num, index) in data" :key="index">
+			<view class="notice-item" v-for="(num, index) in listData" :key="index">
 				<view class="notice-item-title">签收成功通知 - {{ num }}</view>
 				<view class="notice-item-content">您有来自南京市的快递已被签收，感谢您神鹰快递，后续快件问题可以联系客服查询</view>
 				<view class="notice-item-info">
@@ -49,11 +49,12 @@ export default {
 			statusBarHeight: 0,
 			// 标题分类
 			pageTitle: this.$t('notice_catagory.notice.express'),
+			fromType: '1',
 			// 下拉刷新上拉加载相关数据
-			data: [],
+			listData: [],
 			loadMoreText: '加载中...',
 			showLoadMore: false,
-			max: 0
+			maxDataIndex: 0
 		};
 	},
 	onShow() {
@@ -61,6 +62,7 @@ export default {
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 	},
 	onLoad(option) {
+		this.fromType = option.fromType;
 		if (option.noticeType === '0') {
 			this.pageTitle = this.$t('notice_catagory.notice.express');
 		}
@@ -70,11 +72,11 @@ export default {
 		this.initData();
 	},
 	onUnload() {
-		(this.max = 0), (this.data = []), (this.loadMoreText = '加载更多'), (this.showLoadMore = false);
+		(this.maxDataIndex = 0), (this.listData = []), (this.loadMoreText = '加载更多'), (this.showLoadMore = false);
 	},
 	onReachBottom() {
 		console.log('正在执行 `onReachBottom` 事件ing...');
-		if (this.max > 19) {
+		if (this.maxDataIndex > 19) {
 			this.loadMoreText = '没有更多数据了!';
 			return;
 		}
@@ -89,8 +91,9 @@ export default {
 	},
 	methods: {
 		goBack() {
+			let fromType = this.fromType;
 			uni.redirectTo({
-				url: './notice_catagory'
+				url: `/pages/notice/notice_catagory?fromType=${fromType}`
 			});
 		},
 		getNoticeDetail() {
@@ -98,24 +101,24 @@ export default {
 		},
 		initData() {
 			setTimeout(() => {
-				this.max = 0;
-				this.data = [];
+				this.maxDataIndex = 0;
+				this.listData = [];
 				let data = [];
-				this.max += 5;
-				for (var i = this.max - 4; i < this.max + 1; i++) {
+				this.maxDataIndex += 5;
+				for (var i = this.maxDataIndex - 4; i < this.maxDataIndex + 1; i++) {
 					data.push(i);
 				}
-				this.data = this.data.concat(data);
+				this.listData = this.listData.concat(data);
 				uni.stopPullDownRefresh();
 			}, 300);
 		},
 		setListData() {
 			let data = [];
-			this.max += 5;
-			for (var i = this.max - 4; i < this.max + 1; i++) {
+			this.maxDataIndex += 5;
+			for (var i = this.maxDataIndex - 4; i < this.maxDataIndex + 1; i++) {
 				data.push(i);
 			}
-			this.data = this.data.concat(data);
+			this.listData = this.listData.concat(data);
 		}
 	}
 };
@@ -157,7 +160,7 @@ export default {
 			z-index: -1;
 		}
 	}
-	
+
 	.notice-index {
 		width: calc(100% - @base-gap * 2);
 		margin: 0 auto;
@@ -219,5 +222,4 @@ export default {
 		}
 	}
 }
-
 </style>

@@ -70,7 +70,7 @@ export default {
 		goBack() {
 			if (this.fromType === '1') {
 				uni.redirectTo({
-					url: '../index/index'
+					url: '/pages/index/index'
 				});
 			} else if (this.fromType === '2') {
 				uni.redirectTo({
@@ -84,8 +84,9 @@ export default {
 			console.log('全部已读ing...');
 		},
 		goNoticeList(type) {
+			let fromType = this.fromType;
 			uni.navigateTo({
-				url: `./notice_index?noticeType=${type}`
+				url: `/pages/notice/notice_index?noticeType=${type}&fromType=${fromType}`
 			});
 		}
 	}
