@@ -24,8 +24,8 @@
 				</view>
 				<view class="bill-address-item-right">
 					<picker @change="bindShopPickerChange" :value="billShopIndex" :range="billShopData">
-						<view :class="billShopIndex == -1 ? 'bill-address-item-text-placeholder' : 'bill-address-item-text'">
-							{{ billShopIndex == -1 ? '请选择' : billShopData[billShopIndex] }}
+						<view :class="billShopIndex === -1 ? 'bill-address-item-text-placeholder' : 'bill-address-item-text'">
+							{{ billShopIndex === -1 ? '请选择' : billShopData[billShopIndex] }}
 						</view>
 					</picker>
 					<uni-icons class="bill-address-item-icon" type="right" size="18" color="#BFBFBF"></uni-icons>
@@ -38,8 +38,8 @@
 				</view>
 				<view class="bill-address-item-right">
 					<picker @change="bindExpressPickerChange" :value="billExpressIndex" :range="billExpressData">
-						<view :class="billExpressIndex == -1 ? 'bill-address-item-text-placeholder' : 'bill-address-item-text'">
-							{{ billExpressIndex == -1 ? '请选择' : billExpressData[billExpressIndex] }}
+						<view :class="billExpressIndex === -1 ? 'bill-address-item-text-placeholder' : 'bill-address-item-text'">
+							{{ billExpressIndex === -1 ? '请选择' : billExpressData[billExpressIndex] }}
 						</view>
 					</picker>
 					<uni-icons class="bill-address-item-icon" type="right" size="18" color="#BFBFBF"></uni-icons>
@@ -51,7 +51,7 @@
 				<view class="form-picker-title">{{ $t('express_bill.form.time') }}</view>
 				<view class="form-picker-choose">
 					<picker mode="date" :value="expressDate" :start="expressStartDate" :end="expressEndDate" @change="bindExpressDateChange">
-						<view :class="expressDate == 1 ? 'form-picker-text-placeholder' : 'form-picker-text'">{{ expressDate == 1 ? '请选择' : expressDate }}</view>
+						<view :class="expressDate === 1 ? 'form-picker-text-placeholder' : 'form-picker-text'">{{ expressDate === 1 ? '请选择' : expressDate }}</view>
 					</picker>
 					<!-- <uni-datetime-picker type="date" :clear-icon="false" :border="false" v-model="single" @maskClick="maskClick" /> -->
 					<uni-icons class="form-picker-icon" type="right" size="18" color="#BFBFBF"></uni-icons>

@@ -78,7 +78,7 @@
 		<!-- #ifndef MP-WEIXIN -->
 		<view class="index-function-alpha-gap"></view>
 		<!-- #endif -->
-		<!-- 临时使用 -->
+		<!-- 临时使用的提示弹窗 -->
 		<uni-popup ref="popup" type="dialog">
 			<uni-popup-dialog type="info" mode="base" title="系统提示" content="该功能正在开发中，敬请期待..." confirmText="确定" cancelText="取消"></uni-popup-dialog>
 		</uni-popup>
@@ -159,7 +159,7 @@ export default {
 	methods: {
 		getMoreNotice() {
 			uni.navigateTo({
-				url: '/pages/notice/notice_catagory'
+				url: '/pages/notice/notice_catagory?fromType=2'
 			});
 		},
 		countExpressBill() {
