@@ -1,5 +1,5 @@
 <template>
-	<view class="notice-box">
+	<view class="base-box">
 		<view class="common-box">
 			<!-- #ifdef APP-PLUS -->
 			<view class="status_bar"><!-- 这里是状态栏，用于app端的状态栏抵消 --></view>
@@ -10,36 +10,30 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">{{ pageTitle }}</view>
+				<view class="top-nav-title">标题</view>
 				<view class="top-nav-btn"></view>
 			</view>
-			<view class="top-nav-fake"></view>
+			<view class="top-nav-fake top-nav-fake-high"></view>
 			<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
-		</view>
-		<view class="notice-index">
-			<view class="notice-item" v-for="(num, index) in data" :key="index">
-				<view class="notice-item-title">签收成功通知 - {{ num }}</view>
-				<view class="notice-item-content">您有来自南京市的快递已被签收，感谢您神鹰快递，后续快件问题可以联系客服查询</view>
-				<view class="notice-item-info">
-					<view class="notice-item-info-title">{{ $t('notice_index.express.id') }}</view>
-					<view class="notice-item-info-text">ST31246576879</view>
+			<view class="top-nav-search">
+				<view class="nav-search-box">
+					<text class="nav-search-icon"><uni-icons type="search" size="23" color="#A0A0A0"></uni-icons></text>
+					<input class="uni-input nav-search-input" confirm-type="search" placeholder="请输入关键词搜索" placeholder-class="nav-input-placeholder" />
 				</view>
-				<view class="notice-item-info">
-					<view class="notice-item-info-title">{{ $t('notice_index.express.time') }}</view>
-					<view class="notice-item-info-text">2022-05-29 11:32</view>
-				</view>
-				<view class="notice-item-thanks">感谢您对神通速递的支持，期待下次见面吧！</view>
-				<view class="notice-item-more" @click="getNoticeDetail">{{ $t('notice_index.more') }}</view>
 			</view>
+			<view class="top-nav-tab"><v-tabs class="nav-tab-box" v-model="tabCurrentIndex" :tabs="tabDataList" :scroll="false" @change="changeTab"></v-tabs></view>
 		</view>
+		<view class="pull-index"><view class="pull-item" v-for="(num, index) in data" :key="index"></view></view>
 		<view class="uni-loadmore common-loadmore" v-if="showLoadMore">{{ loadMoreText }}</view>
 	</view>
 </template>
 <script>
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
+import vTabs from '@/uni_modules/v-tabs/v-tabs.vue';
 export default {
 	components: {
-		uniIcons
+		uniIcons,
+		vTabs
 	},
 	data() {
 		return {
@@ -47,26 +41,22 @@ export default {
 			clientHeight: 'auto',
 			// 状态栏高度，用于微信小程序适配
 			statusBarHeight: 0,
-			// 标题分类
-			pageTitle: this.$t('notice_catagory.notice.express'),
 			// 下拉刷新上拉加载相关数据
 			data: [],
 			loadMoreText: '加载中...',
 			showLoadMore: false,
-			max: 0
+			max: 0,
+			// tab索引
+			tabCurrentIndex: 0,
+			// tab数据
+			tabDataList: ['收件人', '寄件人'],
 		};
 	},
 	onShow() {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 	},
-	onLoad(option) {
-		if (option.noticeType === '0') {
-			this.pageTitle = this.$t('notice_catagory.notice.express');
-		}
-		if (option.noticeType === '1') {
-			this.pageTitle = this.$t('notice_catagory.notice.public');
-		}
+	onLoad() {
 		this.initData();
 	},
 	onUnload() {
@@ -90,11 +80,8 @@ export default {
 	methods: {
 		goBack() {
 			uni.redirectTo({
-				url: './notice_catagory'
+				url: '/pages/user/user_index'
 			});
-		},
-		getNoticeDetail() {
-			console.log('正在获取快递详情ing...');
 		},
 		initData() {
 			setTimeout(() => {
@@ -116,6 +103,9 @@ export default {
 				data.push(i);
 			}
 			this.data = this.data.concat(data);
+		},
+		changeTab(index) {
+			console.log('当前选中的项：' + index);
 		}
 	}
 };
@@ -124,7 +114,7 @@ export default {
 <style lang="less">
 @import url('../../static/style/mixin.less');
 
-.notice-box {
+.base-box {
 	width: 100%;
 	height: auto;
 	background-color: @topic-bgc;
@@ -157,67 +147,16 @@ export default {
 			z-index: -1;
 		}
 	}
-	
-	.notice-index {
+
+	.pull-index {
 		width: calc(100% - @base-gap * 2);
 		margin: 0 auto;
-		.notice-item {
+		.pull-item {
 			width: 100%;
 			background-color: #ffffff;
 			border-radius: 20rpx;
 			margin-top: 25rpx;
-			.notice-item-title {
-				width: calc(100% - 40rpx);
-				height: 100rpx;
-				margin: 0 auto;
-				font-size: 30rpx;
-				color: #303031;
-				line-height: 100rpx;
-				text-indent: 10rpx;
-				border-bottom: 1rpx solid @topic-split;
-			}
-			.notice-item-content {
-				width: calc(100% - 40rpx);
-				margin: 15rpx auto 30rpx auto;
-				font-size: 30rpx;
-				color: #a6a6a6;
-				line-height: 35rpx;
-			}
-			.notice-item-info {
-				width: calc(100% - 40rpx);
-				margin: 0 auto 39rpx auto;
-				display: flex;
-				justify-content: flex-start;
-				.notice-item-info-title {
-					width: 120rpx;
-					font-size: 30rpx;
-					color: #a6a6a6;
-					margin-right: 30rpx;
-				}
-				.notice-item-info-text {
-					width: calc(100% - 150rpx);
-					font-size: 28rpx;
-					color: #000000;
-				}
-			}
-			.notice-item-thanks {
-				width: calc(100% - 40rpx);
-				margin: 0 auto 40rpx auto;
-				font-size: 28rpx;
-				color: #000000;
-			}
-			.notice-item-more {
-				width: calc(100% - 40rpx);
-				height: 90rpx;
-				margin: 0 auto;
-				font-size: 28rpx;
-				color: @topic-green;
-				line-height: 90rpx;
-				text-align: center;
-				border-top: 1rpx solid @topic-split;
-			}
 		}
 	}
 }
-
 </style>
