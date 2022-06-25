@@ -17,7 +17,8 @@
 	"login.password.forget": "忘记密码",
 	"login.login.wx": "第三方登录",
 
-	"forget_password.password.edit": "修改密码",
+	"forget_password.title.forget": "忘记密码",
+	"forget_password.title.edit": "修改密码",
 	"forget_password.mail": "注册邮箱",
 	"forget_password.code": "验证码",
 	"forget_password.code.send": "发送验证码",
@@ -28,6 +29,7 @@
 	"forget_password.password.new.placeholder": "请输入您的新密码",
 	"forget_password.password.new.check.placeholder": "请重新输入新密码",
 	"forget_password.login": "前往登录",
+	"forget_password.back": "返回设置",
 
 	"notice_catagory.title": "通知",
 	"notice_catagory.read": "全部已读",
@@ -81,5 +83,13 @@
 	"user_index.manager.address": "地址管理",
 	"user_index.manager.notice": "消息管理",
 	"user_index.chart.title": "运费一览",
-	"user_index.chart.unit": "费用（円）"
+	"user_index.chart.unit": "费用（円）",
+	
+	"user_setting.title": "设置",
+	"user_setting.setting.edit.password": "修改密码",
+	"user_setting.setting.check.mail": "验证邮箱",
+	"user_setting.setting.mail.password": "密码变更是否接收邮件通知",
+	"user_setting.setting.mail.order": "订单状态发生变化是否接收邮件通知",
+	"user_setting.login.out": "退出登录",
+	"user_setting.setting.language": "切换语言"
 }
