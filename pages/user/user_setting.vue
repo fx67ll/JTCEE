@@ -114,6 +114,9 @@ export default {
 			} else {
 				this.$refs.popup.open();
 			}
+			// 预留后期国际化功能
+			// uni.setLocale(this.languageList[e.detail.value].key);
+			// this.$i18n.locale = this.languageList[e.detail.value].key;
 		},
 		loginOut() {
 			console.log('正在退出登录ing...');

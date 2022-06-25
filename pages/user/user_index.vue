@@ -2,7 +2,7 @@
 	<view class="user-box">
 		<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		<view class="user-info">
-			<!-- #ifndef MP-WEIXIN -->
+			<!-- #ifdef H5 -->
 			<view class="user-info-setting" @click="goUserSetting"><img src="/static/img/user/user-setting.png" /></view>
 			<!-- #endif -->
 			<!-- #ifdef MP-WEIXIN -->
@@ -34,7 +34,7 @@
 					<view class="user-card-item-img"><img src="/static/img/user/user-express-money.png" /></view>
 					<!-- 这里后期用js动态处理一下，超过九位数显示999999999+ -->
 					<view class="user-card-item-num">
-						<text class="user-card-item-num-text">999999999</text>
+						<text class="user-card-item-num-text">99</text>
 						<text class="user-card-item-num-plus">+</text>
 					</view>
 					<view class="user-card-item-text">{{ $t('user_index.express.money') }}</view>
@@ -42,7 +42,7 @@
 			</view>
 		</view>
 		<view class="user-manager">
-			<view class="user-manager-item">
+			<view class="user-manager-item" @click="goGetExpress">
 				<view class="user-manager-title">
 					<view class="user-manager-title-img"><img src="/static/img/user/user-express.png" /></view>
 					<text class="user-manager-title-text">{{ $t('user_index.manager.express') }}</text>
@@ -56,14 +56,14 @@
 				</view>
 				<view class="user-manager-icon"><uni-icons type="right" size="16" color="#BFBFBF"></uni-icons></view>
 			</view>
-			<view class="user-manager-item">
+			<view class="user-manager-item" @click="goManagerAddress">
 				<view class="user-manager-title">
 					<view class="user-manager-title-img"><img src="/static/img/user/user-address.png" /></view>
 					<text class="user-manager-title-text">{{ $t('user_index.manager.address') }}</text>
 				</view>
 				<view class="user-manager-icon"><uni-icons type="right" size="16" color="#BFBFBF"></uni-icons></view>
 			</view>
-			<view class="user-manager-item" @click="goNoticeIndex">
+			<view class="user-manager-item" @click="getMoreNotice">
 				<view class="user-manager-title">
 					<view class="user-manager-title-img"><img src="/static/img/user/user-notice.png" /></view>
 					<text class="user-manager-title-text">{{ $t('user_index.manager.notice') }}</text>
@@ -88,7 +88,7 @@
 			<!-- <view class="user-chart-unit">
 				{{ $t('user_index.chart.unit') }}
 			</view> -->
-			<!-- #ifndef MP-WEIXIN -->
+			<!-- #ifdef H5 -->
 			<view class="user-chart-box" id="user-chart-id"></view>
 			<!-- #endif -->
 			<!-- #ifdef MP-WEIXIN -->
@@ -135,7 +135,7 @@ export default {
 	},
 	mounted() {
 		// H5端正常使用echarts
-		// #ifndef MP-WEIXIN 
+		// #ifdef H5
 		this.initChart();
 		// #endif 
 		// 微信端后期再重新适配
@@ -153,7 +153,17 @@ export default {
 				url: '/pages/user/user_setting'
 			});
 		},
-		goNoticeIndex() {
+		goGetExpress(){
+			uni.navigateTo({
+				url: '/pages/invoice/invoice_index?fromType=2'
+			});
+		},
+		goManagerAddress(){
+			uni.navigateTo({
+				url: '/pages/address/address_index?fromType=2'
+			});
+		},
+		getMoreNotice() {
 			uni.navigateTo({
 				url: '/pages/notice/notice_catagory?fromType=2'
 			});

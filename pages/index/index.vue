@@ -16,8 +16,8 @@
 				<input class="uni-input index-search-input" confirm-type="search" :placeholder="$t('index.search.goods')" placeholder-class="login-input-placeholder" />
 			</view>
 			<!-- #endif -->
-			<!-- 除了微信小程序其他平台使用的搜索框 -->
-			<!-- #ifndef MP-WEIXIN -->
+			<!-- H5平台使用的搜索框 -->
+			<!-- #ifdef H5 -->
 			<view class="index-search-box">
 				<text class="index-search-icon"><uni-icons type="search" size="23" color="#A0A0A0"></uni-icons></text>
 				<input class="uni-input index-search-input" confirm-type="search" :placeholder="$t('index.search.goods')" placeholder-class="login-input-placeholder" />
@@ -52,8 +52,8 @@
 				</swiper-item>
 			</swiper>
 		</view>
-		<!-- 除了微信小程序的平台都增加一点高度适配全屏 -->
-		<!-- #ifndef MP-WEIXIN -->
+		<!-- H5增加一点高度适配全屏 -->
+		<!-- #ifdef H5 -->
 		<view class="index-swiper-gap"></view>
 		<!-- #endif -->
 		<view class="index-function-alpha">
@@ -74,8 +74,8 @@
 				<view class="index-alpha-item-text">{{ $t('index.alpha.help') }}</view>
 			</view>
 		</view>
-		<!-- 除了微信小程序的平台都增加一点高度适配全屏 -->
-		<!-- #ifndef MP-WEIXIN -->
+		<!-- H5增加一点高度适配全屏 -->
+		<!-- #ifdef H5 -->
 		<view class="index-function-alpha-gap"></view>
 		<!-- #endif -->
 		<!-- 临时使用的提示弹窗 -->
