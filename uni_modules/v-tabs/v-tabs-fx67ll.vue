@@ -5,7 +5,7 @@
 			:scroll-x="scroll"
 			:scroll-left="scroll ? scrollLeft : 0"
 			:scroll-with-animation="scroll"
-			:style="{ position: fixed ? 'fixed' : 'relative', zIndex: 1993 }"
+			:style="{ position: fixed ? 'fixed' : 'relative', zIndex: 10 }"
 		>
 			<view
 				class="v-tabs__container"
@@ -27,7 +27,8 @@
 						fontWeight: bold && current == i ? 'bold' : '',
 						justifyContent: !scroll ? 'center' : '',
 						flex: scroll ? '' : 1,
-						padding: paddingItem
+						padding: paddingItem,
+						width: itemWidth
 					}"
 					@click="change(i)"
 				>
@@ -92,7 +93,7 @@
  * @property {Boolean} fixed = [true | false] 是否固定
  * @property {String} paddingItem = '0 22rpx' 选项的边距
  * @property {Boolean} lineAnimation = [true | false] 下划线是否有动画
- *
+ * 
  * @event {Function(current)} change 改变标签触发
  */
 export default {
@@ -125,7 +126,7 @@ export default {
 		},
 		fontSize: {
 			type: String,
-			default: '32rpx'
+			default: '30rpx'
 		},
 		activeFontSize: {
 			type: String,
@@ -141,7 +142,7 @@ export default {
 		},
 		height: {
 			type: String,
-			default: '100rpx'
+			default: '80rpx'
 		},
 		lineColor: {
 			type: String,
@@ -149,15 +150,15 @@ export default {
 		},
 		lineHeight: {
 			type: String,
-			default: '6rpx'
+			default: '4rpx'
 		},
 		lineScale: {
 			type: Number,
-			default: 0.2
+			default: 1
 		},
 		lineRadius: {
 			type: String,
-			default: '10rpx'
+			default: '0rpx'
 		},
 		pills: {
 			type: Boolean,
@@ -181,11 +182,15 @@ export default {
 		},
 		paddingItem: {
 			type: String,
-			default: '0 22rpx'
+			default: '0 0'
 		},
 		lineAnimation: {
 			type: Boolean,
 			default: true
+		},
+		itemWidth: {
+			type: String,
+			default: '120rpx'
 		}
 	},
 	data() {
@@ -300,7 +305,9 @@ export default {
 
 <style lang="scss" scoped>
 .v-tabs {
-	width: 100%;
+	width: calc(100% - 40rpx);
+	border-bottom: 1px solid #E9E9E9;
+	margin: 0 auto;
 	box-sizing: border-box;
 	overflow: hidden;
 
@@ -318,8 +325,10 @@ export default {
 
 		&-item {
 			display: flex;
+			justify-content: center;
 			align-items: center;
 			height: 100%;
+			text-align: center;
 			position: relative;
 			z-index: 10;
 			// padding: 0 11px;
