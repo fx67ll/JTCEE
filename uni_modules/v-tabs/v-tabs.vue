@@ -117,7 +117,7 @@ export default {
 		},
 		color: {
 			type: String,
-			default: '#333'
+			default: '#888888'
 		},
 		activeColor: {
 			type: String,
@@ -125,7 +125,7 @@ export default {
 		},
 		fontSize: {
 			type: String,
-			default: '32rpx'
+			default: '28rpx'
 		},
 		activeFontSize: {
 			type: String,
@@ -153,7 +153,7 @@ export default {
 		},
 		lineScale: {
 			type: Number,
-			default: 0.2
+			default: 1
 		},
 		lineRadius: {
 			type: String,

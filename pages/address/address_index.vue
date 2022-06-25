@@ -21,10 +21,17 @@
 					<input class="uni-input nav-search-input" confirm-type="search" placeholder="请输入关键词搜索" placeholder-class="nav-input-placeholder" />
 				</view>
 			</view>
-			<view class="top-nav-tab"><v-tabs class="nav-tab-box" v-model="tabCurrentIndex" :tabs="tabDataList" :scroll="false" @change="changeTab"></v-tabs></view>
+			<view class="top-nav-tab"><v-tabs class="nav-tab-box nav-tab-box-two" v-model="tabCurrentIndex" :tabs="tabDataList" :scroll="false" :lineScale="0.2" @change="changeTab"></v-tabs></view>
 		</view>
-		<view class="pull-index"><view class="pull-item" v-for="(num, index) in data" :key="index"></view></view>
+		<view class="pull-index"><view class="pull-item" v-for="(num, index) in listData" :key="index"></view></view>
 		<view class="uni-loadmore common-loadmore" v-if="showLoadMore">{{ loadMoreText }}</view>
+		<view class="bottom-gap bottom-gap-address"></view>
+		<view class="bottom-menu bottom-menu-address">
+			<view class="bottom-menu-btn" @click="addAddresss">
+				<uni-icons type="plusempty" size="14" color="#ffffff"></uni-icons>
+				<text class="bottom-menu-btn-text">新建地址</text>
+			</view>
+		</view>
 	</view>
 </template>
 <script>
@@ -42,14 +49,14 @@ export default {
 			// 状态栏高度，用于微信小程序适配
 			statusBarHeight: 0,
 			// 下拉刷新上拉加载相关数据
-			data: [],
+			listData: [],
 			loadMoreText: '加载中...',
 			showLoadMore: false,
-			max: 0,
+			maxDataIndex: 0,
 			// tab索引
 			tabCurrentIndex: 0,
 			// tab数据
-			tabDataList: ['收件人', '寄件人'],
+			tabDataList: ['收件人', '寄件人']
 		};
 	},
 	onShow() {
@@ -60,11 +67,11 @@ export default {
 		this.initData();
 	},
 	onUnload() {
-		(this.max = 0), (this.data = []), (this.loadMoreText = '加载更多'), (this.showLoadMore = false);
+		(this.maxDataIndex = 0), (this.listData = []), (this.loadMoreText = '加载更多'), (this.showLoadMore = false);
 	},
 	onReachBottom() {
 		console.log('正在执行 `onReachBottom` 事件ing...');
-		if (this.max > 19) {
+		if (this.maxDataIndex > 19) {
 			this.loadMoreText = '没有更多数据了!';
 			return;
 		}
@@ -85,27 +92,32 @@ export default {
 		},
 		initData() {
 			setTimeout(() => {
-				this.max = 0;
-				this.data = [];
+				this.maxDataIndex = 0;
+				this.listData = [];
 				let data = [];
-				this.max += 5;
-				for (var i = this.max - 4; i < this.max + 1; i++) {
+				this.maxDataIndex += 5;
+				for (var i = this.maxDataIndex - 4; i < this.maxDataIndex + 1; i++) {
 					data.push(i);
 				}
-				this.data = this.data.concat(data);
+				this.listData = this.listData.concat(data);
 				uni.stopPullDownRefresh();
 			}, 300);
 		},
 		setListData() {
 			let data = [];
-			this.max += 5;
-			for (var i = this.max - 4; i < this.max + 1; i++) {
+			this.maxDataIndex += 5;
+			for (var i = this.maxDataIndex - 4; i < this.maxDataIndex + 1; i++) {
 				data.push(i);
 			}
-			this.data = this.data.concat(data);
+			this.listData = this.listData.concat(data);
 		},
 		changeTab(index) {
 			console.log('当前选中的项：' + index);
+		},
+		addAddresss() {
+			uni.navigateTo({
+				url: '/pages/address/address_add'
+			});
 		}
 	}
 };
