@@ -48,3 +48,31 @@
 .bottom-gap-offset {
 	height: calc(@bottom-height - 70rpx);
 }
+
+// 为address_index页面做的适配
+@bottom-height-address: 148rpx;
+.bottom-menu-address {
+	height: @bottom-height-address;
+	.bottom-menu-btn {
+		width: calc(100% - @base-gap * 2);
+		height: 78rpx;
+		background: #5bc797;
+		box-shadow: 0px 2px 10px 1px rgba(0, 190, 106, 0.42);
+		border-radius: 44rpx;
+		margin: 30rpx auto 0 auto;
+		text-align: center;
+		line-height: 78rpx;
+		.bottom-menu-btn-text {
+			color: #ffffff;
+			font-size: 28rpx;
+			margin-left: 10rpx;
+			letter-spacing: 4rpx;
+		}
+		.bottom-menu-btn-text-save{
+			letter-spacing: 10rpx;
+		}
+	}
+}
+.bottom-gap-address {
+	height: calc(@bottom-height-address + 40rpx);
+}
