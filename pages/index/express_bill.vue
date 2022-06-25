@@ -197,7 +197,7 @@ export default {
 	methods: {
 		goBack() {
 			uni.redirectTo({
-				url: '../index/index'
+				url: '/pages/index/index'
 			});
 		},
 		bindShopPickerChange: function(e) {
