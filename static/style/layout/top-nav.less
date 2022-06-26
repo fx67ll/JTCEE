@@ -50,6 +50,7 @@
 	background-color: #ffffff;
 	position: fixed;
 	top: @nav-top;
+	z-index: 999999;
 	.nav-search-box {
 		width: calc(100% - @base-gap * 2);
 		height: 72rpx;
@@ -58,11 +59,11 @@
 		border-radius: 50rpx;
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		.nav-search-icon {
-			width: 34rpx;
-			height: 34rpx;
-			display: inline-block;
-			margin: 15rpx 0 0 26rpx;
+			position: relative;
+			left: 26rpx;
+			top: -2rpx;
 		}
 		.nav-search-input {
 			width: calc(100% - 80rpx);
@@ -83,6 +84,7 @@
 	background-color: #ffffff;
 	position: fixed;
 	top: calc(@nav-top + @search-top);
+	z-index: 999999;
 	.nav-tab-box{
 		margin: 0 auto;
 	}

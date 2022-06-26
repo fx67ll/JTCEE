@@ -17,13 +17,42 @@
 			<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 			<view class="top-nav-search">
 				<view class="nav-search-box">
-					<text class="nav-search-icon"><uni-icons type="search" size="23" color="#A0A0A0"></uni-icons></text>
+					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
 					<input class="uni-input nav-search-input" confirm-type="search" placeholder="请输入关键词搜索" placeholder-class="nav-input-placeholder" />
 				</view>
 			</view>
-			<view class="top-nav-tab"><v-tabs class="nav-tab-box nav-tab-box-two" v-model="tabCurrentIndex" :tabs="tabDataList" :scroll="false" :lineScale="0.2" @change="changeTab"></v-tabs></view>
+			<view class="top-nav-tab">
+				<v-tabs class="nav-tab-box nav-tab-box-two" v-model="tabCurrentIndex" :tabs="tabDataList" :scroll="false" :lineScale="0.2" @change="changeTab"></v-tabs>
+			</view>
 		</view>
-		<view class="pull-index"><view class="pull-item" v-for="(num, index) in listData" :key="index"></view></view>
+		<view class="pull-index">
+			<uni-swipe-action>
+				<view class="pull-item" v-for="(num, index) in listData" :key="index">
+					<uni-swipe-action-item
+						class="pull-item-swiper-action"
+						:right-options="index === 1 ? swiperActionOptionsDefault : swiperActionOptions"
+						:auto-close="true"
+						@click="bindSwiperActionClick"
+					>
+						<view class="pull-item-box">
+							<view class="pull-item-top">
+								<view class="pull-item-top-left">
+									<img class="pull-item-top-icon" src="/static/img/address/address-user-send.png" v-if="tabCurrentIndex === 0" />
+									<img class="pull-item-top-icon" src="/static/img/address/address-user-get.png" v-if="tabCurrentIndex === 1" />
+									<text class="pull-item-top-name">张三</text>
+									<text class="pull-item-top-phone">139 9932 3245</text>
+								</view>
+								<view class="pull-item-top-default" v-if="index === 1">默认地址</view>
+							</view>
+							<view class="pull-item-bottom">
+								<view class="pull-item-address">上海市上海市青浦区朱家镇康耶鲁180号半山国际2单元309室上海市上海市青浦区朱家镇康耶鲁180号半山国际2单元309室</view>
+								<view class="pull-item-edit" @click="editAddress"><img src="/static/img/address/address-edit.png" /></view>
+							</view>
+						</view>
+					</uni-swipe-action-item>
+				</view>
+			</uni-swipe-action>
+		</view>
 		<view class="uni-loadmore common-loadmore" v-if="showLoadMore">{{ loadMoreText }}</view>
 		<view class="bottom-gap bottom-gap-address"></view>
 		<view class="bottom-menu bottom-menu-address">
@@ -37,10 +66,12 @@
 <script>
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
 import vTabs from '@/uni_modules/v-tabs/v-tabs.vue';
+import uniSwipeAction from '@/uni_modules/uni-swipe-action/components/uni-swipe-action/uni-swipe-action.vue';
 export default {
 	components: {
 		uniIcons,
-		vTabs
+		vTabs,
+		uniSwipeAction
 	},
 	data() {
 		return {
@@ -50,13 +81,36 @@ export default {
 			statusBarHeight: 0,
 			// 下拉刷新上拉加载相关数据
 			listData: [],
-			loadMoreText: '加载中...',
+			loadMoreText: this.$t('pull.refresh.loading'),
 			showLoadMore: false,
 			maxDataIndex: 0,
 			// tab索引
 			tabCurrentIndex: 0,
 			// tab数据
-			tabDataList: ['收件人', '寄件人']
+			tabDataList: ['收件人', '寄件人'],
+			swiperActionOptions: [
+				{
+					text: '设为默认地址',
+					style: {
+						backgroundColor: '#007aff'
+					}
+				},
+				{
+					text: '删除',
+					style: {
+						backgroundColor: '#FF5147'
+					}
+				}
+			],
+			swiperActionOptionsDefault: [
+				{
+					text: '删除',
+					style: {
+						backgroundColor: '#FF5147'
+					}
+				}
+			],
+			isSwiperActionOpened: false
 		};
 	},
 	onShow() {
@@ -72,7 +126,7 @@ export default {
 	onReachBottom() {
 		console.log('正在执行 `onReachBottom` 事件ing...');
 		if (this.maxDataIndex > 19) {
-			this.loadMoreText = '没有更多数据了!';
+			this.loadMoreText = this.$t('pull.refresh.nomore');
 			return;
 		}
 		this.showLoadMore = true;
@@ -113,10 +167,24 @@ export default {
 		},
 		changeTab(index) {
 			console.log('当前选中的项：' + index);
+			// uni.startPullDownRefresh();
+			this.initData();
+		},
+		bindSwiperActionClick(e) {
+			console.log(e);
+			uni.showToast({
+				title: `点击了${e.position === 'left' ? '左侧' : '右侧'} ${e.content.text}按钮`,
+				icon: 'none'
+			});
+		},
+		editAddress() {
+			uni.navigateTo({
+				url: '/pages/address/address_add?useType=2'
+			});
 		},
 		addAddresss() {
 			uni.navigateTo({
-				url: '/pages/address/address_add'
+				url: '/pages/address/address_add?useType=1'
 			});
 		}
 	}
@@ -163,11 +231,74 @@ export default {
 	.pull-index {
 		width: calc(100% - @base-gap * 2);
 		margin: 0 auto;
+		z-index: -1;
 		.pull-item {
 			width: 100%;
 			background-color: #ffffff;
 			border-radius: 20rpx;
 			margin-top: 25rpx;
+			.pull-item-swiper-action {
+				width: 100%;
+				border-radius: 20rpx;
+			}
+			.pull-item-box {
+				width: calc(100% - 60rpx);
+				padding-bottom: 40rpx;
+				border-radius: 20rpx;
+				margin: 0 auto;
+				.pull-item-top {
+					width: 100%;
+					padding: 33rpx 0 29rpx 0;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					.pull-item-top-left {
+						display: flex;
+						justify-content: flex-start;
+						align-items: center;
+						color: #313131;
+						.pull-item-top-icon {
+							width: 36rpx;
+							height: 36rpx;
+							margin-right: 27rpx;
+						}
+						.pull-item-top-name {
+							width: 110rpx;
+							font-size: 32rpx;
+						}
+						.pull-item-top-phone {
+							font-size: 28rpx;
+						}
+					}
+					.pull-item-top-default {
+						font-size: 24rpx;
+						color: @topic-green;
+						position: relative;
+						top: -10rpx;
+					}
+				}
+				.pull-item-bottom {
+					width: calc(100% - 59rpx);
+					padding-left: 59rpx;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					.pull-item-address {
+						width: calc(100% - 105rpx);
+						font-size: 24rpx;
+						color: #2e3031;
+						line-height: 32rpx;
+					}
+					.pull-item-edit {
+						width: 58rpx;
+						height: 58rpx;
+						img {
+							width: 100%;
+							height: 100%;
+						}
+					}
+				}
+			}
 		}
 	}
 }
