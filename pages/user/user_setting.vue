@@ -26,11 +26,11 @@
 				</view>
 				<view class="user-setting-form-item">
 					<text class="user-setting-form-text">{{ $t('user_setting.setting.mail.password') }}</text>
-					<switch class="user-setting-form-switch" :checked="passwordSetting" color="#5BC797" @change="passwordSwitchChange" />
+					<switch class="express-switch-default" :checked="passwordSetting" color="#5BC797" @change="passwordSwitchChange" />
 				</view>
 				<view class="user-setting-form-item">
 					<text class="user-setting-form-text">{{ $t('user_setting.setting.mail.order') }}</text>
-					<switch class="user-setting-form-switch" :checked="orderSetting" color="#5BC797" @change="orderSwitchChange" />
+					<switch class="express-switch-default" :checked="orderSetting" color="#5BC797" @change="orderSwitchChange" />
 				</view>
 				<view class="user-setting-form-item">
 					<text class="user-setting-form-text">{{ $t('user_setting.setting.language') }}</text>
@@ -183,9 +183,6 @@ export default {
 			}
 			.user-setting-form-icon {
 				margin-right: 20rpx;
-			}
-			.user-setting-form-switch {
-				transform: scale(0.8);
 			}
 			.user-setting-form-picker{
 				margin-right: 20rpx;
