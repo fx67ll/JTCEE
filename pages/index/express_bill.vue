@@ -137,6 +137,7 @@ import vTabs from '@/uni_modules/v-tabs/v-tabs-fx67ll.vue';
 import { getDate, currentDate } from '@/static/utils/uni-date-picker.js';
 import uniDatetimePicker from '@/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue';
 import moment from '@/static/utils/moment.min.js';
+import pxToRpx from '@/static/utils/px-to-rpx.js';
 export default {
 	components: {
 		uniIcons,
@@ -148,7 +149,7 @@ export default {
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 
 		// 计算tab栏的宽度rpx值
-		let windowWidthRpx = (750 / uni.getWindowInfo().windowWidth) * uni.getWindowInfo().windowWidth;
+		let windowWidthRpx = pxToRpx(uni.getWindowInfo().windowWidth);
 		this.tabItemWidth = Math.floor((windowWidthRpx - 100) / 3) + 'rpx';
 		// console.log(this.tabItemWidth);
 	},
