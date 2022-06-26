@@ -121,6 +121,49 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		},
+		// 寄件
+		{
+			"path": "pages/express/express_send",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 商品管理
+		{
+			"path": "pages/goods/goods_index",
+			"style": {
+				"navigationStyle": "custom",
+				// H5开启下拉刷新，不可以自定义设置下拉样式，只可以使用circle样式
+				"enablePullDownRefresh": true,
+				"h5": {
+					"pullToRefresh": {
+						"color": "#5bc797",
+						"offset": "110px"
+					}
+				}
+			}
+		},
+		// 添加商品
+		{
+			"path": "pages/goods/goods_add",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 商品种类
+		{
+			"path": "pages/goods/goods_catagory",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 商品详情 
+		{
+			"path": "pages/goods/goods_detail",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
