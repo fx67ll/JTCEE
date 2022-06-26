@@ -93,13 +93,6 @@
 				"navigationStyle": "custom"
 			}
 		},
-		// 地址详情
-		{
-			"path": "pages/address/address_detail",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
 		// 运单一览
 		{
 			"path": "pages/invoice/invoice_index",
