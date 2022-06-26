@@ -17,7 +17,7 @@
 			<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 			<view class="top-nav-search">
 				<view class="nav-search-box">
-					<text class="nav-search-icon"><uni-icons type="search" size="23" color="#A0A0A0"></uni-icons></text>
+					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
 					<input class="uni-input nav-search-input" confirm-type="search" placeholder="请输入关键词搜索" placeholder-class="nav-input-placeholder" />
 				</view>
 			</view>
@@ -43,7 +43,7 @@ export default {
 			statusBarHeight: 0,
 			// 下拉刷新上拉加载相关数据
 			listData: [],
-			loadMoreText: '加载中...',
+			loadMoreText: this.$t('pull.refresh.loading'),
 			showLoadMore: false,
 			maxDataIndex: 0,
 			// tab索引
@@ -65,7 +65,7 @@ export default {
 	onReachBottom() {
 		console.log('正在执行 `onReachBottom` 事件ing...');
 		if (this.maxDataIndex > 19) {
-			this.loadMoreText = '没有更多数据了!';
+			this.loadMoreText = this.$t('pull.refresh.nomore');
 			return;
 		}
 		this.showLoadMore = true;

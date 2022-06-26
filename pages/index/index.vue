@@ -12,14 +12,14 @@
 			<!-- 微信小程序特供搜索框，避开关闭按钮 -->
 			<!-- #ifdef MP-WEIXIN -->
 			<view class="index-search-box index-search-box-wx">
-				<text class="index-search-icon"><uni-icons type="search" size="23" color="#A0A0A0"></uni-icons></text>
+				<uni-icons class="index-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
 				<input class="uni-input index-search-input" confirm-type="search" :placeholder="$t('index.search.goods')" placeholder-class="login-input-placeholder" />
 			</view>
 			<!-- #endif -->
 			<!-- H5平台使用的搜索框 -->
 			<!-- #ifdef H5 -->
 			<view class="index-search-box">
-				<text class="index-search-icon"><uni-icons type="search" size="23" color="#A0A0A0"></uni-icons></text>
+				<uni-icons class="index-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
 				<input class="uni-input index-search-input" confirm-type="search" :placeholder="$t('index.search.goods')" placeholder-class="login-input-placeholder" />
 			</view>
 			<!-- #endif -->
@@ -227,16 +227,17 @@ export default {
 			margin-top: 14rpx;
 			display: flex;
 			justify-content: space-between;
+			align-items: center;
 			.index-search-icon {
-				width: 34rpx;
-				height: 34rpx;
-				display: inline-block;
-				margin: 10rpx 0 0 26rpx;
+				position: relative;
+				left: 26rpx;
 			}
 			.index-search-input {
 				width: calc(100% - 80rpx);
 				height: 100%;
 				font-size: 24rpx;
+				position: relative;
+				top: 2rpx;
 			}
 			.login-input-placeholder {
 				font-size: 28rpx;

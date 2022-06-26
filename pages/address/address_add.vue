@@ -10,7 +10,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">新建地址</view>
+				<view class="top-nav-title">{{ useType === '1' ? '新建地址' : '修改地址' }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake"></view>
@@ -32,12 +32,17 @@ export default {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 	},
+	onLoad(option) {
+		this.useType = option.useType;
+	},
 	data() {
 		return {
 			// 屏幕高度，用于自适应
 			clientHeight: 'auto',
 			// 状态栏高度，用于微信小程序适配
-			statusBarHeight: 0
+			statusBarHeight: 0,
+			// 当前页面用途
+			useType: '1'
 		};
 	},
 	methods: {

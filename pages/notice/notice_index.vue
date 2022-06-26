@@ -52,7 +52,7 @@ export default {
 			fromType: '1',
 			// 下拉刷新上拉加载相关数据
 			listData: [],
-			loadMoreText: '加载中...',
+			loadMoreText: this.$t('pull.refresh.loading'),
 			showLoadMore: false,
 			maxDataIndex: 0
 		};
@@ -77,7 +77,7 @@ export default {
 	onReachBottom() {
 		console.log('正在执行 `onReachBottom` 事件ing...');
 		if (this.maxDataIndex > 19) {
-			this.loadMoreText = '没有更多数据了!';
+			this.loadMoreText = this.$t('pull.refresh.nomore');
 			return;
 		}
 		this.showLoadMore = true;

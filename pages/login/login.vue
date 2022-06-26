@@ -360,7 +360,7 @@ export default {
 	}
 
 	.login-wx {
-		margin: 60rpx auto 0 auto;
+		margin: 60rpx auto 150rpx auto;
 		.login-wx-title {
 			width: 100%;
 			.login-wx-title-line {
