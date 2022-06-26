@@ -21,4 +21,9 @@ export default {
 .uni-picker-container .uni-picker-action.uni-picker-action-confirm {
 	color: #5bc797 !important;
 }
+
+/* radio按钮大小公共样式 */
+.uni-radio-input{
+	transform: scale(0.8);
+}
 </style>

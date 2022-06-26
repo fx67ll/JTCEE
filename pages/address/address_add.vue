@@ -68,7 +68,20 @@
 		</view>
 		<view class="address-default">
 			<!-- 从这里开始继续做 -->
-			<view class="address-form-item"><input class="uni-input form-input-default" type="text" placeholder="地址类别" placeholder-class="form-input-placeholder" /></view>
+			<view class="address-form-item form-item-two">
+				<!-- <input class="uni-input form-input-default" type="text" placeholder="地址类别" placeholder-class="form-input-placeholder" /> -->
+				<text class="form-other-title">地址类别</text>
+				<radio-group @change="addressRadioChange" class="form-radio-default">
+					<label class="form-radio-default-label">
+						<radio value="addressRadioTypeGet" checked="true" color="#5BC797" />
+						收件人
+					</label>
+					<label class="form-radio-default-label">
+						<radio value="addressRadioTypeSend" checked="false" color="#5BC797" />
+						寄件人
+					</label>
+				</radio-group>
+			</view>
 			<!-- 到这里结束 -->
 			<view class="address-default-box">
 				<view class="address-default-left">
@@ -120,6 +133,9 @@ export default {
 		},
 		isChinaAddress(val) {
 			this.isCN = val;
+		},
+		addressRadioChange(e) {
+			console.log('addressRadio 发生 change 事件，携带值为', e.detail.value);
 		},
 		defaultSwitchChange(e) {
 			console.log('defaultSwitch 发生 change 事件，携带值为', e.detail.value);
