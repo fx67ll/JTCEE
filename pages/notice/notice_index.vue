@@ -49,6 +49,7 @@ export default {
 			statusBarHeight: 0,
 			// 标题分类
 			pageTitle: this.$t('notice_catagory.notice.express'),
+			// 从首页或者我的进入
 			fromType: '1',
 			// 下拉刷新上拉加载相关数据
 			listData: [],

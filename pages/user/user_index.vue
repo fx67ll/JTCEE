@@ -3,10 +3,10 @@
 		<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		<view class="user-info">
 			<!-- #ifdef H5 -->
-			<view class="user-info-setting" @click="goUserSetting"><img src="/static/img/user/user-setting.png" /></view>
+			<view class="user-info-setting"><img src="/static/img/user/user-setting.png" @click="goUserSetting" /></view>
 			<!-- #endif -->
 			<!-- #ifdef MP-WEIXIN -->
-			<view class="user-info-setting user-info-setting-wx" @click="goUserSetting"><img src="/static/img/user/user-setting.png" /></view>
+			<view class="user-info-setting user-info-setting-wx"><img src="/static/img/user/user-setting.png" @click="goUserSetting" /></view>
 			<!-- #endif -->
 			<view class="user-info-content">
 				<view class="user-info-head"><img src="/static/img/user/user-head.png" /></view>
@@ -49,7 +49,7 @@
 				</view>
 				<view class="user-manager-icon"><uni-icons type="right" size="16" color="#BFBFBF"></uni-icons></view>
 			</view>
-			<view class="user-manager-item">
+			<view class="user-manager-item" @click="goManagerGoods">
 				<view class="user-manager-title">
 					<view class="user-manager-title-img"><img src="/static/img/user/user-goods.png" /></view>
 					<text class="user-manager-title-text">{{ $t('user_index.manager.goods') }}</text>
@@ -92,9 +92,7 @@
 			<view class="user-chart-box" id="user-chart-id"></view>
 			<!-- #endif -->
 			<!-- #ifdef MP-WEIXIN -->
-			<view class="user-chart-box user-chart-box-wx" id="user-chart-id">
-				微信端暂未适配
-			</view>
+			<view class="user-chart-box user-chart-box-wx" id="user-chart-id">微信端暂未适配</view>
 			<!-- #endif -->
 		</view>
 		<!-- 由于card做了偏移，底部不需要这么高的元素来垫了 -->
@@ -137,10 +135,10 @@ export default {
 		// H5端正常使用echarts
 		// #ifdef H5
 		this.initChart();
-		// #endif 
+		// #endif
 		// 微信端后期再重新适配
-		// #ifdef MP-WEIXIN 
-		// #endif 
+		// #ifdef MP-WEIXIN
+		// #endif
 	},
 	methods: {
 		goHome() {
@@ -153,12 +151,17 @@ export default {
 				url: '/pages/user/user_setting'
 			});
 		},
-		goGetExpress(){
+		goGetExpress() {
 			uni.navigateTo({
 				url: '/pages/invoice/invoice_index?fromType=2'
 			});
 		},
-		goManagerAddress(){
+		goManagerGoods() {
+			uni.navigateTo({
+				url: '/pages/goods/goods_index'
+			});
+		},
+		goManagerAddress() {
 			uni.navigateTo({
 				url: '/pages/address/address_index?fromType=2'
 			});
@@ -188,7 +191,7 @@ export default {
 					type: 'category',
 					data: ['2022-06-01', '2022-06-02', '2022-06-03', '2022-06-04', '2022-06-05', '2022-06-06', '2022-06-07', '2022-06-08', '2022-06-09', '2022-06-10'],
 					axisLine: {
-						lineStyle:{
+						lineStyle: {
 							color: '#E9E9E9'
 						}
 					},
@@ -477,7 +480,7 @@ export default {
 			width: 100%;
 			height: 480rpx;
 		}
-		.user-chart-box-wx{
+		.user-chart-box-wx {
 			font-size: 40rpx;
 			color: @topic-green;
 			text-align: center;

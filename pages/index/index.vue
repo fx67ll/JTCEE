@@ -80,7 +80,7 @@
 		<!-- #endif -->
 		<!-- 临时使用的提示弹窗 -->
 		<uni-popup ref="popup" type="dialog">
-			<uni-popup-dialog type="info" mode="base" title="系统提示" content="该功能正在开发中，敬请期待..." confirmText="确定" cancelText="取消"></uni-popup-dialog>
+			<uni-popup-dialog type="info" mode="base" title="系统提示" content="该功能正在开发中，敬请期待..." confirmText="确认" cancelText="取消"></uni-popup-dialog>
 		</uni-popup>
 		<view class="index-notice">
 			<view class="index-notice-head">
@@ -97,19 +97,19 @@
 			</view>
 		</view>
 		<view class="index-function-beta">
-			<view class="index-beta-item">
+			<view class="index-beta-item" @click="goUseExpress">
 				<view class="index-beta-item-img"><img src="/static/img/index/express-use.png" /></view>
 				<view class="index-beta-item-text">{{ $t('index.beta.use') }}</view>
 			</view>
-			<view class="index-beta-item">
+			<view class="index-beta-item" @click="goGetExpress">
 				<view class="index-beta-item-img"><img src="/static/img/index/express-search.png" /></view>
 				<view class="index-beta-item-text">{{ $t('index.beta.search') }}</view>
 			</view>
-			<view class="index-beta-item">
+			<view class="index-beta-item" @click="openDialogTest">
 				<view class="index-beta-item-img"><img src="/static/img/index/express-get.png" /></view>
 				<view class="index-beta-item-text">{{ $t('index.beta.get') }}</view>
 			</view>
-			<view class="index-beta-item">
+			<view class="index-beta-item" @click="openDialogTest">
 				<view class="index-beta-item-img"><img src="/static/img/index/express-scan.png" /></view>
 				<view class="index-beta-item-text">{{ $t('index.beta.scan') }}</view>
 			</view>
@@ -121,9 +121,7 @@
 					<view class="bottom-menu-icon"><img src="/static/img/bottom/bottom-home-active.png" /></view>
 					<view class="bottom-menu-text">{{ $t('bottom_menu.home') }}</view>
 				</view>
-				<view class="bottom-menu-logo">
-					<!-- <img src="" /> -->
-				</view>
+				<view class="bottom-menu-logo"><!-- <img src="" /> --></view>
 				<view class="bottom-menu-item" @click="goUserIndex">
 					<view class="bottom-menu-icon"><img src="/static/img/bottom/bottom-user.png" /></view>
 					<view class="bottom-menu-text">{{ $t('bottom_menu.user') }}</view>
@@ -167,8 +165,18 @@ export default {
 				url: '/pages/index/express_bill'
 			});
 		},
-		openDialogTest(val) {
+		openDialogTest() {
 			this.$refs.popup.open();
+		},
+		goUseExpress() {
+			uni.navigateTo({
+				url: '/pages/express/express_send'
+			});
+		},
+		goGetExpress() {
+			uni.navigateTo({
+				url: '/pages/invoice/invoice_index?fromType=1'
+			});
 		},
 		goUserIndex() {
 			uni.navigateTo({
