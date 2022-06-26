@@ -149,7 +149,7 @@ export default {
 			// 筛选框高度
 			drawerHeight: '80%',
 			// 筛选框日期数据
-			drawerDate: '2022-06',
+			drawerDate: '',
 			// 运单状态筛选按钮激活类型
 			btnType: 0,
 			// 运单日期筛选picker-view数据
@@ -164,6 +164,8 @@ export default {
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 		this.topNavSearchTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 88 + 'rpx';
 		this.topNavTabTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 166 + 'rpx';
+		
+		this.drawerDate = this.pickerViewYears[pickerVal[0]] + '-' + this.pickerViewMonths[pickerVal[1]];
 		
 		uni.showToast({
 			title: '页面开发中，敬请期待！',
