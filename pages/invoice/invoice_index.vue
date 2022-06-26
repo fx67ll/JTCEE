@@ -15,7 +15,7 @@
 			</view>
 			<view class="top-nav-fake top-nav-fake-high"></view>
 			<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
-			
+
 			<!-- 搜索栏 -->
 			<!-- #ifdef H5 -->
 			<view class="top-nav-search">
@@ -45,7 +45,7 @@
 				</view>
 			</view>
 			<!-- #endif -->
-			
+
 			<!-- tab栏 -->
 			<!-- #ifdef H5 -->
 			<view class="top-nav-tab">
@@ -98,6 +98,18 @@
 		</zb-drawer>
 		<view class="pull-index"><view class="pull-item" v-for="(num, index) in listData" :key="index"></view></view>
 		<view class="uni-loadmore common-loadmore" v-if="showLoadMore">{{ loadMoreText }}</view>
+		<!-- 页面警告消息 -->
+		<uni-popup ref="popup" type="dialog">
+			<uni-popup-dialog
+				type="error"
+				mode="base"
+				title="系统警告"
+				content="出现未知错误，请联系管理员！"
+				confirmText="返回首页"
+				cancelText="取消"
+				@confirm="confirmErrorDialog"
+			></uni-popup-dialog>
+		</uni-popup>
 	</view>
 </template>
 <script>
@@ -105,10 +117,12 @@ import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue
 import vTabs from '@/uni_modules/v-tabs/v-tabs.vue';
 import { dataYears, dataMonths, pickerViewMonth } from '@/static/utils/uni-date-picker.js';
 import pxToRpx from '@/static/utils/px-to-rpx.js';
+import uniPopup from '@/uni_modules/uni-popup/components/uni-popup/uni-popup.vue';
 export default {
 	components: {
 		uniIcons,
-		vTabs
+		vTabs,
+		uniPopup
 	},
 	data() {
 		return {
@@ -119,6 +133,8 @@ export default {
 			// 适配微信的searchbox和tabbox
 			topNavSearchTop: 0,
 			topNavTabTop: 0,
+			// 首页或者我的进入
+			fromType: '1',
 			// 下拉刷新上拉加载相关数据
 			listData: [],
 			loadMoreText: this.$t('pull.refresh.loading'),
@@ -131,7 +147,7 @@ export default {
 			// 是否显示筛选框
 			isShowDrawer: false,
 			// 筛选框高度
-			drawerHeight: '75%',
+			drawerHeight: '80%',
 			// 筛选框日期数据
 			drawerDate: '2022-06',
 			// 运单状态筛选按钮激活类型
@@ -148,8 +164,15 @@ export default {
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 		this.topNavSearchTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 88 + 'rpx';
 		this.topNavTabTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 166 + 'rpx';
+		
+		uni.showToast({
+			title: '页面开发中，敬请期待！',
+			icon: 'none',
+			duration: 5000
+		});
 	},
-	onLoad() {
+	onLoad(option) {
+		this.fromType = option.fromType;
 		this.initData();
 	},
 	onUnload() {
@@ -172,9 +195,22 @@ export default {
 	},
 	methods: {
 		goBack() {
-			uni.redirectTo({
-				url: '/pages/user/user_index'
-			});
+			if (this.fromType === '1') {
+				uni.redirectTo({
+					url: '/pages/index/index'
+				});
+			} else if (this.fromType === '2') {
+				uni.redirectTo({
+					url: '/pages/user/user_index'
+				});
+			} else {
+				this.$refs.popup.open();
+			}
+		},
+		confirmErrorDialog() {
+			uni.reLaunch({
+				url: '/pages/index/index'
+			})
 		},
 		initData() {
 			setTimeout(() => {
@@ -248,16 +284,16 @@ export default {
 			height: var(--statusbarheight);
 			width: 100%;
 		}
-		
+
 		.top-nav {
 			top: var(--statusbarheight);
 		}
-		
+
 		.top-nav-search-wx {
 			top: var(--topnavsearchtop);
 		}
 		.top-nav-tab-wx {
-			top: var(--topnavtabtop)
+			top: var(--topnavtabtop);
 		}
 
 		// 这里是为了保证页面没有撑开也能有灰色的背景

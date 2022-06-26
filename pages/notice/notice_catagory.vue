@@ -36,7 +36,15 @@
 		</view>
 		<!-- 页面警告消息 -->
 		<uni-popup ref="popup" type="dialog">
-			<uni-popup-dialog type="error" mode="base" title="系统警告" content="出现未知错误，请联系管理员！" confirmText="确定" cancelText="取消"></uni-popup-dialog>
+			<uni-popup-dialog
+				type="error"
+				mode="base"
+				title="系统警告"
+				content="出现未知错误，请联系管理员！"
+				confirmText="返回首页"
+				cancelText="取消"
+				@confirm="confirmErrorDialog"
+			></uni-popup-dialog>
 		</uni-popup>
 	</view>
 </template>
@@ -79,6 +87,11 @@ export default {
 			} else {
 				this.$refs.popup.open();
 			}
+		},
+		confirmErrorDialog() {
+			uni.reLaunch({
+				url: '/pages/index/index'
+			})
 		},
 		readAll() {
 			console.log('全部已读ing...');
