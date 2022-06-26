@@ -50,7 +50,7 @@
 	background-color: #ffffff;
 	position: fixed;
 	top: @nav-top;
-	z-index: 999999;
+	z-index: 9;
 	.nav-search-box {
 		width: calc(100% - @base-gap * 2);
 		height: 72rpx;
@@ -77,6 +77,38 @@
 	}
 }
 
+
+// 为invoice_index做适配的搜索栏
+@invoice-filter-width: 140rpx;
+.nav-search-box-invoice{
+	width: calc(100% - @base-gap * 2);
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	.nav-search-box{
+		width: calc(100% - @invoice-filter-width);
+	}
+	.nav-search-filter{
+		width: @invoice-filter-width;
+		font-size: 28rpx;
+		color: #313131;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		position: relative;
+		top: 10rpx;
+		.nav-search-filter-text{
+			margin-right: 8rpx;
+		}
+		.nav-search-filter-icon{
+			margin-right: 20rpx;
+			position: relative;
+			top: 1rpx;
+		}
+	}
+}
+
 // tab栏
 .top-nav-tab{
 	width: 100%;
@@ -84,7 +116,7 @@
 	background-color: #ffffff;
 	position: fixed;
 	top: calc(@nav-top + @search-top);
-	z-index: 999999;
+	z-index: 9;
 	.nav-tab-box{
 		margin: 0 auto;
 	}
@@ -92,7 +124,7 @@
 		width: 75%;
 	}
 	.nav-tab-box-four{
-		width: 90%;
+		width: 100%;
 	}
 }
 

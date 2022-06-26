@@ -353,6 +353,10 @@ export default {
 	flex-direction: row;
 	.title {
 		flex: 1;
+		text-align: center;
+		text-indent: 70rpx;
+		letter-spacing: 10rpx;
+		font-size: 34rpx;
 	}
 	.close-wrap {
 		position: relative;

@@ -16,13 +16,59 @@
 			<view class="top-nav-fake top-nav-fake-high"></view>
 			<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 			<view class="top-nav-search">
-				<view class="nav-search-box">
-					<text class="nav-search-icon"><uni-icons type="search" size="23" color="#A0A0A0"></uni-icons></text>
-					<input class="uni-input nav-search-input" confirm-type="search" placeholder="请输入关键词搜索" placeholder-class="nav-input-placeholder" />
+				<view class="nav-search-box-invoice">
+					<view class="nav-search-box">
+						<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
+						<input class="uni-input nav-search-input" confirm-type="search" placeholder="请输入关键词搜索" placeholder-class="nav-input-placeholder" />
+					</view>
+					<view class="nav-search-filter" @click="showFilter">
+						<text class="nav-search-filter-text">筛选</text>
+						<uni-icons class="nav-search-filter-icon" type="vip" size="16" color="#313131"></uni-icons>
+					</view>
 				</view>
 			</view>
-			<view class="top-nav-tab"><v-tabs class="nav-tab-box nav-tab-box-four" v-model="tabCurrentIndex" :tabs="tabDataList" :scroll="false" :lineScale="0.3" @change="changeTab"></v-tabs></view>
+			<view class="top-nav-tab">
+				<v-tabs class="nav-tab-box nav-tab-box-four" v-model="tabCurrentIndex" :tabs="tabDataList" :scroll="false" :lineScale="0.3" @change="changeTab"></v-tabs>
+			</view>
 		</view>
+		<zb-drawer mode="bottom" title="筛选" :wrapperClosable="false" :visible.sync="isShowDrawer" :radius="true" :height="drawerHeight">
+			<view class="drawer-item-box">
+				<view class="drawer-item">
+					<view class="drawer-item-title">运单状态</view>
+					<view class="drawer-item-btn">
+						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 0 }" @click="setBtnType(0)">全部</view>
+						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 1 }" @click="setBtnType(1)">已签收</view>
+						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 2 }" @click="setBtnType(2)">拒收</view>
+						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 3 }" @click="setBtnType(3)">超时未签收</view>
+						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 4 }" @click="setBtnType(4)">滞留</view>
+					</view>
+				</view>
+				<view class="drawer-item">
+					<view class="drawer-item-title">运单日期</view>
+					<view class="drawer-item-btn">
+						<view class="drawer-item-btn-date">
+							<uni-icons class="drawer-item-btn-date-icon" type="calendar" size="20" color="#5BC797"></uni-icons>
+							<text class="drawer-item-btn-date-text">{{ drawerDate }}</text>
+						</view>
+						<picker-view :indicator-style="pickerViewIndicatorStyle" :value="pickerViewValue" @change="chooseInvoiceDateChange">
+							<picker-view-column>
+								<view class="picker-view-item" v-for="(item, index) in pickerViewYears" :key="index">{{ item }}年</view>
+							</picker-view-column>
+							<picker-view-column>
+								<view class="picker-view-item" v-for="(item, index) in pickerViewMonths" :key="index">{{ item }}月</view>
+							</picker-view-column>
+						</picker-view>
+					</view>
+				</view>
+			</view>
+			<view class="drawer-button-box-gap"></view>
+			<view class="drawer-button-box">
+				<view class="drawer-button">
+					<view class="drawer-button-item drawer-button-reset" @click="resetFilter">重置</view>
+					<view class="drawer-button-item drawer-button-submit" @click="submitFilter">确定</view>
+				</view>
+			</view>
+		</zb-drawer>
 		<view class="pull-index"><view class="pull-item" v-for="(num, index) in listData" :key="index"></view></view>
 		<view class="uni-loadmore common-loadmore" v-if="showLoadMore">{{ loadMoreText }}</view>
 	</view>
@@ -30,6 +76,7 @@
 <script>
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
 import vTabs from '@/uni_modules/v-tabs/v-tabs.vue';
+import { dataYears, dataMonths, pickerViewMonth } from '@/static/utils/uni-date-picker.js';
 export default {
 	components: {
 		uniIcons,
@@ -50,6 +97,19 @@ export default {
 			tabCurrentIndex: 0,
 			// tab数据
 			tabDataList: ['待支付', '进行中', '已完成', '问题件'],
+			// 是否显示筛选框
+			isShowDrawer: false,
+			// 筛选框高度
+			drawerHeight: '75%',
+			// 筛选框日期数据
+			drawerDate: '2022-06',
+			// 运单状态筛选按钮激活类型
+			btnType: 0,
+			// 运单日期筛选picker-view数据
+			pickerViewYears: dataYears,
+			pickerViewMonths: dataMonths,
+			pickerViewValue: [9999, pickerViewMonth - 1],
+			pickerViewIndicatorStyle: 'height: 100rpx;'
 		};
 	},
 	onShow() {
@@ -106,6 +166,27 @@ export default {
 		},
 		changeTab(index) {
 			console.log('当前选中的项：' + index);
+		},
+		showFilter() {
+			this.isShowDrawer = true;
+		},
+		setBtnType(val) {
+			if (this.btnType === val) {
+				this.btnType = -1;
+			} else {
+				this.btnType = val;
+			}
+		},
+		chooseInvoiceDateChange(e) {
+			let pickerVal = e.detail.value;
+			this.drawerDate = this.pickerViewYears[pickerVal[0]] + '-' + this.pickerViewMonths[pickerVal[1]];
+		},
+		resetFilter() {
+			this.btnType = 0;
+			this.pickerViewValue = [9999, pickerViewMonth - 1];
+		},
+		submitFilter() {
+			this.isShowDrawer = false;
 		}
 	}
 };
