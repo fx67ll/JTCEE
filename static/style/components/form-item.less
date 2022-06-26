@@ -1,7 +1,9 @@
+// switch按钮
 .form-switch-default{
 	transform: scale(0.8);
 }
 
+// input输入框
 @input-padding: 10rpx;
 .form-input-default{
 	width: calc(100% - @input-padding * 2);
@@ -15,16 +17,19 @@
 	color: #888888;
 }
 
+// 左侧标题右侧按钮布局
 .form-item-two{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	.form-other-title{
+		font-size: 28rpx;
+		color: #000000;
+		padding-left: 10rpx;
+	}
 }
-.form-other-title{
-	font-size: 28rpx;
-	color: #000000;
-	padding-left: 10rpx;
-}
+
+// radio按钮，大小样式在app.vue中
 .form-radio-default{
 	padding-right: 10rpx;
 	.form-radio-default-label{
