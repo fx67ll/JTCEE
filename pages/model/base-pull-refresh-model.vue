@@ -15,13 +15,46 @@
 			</view>
 			<view class="top-nav-fake top-nav-fake-high"></view>
 			<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
+			
+			<!-- 搜索框 -->
+			<!-- #ifdef H5 -->
 			<view class="top-nav-search">
 				<view class="nav-search-box">
 					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-					<input class="uni-input nav-search-input" confirm-type="search" placeholder="请输入关键词搜索" placeholder-class="nav-input-placeholder" />
+					<input
+						class="uni-input nav-search-input"
+						confirm-type="search"
+						:placeholder="$t('address_index.search.placeholder')"
+						placeholder-class="nav-input-placeholder"
+					/>
 				</view>
 			</view>
-			<view class="top-nav-tab"><v-tabs class="nav-tab-box" v-model="tabCurrentIndex" :tabs="tabDataList" :scroll="false" @change="changeTab"></v-tabs></view>
+			<!-- #endif -->
+			<!-- #ifdef MP-WEIXIN -->
+			<view class="top-nav-search top-nav-search-wx" :style="{ '--topnavsearchtop': topNavSearchTop }">
+				<view class="nav-search-box">
+					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
+					<input
+						class="uni-input nav-search-input"
+						confirm-type="search"
+						:placeholder="$t('address_index.search.placeholder')"
+						placeholder-class="nav-input-placeholder"
+					/>
+				</view>
+			</view>
+			<!-- #endif -->
+			
+			<!-- tab栏 -->
+			<!-- #ifdef H5 -->
+			<view class="top-nav-tab">
+				<v-tabs class="nav-tab-box nav-tab-box-two" v-model="tabCurrentIndex" :tabs="tabDataList" :scroll="false" :lineScale="0.2" @change="changeTab"></v-tabs>
+			</view>
+			<!-- #endif -->
+			<!-- #ifdef MP-WEIXIN -->
+			<view class="top-nav-tab top-nav-tab-wx" :style="{ '--topnavtabtop': topNavTabTop }">
+				<v-tabs class="nav-tab-box nav-tab-box-two" v-model="tabCurrentIndex" :tabs="tabDataList" :scroll="false" :lineScale="0.2" @change="changeTab"></v-tabs>
+			</view>
+			<!-- #endif -->
 		</view>
 		<view class="pull-index"><view class="pull-item" v-for="(num, index) in listData" :key="index"></view></view>
 		<view class="uni-loadmore common-loadmore" v-if="showLoadMore">{{ loadMoreText }}</view>
@@ -30,6 +63,7 @@
 <script>
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
 import vTabs from '@/uni_modules/v-tabs/v-tabs.vue';
+import pxToRpx from '@/static/utils/px-to-rpx.js';
 export default {
 	components: {
 		uniIcons,
@@ -41,6 +75,9 @@ export default {
 			clientHeight: 'auto',
 			// 状态栏高度，用于微信小程序适配
 			statusBarHeight: 0,
+			// 适配微信的searchbox和tabbox
+			topNavSearchTop: 0,
+			topNavTabTop: 0,
 			// 下拉刷新上拉加载相关数据
 			listData: [],
 			loadMoreText: this.$t('pull.refresh.loading'),
@@ -55,6 +92,8 @@ export default {
 	onShow() {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
+		this.topNavSearchTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 88 + 'rpx';
+		this.topNavTabTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 166 + 'rpx';
 	},
 	onLoad() {
 		this.initData();
@@ -133,8 +172,16 @@ export default {
 			height: var(--statusbarheight);
 			width: 100%;
 		}
+		
 		.top-nav {
 			top: var(--statusbarheight);
+		}
+		
+		.top-nav-search-wx {
+			top: var(--topnavsearchtop);
+		}
+		.top-nav-tab-wx {
+			top: var(--topnavtabtop)
 		}
 
 		// 这里是为了保证页面没有撑开也能有灰色的背景
