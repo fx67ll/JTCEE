@@ -26,11 +26,11 @@
 				</view>
 				<view class="user-setting-form-item">
 					<text class="user-setting-form-text">{{ $t('user_setting.setting.mail.password') }}</text>
-					<switch class="express-switch-default" :checked="passwordSetting" color="#5BC797" @change="passwordSwitchChange" />
+					<switch class="form-switch-default" :checked="passwordSetting" color="#5BC797" @change="passwordSwitchChange" />
 				</view>
 				<view class="user-setting-form-item">
 					<text class="user-setting-form-text">{{ $t('user_setting.setting.mail.order') }}</text>
-					<switch class="express-switch-default" :checked="orderSetting" color="#5BC797" @change="orderSwitchChange" />
+					<switch class="form-switch-default" :checked="orderSetting" color="#5BC797" @change="orderSwitchChange" />
 				</view>
 				<view class="user-setting-form-item">
 					<text class="user-setting-form-text">{{ $t('user_setting.setting.language') }}</text>

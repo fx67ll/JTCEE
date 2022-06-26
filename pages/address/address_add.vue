@@ -25,19 +25,58 @@
 					日本
 				</view>
 			</view>
-			<view class="address-card-content" v-if="isCN"></view>
-			<view class="address-card-content" v-if="!isCN"></view>
-		</view>
-		<view class="address-default">
-			<view class="address-default-left">
-				<view class="address-default-title">
-					设置默认地址
+			<view class="address-card-content">
+				<view class="address-form-item"><input class="uni-input form-input-default" type="text" placeholder="姓名" placeholder-class="form-input-placeholder" /></view>
+				<view class="address-form-item"><input class="uni-input form-input-default" type="number" placeholder="电话" placeholder-class="form-input-placeholder" /></view>
+				<!-- 从这里开始继续做 -->
+				<view class="address-form-item">
+					<input class="uni-input form-input-default" type="text" placeholder="城市 / 区域" placeholder-class="form-input-placeholder" />
 				</view>
-				<view class="address-default-tip">
-					提示：会优先使用该地址
+				<view class="address-form-item"><input class="uni-input form-input-default" type="text" placeholder="邮编" placeholder-class="form-input-placeholder" /></view>
+				<view class="address-form-item">
+					<input class="uni-input form-input-default" type="text" placeholder="详细地址(精确到门牌号)" placeholder-class="form-input-placeholder" />
+				</view>
+				<!-- 到这里结束 -->
+			</view>
+			<!-- <view class="address-card-content" v-if="isCN"></view>
+			<view class="address-card-content" v-if="!isCN"></view> -->
+		</view>
+		<view class="address-id">
+			<view class="address-form-item">
+				<!-- #ifdef H5 -->
+				<input class="uni-input form-input-default" type="number" placeholder="身份证号码" placeholder-class="form-input-placeholder" />
+				<!-- #endif -->
+				<!-- #ifdef MP-WEIXIN -->
+				<input class="uni-input form-input-default" type="idcard" placeholder="身份证号码" placeholder-class="form-input-placeholder" />
+				<!-- #endif -->
+			</view>
+			<!-- 从这里开始继续做 -->
+			<view class="address-form-item address-form-item-id">
+				<view class="address-form-item-id-title">上传身份证正面</view>
+				<view class="address-form-item-id-import">
+					<view class="address-form-item-id-import-box">
+						<img class="address-form-item-id-import-img" src="/static/img/address/address-import-id.png" />
+						<text class="address-form-item-id-import-text">身份证正面</text>
+					</view>
+					<view class="address-form-item-id-import-box">
+						<img class="address-form-item-id-import-img" src="/static/img/address/address-import-id.png" />
+						<text class="address-form-item-id-import-text">身份证反面</text>
+					</view>
 				</view>
 			</view>
-			<switch class="express-switch-default address-default-switch" :checked="defaultSetting" color="#5BC797" @change="defaultSwitchChange" />
+			<!-- 到这里结束 -->
+		</view>
+		<view class="address-default">
+			<!-- 从这里开始继续做 -->
+			<view class="address-form-item"><input class="uni-input form-input-default" type="text" placeholder="地址类别" placeholder-class="form-input-placeholder" /></view>
+			<!-- 到这里结束 -->
+			<view class="address-default-box">
+				<view class="address-default-left">
+					<view class="address-default-title">设置默认地址</view>
+					<view class="address-default-tip">提示：会优先使用该地址</view>
+				</view>
+				<switch class="form-switch-default address-default-switch" :checked="defaultSetting" color="#5BC797" @change="defaultSwitchChange" />
+			</view>
 		</view>
 		<view class="bottom-gap bottom-gap-address bottom-gap-address-default"></view>
 		<view class="bottom-menu bottom-menu-address">
@@ -129,14 +168,13 @@ export default {
 			z-index: -1;
 		}
 	}
-	
+
 	// 卡片圆角
 	@card-radius: 15rpx;
 	// 卡片激活高度差
 	@active-top: 15rpx;
 	.address-card {
 		width: calc(100% - @base-gap * 2);
-		height: 960rpx;
 		margin: calc(30rpx + @active-top) auto 0 auto;
 		background-color: #ffffff;
 		border-radius: @card-radius;
@@ -175,33 +213,90 @@ export default {
 		}
 		.address-card-content {
 			width: 100%;
-			padding: 30rpx 0;
+			padding: 20rpx 0 10rpx 0;
 		}
 	}
-	
-	.address-default{
+
+	.address-id {
 		width: calc(100% - @base-gap * 2);
-		height: 140rpx;
+		margin: 20rpx auto 0 auto;
 		background-color: #ffffff;
-		border-radius: 20rpx;
-		margin: 30rpx auto 0 auto;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		.address-default-left{
-			margin-left: 30rpx;
-			.address-default-title{
+		border-radius: @card-radius;
+		.address-form-item-id {
+			height: 347rpx;
+			.address-form-item-id-title {
+				height: 120rpx;
+				padding-left: 5rpx;
 				font-size: 28rpx;
-				color: #000000;
+				// color: #888888;
+				color: #313131;
+				line-height: 120rpx;
 			}
-			.address-default-tip{
-				font-size: 24rpx;
-				color: #888888;
-				margin-top: 10rpx;
+			.address-form-item-id-import {
+				width: calc(100% - 10rpx);
+				height: 227rpx;
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				.address-form-item-id-import-box {
+					width: calc(50% - 20rpx);
+					height: 200rpx;
+					border-radius: 20rpx;
+					border: 1rpx solid #e9e9e9;
+					.address-form-item-id-import-img {
+						width: 72rpx;
+						height: 72rpx;
+						display: block;
+						margin: 43rpx auto 0 auto;
+					}
+					.address-form-item-id-import-text {
+						display: block;
+						margin: 15rpx auto 0 auto;
+						text-align: center;
+						font-size: 28rpx;
+						// color: #888888;
+						color: #4a4a4a;
+					}
+				}
 			}
 		}
-		.address-default-switch{
-			margin-right: 30rpx;
+	}
+
+	.address-form-item {
+		width: calc(100% - 40rpx);
+		height: 120rpx;
+		margin: 0 auto;
+		border-bottom: 1rpx solid @topic-split;
+	}
+	.address-form-item:last-child {
+		border-bottom: 1rpx solid transparent;
+	}
+
+	.address-default {
+		width: calc(100% - @base-gap * 2);
+		background-color: #ffffff;
+		border-radius: 20rpx;
+		margin: 20rpx auto 0 auto;
+		.address-default-box {
+			height: 140rpx;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			.address-default-left {
+				margin-left: 30rpx;
+				.address-default-title {
+					font-size: 28rpx;
+					color: #000000;
+				}
+				.address-default-tip {
+					font-size: 24rpx;
+					color: #888888;
+					margin-top: 10rpx;
+				}
+			}
+			.address-default-switch {
+				margin-right: 30rpx;
+			}
 		}
 	}
 }
