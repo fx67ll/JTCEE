@@ -94,5 +94,14 @@
 	"user_setting.setting.mail.password": "密码变更是否接收邮件通知",
 	"user_setting.setting.mail.order": "订单状态发生变化是否接收邮件通知",
 	"user_setting.login.out": "退出登录",
-	"user_setting.setting.language": "切换语言"
+	"user_setting.setting.language": "切换语言",
+	
+	"address_index.tilte": "地址管理",
+	"address_index.search.placeholder": "请输入关键词搜索",
+	"address_index.tab.user.send": "收件人",
+	"address_index.tab.user.get": "寄件人",
+	"address_index.setting.default.address": "设为默认地址",
+	"address_index.setting.default.delete": "删除",
+	"address_index.card.default.address": "默认地址",
+	"address_index.button.add.address": "新建地址"
 }

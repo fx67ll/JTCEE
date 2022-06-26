@@ -10,7 +10,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">地址管理</view>
+				<view class="top-nav-title">{{ $t('address_index.tilte') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake top-nav-fake-high"></view>
@@ -18,7 +18,7 @@
 			<view class="top-nav-search">
 				<view class="nav-search-box">
 					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-					<input class="uni-input nav-search-input" confirm-type="search" placeholder="请输入关键词搜索" placeholder-class="nav-input-placeholder" />
+					<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('address_index.search.placeholder')" placeholder-class="nav-input-placeholder" />
 				</view>
 			</view>
 			<view class="top-nav-tab">
@@ -42,7 +42,7 @@
 									<text class="pull-item-top-name">张三</text>
 									<text class="pull-item-top-phone">139 9932 3245</text>
 								</view>
-								<view class="pull-item-top-default" v-if="index === 1">默认地址</view>
+								<view class="pull-item-top-default" v-if="index === 1">{{ $t('address_index.card.default.address') }}</view>
 							</view>
 							<view class="pull-item-bottom">
 								<view class="pull-item-address">上海市上海市青浦区朱家镇康耶鲁180号半山国际2单元309室上海市上海市青浦区朱家镇康耶鲁180号半山国际2单元309室</view>
@@ -58,7 +58,7 @@
 		<view class="bottom-menu bottom-menu-address">
 			<view class="bottom-menu-btn" @click="addAddresss">
 				<uni-icons type="plusempty" size="14" color="#ffffff"></uni-icons>
-				<text class="bottom-menu-btn-text">新建地址</text>
+				<text class="bottom-menu-btn-text">{{ $t('address_index.button.add.address') }}</text>
 			</view>
 		</view>
 	</view>
@@ -87,16 +87,16 @@ export default {
 			// tab索引
 			tabCurrentIndex: 0,
 			// tab数据
-			tabDataList: ['收件人', '寄件人'],
+			tabDataList: [this.$t('address_index.tab.user.send'), this.$t('address_index.tab.user.get')],
 			swiperActionOptions: [
 				{
-					text: '设为默认地址',
+					text: this.$t('address_index.setting.default.address'),
 					style: {
 						backgroundColor: '#007aff'
 					}
 				},
 				{
-					text: '删除',
+					text: this.$t('address_index.setting.default.delete'),
 					style: {
 						backgroundColor: '#FF5147'
 					}
@@ -104,7 +104,7 @@ export default {
 			],
 			swiperActionOptionsDefault: [
 				{
-					text: '删除',
+					text: this.$t('address_index.setting.default.delete'),
 					style: {
 						backgroundColor: '#FF5147'
 					}
