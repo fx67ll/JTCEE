@@ -94,6 +94,12 @@ export default {
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 		this.topNavSearchTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 88 + 'rpx';
 		this.topNavTabTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 166 + 'rpx';
+		
+		uni.showToast({
+			title: '页面开发中，敬请期待！',
+			icon: 'none',
+			duration: 5000
+		});
 	},
 	onLoad() {
 		this.initData();
