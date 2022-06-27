@@ -154,7 +154,7 @@ export default {
 			// 当前页面用途
 			useType: '1',
 			// 国内地址或者日本地址
-			isCN: false,
+			isCN: true,
 			// 是否显示筛选框
 			isShowDrawer: false,
 			// 筛选框高度
@@ -189,7 +189,7 @@ export default {
 		},
 		selectCity(data) {
 			console.log('当前选中的城市数据：' + JSON.stringify(data));
-			this.addressCity = data.name;
+			this.addressCityCN = data.name;
 			this.isShowDrawer = false;
 		},
 		importIdImg() {

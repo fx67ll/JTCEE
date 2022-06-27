@@ -147,7 +147,7 @@ export default {
 			// 是否显示筛选框
 			isShowDrawer: false,
 			// 筛选框高度
-			drawerHeight: '80%',
+			drawerHeight: '81%',
 			// 筛选框日期数据
 			drawerDate: '',
 			// 运单状态筛选按钮激活类型
