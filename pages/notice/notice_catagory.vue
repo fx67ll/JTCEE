@@ -42,7 +42,7 @@
 				title="系统警告"
 				content="出现未知错误，请联系管理员！"
 				confirmText="返回首页"
-				cancelText="取消"
+				cancelText="关闭"
 				@confirm="confirmErrorDialog"
 			></uni-popup-dialog>
 		</uni-popup>

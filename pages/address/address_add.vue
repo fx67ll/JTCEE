@@ -30,11 +30,15 @@
 					<view class="form-item-title">姓名</view>
 					<input class="uni-input form-input-default" type="text" placeholder="请输入姓名" placeholder-class="form-input-placeholder" />
 				</view>
-				<view class="common-form-item">
+				<view class="common-form-item" v-if="isCN">
 					<view class="form-item-title">电话</view>
 					<input class="uni-input form-input-default" type="number" placeholder="请输入电话" placeholder-class="form-input-placeholder" />
 				</view>
-				<view class="common-form-item">
+				<view class="common-form-item" v-if="!isCN">
+					<view class="form-item-title">手机号码</view>
+					<input class="uni-input form-input-default" type="number" placeholder="请输入手机号码" placeholder-class="form-input-placeholder" />
+				</view>
+				<view class="common-form-item" v-if="isCN">
 					<view class="form-item-title">城市/区域</view>
 					<input
 						class="uni-input form-input-default"
@@ -42,12 +46,24 @@
 						placeholder="请选择城市/区域"
 						placeholder-class="form-input-placeholder"
 						:disabled="true"
-						:value="addressCity"
-						@click="getAddressCity"
+						:value="addressCityCN"
+						@click="getAddressCityCN"
 					/>
 					<zb-drawer mode="bottom" title="选择城市/地区" :wrapperClosable="false" :visible.sync="isShowDrawer" :radius="true" :height="drawerHeight">
 						<t-index-address @select="selectCity"></t-index-address>
 					</zb-drawer>
+				</view>
+				<view class="common-form-item" v-if="!isCN">
+					<view class="form-item-title">县市/区域</view>
+					<input
+						class="uni-input form-input-default"
+						type="text"
+						placeholder="请选择县市/区域"
+						placeholder-class="form-input-placeholder"
+						:disabled="true"
+						:value="addressCityJP"
+						@click="getAddressCityJP"
+					/>
 				</view>
 				<view class="common-form-item">
 					<view class="form-item-title">邮编</view>
@@ -60,8 +76,6 @@
 					</view>
 				</view>
 			</view>
-			<!-- <view class="address-card-content" v-if="isCN"></view>
-			<view class="address-card-content" v-if="!isCN"></view> -->
 		</view>
 		<view class="address-id">
 			<view class="common-form-item">
@@ -140,13 +154,14 @@ export default {
 			// 当前页面用途
 			useType: '1',
 			// 国内地址或者日本地址
-			isCN: true,
+			isCN: false,
 			// 是否显示筛选框
 			isShowDrawer: false,
 			// 筛选框高度
 			drawerHeight: '80%',
-			// 城市区域
-			addressCity: '',
+			// 中日地区
+			addressCityCN: '',
+			addressCityJP: '',
 			// 身份证照片数组
 			idImgArr: [],
 			// 是否设置默认地址
@@ -162,8 +177,15 @@ export default {
 		isChinaAddress(val) {
 			this.isCN = val;
 		},
-		getAddressCity() {
+		getAddressCityCN() {
 			this.isShowDrawer = true;
+		},
+		getAddressCityJP() {
+			uni.showToast({
+				title: '暂无日本地区数据！',
+				icon: 'none',
+				duration: 1998
+			});
 		},
 		selectCity(data) {
 			console.log('当前选中的城市数据：' + JSON.stringify(data));
@@ -188,10 +210,11 @@ export default {
 				// 接口调用失败的回调函数，小程序、App
 				fail: function(res) {
 					console.log('接口调用失败:' + JSON.stringify(res));
+					
 					uni.showToast({
 						title: '图片上传功能异常，请联系管理员！',
 						icon: 'none',
-						duration: 2000
+						duration: 5000
 					});
 				},
 				// 接口调用结束的回调函数（调用成功、失败都会执行），全平台

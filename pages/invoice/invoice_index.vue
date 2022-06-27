@@ -106,7 +106,7 @@
 				title="系统警告"
 				content="出现未知错误，请联系管理员！"
 				confirmText="返回首页"
-				cancelText="取消"
+				cancelText="关闭"
 				@confirm="confirmErrorDialog"
 			></uni-popup-dialog>
 		</uni-popup>
@@ -164,8 +164,6 @@ export default {
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 		this.topNavSearchTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 88 + 'rpx';
 		this.topNavTabTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 166 + 'rpx';
-		
-		this.drawerDate = this.pickerViewYears[pickerVal[0]] + '-' + this.pickerViewMonths[pickerVal[1]];
 		
 		uni.showToast({
 			title: '页面开发中，敬请期待！',
