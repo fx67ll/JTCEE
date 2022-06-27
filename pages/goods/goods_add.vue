@@ -103,7 +103,7 @@ export default {
 			background-color: #ffffff;
 			position: fixed;
 			top: 0;
-			z-index: 3;
+			z-index: 8;
 		}
 		.status-bar-wx-fake {
 			height: var(--statusbarheight);
