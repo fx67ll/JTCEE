@@ -44,8 +44,33 @@
 			</view>
 			<!-- #endif -->
 		</view>
-		<view class="pull-index"><view class="pull-item" v-for="(num, index) in listData" :key="index"></view></view>
+		<view class="goods-pull-index">
+			<uni-swipe-action>
+				<view class="goods-pull-item" v-for="(num, index) in listData" :key="index">
+					<uni-swipe-action-item class="goods-pull-item-swiper-action" :right-options="swiperActionOptions" :auto-close="true" @click="bindSwiperActionClick">
+						<view class="goods-pull-item-box">
+							<view class="goods-pull-item-left"><img src="/static/img/user/user-head.png" /></view>
+							<view class="goods-pull-item-right">
+								<view class="goods-pull-item-title">任天堂switch收纳包switchlite保护套ns硬包swich盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大</view>
+								<view class="goods-pull-item-type">
+									<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">未同步</text>
+									<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="index >= 2 & index % 2 !==0">已同步</text>
+								</view>
+								<view class="goods-pull-item-money">￥ 1999.99</view>
+							</view>
+						</view>
+					</uni-swipe-action-item>
+				</view>
+			</uni-swipe-action>
+		</view>
 		<view class="uni-loadmore common-loadmore" v-if="showLoadMore">{{ loadMoreText }}</view>
+		<view class="drawer-button-box-gap goods-button-box-gap"></view>
+		<view class="drawer-button-box goods-button-box">
+			<view class="drawer-button">
+				<view class="drawer-button-item drawer-button-reset" @click="multipleEditGoods">编辑</view>
+				<view class="drawer-button-item drawer-button-submit" @click="addGoods">添加</view>
+			</view>
+		</view>
 	</view>
 </template>
 <script>
@@ -67,19 +92,30 @@ export default {
 			listData: [],
 			loadMoreText: this.$t('pull.refresh.loading'),
 			showLoadMore: false,
-			maxDataIndex: 0
+			maxDataIndex: 0,
+			// 滑动卡片按钮数据
+			swiperActionOptions: [
+				{
+					text: '编辑',
+					style: {
+						backgroundColor: '#F8BB32'
+					}
+				},
+				{
+					text: '删除',
+					style: {
+						backgroundColor: '#FF5147'
+					}
+				}
+			],
+			// 是否滑动打开
+			isSwiperActionOpened: false
 		};
 	},
 	onShow() {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 		this.topNavSearchTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 88 + 'rpx';
-		
-		uni.showToast({
-			title: '页面开发中，敬请期待！',
-			icon: 'none',
-			duration: 5000
-		});
 	},
 	onLoad() {
 		this.initData();
@@ -128,6 +164,25 @@ export default {
 				data.push(i);
 			}
 			this.listData = this.listData.concat(data);
+		},
+		bindSwiperActionClick(e) {
+			console.log(e);
+			uni.showToast({
+				title: `点击了${e.content.text}按钮，功能开发中，敬请期待！`,
+				icon: 'none'
+			});
+		},
+		multipleEditGoods() {
+			uni.showToast({
+				title: '功能开发中，敬请期待！',
+				icon: 'none',
+				duration: 5000
+			});
+		},
+		addGoods() {
+			uni.navigateTo({
+				url: '/pages/goods/goods_add?fromType=1'
+			});
 		}
 	}
 };
@@ -159,8 +214,8 @@ export default {
 		.top-nav {
 			top: var(--statusbarheight);
 		}
-		
-		.top-nav-search{
+
+		.top-nav-search {
 			padding-bottom: 27rpx;
 		}
 
@@ -179,14 +234,81 @@ export default {
 		}
 	}
 
-	.pull-index {
+	@drawer-button-height: 76rpx;
+	@drawer-button-bottom: 50rpx;
+	.goods-button-box {
+		position: fixed;
+	}
+	.goods-button-box-gap {
+		width: 100%;
+		height: calc(@drawer-button-height + @drawer-button-bottom - 10rpx);
+	}
+
+	.goods-pull-index {
 		width: calc(100% - @base-gap * 2);
-		margin: 0 auto;
-		.pull-item {
+		margin: 50rpx auto 0 auto;
+		.goods-pull-item {
 			width: 100%;
 			background-color: #ffffff;
 			border-radius: 20rpx;
 			margin-top: 25rpx;
+			.goods-pull-item-swiper-action {
+				width: 100%;
+				border-radius: 20rpx;
+			}
+			.goods-pull-item-box {
+				// width: calc(100% - 40rpx);
+				padding: 25rpx;
+				border-radius: 20rpx;
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				@goods-img-size: 180rpx;
+				.goods-pull-item-left {
+					width: @goods-img-size;
+					height: @goods-img-size;
+					img {
+						width: 100%;
+						height: 100%;
+					}
+				}
+				@goods-text-margin-top: 15rpx;
+				.goods-pull-item-right {
+					width: calc(100% - @goods-img-size - 60rpx);
+					.goods-pull-item-title {
+						font-size: 28rpx;
+						color: #313131;
+						.text-ellipsis-two();
+					}
+					.goods-pull-item-type {
+						width: 120rpx;
+						height: 40rpx;
+						margin-top: @goods-text-margin-top;
+						.goods-pull-item-type-text {
+							width: 100%;
+							height: 100%;
+							display: inline-block;
+							border-radius: 8rpx;
+							font-size: 24rpx;
+							text-align: center;
+							line-height: 40rpx;
+						}
+						.goods-pull-item-type-orange {
+							background: rgba(248, 187, 50, 0.15);
+							color: #f8bb32;
+						}
+						.goods-pull-item-type-green {
+							background: rgba(91, 199, 151, 0.15);
+							color: @topic-green;
+						}
+					}
+					.goods-pull-item-money {
+						font-size: 38rpx;
+						color: #ff5147;
+						margin-top: @goods-text-margin-top;
+					}
+				}
+			}
 		}
 	}
 }
