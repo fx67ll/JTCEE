@@ -26,51 +26,72 @@
 				</view>
 			</view>
 			<view class="address-card-content">
-				<view class="address-form-item"><input class="uni-input form-input-default" type="text" placeholder="姓名" placeholder-class="form-input-placeholder" /></view>
-				<view class="address-form-item"><input class="uni-input form-input-default" type="number" placeholder="电话" placeholder-class="form-input-placeholder" /></view>
-				<!-- 从这里开始继续做 -->
-				<view class="address-form-item">
-					<input class="uni-input form-input-default" type="text" placeholder="城市 / 区域" placeholder-class="form-input-placeholder" />
+				<view class="common-form-item">
+					<view class="form-item-title">姓名</view>
+					<input class="uni-input form-input-default" type="text" placeholder="请输入姓名" placeholder-class="form-input-placeholder" />
 				</view>
-				<view class="address-form-item"><input class="uni-input form-input-default" type="text" placeholder="邮编" placeholder-class="form-input-placeholder" /></view>
-				<view class="address-form-item">
-					<input class="uni-input form-input-default" type="text" placeholder="详细地址(精确到门牌号)" placeholder-class="form-input-placeholder" />
+				<view class="common-form-item">
+					<view class="form-item-title">电话</view>
+					<input class="uni-input form-input-default" type="number" placeholder="请输入电话" placeholder-class="form-input-placeholder" />
 				</view>
-				<!-- 到这里结束 -->
+				<view class="common-form-item">
+					<view class="form-item-title">城市/区域</view>
+					<input
+						class="uni-input form-input-default"
+						type="text"
+						placeholder="请选择城市/区域"
+						placeholder-class="form-input-placeholder"
+						:disabled="true"
+						:value="addressCity"
+						@click="getAddressCity"
+					/>
+					<zb-drawer mode="bottom" title="选择城市/地区" :wrapperClosable="false" :visible.sync="isShowDrawer" :radius="true" :height="drawerHeight">
+						<t-index-address @select="selectCity"></t-index-address>
+					</zb-drawer>
+				</view>
+				<view class="common-form-item">
+					<view class="form-item-title">邮编</view>
+					<input class="uni-input form-input-default" type="text" placeholder="请输入邮编" placeholder-class="form-input-placeholder" />
+				</view>
+				<view class="common-form-item-big">
+					<view class="common-form-item-big-title">详细地址</view>
+					<view class="common-form-item-big-textaera">
+						<textarea class="form-textarea-default" placeholder="请输入详细地址（精确到门牌号）" placeholder-class="form-input-placeholder" />
+					</view>
+				</view>
 			</view>
 			<!-- <view class="address-card-content" v-if="isCN"></view>
 			<view class="address-card-content" v-if="!isCN"></view> -->
 		</view>
 		<view class="address-id">
-			<view class="address-form-item">
+			<view class="common-form-item">
+				<view class="form-item-title">身份证号码</view>
 				<!-- #ifdef H5 -->
-				<input class="uni-input form-input-default" type="number" placeholder="身份证号码" placeholder-class="form-input-placeholder" />
+				<input class="uni-input form-input-default" type="text" placeholder="请输入身份证号码" placeholder-class="form-input-placeholder" />
 				<!-- #endif -->
 				<!-- #ifdef MP-WEIXIN -->
 				<input class="uni-input form-input-default" type="idcard" placeholder="身份证号码" placeholder-class="form-input-placeholder" />
 				<!-- #endif -->
 			</view>
-			<!-- 从这里开始继续做 -->
-			<view class="address-form-item address-form-item-id">
-				<view class="address-form-item-id-title">上传身份证正面</view>
-				<view class="address-form-item-id-import">
-					<view class="address-form-item-id-import-box">
-						<img class="address-form-item-id-import-img" src="/static/img/address/address-import-id.png" />
-						<text class="address-form-item-id-import-text">身份证正面</text>
+			<view class="common-form-item-big">
+				<view class="common-form-item-big-title">上传身份证照片</view>
+				<view class="common-form-item-big-import">
+					<view class="common-form-item-big-import-box" @click="importIdImg">
+						<img class="common-form-item-big-import-img" src="/static/img/address/address-import-id.png" v-if="!idImgArr[0]" />
+						<img class="common-form-item-big-import-img" :src="idImgArr[0]" v-if="idImgArr[0]" />
+						<text class="common-form-item-big-import-text">身份证正面</text>
 					</view>
-					<view class="address-form-item-id-import-box">
-						<img class="address-form-item-id-import-img" src="/static/img/address/address-import-id.png" />
-						<text class="address-form-item-id-import-text">身份证反面</text>
+					<view class="common-form-item-big-import-box" @click="importIdImg">
+						<img class="common-form-item-big-import-img" src="/static/img/address/address-import-id.png" v-if="!idImgArr[1]" />
+						<img class="common-form-item-big-import-img" :src="idImgArr[1]" v-if="idImgArr[1]" />
+						<text class="common-form-item-big-import-text">身份证反面</text>
 					</view>
 				</view>
 			</view>
-			<!-- 到这里结束 -->
 		</view>
 		<view class="address-default">
-			<!-- 从这里开始继续做 -->
-			<view class="address-form-item form-item-two">
-				<!-- <input class="uni-input form-input-default" type="text" placeholder="地址类别" placeholder-class="form-input-placeholder" /> -->
-				<text class="form-other-title">地址类别</text>
+			<view class="common-form-item">
+				<text class="form-item-title">地址类别</text>
 				<radio-group @change="addressRadioChange" class="form-radio-default">
 					<label class="form-radio-default-label">
 						<radio value="addressRadioTypeGet" checked="true" color="#5BC797" />
@@ -82,7 +103,6 @@
 					</label>
 				</radio-group>
 			</view>
-			<!-- 到这里结束 -->
 			<view class="address-default-box">
 				<view class="address-default-left">
 					<view class="address-default-title">设置默认地址</view>
@@ -121,6 +141,14 @@ export default {
 			useType: '1',
 			// 国内地址或者日本地址
 			isCN: true,
+			// 是否显示筛选框
+			isShowDrawer: false,
+			// 筛选框高度
+			drawerHeight: '80%',
+			// 城市区域
+			addressCity: '',
+			// 身份证照片数组
+			idImgArr: [],
 			// 是否设置默认地址
 			defaultSetting: false
 		};
@@ -133,6 +161,48 @@ export default {
 		},
 		isChinaAddress(val) {
 			this.isCN = val;
+		},
+		getAddressCity() {
+			this.isShowDrawer = true;
+		},
+		selectCity(data) {
+			console.log('当前选中的城市数据：' + JSON.stringify(data));
+			this.addressCity = data.name;
+			this.isShowDrawer = false;
+		},
+		importIdImg() {
+			// #ifdef H5
+			uni.chooseImage({
+				/** 关于count参数的官方说明
+				count 值在 H5 平台的表现，基于浏览器本身的规范。目前测试的结果来看，只能限制单选/多选，并不能限制数量。
+				并且，在实际的手机浏览器很少有能够支持多选的。 **/
+				count: 1,
+				sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有，仅支持App、微信小程序、支付宝小程序、百度小程序
+				sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有。如需直接开相机或直接选相册，请只使用一个选项
+				// 成功则返回图片的本地文件路径列表 tempFilePaths
+				success: function(res) {
+					console.log(JSON.stringify(res.tempFilePaths));
+					this.idImgArr = res.tempFilePaths;
+					console.log(this.idImgArr);
+				},
+				// 接口调用失败的回调函数，小程序、App
+				fail: function(res) {
+					console.log('接口调用失败:' + JSON.stringify(res));
+					uni.showToast({
+						title: '图片上传功能异常，请联系管理员！',
+						icon: 'none',
+						duration: 2000
+					});
+				},
+				// 接口调用结束的回调函数（调用成功、失败都会执行），全平台
+				complete: function(res) {
+					console.log('接口调用结束:' + JSON.stringify(res));
+				}
+			});
+			// #endif
+
+			// #ifdef MP-WEIXIN
+			// #endif
 		},
 		addressRadioChange(e) {
 			console.log('addressRadio 发生 change 事件，携带值为', e.detail.value);
@@ -238,54 +308,6 @@ export default {
 		margin: 20rpx auto 0 auto;
 		background-color: #ffffff;
 		border-radius: @card-radius;
-		.address-form-item-id {
-			height: 347rpx;
-			.address-form-item-id-title {
-				height: 120rpx;
-				padding-left: 5rpx;
-				font-size: 28rpx;
-				// color: #888888;
-				color: #313131;
-				line-height: 120rpx;
-			}
-			.address-form-item-id-import {
-				width: calc(100% - 10rpx);
-				height: 227rpx;
-				margin: 0 auto;
-				display: flex;
-				justify-content: space-between;
-				.address-form-item-id-import-box {
-					width: calc(50% - 20rpx);
-					height: 200rpx;
-					border-radius: 20rpx;
-					border: 1rpx solid #e9e9e9;
-					.address-form-item-id-import-img {
-						width: 72rpx;
-						height: 72rpx;
-						display: block;
-						margin: 43rpx auto 0 auto;
-					}
-					.address-form-item-id-import-text {
-						display: block;
-						margin: 15rpx auto 0 auto;
-						text-align: center;
-						font-size: 28rpx;
-						// color: #888888;
-						color: #4a4a4a;
-					}
-				}
-			}
-		}
-	}
-
-	.address-form-item {
-		width: calc(100% - 40rpx);
-		height: 120rpx;
-		margin: 0 auto;
-		border-bottom: 1rpx solid @topic-split;
-	}
-	.address-form-item:last-child {
-		border-bottom: 1rpx solid transparent;
 	}
 
 	.address-default {
