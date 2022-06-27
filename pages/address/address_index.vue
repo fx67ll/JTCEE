@@ -56,28 +56,28 @@
 			</view>
 			<!-- #endif -->
 		</view>
-		<view class="pull-index">
+		<view class="address-pull-index">
 			<uni-swipe-action>
-				<view class="pull-item" v-for="(num, index) in listData" :key="index">
+				<view class="address-pull-item" v-for="(num, index) in listData" :key="index">
 					<uni-swipe-action-item
-						class="pull-item-swiper-action"
+						class="address-pull-item-swiper-action"
 						:right-options="index === 1 ? swiperActionOptionsDefault : swiperActionOptions"
 						:auto-close="true"
 						@click="bindSwiperActionClick"
 					>
-						<view class="pull-item-box">
-							<view class="pull-item-top">
-								<view class="pull-item-top-left">
-									<img class="pull-item-top-icon" src="/static/img/address/address-user-send.png" v-if="tabCurrentIndex === 0" />
-									<img class="pull-item-top-icon" src="/static/img/address/address-user-get.png" v-if="tabCurrentIndex === 1" />
-									<text class="pull-item-top-name">张三</text>
-									<text class="pull-item-top-phone">139 9932 3245</text>
+						<view class="address-pull-item-box">
+							<view class="address-pull-item-top">
+								<view class="address-pull-item-top-left">
+									<img class="address-pull-item-top-icon" src="/static/img/address/address-user-send.png" v-if="tabCurrentIndex === 0" />
+									<img class="address-pull-item-top-icon" src="/static/img/address/address-user-get.png" v-if="tabCurrentIndex === 1" />
+									<text class="address-pull-item-top-name">张三</text>
+									<text class="address-pull-item-top-phone">139 9932 3245</text>
 								</view>
-								<view class="pull-item-top-default" v-if="index === 1">{{ $t('address_index.card.default.address') }}</view>
+								<view class="address-pull-item-top-default" v-if="index === 1">{{ $t('address_index.card.default.address') }}</view>
 							</view>
-							<view class="pull-item-bottom">
-								<view class="pull-item-address">上海市上海市青浦区朱家镇康耶鲁180号半山国际2单元309室上海市上海市青浦区朱家镇康耶鲁180号半山国际2单元309室</view>
-								<view class="pull-item-edit" @click="editAddress"><img src="/static/img/address/address-edit.png" /></view>
+							<view class="address-pull-item-bottom">
+								<view class="address-pull-item-address">上海市上海市青浦区朱家镇康耶鲁180号半山国际2单元309室上海市上海市青浦区朱家镇康耶鲁180号半山国际2单元309室</view>
+								<view class="address-pull-item-edit" @click="editAddress"><img src="/static/img/address/address-edit.png" /></view>
 							</view>
 						</view>
 					</uni-swipe-action-item>
@@ -123,6 +123,7 @@ export default {
 			tabCurrentIndex: 0,
 			// tab数据
 			tabDataList: [this.$t('address_index.tab.user.send'), this.$t('address_index.tab.user.get')],
+			// 滑动卡片按钮数据
 			swiperActionOptions: [
 				{
 					text: this.$t('address_index.setting.default.address'),
@@ -145,6 +146,7 @@ export default {
 					}
 				}
 			],
+			// 是否滑动打开
 			isSwiperActionOpened: false
 		};
 	},
@@ -210,7 +212,7 @@ export default {
 		bindSwiperActionClick(e) {
 			console.log(e);
 			uni.showToast({
-				title: `点击了${e.position === 'left' ? '左侧' : '右侧'} ${e.content.text}按钮`,
+				title: `点击了${e.content.text}按钮，功能开发中，敬请期待！`,
 				icon: 'none'
 			});
 		},
@@ -275,67 +277,67 @@ export default {
 		}
 	}
 
-	.pull-index {
+	.address-pull-index {
 		width: calc(100% - @base-gap * 2);
 		margin: 0 auto;
-		.pull-item {
+		.address-pull-item {
 			width: 100%;
 			background-color: #ffffff;
 			border-radius: 20rpx;
 			margin-top: 25rpx;
-			.pull-item-swiper-action {
+			.address-pull-item-swiper-action {
 				width: 100%;
 				border-radius: 20rpx;
 			}
-			.pull-item-box {
+			.address-pull-item-box {
 				width: calc(100% - 60rpx);
 				padding-bottom: 40rpx;
 				border-radius: 20rpx;
 				margin: 0 auto;
-				.pull-item-top {
+				.address-pull-item-top {
 					width: 100%;
 					padding: 33rpx 0 29rpx 0;
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
-					.pull-item-top-left {
+					.address-pull-item-top-left {
 						display: flex;
 						justify-content: flex-start;
 						align-items: center;
 						color: #313131;
-						.pull-item-top-icon {
+						.address-pull-item-top-icon {
 							width: 36rpx;
 							height: 36rpx;
 							margin-right: 27rpx;
 						}
-						.pull-item-top-name {
+						.address-pull-item-top-name {
 							width: 110rpx;
 							font-size: 32rpx;
 						}
-						.pull-item-top-phone {
+						.address-pull-item-top-phone {
 							font-size: 28rpx;
 						}
 					}
-					.pull-item-top-default {
+					.address-pull-item-top-default {
 						font-size: 24rpx;
 						color: @topic-green;
 						position: relative;
 						top: -10rpx;
 					}
 				}
-				.pull-item-bottom {
+				.address-pull-item-bottom {
 					width: calc(100% - 59rpx);
 					padding-left: 59rpx;
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
-					.pull-item-address {
+					.address-pull-item-address {
 						width: calc(100% - 105rpx);
 						font-size: 24rpx;
 						color: #2e3031;
 						line-height: 32rpx;
 					}
-					.pull-item-edit {
+					.address-pull-item-edit {
 						width: 58rpx;
 						height: 58rpx;
 						img {
