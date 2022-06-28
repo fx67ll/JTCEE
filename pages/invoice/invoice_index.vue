@@ -96,7 +96,36 @@
 				</view>
 			</view>
 		</zb-drawer>
-		<view class="pull-index"><view class="pull-item" v-for="(num, index) in listData" :key="index"></view></view>
+		<view class="invoice-index">
+			<view class="invoice-item" v-for="(num, index) in listData" :key="index"></view>
+			
+			<!-- 从这里开始继续写 -->
+			<view class="invoice-item">
+				<view class="invoice-item-top">
+					<view class="invoice-item-order-id invoice-item-order-green invoice-item-order-red invoice-item-order-grey">
+						<text class="invoice-item-order-md">面单号</text>
+						<!-- <text class="invoice-item-order-dd">订单号</text> -->
+						<text class="invoice-item-order-number">ST232354565</text>
+						<img class="invoice-item-order-copy" src="/static/img/invoice/invoice-copy.png">
+					</view>
+					<view class="invoice-item-order-detail">
+						运单详情
+						<uni-icons class="invoice-item-order-detail-icon" type="back" size="16" color="#ffffff"></uni-icons>
+					</view>
+				</view>
+				<view class="invoice-item-content">
+					
+				</view>
+				<view class="invoice-item-btn">
+					<view class="invoice-item-btn-reorder">重新寄件</view>
+					<view class="invoice-item-btn-delete">删除</view>
+					<!-- <view class="invoice-item-btn-cancle">取消寄件</view> -->
+					<!-- <view class="invoice-item-btn-pay">立即支付</view> -->
+				</view>
+			</view>
+			<!-- 从这里结束 -->
+			
+		</view>
 		<view class="uni-loadmore common-loadmore" v-if="showLoadMore">{{ loadMoreText }}</view>
 		<!-- 页面警告消息 -->
 		<uni-popup ref="popup" type="dialog">
@@ -165,7 +194,7 @@ export default {
 		this.topNavSearchTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 88 + 'rpx';
 		this.topNavTabTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 166 + 'rpx';
 		
-		this.showTestToast(1);
+		// this.showTestToast(1);
 	},
 	onLoad(option) {
 		this.fromType = option.fromType;
@@ -303,10 +332,10 @@ export default {
 		}
 	}
 
-	.pull-index {
+	.invoice-index {
 		width: calc(100% - @base-gap * 2);
 		margin: 0 auto;
-		.pull-item {
+		.invoice-item {
 			width: 100%;
 			background-color: #ffffff;
 			border-radius: 20rpx;
