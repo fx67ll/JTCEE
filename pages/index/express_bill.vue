@@ -231,7 +231,6 @@ export default {
 			uni.previewImage({
 				urls: [imgurl],
 				longPressActions: {
-					itemList: ['发送给朋友', '保存图片', '收藏'],
 					success: function(data) {
 						console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
 					},
@@ -241,12 +240,13 @@ export default {
 				}
 			});
 			// #endif
+			
+			// 微信仅支持https或http网络请求的图片预览
 			// #ifdef MP-WEIXIN
 			let imgurlwx = this.tabImgUrlListWx[index];
 			uni.previewImage({
 				urls: [imgurlwx],
 				longPressActions: {
-					itemList: ['发送给朋友', '保存图片', '收藏'],
 					success: function(data) {
 						console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
 					},

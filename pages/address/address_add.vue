@@ -90,15 +90,21 @@
 			<view class="common-form-item-big">
 				<view class="common-form-item-big-title">上传身份证照片</view>
 				<view class="common-form-item-big-import">
-					<view class="common-form-item-big-import-box" @click="importIdImg">
-						<img class="common-form-item-big-import-img" src="/static/img/address/address-import-id.png" v-if="!idImgArr[0]" />
-						<img class="common-form-item-big-import-img" :src="idImgArr[0]" v-if="idImgArr[0]" />
+					<view class="common-form-item-big-import-box" @click="importIdImg(1)" v-if="idImgArrFront.length === 0">
+						<img class="common-form-item-big-import-img" src="/static/img/address/address-import-id.png" />
 						<text class="common-form-item-big-import-text">身份证正面</text>
 					</view>
-					<view class="common-form-item-big-import-box" @click="importIdImg">
-						<img class="common-form-item-big-import-img" src="/static/img/address/address-import-id.png" v-if="!idImgArr[1]" />
-						<img class="common-form-item-big-import-img" :src="idImgArr[1]" v-if="idImgArr[1]" />
+					<view class="common-form-item-big-import-box" v-if="idImgArrFront.length > 0">
+						<uni-icons class="common-form-item-big-result-icon" type="trash-filled" size="24" color="#BFBFBF" @click="deleteImportImg(1)"></uni-icons>
+						<img class="common-form-item-big-result-img" :src="idImgArrFront[0]" @click="previewImportImg(1)" />
+					</view>
+					<view class="common-form-item-big-import-box" @click="importIdImg(2)" v-if="idImgArrBack.length === 0">
+						<img class="common-form-item-big-import-img" src="/static/img/address/address-import-id.png" />
 						<text class="common-form-item-big-import-text">身份证反面</text>
+					</view>
+					<view class="common-form-item-big-import-box" v-if="idImgArrBack.length > 0">
+						<uni-icons class="common-form-item-big-result-icon" type="trash-filled" size="24" color="#BFBFBF" @click="deleteImportImg(2)"></uni-icons>
+						<img class="common-form-item-big-result-img" :src="idImgArrBack[0]" @click="previewImportImg(2)" />
 					</view>
 				</view>
 			</view>
@@ -163,7 +169,8 @@ export default {
 			addressCityCN: '',
 			addressCityJP: '',
 			// 身份证照片数组
-			idImgArr: [],
+			idImgArrFront: [],
+			idImgArrBack: [],
 			// 是否设置默认地址
 			defaultSetting: false
 		};
@@ -192,7 +199,9 @@ export default {
 			this.addressCityCN = data.name;
 			this.isShowDrawer = false;
 		},
-		importIdImg() {
+		importIdImg(type) {
+			let self = this;
+
 			// #ifdef H5
 			uni.chooseImage({
 				/** 关于count参数的官方说明
@@ -203,19 +212,34 @@ export default {
 				sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有。如需直接开相机或直接选相册，请只使用一个选项
 				// 成功则返回图片的本地文件路径列表 tempFilePaths
 				success: function(res) {
-					console.log(JSON.stringify(res.tempFilePaths));
-					this.idImgArr = res.tempFilePaths;
-					console.log(this.idImgArr);
+					console.log(JSON.stringify(res.tempFilePaths[0]));
+					if (type === 1) {
+						self.idImgArrFront = [];
+						self.idImgArrFront.push(res.tempFilePaths[0]);
+						console.log('正面上传：' + self.idImgArrFront);
+					} else {
+						self.idImgArrBack = [];
+						self.idImgArrBack.push(res.tempFilePaths[0]);
+						console.log('反面上传：' + self.idImgArrBack);
+					}
 				},
 				// 接口调用失败的回调函数，小程序、App
 				fail: function(res) {
 					console.log('接口调用失败:' + JSON.stringify(res));
-					
-					uni.showToast({
-						title: '图片上传功能异常，请联系管理员！',
-						icon: 'none',
-						duration: 5000
-					});
+
+					if (type === 1) {
+						uni.showToast({
+							title: '身份证正面上传功能异常，请联系管理员！',
+							icon: 'none',
+							duration: 5000
+						});
+					} else {
+						uni.showToast({
+							title: '身份证反面上传功能异常，请联系管理员！',
+							icon: 'none',
+							duration: 5000
+						});
+					}
 				},
 				// 接口调用结束的回调函数（调用成功、失败都会执行），全平台
 				complete: function(res) {
@@ -226,6 +250,63 @@ export default {
 
 			// #ifdef MP-WEIXIN
 			// #endif
+		},
+		deleteImportImg(type) {
+			let self = this;
+			uni.showModal({
+				title: '提示',
+				content: `确定删除身份证${type === 1 ? '正面' : '反面'}照片吗`,
+				success: function(res) {
+					if (res.confirm) {
+						console.log('用户点击确定');
+						if (type === 1) {
+							self.idImgArrFront = [];
+							uni.showToast({
+								title: '身份证正面删除成功！',
+								icon: 'none',
+								duration: 1998
+							});
+						} else {
+							self.idImgArrBack = [];
+							uni.showToast({
+								title: '身份证反面删除成功！',
+								icon: 'none',
+								duration: 1998
+							});
+						}
+					} else if (res.cancel) {
+						console.log('用户点击取消');
+					}
+				}
+			});
+		},
+		previewImportImg(type) {
+			let self = this;
+			if (type === 1) {
+				uni.previewImage({
+					urls: [self.idImgArrFront[0]],
+					longPressActions: {
+						success: function(data) {
+							console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+						},
+						fail: function(err) {
+							console.log(err.errMsg);
+						}
+					}
+				});
+			} else {
+				uni.previewImage({
+					urls: [self.idImgArrBack[0]],
+					longPressActions: {
+						success: function(data) {
+							console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+						},
+						fail: function(err) {
+							console.log(err.errMsg);
+						}
+					}
+				});
+			}
 		},
 		addressRadioChange(e) {
 			console.log('addressRadio 发生 change 事件，携带值为', e.detail.value);

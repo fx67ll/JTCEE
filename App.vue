@@ -26,4 +26,8 @@ export default {
 .uni-radio-input{
 	transform: scale(0.8);
 }
+
+.uni-modal .uni-modal__btn_primary{
+	color: #5bc797 !important;
+}
 </style>
