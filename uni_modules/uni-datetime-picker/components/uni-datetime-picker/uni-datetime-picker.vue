@@ -829,7 +829,7 @@
 		line-height: 40px;
 		/* fx67ll */
 		/* font-size: 14px; */
-		font-size: 28rpx;
+		font-size: 26rpx;
 	}
 
 	.t-c {
@@ -847,7 +847,7 @@
 
 	.uni-date-range__input {
 		text-align: center;
-		max-width: 142px;
+		max-width: 152px;
 	}
 
 	.uni-date-picker__container {
