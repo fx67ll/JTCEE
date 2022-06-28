@@ -46,7 +46,7 @@
 		</view>
 		<view class="goods-pull-index">
 			<uni-swipe-action>
-				<view class="goods-pull-item" v-for="(num, index) in listData" :key="index">
+				<view class="goods-pull-item" v-for="(num, index) in listData" :key="index" @click="getGoodsDetail">
 					<uni-swipe-action-item class="goods-pull-item-swiper-action" :right-options="swiperActionOptions" :auto-close="true" @click="bindSwiperActionClick">
 						<view class="goods-pull-item-box">
 							<view class="goods-pull-item-left"><img src="/static/img/user/user-head.png" /></view>
@@ -54,7 +54,7 @@
 								<view class="goods-pull-item-title">任天堂switch收纳包switchlite保护套ns硬包swich盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大</view>
 								<view class="goods-pull-item-type">
 									<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">未同步</text>
-									<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="index >= 2 & index % 2 !==0">已同步</text>
+									<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">已同步</text>
 								</view>
 								<view class="goods-pull-item-money">￥ 1999.99</view>
 							</view>
@@ -165,6 +165,11 @@ export default {
 			}
 			this.listData = this.listData.concat(data);
 		},
+		getGoodsDetail() {
+			uni.navigateTo({
+				url: '/pages/goods/goods_detail'
+			});
+		},
 		bindSwiperActionClick(e) {
 			console.log(e);
 			uni.showToast({
@@ -173,11 +178,7 @@ export default {
 			});
 		},
 		multipleEditGoods() {
-			uni.showToast({
-				title: '功能开发中，敬请期待！',
-				icon: 'none',
-				duration: 5000
-			});
+			this.showTestToast(0);
 		},
 		addGoods() {
 			uni.navigateTo({

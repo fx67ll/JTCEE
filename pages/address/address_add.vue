@@ -16,16 +16,16 @@
 			<view class="top-nav-fake"></view>
 			<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		</view>
-		<view class="address-card" :class="{ 'address-card-long': !isCN }">
-			<view class="address-card-head">
-				<view class="address-card-head-item" :class="{ 'address-card-head-item-active': isCN, 'address-card-head-item-china': !isCN }" @click="isChinaAddress(true)">
+		<view class="card-two" :class="{ 'card-two-long': !isCN }">
+			<view class="card-two-head">
+				<view class="card-two-head-item" :class="{ 'card-two-head-item-active': isCN, 'card-two-head-item-first': !isCN }" @click="isChinaAddress(true)">
 					国内
 				</view>
-				<view class="address-card-head-item" :class="{ 'address-card-head-item-active': !isCN, 'address-card-head-item-japan': isCN }" @click="isChinaAddress(false)">
+				<view class="card-two-head-item" :class="{ 'card-two-head-item-active': !isCN, 'card-two-head-item-second': isCN }" @click="isChinaAddress(false)">
 					日本
 				</view>
 			</view>
-			<view class="address-card-content">
+			<view class="card-two-content">
 				<view class="common-form-item">
 					<view class="form-item-title">姓名</view>
 					<input class="uni-input form-input-default" type="text" placeholder="请输入姓名" placeholder-class="form-input-placeholder" />
@@ -95,7 +95,7 @@
 						<text class="common-form-item-big-import-text">身份证正面</text>
 					</view>
 					<view class="common-form-item-big-import-box" v-if="idImgArrFront.length > 0">
-						<uni-icons class="common-form-item-big-result-icon" type="trash-filled" size="24" color="#BFBFBF" @click="deleteImportImg(1)"></uni-icons>
+						<uni-icons class="common-form-item-big-result-icon" type="trash" size="24" color="#BFBFBF" @click="deleteImportImg(1)"></uni-icons>
 						<img class="common-form-item-big-result-img" :src="idImgArrFront[0]" @click="previewImportImg(1)" />
 					</view>
 					<view class="common-form-item-big-import-box" @click="importIdImg(2)" v-if="idImgArrBack.length === 0">
@@ -103,7 +103,7 @@
 						<text class="common-form-item-big-import-text">身份证反面</text>
 					</view>
 					<view class="common-form-item-big-import-box" v-if="idImgArrBack.length > 0">
-						<uni-icons class="common-form-item-big-result-icon" type="trash-filled" size="24" color="#BFBFBF" @click="deleteImportImg(2)"></uni-icons>
+						<uni-icons class="common-form-item-big-result-icon" type="trash" size="24" color="#BFBFBF" @click="deleteImportImg(2)"></uni-icons>
 						<img class="common-form-item-big-result-img" :src="idImgArrBack[0]" @click="previewImportImg(2)" />
 					</view>
 				</view>
@@ -261,18 +261,8 @@ export default {
 						console.log('用户点击确定');
 						if (type === 1) {
 							self.idImgArrFront = [];
-							uni.showToast({
-								title: '身份证正面删除成功！',
-								icon: 'none',
-								duration: 1998
-							});
 						} else {
 							self.idImgArrBack = [];
-							uni.showToast({
-								title: '身份证反面删除成功！',
-								icon: 'none',
-								duration: 1998
-							});
 						}
 					} else if (res.cancel) {
 						console.log('用户点击取消');
@@ -359,59 +349,11 @@ export default {
 		}
 	}
 
-	// 卡片圆角
-	@card-radius: 15rpx;
-	// 卡片激活高度差
-	@active-top: 15rpx;
-	.address-card {
-		width: calc(100% - @base-gap * 2);
-		margin: calc(30rpx + @active-top) auto 0 auto;
-		background-color: #ffffff;
-		border-radius: @card-radius;
-		@card-head-height: 96rpx;
-		.address-card-head {
-			width: 100%;
-			height: @card-head-height;
-			display: flex;
-			justify-content: space-between;
-			.address-card-head-item {
-				width: 50%;
-				height: 100%;
-				font-size: 28rpx;
-				text-align: center;
-				line-height: @card-head-height;
-				color: #838383;
-				background: #e9e9e9;
-				border-radius: @card-radius;
-				letter-spacing: 10rpx;
-			}
-			.address-card-head-item-active {
-				height: calc(100% + @active-top);
-				line-height: calc(@card-head-height + @active-top);
-				color: #303031;
-				font-size: 32rpx;
-				background-color: #ffffff;
-				position: relative;
-				top: -@active-top;
-			}
-			.address-card-head-item-china {
-				border-radius: @card-radius 0px @card-radius 0px;
-			}
-			.address-card-head-item-japan {
-				border-radius: 0px @card-radius 0px @card-radius;
-			}
-		}
-		.address-card-content {
-			width: 100%;
-			padding: 20rpx 0 10rpx 0;
-		}
-	}
-
 	.address-id {
 		width: calc(100% - @base-gap * 2);
 		margin: 20rpx auto 0 auto;
 		background-color: #ffffff;
-		border-radius: @card-radius;
+		border-radius: 20rpx;
 	}
 
 	.address-default {

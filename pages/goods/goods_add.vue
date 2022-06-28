@@ -44,11 +44,7 @@ export default {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 		
-		uni.showToast({
-			title: '页面开发中，敬请期待！',
-			icon: 'none',
-			duration: 5000
-		});
+		this.showTestToast(1);
 	},
 	onLoad(option) {
 		this.fromType = option.fromType;

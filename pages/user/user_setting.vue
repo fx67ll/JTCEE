@@ -20,7 +20,7 @@
 					<text class="user-setting-form-text">{{ $t('user_setting.setting.edit.password') }}</text>
 					<uni-icons class="user-setting-form-icon" type="right" size="18" color="#BFBFBF"></uni-icons>
 				</view>
-				<view class="user-setting-form-item">
+				<view class="user-setting-form-item" @click="proveMail">
 					<text class="user-setting-form-text">{{ $t('user_setting.setting.check.mail') }}</text>
 					<uni-icons class="user-setting-form-icon" type="right" size="18" color="#BFBFBF"></uni-icons>
 				</view>
@@ -100,6 +100,9 @@ export default {
 			uni.navigateTo({
 				url: '/pages/login/forget_password?fromType=2'
 			});
+		},
+		proveMail() {
+			this.showTestToast(0);
 		},
 		passwordSwitchChange(e) {
 			console.log('passwordSwitch 发生 change 事件，携带值为', e.detail.value);
