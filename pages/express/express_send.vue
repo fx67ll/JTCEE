@@ -116,33 +116,48 @@
 				</view>
 			</view>
 
-			<view class="card-two-content card-two-content-express" v-if="!isSingle"><view class="express-upload"></view></view>
-		</view>
-		
-		<view class="express-note">
-			
-		</view>
-		
-		<view class="express-service">
-			<view class="express-service-tip">
-				高价值、易损坏物品建议保价，丢损必赔更安全
+			<view class="card-two-content card-two-content-express" v-if="!isSingle">
+				<view class="express-upload">
+					<view class="express-upload-top">
+						<view class="express-upload-title">批量上传</view>
+						<view class="express-upload-model" @click="getMultipleImportModel">
+							<uni-icons class="express-upload-model-icon" type="download-filled" size="16" color="#F8BB32"></uni-icons>
+							<text class="express-upload-model-text">下载模板</text>
+						</view>
+					</view>
+					<view class="express-upload-content">
+						<view class="express-upload-btn" @click="multipleImportFile">批量上传</view>
+						<view class="express-upload-tip">仅限于上传小于等于5M的excel</view>
+					</view>
+				</view>
 			</view>
+		</view>
+
+		<view class="express-note">
+			<view class="common-form-item-note">
+				<view class="common-form-item-note-title">备注</view>
+				<view class="common-form-item-note-textaera">
+					<textarea class="form-textarea-default" placeholder="请输入门店备注信息" placeholder-class="form-input-placeholder" />
+				</view>
+			</view>
+		</view>
+
+		<view class="express-service">
+			<view class="express-service-tip">高价值、易损坏物品建议保价，丢损必赔更安全</view>
 			<view class="common-form-item">
 				<view class="form-item-title">
 					保价
-					<uni-icons class="form-item-title-icon" type="help" size="18" color="#A6A6A6"></uni-icons>
+					<uni-icons class="form-item-title-icon" type="help" size="18" color="#A6A6A6" @click="showInsureTip"></uni-icons>
 				</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="输入保价价格" placeholder-class="form-input-placeholder"/>
+					<input class="uni-input form-input-default" type="number" placeholder="请输入保价价格" placeholder-class="form-input-placeholder" />
 					<uni-icons class="form-item-arrow-icon" type="vip-filled" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
 			<view class="common-form-item">
-				<view class="form-item-title">
-					服务
-				</view>
-				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="请选择需要的附加服务" placeholder-class="form-input-placeholder"disabled/>
+				<view class="form-item-title">服务</view>
+				<view class="form-item-arrow" @click="getExpressService">
+					<input class="uni-input form-input-default" type="text" placeholder="请选择需要的附加服务" placeholder-class="form-input-placeholder" disabled />
 					<uni-icons class="form-item-arrow-icon" type="right" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
@@ -155,18 +170,27 @@
 					交付方式
 					<uni-icons class="form-item-title-icon" type="help" size="18" color="#A6A6A6"></uni-icons>
 				</view>
-				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="请选择交付方式" placeholder-class="form-input-placeholder" disabled/>
-					<uni-icons class="form-item-arrow-icon" type="right" size="18" color="#A6A6A6"></uni-icons>
-				</view>
+				<picker @change="bindDeliverPickerChange" :value="deliverIndex" :range="deliverData">
+					<view class="form-item-arrow">
+						<input
+							class="uni-input form-input-default"
+							type="text"
+							placeholder="请选择交付方式"
+							placeholder-class="form-input-placeholder"
+							disabled
+							v-model="deliverData[deliverIndex]"
+						/>
+						<uni-icons class="form-item-arrow-icon" type="right" size="18" color="#A6A6A6"></uni-icons>
+					</view>
+				</picker>
 			</view>
-			<view class="common-form-item">
+			<view class="common-form-item" v-if="deliverIndex === 1">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
 					交付单号
 				</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="请录入单号" placeholder-class="form-input-placeholder"/>
+					<input class="uni-input form-input-default" type="text" placeholder="请录入单号" placeholder-class="form-input-placeholder" />
 					<uni-icons class="form-item-arrow-icon" type="scan" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
@@ -175,10 +199,19 @@
 					<text class="form-must-have">*</text>
 					交付门店
 				</view>
-				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="请选择交付门店" placeholder-class="form-input-placeholder"disabled/>
-					<uni-icons class="form-item-arrow-icon" type="right" size="18" color="#A6A6A6"></uni-icons>
-				</view>
+				<picker @change="bindDeliverShopPickerChange" :value="deliverShopIndex" :range="deliverShopData">
+					<view class="form-item-arrow">
+						<input
+							class="uni-input form-input-default"
+							type="text"
+							placeholder="请选择交付门店"
+							placeholder-class="form-input-placeholder"
+							disabled
+							v-model="deliverShopData[deliverShopIndex]"
+						/>
+						<uni-icons class="form-item-arrow-icon" type="right" size="18" color="#A6A6A6"></uni-icons>
+					</view>
+				</picker>
 			</view>
 		</view>
 
@@ -206,6 +239,10 @@
 				</view>
 			</view>
 		</view>
+
+		<!-- 服务弹窗 -->
+		<zb-drawer mode="bottom" title="服务" :wrapperClosable="false" :visible.sync="isShowDrawerService" :radius="true" :height="serviceDrawerHeight"></zb-drawer>
+		<!-- 明细弹窗 -->
 		<zb-drawer mode="bottom" title="明细" :wrapperClosable="false" :visible.sync="isShowDrawerBillDetail" :radius="true" :height="billDetailDrawerHeight"></zb-drawer>
 	</view>
 </template>
@@ -231,14 +268,27 @@ export default {
 			// 状态栏高度，用于微信小程序适配
 			statusBarHeight: 0,
 			// 单个寄件或批量寄件
-			isSingle: true,
+			isSingle: false,
 			// tab索引
 			tabCurrentIndex: 0,
 			// tab数据
 			tabDataList: ['杂货', '重货', '专线'],
+			// 包裹重量
+			billExpressWeight: 0,
+			// 包裹体积
+			billExpressVolume: 0,
+			// 交付方式
+			deliverData: ['上门交付', '快递交付'],
+			deliverIndex: -1,
+			// 交付门店
+			deliverShopData: ['交付门店一', '交付门店二', '交付门店三'],
+			deliverShopIndex: -1,
+			// 服务弹窗
+			isShowDrawerService: false,
+			serviceDrawerHeight: '30%',
 			// 明细弹窗
 			isShowDrawerBillDetail: false,
-			billDetailDrawerHeight: '35%'
+			billDetailDrawerHeight: '50%'
 		};
 	},
 	methods: {
@@ -257,13 +307,62 @@ export default {
 		},
 		isExpressSendSingle(val) {
 			this.isSingle = val;
+			uni.showToast({
+				title: '添加商品功能开发中，敬请期待！',
+				icon: 'none',
+				duration: 1998
+			});
 		},
 		changeTab(index) {
 			console.log('当前选中的项：' + index);
+			if(index === 0){
+				uni.showToast({
+					title: '您选择了杂货！',
+					icon: 'none',
+					duration: 1998
+				});
+			}
+			if(index === 1){
+				uni.showToast({
+					title: '您选择了重货！',
+					icon: 'none',
+					duration: 1998
+				});
+			}
+			if(index === 2){
+				uni.showToast({
+					title: '您选择了专线！',
+					icon: 'none',
+					duration: 1998
+				});
+			}
+		},
+		getMultipleImportModel() {
+			this.showTestToast(0);
+		},
+		multipleImportFile() {
+			this.showTestToast(0);
+		},
+		showInsureTip() {
+			uni.showToast({
+				title: '暂无保价声明详细报价，敬请期待！',
+				icon: 'none',
+				duration: 1998
+			});
+		},
+		getExpressService() {
+			this.isShowDrawerService = true;
+		},
+		bindDeliverPickerChange(e) {
+			console.log('交付方式picker发送选择改变，携带值为', e.detail.value);
+			this.deliverIndex = e.detail.value;
+		},
+		bindDeliverShopPickerChange(e) {
+			console.log('交付方式picker发送选择改变，携带值为', e.detail.value);
+			this.deliverShopIndex = e.detail.value;
 		},
 		getExpressOrderDetail() {
 			this.isShowDrawerBillDetail = true;
-			console.log('获取预估费用明细ing...');
 		},
 		saveExpressOrder() {
 			this.showTestToast(0);
@@ -423,35 +522,80 @@ export default {
 			.express-upload {
 				width: calc(100% - @express-card-item-width);
 				height: 270rpx;
+				margin: 0 auto;
+				.express-upload-top {
+					width: 100%;
+					margin-top: 30rpx;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					.express-upload-title {
+						font-size: 30rpx;
+						color: #303031;
+						margin-left: 10rpx;
+					}
+					.express-upload-model {
+						margin-right: 10rpx;
+						position: relative;
+						top: 2rpx;
+						.express-upload-model-icon {
+							margin-right: 3rpx;
+						}
+						.express-upload-model-text {
+							font-size: 24rpx;
+							color: #f8bb32;
+						}
+					}
+				}
+				.express-upload-content {
+					width: 100%;
+					margin-top: 50rpx;
+					.express-upload-btn {
+						width: 230rpx;
+						height: 76rpx;
+						box-shadow: 0px 2px 8px 1px rgba(0, 128, 71, 0.31);
+						border-radius: 70rpx;
+						margin: 0 auto;
+						text-align: center;
+						color: @topic-green;
+						line-height: 76rpx;
+						font-size: 28rpx;
+					}
+					.express-upload-tip {
+						margin-top: 25rpx;
+						font-size: 20rpx;
+						color: #bfbfbf;
+						text-align: center;
+					}
+				}
 			}
 		}
 	}
-	
-	.express-note{
+
+	.express-note {
 		width: calc(100% - @base-gap * 2);
-		height: 300rpx;
 		background-color: #ffffff;
 		border-radius: 20rpx;
 		margin: @express-card-margin-top auto 0 auto;
 	}
-	
-	.express-service{
+
+	.express-service {
 		width: calc(100% - @base-gap * 2);
 		background-color: #ffffff;
 		border-radius: 20rpx;
 		margin: @express-card-margin-top auto 0 auto;
 		overflow: hidden;
-		.express-service-tip{
+		.express-service-tip {
 			width: 100%;
 			height: 46rpx;
 			font-size: 20rpx;
-			color: #F8BB32;
+			color: #f8bb32;
 			background-color: rgba(248, 187, 50, 0.22);
 			line-height: 46rpx;
 			text-indent: 25rpx;
 		}
 	}
-	
+
 	.express-deliver {
 		width: calc(100% - @base-gap * 2);
 		background-color: #ffffff;

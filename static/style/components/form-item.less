@@ -40,7 +40,7 @@
 		align-items: center;
 		.form-item-arrow-icon{
 			position: relative;
-			top: 2rpx;
+			top: 1rpx;
 			margin-left: 5rpx;
 		}
 	}
@@ -81,6 +81,7 @@
 	border-bottom: 1rpx solid transparent;
 }
 
+// address_add详细地址
 .common-form-item-big {
 	width: calc(100% - 50rpx);
 	margin: 0 auto;
@@ -143,6 +144,33 @@
 			border-radius: 20rpx;
 			border: 1rpx solid #e9e9e9;
 			// background-color: #F8F8F8;
+			padding: @textarea-padding;
+			font-size: 28rpx;
+		}
+	}
+}
+
+.common-form-item-note {
+	width: calc(100% - 50rpx);
+	margin: 0 auto;
+	.common-form-item-note-title {
+		height: 76rpx;
+		padding-left: 5rpx;
+		font-size: 30rpx;
+		color: #313131;
+		line-height: 76rpx;
+	}
+	@textarea-padding: 20rpx;
+	.common-form-item-note-textaera {
+		width: 100%;
+		height: 200rpx;
+		margin: 0 auto;
+		padding-bottom: 26rpx;
+		.form-textarea-default {
+			width: calc(100% - @textarea-padding * 2);
+			height: calc(100% - @textarea-padding * 2);
+			border-radius: 20rpx;
+			background-color: #F8F8F8;
 			padding: @textarea-padding;
 			font-size: 28rpx;
 		}
