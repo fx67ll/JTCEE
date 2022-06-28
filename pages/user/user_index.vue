@@ -100,12 +100,12 @@
 		<view class="bottom-menu">
 			<view class="bottom-menu-box">
 				<view class="bottom-menu-item" @click="goHome">
-					<view class="bottom-menu-icon"><img src="" /></view>
+					<view class="bottom-menu-icon"><img src="/static/img/bottom/bottom-home.png" /></view>
 					<view class="bottom-menu-text">{{ $t('bottom_menu.home') }}</view>
 				</view>
-				<view class="bottom-menu-logo"><img src="" /></view>
+				<view class="bottom-menu-logo"><!-- <img src="" /> --></view>
 				<view class="bottom-menu-item">
-					<view class="bottom-menu-icon"><img src="" /></view>
+					<view class="bottom-menu-icon"><img src="/static/img/bottom/bottom-user-active.png" /></view>
 					<view class="bottom-menu-text">{{ $t('bottom_menu.user') }}</view>
 				</view>
 			</view>
@@ -142,7 +142,7 @@ export default {
 	},
 	methods: {
 		goHome() {
-			uni.navigateTo({
+			uni.reLaunch({
 				url: '/pages/index/index'
 			});
 		},
@@ -281,7 +281,8 @@ export default {
 	.user-info {
 		width: 100%;
 		height: 420rpx;
-		background-color: @topic-green;
+		background-image: url("/static/img/user/user-info-bg.png");
+		background-size: 100% 100%;
 
 		@setting-size: 40rpx;
 		.user-info-setting {

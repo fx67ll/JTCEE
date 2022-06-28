@@ -155,6 +155,11 @@ export default {
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 	},
 	methods: {
+		goUserIndex() {
+			uni.reLaunch({
+				url: '/pages/user/user_index'
+			});
+		},
 		getMoreNotice() {
 			uni.navigateTo({
 				url: '/pages/notice/notice_catagory?fromType=1'
@@ -176,11 +181,6 @@ export default {
 		goGetExpress() {
 			uni.navigateTo({
 				url: '/pages/invoice/invoice_index?fromType=1'
-			});
-		},
-		goUserIndex() {
-			uni.navigateTo({
-				url: '/pages/user/user_index'
 			});
 		}
 	}
