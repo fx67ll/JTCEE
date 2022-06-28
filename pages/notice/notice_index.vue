@@ -98,7 +98,10 @@ export default {
 			});
 		},
 		getNoticeDetail() {
-			console.log('正在获取快递详情ing...');
+			let fromType = this.fromType;
+			uni.navigateTo({
+				url: `/pages/notice/notice_detail?fromType=${fromType}`
+			});
 		},
 		initData() {
 			setTimeout(() => {
