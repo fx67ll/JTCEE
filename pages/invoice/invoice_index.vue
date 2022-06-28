@@ -165,7 +165,7 @@ export default {
 		this.topNavSearchTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 88 + 'rpx';
 		this.topNavTabTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 166 + 'rpx';
 		
-		// this.showTestToast(1);
+		this.showTestToast(1);
 	},
 	onLoad(option) {
 		this.fromType = option.fromType;

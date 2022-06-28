@@ -69,7 +69,7 @@
 				<view class="index-alpha-item-img"><img src="/static/img/index/shop-search.png" /></view>
 				<view class="index-alpha-item-text">{{ $t('index.alpha.site') }}</view>
 			</view>
-			<view class="index-alpha-item" @click="openDialogTest">
+			<view class="index-alpha-item" @click="getHelpService">
 				<view class="index-alpha-item-img"><img src="/static/img/index/get-service.png" /></view>
 				<view class="index-alpha-item-text">{{ $t('index.alpha.help') }}</view>
 			</view>
@@ -168,6 +168,11 @@ export default {
 		countExpressBill() {
 			uni.navigateTo({
 				url: '/pages/index/express_bill'
+			});
+		},
+		getHelpService() {
+			uni.navigateTo({
+				url: '/pages/index/help_service'
 			});
 		},
 		openDialogTest() {
