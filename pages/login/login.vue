@@ -3,7 +3,7 @@
 		<!-- #ifdef APP-PLUS -->
 		<view class="status_bar"><!-- 这里是状态栏，用于app端的状态栏抵消 --></view>
 		<!-- #endif -->
-		<view class="login-img"><!-- <img src="" alt=""> --></view>
+		<view class="login-img"><img src="/static/img/login/login-img-bg.png"></view>
 		<view class="login-info">
 			<view class="login-card" :class="{ 'login-card-long': !islc }">
 				<view class="login-card-head">
@@ -200,9 +200,6 @@ export default {
 	.login-img {
 		width: 100%;
 		height: 300rpx;
-		// border: @test-line-width solid @topic-green;
-		background-color: @topic-green;
-		opacity: 0.3;
 		img {
 			width: 100%;
 			height: 100%;

@@ -117,7 +117,7 @@ export default {
 				});
 			} else if (this.fromType === '2') {
 				uni.redirectTo({
-					url: '/pages/user/user_index'
+					url: '/pages/user/user_setting'
 				});
 			} else {
 				this.$refs.popup.open();
