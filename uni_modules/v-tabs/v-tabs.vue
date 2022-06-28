@@ -5,7 +5,7 @@
 			:scroll-x="scroll"
 			:scroll-left="scroll ? scrollLeft : 0"
 			:scroll-with-animation="scroll"
-			:style="{ position: fixed ? 'fixed' : 'relative', zIndex: 1993 }"
+			:style="{ position: fixed ? 'fixed' : 'relative', zIndex: 9 }"
 		>
 			<view
 				class="v-tabs__container"
