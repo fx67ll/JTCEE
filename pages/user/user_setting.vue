@@ -20,6 +20,9 @@
 					<text class="user-setting-form-text">{{ $t('user_setting.setting.edit.password') }}</text>
 					<uni-icons class="user-setting-form-icon" type="right" size="18" color="#BFBFBF"></uni-icons>
 				</view>
+				<!-- 验证邮箱这个功能有两个考虑：
+				1. 验证邮箱，页面风格使用修改密码的，重绘个页面
+				2. 修改邮箱，页面结构完全使用修改密码的，改为修改邮箱 -->
 				<view class="user-setting-form-item" @click="proveMail">
 					<text class="user-setting-form-text">{{ $t('user_setting.setting.check.mail') }}</text>
 					<uni-icons class="user-setting-form-icon" type="right" size="18" color="#BFBFBF"></uni-icons>

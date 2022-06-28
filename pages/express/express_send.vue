@@ -307,11 +307,6 @@ export default {
 		},
 		isExpressSendSingle(val) {
 			this.isSingle = val;
-			uni.showToast({
-				title: '添加商品功能开发中，敬请期待！',
-				icon: 'none',
-				duration: 1998
-			});
 		},
 		changeTab(index) {
 			console.log('当前选中的项：' + index);
