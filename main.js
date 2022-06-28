@@ -2,8 +2,8 @@ import App from './App'
 import messages from './locale/index'
 
 let i18nConfig = {
-  locale: uni.getLocale(),
-  messages
+	locale: uni.getLocale(),
+	messages
 }
 
 // #ifndef VUE3
@@ -16,20 +16,33 @@ Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue({
 	i18n,
-    ...App
+	...App
 })
 app.$mount()
 // #endif
 
 // #ifdef VUE3
-import { createSSRApp } from 'vue'
-import { createI18n } from 'vue-i18n'
+import {
+	createSSRApp
+} from 'vue'
+import {
+	createI18n
+} from 'vue-i18n'
 const i18n = createI18n(i18nConfig)
 export function createApp() {
-  const app = createSSRApp(App)
-  app.use(i18n)
-  return {
-    app
-  }
+	const app = createSSRApp(App)
+	app.use(i18n)
+	return {
+		app
+	}
 }
 // #endif
+
+
+Vue.prototype.showTestToast = function(type) {
+	uni.showToast({
+		title: `${type === 1?'页面':'功能'}开发中，敬请期待！`,
+		icon: 'none',
+		duration: type === 1 ? 5000 : 1998
+	});
+}
