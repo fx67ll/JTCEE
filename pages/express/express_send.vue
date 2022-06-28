@@ -119,7 +119,14 @@
 			<view class="card-two-content card-two-content-express" v-if="!isSingle"><view class="express-upload"></view></view>
 		</view>
 		
+		<view class="express-note">
+			
+		</view>
+		
 		<view class="express-service">
+			<view class="express-service-tip">
+				高价值、易损坏物品建议保价，丢损必赔更安全
+			</view>
 			<view class="common-form-item">
 				<view class="form-item-title">
 					保价
@@ -420,11 +427,29 @@ export default {
 		}
 	}
 	
+	.express-note{
+		width: calc(100% - @base-gap * 2);
+		height: 300rpx;
+		background-color: #ffffff;
+		border-radius: 20rpx;
+		margin: @express-card-margin-top auto 0 auto;
+	}
+	
 	.express-service{
 		width: calc(100% - @base-gap * 2);
 		background-color: #ffffff;
 		border-radius: 20rpx;
 		margin: @express-card-margin-top auto 0 auto;
+		overflow: hidden;
+		.express-service-tip{
+			width: 100%;
+			height: 46rpx;
+			font-size: 20rpx;
+			color: #F8BB32;
+			background-color: rgba(248, 187, 50, 0.22);
+			line-height: 46rpx;
+			text-indent: 25rpx;
+		}
 	}
 	
 	.express-deliver {
