@@ -97,34 +97,32 @@
 			</view>
 		</zb-drawer>
 		<view class="invoice-index">
-			<view class="invoice-item" v-for="(num, index) in listData" :key="index"></view>
-			
 			<!-- 从这里开始继续写 -->
-			<view class="invoice-item">
+			<view class="invoice-item" v-for="(num, index) in listData" :key="index">
 				<view class="invoice-item-top">
-					<view class="invoice-item-order-id invoice-item-order-green invoice-item-order-red invoice-item-order-grey">
-						<text class="invoice-item-order-md">面单号</text>
-						<!-- <text class="invoice-item-order-dd">订单号</text> -->
+					<view
+						class="invoice-item-order-id"
+						:class="{ 'invoice-item-order-green': (index < 2) | (index > 3), 'invoice-item-order-red': index === 2, 'invoice-item-order-grey': index === 3 }"
+					>
+						<text class="invoice-item-order-type" v-if="index < 1">面单号：</text>
+						<text class="invoice-item-order-type" v-if="index >= 1">订单号：</text>
 						<text class="invoice-item-order-number">ST232354565</text>
-						<img class="invoice-item-order-copy" src="/static/img/invoice/invoice-copy.png">
+						<img class="invoice-item-order-copy" src="/static/img/invoice/invoice-copy.png" @click="getOrderId('ST232354565')" />
 					</view>
 					<view class="invoice-item-order-detail">
 						运单详情
-						<uni-icons class="invoice-item-order-detail-icon" type="back" size="16" color="#ffffff"></uni-icons>
+						<uni-icons class="invoice-item-order-detail-icon" type="right" size="16" color="#ffffff" @click="getOrderDetail"></uni-icons>
 					</view>
 				</view>
-				<view class="invoice-item-content">
-					
-				</view>
-				<view class="invoice-item-btn">
-					<view class="invoice-item-btn-reorder">重新寄件</view>
-					<view class="invoice-item-btn-delete">删除</view>
-					<!-- <view class="invoice-item-btn-cancle">取消寄件</view> -->
-					<!-- <view class="invoice-item-btn-pay">立即支付</view> -->
+				<view class="invoice-item-content"></view>
+				<view class="invoice-item-btn" v-if="index !== 1">
+					<view class="invoice-item-btn-order" v-if="index === 3">重新寄件</view>
+					<view class="invoice-item-btn-order" v-if="index > 1">删除</view>
+					<view class="invoice-item-btn-order" v-if="index < 1">取消寄件</view>
+					<view class="invoice-item-btn-order invoice-item-btn-pay" v-if="index < 1">立即支付</view>
 				</view>
 			</view>
 			<!-- 从这里结束 -->
-			
 		</view>
 		<view class="uni-loadmore common-loadmore" v-if="showLoadMore">{{ loadMoreText }}</view>
 		<!-- 页面警告消息 -->
@@ -193,7 +191,7 @@ export default {
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 		this.topNavSearchTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 88 + 'rpx';
 		this.topNavTabTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 166 + 'rpx';
-		
+
 		// this.showTestToast(1);
 	},
 	onLoad(option) {
@@ -235,7 +233,7 @@ export default {
 		confirmErrorDialog() {
 			uni.reLaunch({
 				url: '/pages/index/index'
-			})
+			});
 		},
 		initData() {
 			setTimeout(() => {
@@ -281,6 +279,30 @@ export default {
 		},
 		submitFilter() {
 			this.isShowDrawer = false;
+		},
+		getOrderId(id) {
+			uni.setClipboardData({
+				data: id,
+				// 配置是否弹出提示，默认弹出提示	App (3.2.13+)、H5 (3.2.13+)
+				showToast: true,
+				// 接口调用成功的回调
+				success: function() {
+					console.log('设置系统剪贴板的内容 - success');
+				},
+				// 接口调用失败的回调函数
+				fail: function() {
+					console.log('设置系统剪贴板的内容 - fail');
+				},
+				// 接口调用结束的回调函数（调用成功、失败都会执行）
+				complete: function() {
+					console.log('设置系统剪贴板的内容 - complete');
+				}
+			});
+		},
+		getOrderDetail() {
+			uni.navigateTo({
+				url: '/pages/invoice/invoice_detail'
+			});
 		}
 	}
 };
@@ -340,6 +362,88 @@ export default {
 			background-color: #ffffff;
 			border-radius: 20rpx;
 			margin-top: 25rpx;
+			color: #ffffff;
+			.invoice-item-top {
+				width: 100%;
+				height: 60rpx;
+				display: flex;
+				justify-content: space-between;
+				background-color: #f8bb32;
+				border-radius: 20rpx 20rpx 0 0;
+				.invoice-item-order-id {
+					width: 60%;
+					height: 100%;
+					display: flex;
+					justify-content: flex-start;
+					align-items: center;
+					font-size: 26rpx;
+					border-radius: 20rpx 0;
+					.invoice-item-order-type {
+						margin-left: 20rpx;
+					}
+					.invoice-item-order-number {
+						margin-left: 3rpx;
+					}
+					.invoice-item-order-copy {
+						width: 30rpx;
+						height: 30rpx;
+						margin-left: 12rpx;
+					}
+				}
+				.invoice-item-order-green {
+					background-color: @topic-green;
+				}
+				.invoice-item-order-red {
+					background-color: #ff5147;
+				}
+				.invoice-item-order-grey {
+					background-color: #a6a6a6;
+				}
+				.invoice-item-order-detail {
+					width: 40%;
+					height: 100%;
+					display: flex;
+					justify-content: flex-end;
+					align-items: center;
+					background-color: #f8bb32;
+					font-size: 28rpx;
+					border-radius: 0 20rpx 0 0;
+					.invoice-item-order-detail-icon {
+						position: relative;
+						top: 1rpx;
+						margin: 0 15rpx 0 10rpx;
+					}
+				}
+			}
+			.invoice-item-content {
+				width: 100%;
+				min-height: 237rpx;
+			}
+			.invoice-item-btn {
+				width: calc(100% - 40rpx);
+				height: 92rpx;
+				margin: 0 auto;
+				border-top: 1rpx solid @topic-split;
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				.invoice-item-btn-order {
+					width: 160rpx;
+					height: 52rpx;
+					background-color: #ffffff;
+					border-radius: 40rpx;
+					border: 1rpx solid #a6a6a6;
+					color: #4a4a4a;
+					font-size: 24rpx;
+					text-align: center;
+					line-height: 52rpx;
+					margin-left: 21rpx;
+				}
+				.invoice-item-btn-pay {
+					border: 1rpx solid @topic-green;
+					color: @topic-green;
+				}
+			}
 		}
 	}
 }
