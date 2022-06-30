@@ -111,5 +111,6 @@
 	"address_add": "待处理",
 	"help_service": "待处理",
 	"invoice_index": "待处理",
-	"invoice_detail": "待处理"
+	"invoice_detail": "待处理",
+	"invoice_qr": "待处理"
 }
