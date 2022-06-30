@@ -263,7 +263,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('../../static/style/mixin.less');
+@import url('@/static/style/mixin.less');
 
 .bill-box {
 	width: 100%;

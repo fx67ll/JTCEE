@@ -107,7 +107,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('../../static/style/mixin.less');
+@import url('@/static/style/mixin.less');
 
 .notice-box {
 	width: 100%;

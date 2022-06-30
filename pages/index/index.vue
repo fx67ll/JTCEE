@@ -193,7 +193,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('../../static/style/mixin.less');
+@import url('@/static/style/mixin.less');
 
 // 卡片空隙
 @card-gap: 36rpx;

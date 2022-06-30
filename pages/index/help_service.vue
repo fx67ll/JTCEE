@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('../../static/style/mixin.less');
+@import url('@/static/style/mixin.less');
 
 .help-box {
 	width: 100%;

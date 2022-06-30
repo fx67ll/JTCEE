@@ -312,7 +312,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('../../static/style/mixin.less');
+@import url('@/static/style/mixin.less');
 
 .address-add-box {
 	width: 100%;

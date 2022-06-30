@@ -136,7 +136,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('../../static/style/mixin.less');
+@import url('@/static/style/mixin.less');
 
 // 标准左右间隔
 @width-gap: 120rpx;

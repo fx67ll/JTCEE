@@ -372,7 +372,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('../../static/style/mixin.less');
+@import url('@/static/style/mixin.less');
 
 @express-card-margin-top: 20rpx;
 
