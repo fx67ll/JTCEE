@@ -175,11 +175,17 @@ export default {
 			console.log('是否记住密码：' + this.isru);
 		},
 		submitLogin() {
-			console.log('登录中ing...');
-			// 登录后关闭所有页面跳转首页
-			uni.reLaunch({
-				url: '/pages/index/index'
+			let loadingTitle = this.$t('uni.loading.login');
+			uni.showLoading({
+				title: loadingTitle,
+				mask: true
 			});
+			setTimeout(function() {
+				uni.hideLoading();
+				uni.reLaunch({
+					url: '/pages/index/index'
+				});
+			}, 300);
 		},
 		wxLogin() {
 			console.log('微信登录中ing...');
@@ -189,7 +195,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('../../static/style/mixin.less');
+@import url('@/static/style/mixin.less');
 
 // 标准左右间隔
 @width-gap: 120rpx;

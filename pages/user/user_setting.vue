@@ -125,14 +125,24 @@ export default {
 			// this.$i18n.locale = this.languageList[e.detail.value].key;
 		},
 		loginOut() {
-			console.log('正在退出登录ing...');
+			let loadingTitle = this.$t('uni.loading.login.out');
+			uni.showLoading({
+				title: loadingTitle,
+				mask: true
+			});
+			setTimeout(function() {
+				uni.hideLoading();
+				uni.reLaunch({
+					url: '/pages/login/login'
+				});
+			}, 600);
 		}
 	}
 };
 </script>
 
 <style lang="less">
-@import url('../../static/style/mixin.less');
+@import url('@/static/style/mixin.less');
 
 .user-setting-box {
 	width: 100%;
@@ -190,7 +200,7 @@ export default {
 			.user-setting-form-icon {
 				margin-right: 20rpx;
 			}
-			.user-setting-form-picker{
+			.user-setting-form-picker {
 				margin-right: 20rpx;
 				font-size: 30rpx;
 				color: #000000;
