@@ -103,5 +103,9 @@
 	"address_index.setting.default.address": "设为默认地址",
 	"address_index.setting.default.delete": "删除",
 	"address_index.card.default.address": "默认地址",
-	"address_index.button.add.address": "新建地址"
+	"address_index.button.add.address": "新建地址",
+	
+	"address_add": "待处理",
+	"help_service": "待处理",
+	"invoice_index": "待处理"
 }

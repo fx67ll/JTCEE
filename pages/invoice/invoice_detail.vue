@@ -32,18 +32,24 @@ export default {
 
 		this.showTestToast(1);
 	},
+	onLoad(option) {
+		this.fromType = option.fromType;
+	},
 	data() {
 		return {
 			// 屏幕高度，用于自适应
 			clientHeight: 'auto',
 			// 状态栏高度，用于微信小程序适配
-			statusBarHeight: 0
+			statusBarHeight: 0,
+			// 从首页或者我的进入
+			fromType: '1'
 		};
 	},
 	methods: {
 		goBack() {
+			let fromType = this.fromType;
 			uni.redirectTo({
-				url: '/pages/invoice/invoice_index'
+				url: `/pages/invoice/invoice_index?fromType=${fromType}`
 			});
 		}
 	}
