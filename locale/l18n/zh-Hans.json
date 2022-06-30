@@ -3,6 +3,9 @@
 	"locale.zh-hans": "简体中文",
 	"locale.ja": "日语",
 	
+	"uni.loading.login": "正在登录",
+	"uni.loading.login.out": "正在退出登录",
+
 	"pull.refresh.loading": "加载中...",
 	"pull.refresh.nomore": "没有更多数据了!",
 
@@ -56,7 +59,7 @@
 	"index.beta.search": "查快递",
 	"index.beta.get": "包裹代收",
 	"index.beta.scan": "扫一扫",
-	
+
 	"express_bill.title": "运费计算",
 	"express_bill.form.shop": "代理店",
 	"express_bill.form.express": "落地配",
@@ -74,10 +77,10 @@
 	"express_bill.catagory.type": "特惠寄",
 	"express_bill.catagory.info": "首重(1.0kg)180円，续重100円/kg",
 	"express_bill.catagory.more": "运费计费说明",
-	
+
 	"bottom_menu.home": "首页",
 	"bottom_menu.user": "我的",
-	
+
 	"user_index.express.use": "已寄件数",
 	"user_index.express.get": "待取件数",
 	"user_index.express.money": "运费总计(円)",
@@ -87,7 +90,7 @@
 	"user_index.manager.notice": "消息管理",
 	"user_index.chart.title": "运费一览",
 	"user_index.chart.unit": "费用（円）",
-	
+
 	"user_setting.title": "设置",
 	"user_setting.setting.edit.password": "修改密码",
 	"user_setting.setting.check.mail": "验证邮箱",
@@ -95,7 +98,7 @@
 	"user_setting.setting.mail.order": "订单状态发生变化是否接收邮件通知",
 	"user_setting.login.out": "退出登录",
 	"user_setting.setting.language": "切换语言",
-	
+
 	"address_index.tilte": "地址管理",
 	"address_index.search.placeholder": "请输入关键词搜索",
 	"address_index.tab.user.send": "收件人",
@@ -104,8 +107,9 @@
 	"address_index.setting.default.delete": "删除",
 	"address_index.card.default.address": "默认地址",
 	"address_index.button.add.address": "新建地址",
-	
+
 	"address_add": "待处理",
 	"help_service": "待处理",
-	"invoice_index": "待处理"
+	"invoice_index": "待处理",
+	"invoice_detail": "待处理"
 }
