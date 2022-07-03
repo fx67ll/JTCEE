@@ -136,6 +136,21 @@
 				"navigationStyle": "custom"
 			}
 		},
+		// 寄件地址
+		{
+			"path": "pages/express/express_address",
+			"style": {
+				"navigationStyle": "custom",
+				// H5开启下拉刷新，不可以自定义设置下拉样式，只可以使用circle样式
+				"enablePullDownRefresh": true,
+				"h5": {
+					"pullToRefresh": {
+						"color": "#5bc797",
+						"offset": "150px"
+					}
+				}
+			}
+		},
 		// 商品管理
 		{
 			"path": "pages/goods/goods_index",

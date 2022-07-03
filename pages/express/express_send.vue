@@ -24,13 +24,13 @@
 					<view class="express-address-item-font express-address-item-font-green">寄</view>
 					<view class="express-address-item-info">
 						<view class="express-address-item-person">
-							<text class="express-address-item-person-name" v-if="1 === 1">何瑞</text>
-							<text class="express-address-item-person-phone" v-if="1 === 1">18095640133</text>
-							<text class="express-address-item-person-unselected" v-if="1 > 2">收件人信息</text>
+							<text class="express-address-item-person-name" v-if="isGotAddressSend">何瑞</text>
+							<text class="express-address-item-person-phone" v-if="isGotAddressSend">18095640133</text>
+							<text class="express-address-item-person-unselected" v-if="!isGotAddressSend">收件人信息</text>
 						</view>
 						<view class="express-address-item-address">
-							<text class="express-address-item-address-selected" v-if="1 === 1">江苏南京市建邺区城区莲花新城2号半山国际2单元309室</text>
-							<text class="express-address-item-address-unselected" v-if="1 > 2">新建或选择收件人姓名、电话以及详细地址</text>
+							<text class="express-address-item-address-selected" v-if="isGotAddressSend">江苏南京市建邺区城区莲花新城2号半山国际2单元309室</text>
+							<text class="express-address-item-address-unselected" v-if="!isGotAddressSend">新建或选择收件人姓名、电话以及详细地址</text>
 						</view>
 					</view>
 				</view>
@@ -44,13 +44,13 @@
 					<view class="express-address-item-font express-address-item-font-red">收</view>
 					<view class="express-address-item-info">
 						<view class="express-address-item-person">
-							<text class="express-address-item-person-name" v-if="1 !== 1">何瑞</text>
-							<text class="express-address-item-person-phone" v-if="1 !== 1">18095640133</text>
-							<text class="express-address-item-person-unselected" v-if="1 < 2">收件人信息</text>
+							<text class="express-address-item-person-name" v-if="isGotAddressReceive">何瑞</text>
+							<text class="express-address-item-person-phone" v-if="isGotAddressReceive">18095640133</text>
+							<text class="express-address-item-person-unselected" v-if="!isGotAddressReceive">收件人信息</text>
 						</view>
 						<view class="express-address-item-address">
-							<text class="express-address-item-address-selected" v-if="1 !== 1">江苏南京市建邺区城区莲花新城2号半山国际2单元309室</text>
-							<text class="express-address-item-address-unselected" v-if="1 < 2">新建或选择收件人姓名、电话以及详细地址</text>
+							<text class="express-address-item-address-selected" v-if="isGotAddressReceive">江苏南京市建邺区城区莲花新城2号半山国际2单元309室</text>
+							<text class="express-address-item-address-unselected" v-if="!isGotAddressReceive">新建或选择收件人姓名、电话以及详细地址</text>
 						</view>
 					</view>
 				</view>
@@ -119,15 +119,15 @@
 			<view class="card-two-content card-two-content-express" v-if="!isSingle">
 				<view class="express-upload">
 					<view class="express-upload-top">
-						<view class="express-upload-title">批量上传</view>
+						<view class="express-upload-title">模板上传</view>
 						<view class="express-upload-model" @click="getMultipleImportModel">
 							<uni-icons class="express-upload-model-icon" type="download-filled" size="16" color="#F8BB32"></uni-icons>
 							<text class="express-upload-model-text">下载模板</text>
 						</view>
 					</view>
 					<view class="express-upload-content">
-						<view class="express-upload-btn" @click="multipleImportFile">批量上传</view>
-						<view class="express-upload-tip">仅限于上传小于等于5M的excel</view>
+						<view class="express-upload-btn" @click="multipleImportFile">点击上传</view>
+						<view class="express-upload-tip">仅限于上传小于等于5M的模板excel</view>
 					</view>
 				</view>
 			</view>
@@ -168,7 +168,7 @@
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
 					交付方式
-					<uni-icons class="form-item-title-icon" type="help" size="18" color="#A6A6A6"></uni-icons>
+					<uni-icons class="form-item-title-icon" type="help" size="18" color="#A6A6A6" @click="showDeliverTip"></uni-icons>
 				</view>
 				<picker @change="bindDeliverPickerChange" :value="deliverIndex" :range="deliverData">
 					<view class="form-item-arrow">
@@ -258,8 +258,13 @@ export default {
 	onShow() {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
-
-		// this.showTestToast(1);
+	},
+	onLoad(option) {
+		if (option.addressType) {
+			this.addressType = option.addressType;
+		}
+		this.isGotAddressSend = JSON.parse(localStorage.getItem('isGotAddressSend'));
+		this.isGotAddressReceive = JSON.parse(localStorage.getItem('isGotAddressReceive'));
 	},
 	data() {
 		return {
@@ -273,6 +278,10 @@ export default {
 			tabCurrentIndex: 0,
 			// tab数据
 			tabDataList: ['杂货', '重货', '专线'],
+			// 选取地址后的返回信息
+			addressType: '',
+			isGotAddressReceive: false,
+			isGotAddressSend: false,
 			// 包裹重量
 			billExpressWeight: 0,
 			// 包裹体积
@@ -293,38 +302,37 @@ export default {
 	},
 	methods: {
 		goBack() {
+			localStorage.setItem('isGotAddressSend', 'false');
+			localStorage.setItem('isGotAddressReceive', 'false');
 			uni.redirectTo({
 				url: '/pages/index/index'
 			});
 		},
 		getExpressAddress(type) {
-			this.showTestToast(0);
-			if (type === 1) {
-				console.log('获取寄件人地址ing...');
-			} else {
-				console.log('获取收件人地址ing...');
-			}
+			uni.navigateTo({
+				url: `/pages/express/express_address?addressType=${type}`
+			});
 		},
 		isExpressSendSingle(val) {
 			this.isSingle = val;
 		},
 		changeTab(index) {
 			console.log('当前选中的项：' + index);
-			if(index === 0){
+			if (index === 0) {
 				uni.showToast({
 					title: '您选择了杂货！',
 					icon: 'none',
 					duration: 1998
 				});
 			}
-			if(index === 1){
+			if (index === 1) {
 				uni.showToast({
 					title: '您选择了重货！',
 					icon: 'none',
 					duration: 1998
 				});
 			}
-			if(index === 2){
+			if (index === 2) {
 				uni.showToast({
 					title: '您选择了专线！',
 					icon: 'none',
@@ -333,14 +341,39 @@ export default {
 			}
 		},
 		getMultipleImportModel() {
-			this.showTestToast(0);
+			uni.showToast({
+				title: '暂无提供模板文件下载，敬请期待！！',
+				icon: 'none',
+				duration: 1998
+			});
 		},
 		multipleImportFile() {
-			this.showTestToast(0);
+			uni.chooseFile({
+				count: 1,
+				// 在微信环境中，如果type="all"，则extension属性失效
+				type: 'all',
+				extension: ['.doc', '.xls', 'docx', 'xlsx'],
+				success: function(res) {
+					// tempFilePaths	
+					// Array<String>
+					// 文件的本地文件路径列表
+					console.log(JSON.stringify(res.tempFilePaths));
+					// tempFiles	
+					// Array<Object>、Array<File>	
+					// 文件的本地文件列表，每一项是一个 File 对象
+					console.log(JSON.stringify(res.tempFiles));
+				},
+				fail: function(res) {
+					console.log("文件上传失败......");
+				},
+				complete: function(res) {
+					console.log("文件上传任务完成......");
+				}
+			});
 		},
 		showInsureTip() {
 			uni.showToast({
-				title: '暂无保价声明详细报价，敬请期待！',
+				title: '暂无保价服务的详细报价，敬请期待！',
 				icon: 'none',
 				duration: 1998
 			});
@@ -348,9 +381,23 @@ export default {
 		getExpressService() {
 			this.isShowDrawerService = true;
 		},
+		showDeliverTip() {
+			uni.showToast({
+				title: '暂无交付方式的详细说明，敬请期待！',
+				icon: 'none',
+				duration: 1998
+			});
+		},
 		bindDeliverPickerChange(e) {
-			console.log('交付方式picker发送选择改变，携带值为', e.detail.value);
+			// console.log('交付方式picker发送选择改变，携带值为', e.detail.value);
 			this.deliverIndex = e.detail.value;
+			if(this.deliverIndex === 1){
+				uni.showToast({
+					title: '您选择了快递交付的方式，请提供快递单号！',
+					icon: 'none',
+					duration: 1998
+				});
+			}
 		},
 		bindDeliverShopPickerChange(e) {
 			console.log('交付方式picker发送选择改变，携带值为', e.detail.value);

@@ -23,20 +23,20 @@ export default {
 }
 
 /* radio按钮大小公共样式 */
-.uni-radio-input{
+.uni-radio-input {
 	transform: scale(0.8);
 }
 
 /* 模态框确定按钮公共样式 */
-.uni-modal .uni-modal__btn_primary{
+.uni-modal .uni-modal__btn_primary {
 	color: #5bc797 !important;
 }
 
 /* 折叠面板标题公共样式 */
-.uni-collapse-item__title-box{
-	color: #F8BB32 !important;
+.uni-collapse-item__title-box {
+	color: #f8bb32 !important;
 }
-.uni-collapse-item__title-text{
+.uni-collapse-item__title-text {
 	font-size: 32rpx !important;
 }
 </style>

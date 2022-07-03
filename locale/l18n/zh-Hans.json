@@ -93,7 +93,7 @@
 
 	"user_setting.title": "设置",
 	"user_setting.setting.edit.password": "修改密码",
-	"user_setting.setting.check.mail": "验证邮箱",
+	"user_setting.setting.check.mail": "验证/修改邮箱",
 	"user_setting.setting.mail.password": "密码变更是否接收邮件通知",
 	"user_setting.setting.mail.order": "订单状态发生变化是否接收邮件通知",
 	"user_setting.login.out": "退出登录",
@@ -112,5 +112,7 @@
 	"help_service": "待处理",
 	"invoice_index": "待处理",
 	"invoice_detail": "待处理",
-	"invoice_qr": "待处理"
+	"invoice_qr": "待处理",
+	"express_send": "待处理",
+	"express_address.tilte": "地址簿"
 }
