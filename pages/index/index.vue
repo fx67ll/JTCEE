@@ -105,7 +105,7 @@
 				<view class="index-beta-item-img"><img src="/static/img/index/express-search.png" /></view>
 				<view class="index-beta-item-text">{{ $t('index.beta.search') }}</view>
 			</view>
-			<view class="index-beta-item" @click="openDialogTest">
+			<view class="index-beta-item" @click="goPackageAdd">
 				<view class="index-beta-item-img"><img src="/static/img/index/express-get.png" /></view>
 				<view class="index-beta-item-text">{{ $t('index.beta.get') }}</view>
 			</view>
@@ -186,6 +186,11 @@ export default {
 		goGetExpress() {
 			uni.navigateTo({
 				url: '/pages/invoice/invoice_index?fromType=1'
+			});
+		},
+		goPackageAdd() {
+			uni.navigateTo({
+				url: '/pages/package/package_add'
 			});
 		}
 	}

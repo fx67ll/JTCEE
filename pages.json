@@ -187,6 +187,13 @@
 				"navigationStyle": "custom"
 			}
 		},
+		// 添加包裹
+		{
+			"path": "pages/package/package_add",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
 		// 包裹管理
 		{
 			"path": "pages/package/package_index",
