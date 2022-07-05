@@ -54,7 +54,8 @@
 		}, {
 			"root": "pages/package",
 			"pages": [
-				"package_index"
+				"package_index",
+				"package_add"
 			]
 		}
 	],
@@ -64,5 +65,6 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	"usingComponents": {}
+	"usingComponents": {},
+	"lazyCodeLoading": "requiredComponents"
 }

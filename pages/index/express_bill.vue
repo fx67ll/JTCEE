@@ -142,7 +142,8 @@ export default {
 	components: {
 		uniIcons,
 		uniNumberBox,
-		vTabs
+		vTabs,
+		uniDatetimePicker
 	},
 	onShow() {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
