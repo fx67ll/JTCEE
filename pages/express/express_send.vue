@@ -366,13 +366,13 @@ export default {
 			deliverShopIndex: -1,
 			// 商品弹窗
 			isShowDrawerAddGoods: false,
-			addGoodsDrawerHeight: '400rpx',
+			addGoodsDrawerHeight: '450rpx',
 			// 服务弹窗
 			isShowDrawerService: false,
-			serviceDrawerHeight: '300rpx',
+			serviceDrawerHeight: '350rpx',
 			// 明细弹窗
 			isShowDrawerBillDetail: false,
-			billDetailDrawerHeight: '600rpx'
+			billDetailDrawerHeight: '650rpx'
 		};
 	},
 	methods: {
