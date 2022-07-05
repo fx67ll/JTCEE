@@ -39,4 +39,17 @@ export default {
 .uni-collapse-item__title-text {
 	font-size: 32rpx !important;
 }
+
+/* 多选框公共样式 */
+uni-checkbox .uni-checkbox-input {
+	border-radius: 50% !important;
+	border: 2px solid #B0B0B0;
+	transform: scale(0.7);
+	position: relative;
+	top: -2rpx;
+}
+uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
+	background-color: #5bc797;
+	border: 2px solid #5bc797;
+}
 </style>

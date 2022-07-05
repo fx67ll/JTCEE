@@ -74,7 +74,27 @@
 			<view class="card-two-content card-two-content-express" v-if="isSingle">
 				<v-tabs class="express-tab" v-model="tabCurrentIndex" :tabs="tabDataList" :scroll="false" :lineScale="0.15" @change="changeTab"></v-tabs>
 
-				<view class="express-goods"></view>
+				<view class="common-form-item common-form-item-nosplit">
+					<view class="form-item-title">
+						<text class="form-must-have">*</text>
+						选择商品
+						<uni-icons class="form-item-title-icon" type="help" size="18" color="#A6A6A6" @click="showInsureTip"></uni-icons>
+					</view>
+					<view class="form-item-arrow" @click="addGoods">
+						<input class="uni-input form-input-default" type="text" placeholder="添加商品" placeholder-class="form-input-placeholder" disabled />
+						<uni-icons class="form-item-arrow-icon form-item-common-icon" type="shop-filled" size="18" color="#A6A6A6"></uni-icons>
+					</view>
+				</view>
+
+				<view class="express-goods">
+					<view class="common-goods-item" v-for="(num, index) in goodsListData" :key="index">
+						<view class="common-goods-img"><img src="/static/img/user/user-head.png" /></view>
+						<view class="common-goods-content">
+							<view class="common-goods-title">任天堂switch收纳包switchlite保护套ns硬包swich盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大</view>
+							<uni-number-box class="common-goods-number" :value="0"></uni-number-box>
+						</view>
+					</view>
+				</view>
 
 				<view class="form-number">
 					<view class="form-number-title">
@@ -151,7 +171,7 @@
 				</view>
 				<view class="form-item-arrow">
 					<input class="uni-input form-input-default" type="number" placeholder="请输入保价价格" placeholder-class="form-input-placeholder" />
-					<uni-icons class="form-item-arrow-icon" type="vip-filled" size="18" color="#A6A6A6"></uni-icons>
+					<uni-icons class="form-item-arrow-icon form-item-common-icon" type="vip-filled" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
 			<view class="common-form-item">
@@ -240,10 +260,55 @@
 			</view>
 		</view>
 
+		<!-- 商品弹窗 -->
+		<zb-drawer mode="bottom" title="添加商品" :wrapperClosable="false" :visible.sync="isShowDrawerAddGoods" :radius="true" :height="addGoodsDrawerHeight">
+			<view class="express-goods-add" @click="chooseRelativeGoods">添加已关联大数据平台商品</view>
+			<view class="express-goods-add" @click="chooseNewGoods">添加新商品</view>
+		</zb-drawer>
+
 		<!-- 服务弹窗 -->
-		<zb-drawer mode="bottom" title="服务" :wrapperClosable="false" :visible.sync="isShowDrawerService" :radius="true" :height="serviceDrawerHeight"></zb-drawer>
+		<zb-drawer mode="bottom" title="服务" :wrapperClosable="false" :visible.sync="isShowDrawerService" :radius="true" :height="serviceDrawerHeight">
+			<checkbox-group @change="serviceCheckChange" class="form-radio-default">
+				<view class="express-service-radio">
+					<label class="form-radio-default-label">
+						<checkbox value="serviceRadioBS" checked="true" color="#ffffff" />
+						补税：2000円
+					</label>
+					<label class="form-radio-default-label">
+						<checkbox value="serviceRadioDB" checked="false" color="#ffffff" />
+						打包费：800円
+					</label>
+					<label class="form-radio-default-label">
+						<checkbox value="serviceRadioZX" checked="false" color="#ffffff" />
+						纸箱：500円
+					</label>
+				</view>
+			</checkbox-group>
+		</zb-drawer>
+
 		<!-- 明细弹窗 -->
-		<zb-drawer mode="bottom" title="明细" :wrapperClosable="false" :visible.sync="isShowDrawerBillDetail" :radius="true" :height="billDetailDrawerHeight"></zb-drawer>
+		<zb-drawer mode="bottom" title="预估费用" :wrapperClosable="false" :visible.sync="isShowDrawerBillDetail" :radius="true" :height="billDetailDrawerHeight">
+			<view class="express-detail-pay express-detail-pay-red">
+				<text>基础费用</text>
+				<text>1238953210円</text>
+			</view>
+			<view class="express-detail-pay express-detail-pay-grey">
+				<text>计费费用</text>
+				<text>10kg</text>
+			</view>
+			<view class="express-detail-pay express-detail-pay-grey express-detail-pay-split">
+				<text>计费规则</text>
+				<text>首重(1.0kg)5000円，续重3000円/kg</text>
+			</view>
+			<view class="express-detail-pay express-detail-pay-more">
+				<text>保价</text>
+				<text>100円</text>
+			</view>
+			<view class="express-detail-pay express-detail-pay-more">
+				<text>服务</text>
+				<text>补税1000円、打包费500円、打包费500円</text>
+			</view>
+		</zb-drawer>
 	</view>
 </template>
 
@@ -263,7 +328,7 @@ export default {
 		if (option.addressType) {
 			this.addressType = option.addressType;
 		}
-		
+
 		// #ifdef H5
 		this.isGotAddressSend = JSON.parse(localStorage.getItem('isGotAddressSend'));
 		this.isGotAddressReceive = JSON.parse(localStorage.getItem('isGotAddressReceive'));
@@ -278,7 +343,7 @@ export default {
 			// 状态栏高度，用于微信小程序适配
 			statusBarHeight: 0,
 			// 单个寄件或批量寄件
-			isSingle: false,
+			isSingle: true,
 			// tab索引
 			tabCurrentIndex: 0,
 			// tab数据
@@ -287,6 +352,8 @@ export default {
 			addressType: '',
 			isGotAddressReceive: false,
 			isGotAddressSend: false,
+			// 商品数据
+			goodsListData: [{}, {}, {}],
 			// 包裹重量
 			billExpressWeight: 0,
 			// 包裹体积
@@ -297,12 +364,15 @@ export default {
 			// 交付门店
 			deliverShopData: ['交付门店一', '交付门店二', '交付门店三'],
 			deliverShopIndex: -1,
+			// 商品弹窗
+			isShowDrawerAddGoods: false,
+			addGoodsDrawerHeight: '400rpx',
 			// 服务弹窗
 			isShowDrawerService: false,
-			serviceDrawerHeight: '30%',
+			serviceDrawerHeight: '300rpx',
 			// 明细弹窗
 			isShowDrawerBillDetail: false,
-			billDetailDrawerHeight: '50%'
+			billDetailDrawerHeight: '600rpx'
 		};
 	},
 	methods: {
@@ -356,9 +426,28 @@ export default {
 				});
 			}
 		},
+		addGoods() {
+			this.isShowDrawerAddGoods = true;
+		},
+		chooseRelativeGoods() {
+			uni.showToast({
+				title: '您选择了添加已关联大数据平台商品！',
+				icon: 'none',
+				duration: 1998
+			});
+			this.isShowDrawerAddGoods = false;
+		},
+		chooseNewGoods() {
+			uni.showToast({
+				title: '您选择了添加新商品！',
+				icon: 'none',
+				duration: 1998
+			});
+			this.isShowDrawerAddGoods = false;
+		},
 		getMultipleImportModel() {
 			uni.showToast({
-				title: '暂无提供模板文件下载，敬请期待！！',
+				title: '暂无提供模板文件下载，敬请期待！',
 				icon: 'none',
 				duration: 1998
 			});
@@ -415,6 +504,9 @@ export default {
 		},
 		getExpressService() {
 			this.isShowDrawerService = true;
+		},
+		serviceCheckChange(e) {
+			console.log('serviceRadio 发生 change 事件，携带值为', e.detail.value);
 		},
 		showDeliverTip() {
 			uni.showToast({
@@ -592,9 +684,9 @@ export default {
 			}
 			.express-goods {
 				width: calc(100% - @express-card-item-width);
-				min-height: 240rpx;
 				margin: 0 auto;
-				// border-bottom: 1rpx solid @topic-split;
+				padding-bottom: 40rpx;
+				border-bottom: 1rpx solid @topic-split;
 			}
 			.express-upload {
 				width: calc(100% - @express-card-item-width);
@@ -670,6 +762,20 @@ export default {
 			background-color: rgba(248, 187, 50, 0.22);
 			line-height: 46rpx;
 			text-indent: 25rpx;
+		}
+	}
+
+	.express-service-radio {
+		width: calc(100% - @base-gap * 4);
+		height: 100rpx;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		padding: 20rpx 0;
+		.form-radio-default-label {
+			width: 50%;
+			margin: 15rpx 0;
 		}
 	}
 
@@ -785,6 +891,66 @@ export default {
 	.express-send-bottom-gap {
 		width: 100%;
 		height: calc(@express-send-bottom-height + @express-send-bottom-bottom - 10rpx);
+	}
+
+	.express-goods-add {
+		width: calc(100% - @base-gap * 4);
+		height: 120rpx;
+		margin: 0 auto;
+		line-height: 120rpx;
+		border-bottom: 1rpx solid @topic-split;
+		color: #303031;
+		font-size: 30rpx;
+		text-indent: 10rpx;
+	}
+	.express-goods-add:nth-child(1) {
+		margin-top: 20rpx;
+	}
+	.express-goods-add:nth-child(2) {
+		border-bottom: 1rpx solid transparent;
+	}
+
+	@express-pay-title-width: 160rpx;
+	.express-detail-pay {
+		width: calc(100% - @base-gap * 4);
+		min-height: 60rpx;
+		line-height: 60rpx;
+		margin: 0 auto;
+		font-size: 30rpx;
+		color: #313131;
+		display: flex;
+		justify-content: space-between;
+		text:nth-child(1) {
+			width: @express-pay-title-width;
+		}
+		text:nth-child(2) {
+			width: calc(100% - @express-pay-title-width);
+			text-align: right;
+		}
+	}
+	.express-detail-pay:nth-child(1) {
+		margin-top: 40rpx;
+	}
+	.express-detail-pay-red {
+		text:nth-child(2) {
+			color: #ff5147;
+			font-size: 38rpx;
+		}
+	}
+	.express-detail-pay-grey {
+		font-size: 28rpx;
+		color: #838383;
+	}
+	.express-detail-pay-split {
+		border-bottom: 1px dashed #bfbfbf;
+		padding-bottom: 30rpx;
+		margin-bottom: 30rpx;
+	}
+	.express-detail-pay-more {
+		text:nth-child(2) {
+			color: #838383;
+			font-size: 28rpx;
+		}
 	}
 }
 </style>
