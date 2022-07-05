@@ -25,7 +25,7 @@
 					<img class="invoice-item-order-copy" src="/static/img/invoice/invoice-copy.png" @click="getOrderId('ST232354565')" />
 				</view>
 				<view class="invoice-item-order-detail" @click="getOrderQr">
-					运单详情
+					电子存根
 					<uni-icons class="invoice-item-order-detail-icon" type="right" size="16" color="#ffffff"></uni-icons>
 				</view>
 			</view>

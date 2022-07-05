@@ -178,6 +178,7 @@ export default {
 			});
 		},
 		multipleEditGoods() {
+			console.log('批量编辑商品中ing...');
 			this.showTestToast(0);
 		},
 		addGoods() {

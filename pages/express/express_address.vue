@@ -172,12 +172,17 @@ export default {
 		},
 		checkAddress() {
 			let addressType = this.addressType;
+			// #ifdef H5
 			if(addressType === '1'){
 				localStorage.setItem('isGotAddressSend', 'true');
 			}
 			if(addressType === '2'){
 				localStorage.setItem('isGotAddressReceive', 'true');
 			}
+			// #endif
+			// #ifdef MP-WEIXIN
+			// 后期适配
+			// #endif
 			uni.redirectTo({
 				url: `/pages/express/express_send?addressType=${addressType}`
 			});

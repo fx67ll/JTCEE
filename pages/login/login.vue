@@ -3,7 +3,7 @@
 		<!-- #ifdef APP-PLUS -->
 		<view class="status_bar"><!-- 这里是状态栏，用于app端的状态栏抵消 --></view>
 		<!-- #endif -->
-		<view class="login-img"><img src="/static/img/login/login-img-bg.png"></view>
+		<view class="login-img"><img src="/static/img/login/login-img-bg.png" /></view>
 		<view class="login-info">
 			<view class="login-card" :class="{ 'login-card-long': !islc }">
 				<view class="login-card-head">
@@ -106,12 +106,12 @@
 			</view>
 			<view class="login-btn" v-if="islc">
 				<view class="login-btn-rp" @click="isRememberUser">
-					<view class="login-btn-rp-checkbox">
-						<uni-icons v-if="isru" class="login-btn-rp-checkbox-icon" type="checkmarkempty" size="14" color="#5BC797"></uni-icons>
+					<view class="login-btn-rp-checkbox" :class="{ 'login-btn-rp-checkbox-active': isru }">
+						<uni-icons v-if="isru" class="login-btn-rp-checkbox-icon" type="checkmarkempty" size="16" color="#ffffff"></uni-icons>
 					</view>
 					{{ $t('login.user.remember') }}
 				</view>
-				<view class="login-btn-submit" @click="submitLogin">
+				<view class="login-btn-submit" @click="submitLogin(1)">
 					<!-- 登
 					<text class="login-btn-submit-space"></text>
 					录 -->
@@ -120,7 +120,7 @@
 			</view>
 			<view class="login-btn" v-if="!islc">
 				<view class="login-btn-left"><!-- 占位 --></view>
-				<view class="login-btn-submit" @click="submitLogin">
+				<view class="login-btn-submit" @click="submitLogin(0)">
 					<!-- 注
 					<text class="login-btn-submit-space"></text>
 					册 -->
@@ -167,28 +167,34 @@ export default {
 		changePassword() {
 			console.log('修改密码中...');
 			uni.navigateTo({
-				url: '/pages/login/forget_password??fromType=1'
+				url: '/pages/login/forget_password?fromType=1'
 			});
 		},
 		isRememberUser() {
 			this.isru = !this.isru;
 			console.log('是否记住密码：' + this.isru);
 		},
-		submitLogin() {
-			let loadingTitle = this.$t('uni.loading.login');
-			uni.showLoading({
-				title: loadingTitle,
-				mask: true
-			});
-			setTimeout(function() {
-				uni.hideLoading();
-				uni.reLaunch({
-					url: '/pages/index/index'
+		submitLogin(type) {
+			if(type === 1){
+				let loadingTitle = this.$t('uni.loading.login');
+				uni.showLoading({
+					title: loadingTitle,
+					mask: true
 				});
-			}, 300);
+				setTimeout(function() {
+					uni.hideLoading();
+					uni.reLaunch({
+						url: '/pages/index/index'
+					});
+				}, 300);
+			}else{
+				console.log('注册中ing...');
+				this.showTestToast(0);
+			}
 		},
 		wxLogin() {
 			console.log('微信登录中ing...');
+			this.showTestToast(0);
 		}
 	}
 };
@@ -328,19 +334,23 @@ export default {
 				color: #666666;
 				opacity: 0.45;
 				.login-btn-rp-checkbox {
-					width: 25rpx;
-					height: 25rpx;
+					width: 28rpx;
+					height: 28rpx;
 					display: inline-block;
 					border: 4rpx solid @topic-green;
 					border-radius: 50%;
 					position: relative;
-					top: 7rpx;
+					top: 8rpx;
 					margin: 0 19rpx 0 40rpx;
 					.login-btn-rp-checkbox-icon {
 						position: absolute;
 						top: -43rpx;
 						left: -1rpx;
 					}
+				}
+				.login-btn-rp-checkbox-active{
+					// border: 4rpx solid transparent;
+					background-color: @topic-green;
 				}
 			}
 			.login-btn-submit {

@@ -105,6 +105,7 @@ export default {
 			});
 		},
 		proveMail() {
+			console.log('修改/验证邮箱中ing...');
 			this.showTestToast(0);
 		},
 		passwordSwitchChange(e) {

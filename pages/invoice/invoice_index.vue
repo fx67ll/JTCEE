@@ -343,6 +343,7 @@ export default {
 			});
 		},
 		reOrder() {
+			console.log('重新寄件中ing...');
 			this.showTestToast(0);
 		},
 		deleteOrder() {
@@ -376,6 +377,7 @@ export default {
 			});
 		},
 		payOrderNow() {
+			console.log('支付寄件订单ing...');
 			this.showTestToast(0);
 		}
 	}

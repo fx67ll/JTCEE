@@ -136,7 +136,7 @@ import uniNumberBox from '@/uni_modules/uni-number-box/components/uni-number-box
 import vTabs from '@/uni_modules/v-tabs/v-tabs-fx67ll.vue';
 import { getDate, currentDate } from '@/static/utils/uni-date-picker.js';
 import uniDatetimePicker from '@/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue';
-import moment from '@/static/utils/moment.min.js';
+import moment from '@/node_modules/moment';
 import pxToRpx from '@/static/utils/px-to-rpx.js';
 export default {
 	components: {

@@ -74,6 +74,13 @@
 					<uni-icons type="right" size="16" color="#BFBFBF"></uni-icons>
 				</view>
 			</view>
+			<view class="user-manager-item" @click="goGetPackage">
+				<view class="user-manager-title">
+					<view class="user-manager-title-img"><img src="/static/img/user/user-package.png" /></view>
+					<text class="user-manager-title-text">{{ $t('user_index.manager.package') }}</text>
+				</view>
+				<view class="user-manager-icon"><uni-icons type="right" size="16" color="#BFBFBF"></uni-icons></view>
+			</view>
 		</view>
 		<view class="user-chart">
 			<view class="user-chart-title">
@@ -115,7 +122,12 @@
 
 <script>
 import { dateArray, dateIndex } from '@/static/utils/uni-date-picker.js';
-import * as echarts from '@/static/utils/echarts.min.js';
+// #ifdef H5
+import * as echarts from '@/node_modules/echarts';
+// #endif
+// #ifdef MP-WEIXIN
+// #endif
+
 export default {
 	data() {
 		return {
@@ -169,6 +181,11 @@ export default {
 		getMoreNotice() {
 			uni.navigateTo({
 				url: '/pages/notice/notice_catagory?fromType=2'
+			});
+		},
+		goGetPackage() {
+			uni.navigateTo({
+				url: '/pages/package/package_index'
 			});
 		},
 		chooseChartDate(e) {
@@ -281,7 +298,7 @@ export default {
 	.user-info {
 		width: 100%;
 		height: 420rpx;
-		background-image: url("/static/img/user/user-info-bg.png");
+		background-image: url('/static/img/user/user-info-bg.png');
 		background-size: 100% 100%;
 
 		@setting-size: 40rpx;

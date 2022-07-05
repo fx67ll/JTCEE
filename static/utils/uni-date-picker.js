@@ -1,7 +1,6 @@
 // 所有日期选择组件最早多少年前开始
 const yearGap = 10;
 
-
 // 弹框picker组件函数开始
 export function getDate(type) {
 	const date = new Date();
@@ -23,7 +22,7 @@ export const currentDate = getDate({
 	format: true
 });
 
-import moment from '@/static/utils/moment.min.js';
+import moment from '@/node_modules/moment';
 let nowYear = moment().format('YYYY');
 let yearArray = [];
 

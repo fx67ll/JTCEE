@@ -263,8 +263,13 @@ export default {
 		if (option.addressType) {
 			this.addressType = option.addressType;
 		}
+		
+		// #ifdef H5
 		this.isGotAddressSend = JSON.parse(localStorage.getItem('isGotAddressSend'));
 		this.isGotAddressReceive = JSON.parse(localStorage.getItem('isGotAddressReceive'));
+		// #endif
+		// #ifdef MP-WEIXIN
+		// #endif
 	},
 	data() {
 		return {
@@ -302,16 +307,27 @@ export default {
 	},
 	methods: {
 		goBack() {
+			// #ifdef H5
 			localStorage.setItem('isGotAddressSend', 'false');
 			localStorage.setItem('isGotAddressReceive', 'false');
+			// #endif
+			// #ifdef MP-WEIXIN
+			// 后期适配
+			// #endif
 			uni.redirectTo({
 				url: '/pages/index/index'
 			});
 		},
 		getExpressAddress(type) {
+			// #ifdef H5
 			uni.navigateTo({
 				url: `/pages/express/express_address?addressType=${type}`
 			});
+			// #endif
+			// #ifdef MP-WEIXIN
+			this.showTestToast(0);
+			console.log('微信暂不支持模拟选择地址');
+			// #endif
 		},
 		isExpressSendSingle(val) {
 			this.isSingle = val;
@@ -348,28 +364,47 @@ export default {
 			});
 		},
 		multipleImportFile() {
+			// #ifdef H5
 			uni.chooseFile({
 				count: 1,
 				// 在微信环境中，如果type="all"，则extension属性失效
 				type: 'all',
 				extension: ['.doc', '.xls', 'docx', 'xlsx'],
 				success: function(res) {
-					// tempFilePaths	
+					// tempFilePaths
 					// Array<String>
 					// 文件的本地文件路径列表
 					console.log(JSON.stringify(res.tempFilePaths));
-					// tempFiles	
-					// Array<Object>、Array<File>	
+					// tempFiles
+					// Array<Object>、Array<File>
 					// 文件的本地文件列表，每一项是一个 File 对象
 					console.log(JSON.stringify(res.tempFiles));
 				},
 				fail: function(res) {
-					console.log("文件上传失败......");
+					console.log('文件上传失败......');
 				},
 				complete: function(res) {
-					console.log("文件上传任务完成......");
+					console.log('文件上传任务完成......');
 				}
 			});
+			// #endif
+			// #ifdef MP-WEIXIN
+			// 官方文档地址：https://developers.weixin.qq.com/miniprogram/dev/api/media/image/wx.chooseMessageFile.html
+			wx.chooseMessageFile({
+				count: 1,
+				type: 'file',
+				extension: ['.doc', '.xls', 'docx', 'xlsx'],
+				success: function(res) {
+					console.log(JSON.stringify(res.tempFiles));
+				},
+				fail: function(res) {
+					console.log('文件上传失败......');
+				},
+				complete: function(res) {
+					console.log('文件上传任务完成......');
+				}
+			});
+			// #endif
 		},
 		showInsureTip() {
 			uni.showToast({
@@ -391,7 +426,7 @@ export default {
 		bindDeliverPickerChange(e) {
 			// console.log('交付方式picker发送选择改变，携带值为', e.detail.value);
 			this.deliverIndex = e.detail.value;
-			if(this.deliverIndex === 1){
+			if (this.deliverIndex === 1) {
 				uni.showToast({
 					title: '您选择了快递交付的方式，请提供快递单号！',
 					icon: 'none',
@@ -408,11 +443,11 @@ export default {
 		},
 		saveExpressOrder() {
 			this.showTestToast(0);
-			console.log('保存寄件订单ing...');
+			console.log('保存寄件订单中ing...');
 		},
 		payExpressOrder() {
 			this.showTestToast(0);
-			console.log('提交寄件订单ing...');
+			console.log('提交寄件订单中ing...');
 		}
 	}
 };

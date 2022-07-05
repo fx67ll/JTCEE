@@ -130,6 +130,7 @@ export default {
 		},
 		submitPassword() {
 			console.log('修改密码中ing...');
+			this.showTestToast(0);
 		}
 	}
 };
