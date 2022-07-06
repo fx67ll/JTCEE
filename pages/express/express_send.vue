@@ -78,7 +78,6 @@
 					<view class="form-item-title">
 						<text class="form-must-have">*</text>
 						选择商品
-						<uni-icons class="form-item-title-icon" type="help" size="18" color="#A6A6A6" @click="showInsureTip"></uni-icons>
 					</view>
 					<view class="form-item-arrow" @click="addGoods">
 						<input class="uni-input form-input-default" type="text" placeholder="添加商品" placeholder-class="form-input-placeholder" disabled />
@@ -86,7 +85,7 @@
 					</view>
 				</view>
 
-				<view class="express-goods">
+				<view class="common-goods-box">
 					<view class="common-goods-item" v-for="(num, index) in goodsListData" :key="index">
 						<view class="common-goods-img"><img src="/static/img/user/user-head.png" /></view>
 						<view class="common-goods-content">
@@ -157,7 +156,7 @@
 			<view class="common-form-item-note">
 				<view class="common-form-item-note-title">备注</view>
 				<view class="common-form-item-note-textaera">
-					<textarea class="form-textarea-default" placeholder="请输入门店备注信息" placeholder-class="form-input-placeholder" />
+					<textarea class="form-textarea-default" placeholder="请输入备注信息" placeholder-class="form-input-placeholder" />
 				</view>
 			</view>
 		</view>
@@ -207,10 +206,10 @@
 			<view class="common-form-item" v-if="deliverIndex === 1">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					交付单号
+					快递单号
 				</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="请录入单号" placeholder-class="form-input-placeholder" />
+					<input class="uni-input form-input-default" type="text" placeholder="请录入快递单号" placeholder-class="form-input-placeholder" />
 					<uni-icons class="form-item-arrow-icon" type="scan" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
@@ -516,7 +515,7 @@ export default {
 			});
 		},
 		bindDeliverPickerChange(e) {
-			// console.log('交付方式picker发送选择改变，携带值为', e.detail.value);
+			console.log('交付方式 picker发送选择改变，携带值为', e.detail.value);
 			this.deliverIndex = e.detail.value;
 			if (this.deliverIndex === 1) {
 				uni.showToast({
@@ -527,7 +526,7 @@ export default {
 			}
 		},
 		bindDeliverShopPickerChange(e) {
-			console.log('交付方式picker发送选择改变，携带值为', e.detail.value);
+			console.log('交付门店 picker发送选择改变，携带值为', e.detail.value);
 			this.deliverShopIndex = e.detail.value;
 		},
 		getExpressOrderDetail() {
@@ -680,12 +679,6 @@ export default {
 			.express-tab {
 				width: calc(100% - @express-card-item-width);
 				margin: 0 auto;
-				border-bottom: 1rpx solid @topic-split;
-			}
-			.express-goods {
-				width: calc(100% - @express-card-item-width);
-				margin: 0 auto;
-				padding-bottom: 40rpx;
 				border-bottom: 1rpx solid @topic-split;
 			}
 			.express-upload {
