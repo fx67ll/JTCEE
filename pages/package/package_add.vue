@@ -143,18 +143,36 @@
 			<view class="package-goods-add" @click="chooseRelativeGoods">添加已关联大数据平台商品</view>
 			<view class="package-goods-add" @click="chooseNewGoods">添加新商品</view>
 		</zb-drawer>
+		
+		<!-- 页面警告消息 -->
+		<uni-popup ref="popup" type="dialog">
+			<uni-popup-dialog
+				type="error"
+				mode="base"
+				:title="this.$t('popup.warning.title')"
+				:content="this.$t('popup.warning.content')"
+				:confirmText="this.$t('popup.warning.confirmText')"
+				:cancelText="this.$t('popup.warning.cancelText')"
+				@confirm="confirmErrorDialog"
+			></uni-popup-dialog>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
+import uniPopup from '@/uni_modules/uni-popup/components/uni-popup/uni-popup.vue';
 export default {
 	components: {
-		uniIcons
+		uniIcons,
+		uniPopup
 	},
 	onShow() {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
+	},
+	onLoad(option) {
+		this.fromType = option.fromType;
 	},
 	data() {
 		return {
@@ -162,6 +180,8 @@ export default {
 			clientHeight: 'auto',
 			// 状态栏高度，用于微信小程序适配
 			statusBarHeight: 0,
+			// 从首页还是包裹管理
+			fromType: '1',
 			// 商品数据
 			// goodsListData: [{}, {}, {}, {}, {}],
 			goodsListData: [{}],
@@ -178,7 +198,20 @@ export default {
 	},
 	methods: {
 		goBack() {
-			uni.redirectTo({
+			if (this.fromType === '1') {
+				uni.redirectTo({
+					url: '/pages/index/index'
+				});
+			} else if (this.fromType === '2') {
+				uni.redirectTo({
+					url: '/pages/package/package_index'
+				});
+			} else {
+				this.$refs.popup.open();
+			}
+		},
+		confirmErrorDialog() {
+			uni.reLaunch({
 				url: '/pages/index/index'
 			});
 		},
