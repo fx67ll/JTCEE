@@ -437,12 +437,10 @@ export default {
 			this.isShowDrawerAddGoods = false;
 		},
 		chooseNewGoods() {
-			uni.showToast({
-				title: '您选择了添加新商品！',
-				icon: 'none',
-				duration: 1998
-			});
 			this.isShowDrawerAddGoods = false;
+			uni.navigateTo({
+				url: '/pages/goods/goods_add?addType=1'
+			});
 		},
 		getMultipleImportModel() {
 			uni.showToast({

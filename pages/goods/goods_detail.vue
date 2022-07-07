@@ -70,7 +70,7 @@
 						<uni-td class="goods-content-info-td goods-content-info-tr">日本</uni-td>
 					</uni-tr>
 					<uni-tr>
-						<uni-td class="goods-content-info-td goods-content-info-th">商品种类</uni-td>
+						<uni-td class="goods-content-info-td goods-content-info-th">商品分类</uni-td>
 						<uni-td class="goods-content-info-td goods-content-info-tr">游戏掌机</uni-td>
 					</uni-tr>
 				</uni-table>

@@ -229,7 +229,7 @@ export default {
 		},
 		addGoods() {
 			uni.navigateTo({
-				url: '/pages/goods/goods_add?fromType=1'
+				url: '/pages/goods/goods_add?addType=3'
 			});
 		},
 		goodsCheckChange(e) {

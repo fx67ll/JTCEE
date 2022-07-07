@@ -20,8 +20,8 @@
 
 		<view class="package-form">
 			<view class="common-form-item-note">
-				<view class="common-form-item-note-title package-form-item-note-title-star">
-					<text class="form-must-have package-form-must-have">*</text>
+				<view class="common-form-item-note-title-high">
+					<text class="form-must-have form-textaera-must-have">*</text>
 					包裹简介
 				</view>
 				<view class="common-form-item-note-textaera package-form-item-note-textaera">
@@ -234,12 +234,11 @@ export default {
 			this.isShowDrawerAddGoods = false;
 		},
 		chooseNewGoods() {
-			uni.showToast({
-				title: '您选择了添加新商品！',
-				icon: 'none',
-				duration: 1998
-			});
 			this.isShowDrawerAddGoods = false;
+			let fromType = this.fromType;
+			uni.navigateTo({
+				url: `/pages/goods/goods_add?addType=2&fromType=${fromType}`
+			});
 		},
 		bindDeliverPickerChange(e) {
 			console.log('快递公司 picker发送选择改变，携带值为', e.detail.value);
@@ -326,16 +325,6 @@ export default {
 		text-indent: 10rpx;
 		font-size: 28rpx;
 		color: #000000;
-	}
-	.package-form-item-note-title-star {
-		height: 100rpx;
-		line-height: 110rpx;
-		font-size: 28rpx;
-		color: #000000;
-		.package-form-must-have {
-			position: relative;
-			top: 4rpx;
-		}
 	}
 	.package-form-item-note-textaera {
 		padding-bottom: 0;
