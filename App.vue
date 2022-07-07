@@ -57,4 +57,8 @@ uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
 	border-color: #5bc797;
 }
 /* #endif */
+
+.file-title{
+	font-size: 30rpx !important;
+}
 </style>

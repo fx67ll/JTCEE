@@ -32,8 +32,8 @@
 			top: 3rpx;
 		}
 	}
-	
-	.form-item-title-long{
+
+	.form-item-title-long {
 		width: 60%;
 	}
 
@@ -50,11 +50,10 @@
 		.form-item-common-icon {
 			top: 0;
 		}
-	}
-
-	// switch按钮
-	.form-switch-default {
-		transform: scale(0.8);
+		.form-item-unit{
+			display: inline-block;
+			width: 42rpx;
+		}
 	}
 
 	// input输入框
@@ -82,6 +81,11 @@
 			font-size: 28rpx;
 		}
 	}
+}
+
+// switch按钮
+.form-switch-default {
+	transform: scale(0.8);
 }
 
 .common-form-item:last-child {
@@ -145,6 +149,10 @@
 		height: 240rpx;
 		margin: 0 auto;
 		padding-bottom: 25rpx;
+		.form-textaera-must-have {
+			position: relative;
+			top: 4rpx;
+		}
 		.form-textarea-default {
 			width: calc(100% - @textarea-padding * 2);
 			height: calc(100% - @textarea-padding * 2);
@@ -181,6 +189,14 @@
 			padding: @textarea-padding;
 			font-size: 28rpx;
 		}
+	}
+	
+	.common-form-item-note-title-high {
+		height: 100rpx;
+		line-height: 110rpx;
+		font-size: 28rpx;
+		color: #000000;
+		padding-left: 5rpx;
 	}
 }
 
