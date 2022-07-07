@@ -267,10 +267,10 @@ export default {
 		}
 	}
 
-	@swiper-width: 380rpx;
+	@swiper-height: 380rpx;
 	.index-swiper {
 		width: calc(100% - @base-gap * 2);
-		height: @swiper-width;
+		height: @swiper-height;
 		// border: @test-line-width solid @topic-green;
 		margin: 30rpx auto 20rpx auto;
 		.swiper {
@@ -279,7 +279,7 @@ export default {
 		.swiper-item {
 			display: block;
 			height: 100%;
-			line-height: calc(@swiper-width - 50rpx);
+			line-height: calc(@swiper-height - 50rpx);
 			text-align: center;
 			img {
 				width: 100%;
