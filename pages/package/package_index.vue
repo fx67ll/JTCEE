@@ -52,13 +52,13 @@
 					<view
 						class="package-item-order-id"
 						:class="{
-							'package-item-order-green': index < 2,
-							'package-item-order-grey': index >= 2
+							'package-item-order-green': index >= 4,
+							'package-item-order-grey': index < 4
 						}"
 					>
 						<text class="package-item-order-type">快递单号：</text>
 						<text class="package-item-order-number">ST232354565</text>
-						<img class="package-item-order-copy" src="/static/img/package/package-copy.png" @click="getOrderId('ST232354565')" />
+						<img class="package-item-order-copy" src="/static/img/invoice/invoice-copy.png" @click="getOrderId('ST232354565')" />
 					</view>
 					<view class="package-item-order-detail" @click="getOrderDetail">
 						包裹详情
@@ -66,11 +66,34 @@
 					</view>
 				</view>
 
-				<view class="package-item-content"></view>
+				<view class="package-item-content">
+					<view class="package-item-content-title">任天堂switch收纳包switchlite保护套ns硬包swich盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大</view>
+					<view class="package-item-content-shop">
+						<view class="package-item-content-shop-item">
+							<uni-icons class="package-item-content-shop-icon" type="shop" size="18" color="#4A4A4A"></uni-icons>
+							<text>门店名称：</text>
+							<text>东京港区虎之门新城711</text>
+						</view>
+						<view class="package-item-content-shop-item">
+							<uni-icons class="package-item-content-shop-icon" type="location" size="18" color="#4A4A4A"></uni-icons>
+							<text>门店地址：</text>
+							<text>港区ホームページへようこそ，東京都港区ホームページです</text>
+						</view>
+						<view class="package-item-content-shop-item">
+							<uni-icons class="package-item-content-shop-icon" type="phone" size="18" color="#4A4A4A"></uni-icons>
+							<text>门店电话：</text>
+							<text>
+								18866661111
+								<img class="package-item-content-shop-copy" src="/static/img/invoice/invoice-copy-qr.png" @click="getShopPhone('18866661111')" />
+							</text>
+						</view>
+					</view>
+				</view>
 
 				<view class="package-item-btn">
 					<view class="package-item-btn-order" @click="deleteOrder">删除</view>
-					<view class="package-item-btn-order package-item-btn-pay" @click="payOrderNow" v-if="index < 2">寄件</view>
+					<view class="package-item-btn-order" @click="editOrder" v-if="index < 4">编辑</view>
+					<view class="package-item-btn-order package-item-btn-pay" @click="payOrderNow" v-if="index >= 4">去寄件</view>
 				</view>
 			</view>
 		</view>
@@ -114,8 +137,6 @@ export default {
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 		this.topNavSearchTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 88 + 'rpx';
 		this.topNavTabTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 166 + 'rpx';
-
-		this.showTestToast(1);
 	},
 	onLoad(option) {
 		this.initData();
@@ -168,6 +189,11 @@ export default {
 		changeTab(index) {
 			console.log('当前选中的项：' + index);
 		},
+		getOrderDetail() {
+			uni.navigateTo({
+				url: '/pages/package/package_detail'
+			});
+		},
 		getOrderId(id) {
 			uni.setClipboardData({
 				data: id,
@@ -187,9 +213,23 @@ export default {
 				}
 			});
 		},
-		getOrderDetail() {
-			uni.navigateTo({
-				url: '/pages/package/package_detail'
+		getShopPhone(phone) {
+			uni.setClipboardData({
+				data: phone,
+				// 配置是否弹出提示，默认弹出提示	App (3.2.13+)、H5 (3.2.13+)
+				showToast: true,
+				// 接口调用成功的回调
+				success: function() {
+					console.log('设置系统剪贴板的内容 - success');
+				},
+				// 接口调用失败的回调函数
+				fail: function() {
+					console.log('设置系统剪贴板的内容 - fail');
+				},
+				// 接口调用结束的回调函数（调用成功、失败都会执行）
+				complete: function() {
+					console.log('设置系统剪贴板的内容 - complete');
+				}
 			});
 		},
 		deleteOrder() {
@@ -210,6 +250,11 @@ export default {
 		payOrderNow() {
 			console.log('创建订单中ing...');
 			this.showTestToast(0);
+		},
+		editOrder() {
+			uni.navigateTo({
+				url: '/pages/package/package_add?fromType=2'
+			});
 		}
 	}
 };
@@ -355,16 +400,59 @@ export default {
 			background-color: #ffffff;
 			border-radius: 20rpx;
 			margin-top: 25rpx;
+			padding-bottom: 10rpx;
 
 			.package-item-content {
 				width: 100%;
-				min-height: 237rpx;
-				padding-bottom: 30rpx;
+				.package-item-content-title {
+					width: calc(100% - 40rpx);
+					margin: 20rpx auto 0 auto;
+					font-size: 28rpx;
+					color: #313131;
+					.text-ellipsis-two();
+				}
+				.package-item-content-shop {
+					width: calc(100% - 70rpx);
+					background-color: #f8f8f8;
+					border-radius: 10rpx;
+					margin: 20rpx auto 10rpx auto;
+					padding: 10rpx 15rpx 25rpx 15rpx;
+				}
+				.package-item-content-shop-item {
+					display: flex;
+					justify-content: flex-start;
+					margin-top: 10rpx;
+					font-size: 28rpx;
+					.package-item-content-shop-icon {
+						position: relative;
+						top: 2rpx;
+						margin-right: 5rpx;
+					}
+					text {
+						display: inline-block;
+					}
+					text:nth-child(2) {
+						width: 150rpx;
+						color: #838383;
+					}
+					text:nth-child(3) {
+						width: calc(100% - 200rpx);
+						color: #4a4a4a;
+						display: flex;
+						justify-content: flex-start;
+						.package-item-content-shop-copy {
+							display: inline-block;
+							width: 25rpx;
+							height: 25rpx;
+							margin-left: 10rpx;
+						}
+					}
+				}
 			}
 
 			.package-item-btn {
 				width: calc(100% - 40rpx);
-				height: 92rpx;
+				height: 82rpx;
 				margin: 0 auto;
 				display: flex;
 				justify-content: flex-end;
