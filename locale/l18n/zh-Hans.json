@@ -2,7 +2,7 @@
 	"locale.auto": "系统",
 	"locale.zh-hans": "简体中文",
 	"locale.ja": "日语",
-	
+
 	"uni.loading.login": "正在登录",
 	"uni.loading.login.out": "正在退出登录",
 
@@ -111,12 +111,16 @@
 
 	"address_add": "待处理",
 	"help_service": "待处理",
-	
+
 	"invoice_index": "待处理",
 	"invoice_detail": "待处理",
 	"invoice_qr": "待处理",
-	
+
 	"express_send": "待处理",
 	"express_address": "待处理",
-	"express_address.tilte": "地址簿"
+	"express_address.tilte": "地址簿",
+
+	"package_add": "待处理",
+	"package_index": "待处理",
+	"package_detail": "待处理"
 }

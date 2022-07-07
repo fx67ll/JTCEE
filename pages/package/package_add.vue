@@ -19,22 +19,20 @@
 		</view>
 
 		<view class="package-form">
-			<view class="common-form-item">
-				<view class="form-item-title">
-					<text class="form-must-have">*</text>
+			<view class="common-form-item-note">
+				<view class="common-form-item-note-title package-form-item-note-title-star">
+					<text class="form-must-have package-form-must-have">*</text>
 					包裹简介
 				</view>
-				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="请输入包裹物品简介" placeholder-class="form-input-placeholder" />
-					<uni-icons class="form-item-arrow-icon form-item-common-icon" type="gift" size="18" color="#A6A6A6"></uni-icons>
+				<view class="common-form-item-note-textaera package-form-item-note-textaera">
+					<textarea class="form-textarea-default" placeholder="请输入包裹中物品内容简介" placeholder-class="form-input-placeholder" />
 				</view>
 			</view>
 
 			<view class="common-form-item common-form-item-nosplit">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					选择商品
-					<uni-icons class="form-item-title-icon" type="help" size="18" color="#A6A6A6" @click="showInsureTip"></uni-icons>
+					包裹物品
 				</view>
 				<view class="form-item-arrow" @click="addGoods">
 					<input class="uni-input form-input-default" type="text" placeholder="添加商品" placeholder-class="form-input-placeholder" disabled />
@@ -103,14 +101,34 @@
 				</picker>
 			</view>
 
+			<view class="common-form-item">
+				<view class="form-item-title form-item-title-long">
+					<text class="form-must-have">*</text>
+					是否保留快递原包装
+				</view>
+				<view class="form-item-arrow">
+					<checkbox-group @change="packCheckChange" class="form-radio-default">
+						<label class="form-radio-default-label"><checkbox value="packRadio" checked="true" color="#ffffff" /></label>
+					</checkbox-group>
+				</view>
+			</view>
+
 			<view class="common-form-item-note">
 				<view class="common-form-item-note-title package-form-item-note-title">备注</view>
 				<view class="common-form-item-note-textaera">
 					<textarea class="form-textarea-default" placeholder="请输入备注信息" placeholder-class="form-input-placeholder" />
 				</view>
 			</view>
+		</view>
 
-			<img src="./img/tip.png" style="width: 100%;margin-top: 20rpx;" />
+		<view class="package-tip">
+			<view class="package-tip-title">温馨提示：</view>
+			<view class="package-tip-content">
+				<text>1. 您可以直接复制购物网站中的快递单号添加到您的国内包裹中</text>
+				<text>2. 保留原包装可能会增加体积和重量</text>
+				<text>3. 为避免丢失，重量0.5kg以下或长宽高小于30cm的包裹，将不会拆快递原包装</text>
+				<text>4. 如遇更多问题，可咨询客服人员</text>
+			</view>
 		</view>
 
 		<view class="drawer-button-box-gap package-button-box-gap"></view>
@@ -190,6 +208,28 @@ export default {
 		bindDeliverShopPickerChange(e) {
 			console.log('交付门店 picker发送选择改变，携带值为', e.detail.value);
 			this.deliverShopIndex = e.detail.value;
+		},
+		packCheckChange(e) {
+			console.log('packRadio 发生 change 事件，携带值为', e.detail.value);
+		},
+		savePackage() {
+			let self = this;
+			uni.showLoading({
+				title: '正在保存中',
+				mask: true
+			});
+			setTimeout(function() {
+				uni.hideLoading();
+				uni.showToast({
+					title: '已保存当前包裹！',
+					icon: 'none',
+					duration: 1998
+				});
+			}, 300);
+		},
+		submitpackage() {
+			console.log('正在提交包裹预报中ing...');
+			this.showTestToast(0);
 		}
 	}
 };
@@ -247,6 +287,37 @@ export default {
 		font-size: 28rpx;
 		color: #000000;
 	}
+	.package-form-item-note-title-star {
+		height: 100rpx;
+		line-height: 110rpx;
+		font-size: 28rpx;
+		color: #000000;
+		.package-form-must-have {
+			position: relative;
+			top: 4rpx;
+		}
+	}
+	.package-form-item-note-textaera {
+		padding-bottom: 0;
+	}
+
+	.package-tip {
+		width: calc(100% - @base-gap * 3);
+		margin: 40rpx auto 0 auto;
+		.package-tip-title {
+			font-size: 32rpx;
+			color: #ff5147;
+		}
+		.package-tip-content {
+			margin: 20rpx 0 0 0;
+			font-size: 28rpx;
+			color: #888888;
+			text {
+				display: block;
+				margin-top: 10rpx;
+			}
+		}
+	}
 
 	.package-goods-add {
 		width: calc(100% - @base-gap * 4);
@@ -272,7 +343,7 @@ export default {
 	}
 	.package-button-box-gap {
 		width: 100%;
-		height: calc(@drawer-button-height + @drawer-button-bottom - 15rpx);
+		height: calc(@drawer-button-height + @drawer-button-bottom);
 	}
 }
 </style>

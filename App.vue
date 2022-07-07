@@ -52,4 +52,7 @@ uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
 	background-color: #5bc797;
 	border: 2px solid #5bc797;
 }
+uni-checkbox:not([disabled]) .uni-checkbox-input:hover{
+	border-color: #5bc797;
+}
 </style>

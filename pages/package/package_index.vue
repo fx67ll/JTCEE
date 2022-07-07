@@ -188,8 +188,9 @@ export default {
 			});
 		},
 		getOrderDetail() {
-			console.log('查看包裹详情中ing...');
-			this.showTestToast(0);
+			uni.navigateTo({
+				url: '/pages/package/package_detail'
+			});
 		},
 		deleteOrder() {
 			let self = this;
