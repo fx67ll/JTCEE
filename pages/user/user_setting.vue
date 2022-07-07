@@ -44,7 +44,7 @@
 					<uni-popup-dialog
 						type="error"
 						mode="base"
-						title="系统警告"
+						:title="this.$t('popup.warning.title')"
 						content="暂不支持切换日语，国际化功能开发中！"
 						confirmText="确定"
 						cancelText="取消"

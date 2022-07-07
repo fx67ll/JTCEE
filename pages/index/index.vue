@@ -190,7 +190,7 @@ export default {
 		},
 		goPackageAdd() {
 			uni.navigateTo({
-				url: '/pages/package/package_add'
+				url: '/pages/package/package_add?fromType=1'
 			});
 		}
 	}

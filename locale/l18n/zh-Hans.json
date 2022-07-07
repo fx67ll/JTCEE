@@ -8,6 +8,11 @@
 
 	"pull.refresh.loading": "加载中...",
 	"pull.refresh.nomore": "没有更多数据了!",
+	
+	"popup.warning.title": "系统警告",
+	"popup.warning.content": "出现未知错误，请联系管理员！",
+	"popup.warning.confirmText": "返回首页",
+	"popup.warning.cancelText": "关闭",
 
 	"login.login": "登录",
 	"login.register": "注册",

@@ -207,6 +207,8 @@ export default {
 				background: #f6f6f6;
 				border-radius: 10rpx;
 				padding: 25rpx 0;
+				
+				@text-title-width: 125rpx;
 				.invoice-qr-shop-item {
 					width: calc(100% - 20rpx);
 					margin: 0 auto 0 auto;
@@ -214,11 +216,11 @@ export default {
 					display: flex;
 					justify-content: flex-start;
 					text:nth-child(1) {
-						width: 125rpx;
+						width: @text-title-width;
 						color: #838383;
 					}
 					text:nth-child(2) {
-						width: calc(100% - 100rpx);
+						width: calc(100% - @text-title-width);
 						color: #707070;
 					}
 				}

@@ -21,10 +21,10 @@
 				<uni-popup-dialog
 					type="error"
 					mode="base"
-					title="系统警告"
-					content="出现未知错误，请联系管理员！"
-					confirmText="返回首页"
-					cancelText="关闭"
+					:title="this.$t('popup.warning.title')"
+					:content="this.$t('popup.warning.content')"
+					:confirmText="this.$t('popup.warning.confirmText')"
+					:cancelText="this.$t('popup.warning.cancelText')"
 					@confirm="confirmErrorDialog"
 				></uni-popup-dialog>
 			</uni-popup>
