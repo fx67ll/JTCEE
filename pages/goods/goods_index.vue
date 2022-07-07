@@ -45,13 +45,13 @@
 			<!-- #endif -->
 		</view>
 		<view class="goods-pull-index">
-			<uni-swipe-action>
+			<uni-swipe-action v-if="!isMultipleEdit">
 				<view class="goods-pull-item" v-for="(num, index) in listData" :key="index" @click="getGoodsDetail">
 					<uni-swipe-action-item class="goods-pull-item-swiper-action" :right-options="swiperActionOptions" :auto-close="true" @click="bindSwiperActionClick">
 						<view class="goods-pull-item-box">
 							<view class="goods-pull-item-left"><img src="/static/img/user/user-head.png" /></view>
 							<view class="goods-pull-item-right">
-								<view class="goods-pull-item-title">任天堂switch收纳包switchlite保护套ns硬包swich盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大</view>
+								<view class="goods-pull-item-title">任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有</view>
 								<view class="goods-pull-item-type">
 									<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">未同步</text>
 									<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">已同步</text>
@@ -62,13 +62,58 @@
 					</uni-swipe-action-item>
 				</view>
 			</uni-swipe-action>
+
+			<checkbox-group @change="goodsCheckChange" class="form-radio-default" v-if="isMultipleEdit">
+				<view class="goods-pull-item goods-pull-item-check" v-for="(num, index) in listData" :key="index">
+					<view class="goods-pull-item-checkbox">
+						<label class="form-radio-default-label goods-pull-item-label">
+							<!-- #ifdef H5 -->
+							<checkbox :value="'goodsRadio' + (index + 1)" checked="true" color="#ffffff" />
+							<!-- #endif -->
+							<!-- #ifdef MP-WEIXIN -->
+							<checkbox :value="'goodsRadio' + (index + 1)" checked="true" />
+							<!-- #endif -->
+						</label>
+					</view>
+					<view class="goods-pull-item-box">
+						<view class="goods-pull-item-left"><img src="/static/img/user/user-head.png" /></view>
+						<view class="goods-pull-item-right">
+							<view class="goods-pull-item-title">任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有</view>
+							<view class="goods-pull-item-type">
+								<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">未同步</text>
+								<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">已同步</text>
+							</view>
+							<view class="goods-pull-item-money">￥ 1999.99</view>
+						</view>
+					</view>
+				</view>
+			</checkbox-group>
 		</view>
 		<view class="uni-loadmore common-loadmore" v-if="showLoadMore">{{ loadMoreText }}</view>
 		<view class="drawer-button-box-gap goods-button-box-gap"></view>
 		<view class="drawer-button-box goods-button-box">
-			<view class="drawer-button">
+			<view class="drawer-button" v-if="!isMultipleEdit">
 				<view class="drawer-button-item drawer-button-reset" @click="multipleEditGoods">编辑</view>
 				<view class="drawer-button-item drawer-button-submit" @click="addGoods">添加</view>
+			</view>
+			<view class="drawer-edit" v-if="isMultipleEdit">
+				<view class="drawer-edit-all">
+					<checkbox-group @change="goodsAllCheckChange" class="form-radio-default">
+						<label class="form-radio-default-label">
+							<!-- #ifdef H5 -->
+							<checkbox value="goodsAllRadio" checked="true" color="#ffffff" />
+							<!-- #endif -->
+							<!-- #ifdef MP-WEIXIN -->
+							<checkbox value="goodsAllRadio" checked="true" />
+							<!-- #endif -->
+							全选
+						</label>
+					</checkbox-group>
+				</view>
+				<view class="drawer-edit-button">
+					<view class="drawer-edit-btn drawer-edit-btn-delete" @click="deleteMultipleGoods">删除</view>
+					<view class="drawer-edit-btn drawer-edit-btn-quit" @click="quitMultipleEdit">完成</view>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -93,6 +138,8 @@ export default {
 			loadMoreText: this.$t('pull.refresh.loading'),
 			showLoadMore: false,
 			maxDataIndex: 0,
+			// 是否在批量编辑状态
+			isMultipleEdit: false,
 			// 滑动卡片按钮数据
 			swiperActionOptions: [
 				{
@@ -178,13 +225,25 @@ export default {
 			});
 		},
 		multipleEditGoods() {
-			console.log('批量编辑商品中ing...');
-			this.showTestToast(0);
+			this.isMultipleEdit = true;
 		},
 		addGoods() {
 			uni.navigateTo({
 				url: '/pages/goods/goods_add?fromType=1'
 			});
+		},
+		goodsCheckChange(e) {
+			console.log('goodsRadio 发生 change 事件，携带值为', e.detail.value);
+		},
+		goodsAllCheckChange(e) {
+			console.log('goodsAllRadio 发生 change 事件，携带值为', e.detail.value);
+		},
+		deleteMultipleGoods() {
+			console.log('批量删除商品中ing...');
+			this.showTestToast(0);
+		},
+		quitMultipleEdit() {
+			this.isMultipleEdit = false;
 		}
 	}
 };
@@ -310,6 +369,32 @@ export default {
 						color: #ff5147;
 						margin-top: @goods-text-margin-top;
 					}
+				}
+			}
+		}
+
+		@goods-pull-item-check-width: 108rpx;
+		.goods-pull-item-check {
+			display: flex;
+			justify-content: space-between;
+			.goods-pull-item-checkbox {
+				width: @goods-pull-item-check-width;
+				display: flex;
+
+				align-items: center;
+				.goods-pull-item-label {
+					margin: 0 auto;
+				}
+			}
+			.goods-pull-item-box {
+				width: calc(100% - @goods-pull-item-check-width);
+				padding-left: 0;
+				@goods-img-size: 180rpx;
+				.goods-pull-item-left {
+					width: @goods-img-size;
+				}
+				.goods-pull-item-right {
+					width: calc(100% - @goods-img-size - 20rpx);
 				}
 			}
 		}

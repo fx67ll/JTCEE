@@ -44,7 +44,7 @@
 				<view class="common-goods-item" v-for="(num, index) in goodsListData" :key="index">
 					<view class="common-goods-img"><img src="/static/img/user/user-head.png" /></view>
 					<view class="common-goods-content">
-						<view class="common-goods-title">任天堂switch收纳包switchlite保护套ns硬包swich盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大</view>
+						<view class="common-goods-title">任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有</view>
 						<uni-number-box class="common-goods-number" :value="0"></uni-number-box>
 					</view>
 				</view>
@@ -108,7 +108,14 @@
 				</view>
 				<view class="form-item-arrow">
 					<checkbox-group @change="packCheckChange" class="form-radio-default">
-						<label class="form-radio-default-label"><checkbox value="packRadio" checked="true" color="#ffffff" /></label>
+						<label class="form-radio-default-label">
+							<!-- #ifdef H5 -->
+							<checkbox value="packRadio" checked="true" color="#ffffff" />
+							<!-- #endif -->
+							<!-- #ifdef MP-WEIXIN -->
+							<checkbox value="packRadio" checked="true" />
+							<!-- #endif -->
+						</label>
 					</checkbox-group>
 				</view>
 			</view>
@@ -143,7 +150,7 @@
 			<view class="package-goods-add" @click="chooseRelativeGoods">添加已关联大数据平台商品</view>
 			<view class="package-goods-add" @click="chooseNewGoods">添加新商品</view>
 		</zb-drawer>
-		
+
 		<!-- 页面警告消息 -->
 		<uni-popup ref="popup" type="dialog">
 			<uni-popup-dialog

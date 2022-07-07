@@ -46,7 +46,7 @@
 			<view class="invoice-qr-package-goods">
 				<view class="invoice-qr-goods-item" v-for="(num, index) in listData" :key="index">
 					<img src="/static/img/user/user-head.png" />
-					<text>任天堂switch收纳包switchlite保护套ns硬包swich盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大</text>
+					<text>任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有</text>
 				</view>
 			</view>
 			<view class="invoice-qr-package-info">

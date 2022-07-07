@@ -67,7 +67,7 @@
 				</view>
 
 				<view class="package-item-content">
-					<view class="package-item-content-title">任天堂switch收纳包switchlite保护套ns硬包swich盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大</view>
+					<view class="package-item-content-title">任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有</view>
 					<view class="package-item-content-shop">
 						<view class="package-item-content-shop-item">
 							<uni-icons class="package-item-content-shop-icon" type="shop" size="18" color="#4A4A4A"></uni-icons>
