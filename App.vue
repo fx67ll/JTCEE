@@ -40,10 +40,11 @@ export default {
 	font-size: 32rpx !important;
 }
 
-/* 多选框公共样式 */
+/* #ifdef H5 */
+/* 多选框公共样式，微信平台不生效 */
 uni-checkbox .uni-checkbox-input {
 	border-radius: 50% !important;
-	border: 2px solid #B0B0B0;
+	border: 2px solid #b0b0b0;
 	transform: scale(0.7);
 	position: relative;
 	top: -2rpx;
@@ -52,7 +53,8 @@ uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
 	background-color: #5bc797;
 	border: 2px solid #5bc797;
 }
-uni-checkbox:not([disabled]) .uni-checkbox-input:hover{
+uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
 	border-color: #5bc797;
 }
+/* #endif */
 </style>
