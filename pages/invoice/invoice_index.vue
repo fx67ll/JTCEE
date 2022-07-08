@@ -10,7 +10,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">运单管理</view>
+				<view class="top-nav-title">{{ $t('invoice_index.title') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake top-nav-fake-high"></view>
@@ -22,10 +22,15 @@
 				<view class="nav-search-box-invoice">
 					<view class="nav-search-box">
 						<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-						<input class="uni-input nav-search-input" confirm-type="search" placeholder="请输入关键词搜索" placeholder-class="nav-input-placeholder" />
+						<input
+							class="uni-input nav-search-input"
+							confirm-type="search"
+							:placeholder="$t('invoice_index.search.placeholder')"
+							placeholder-class="nav-input-placeholder"
+						/>
 					</view>
 					<view class="nav-search-filter" @click="showFilter">
-						<text class="nav-search-filter-text">筛选</text>
+						<text class="nav-search-filter-text">{{ $t('invoice_index.drawer.button.show') }}</text>
 						<uni-icons class="nav-search-filter-icon" type="vip" size="16" color="#313131"></uni-icons>
 					</view>
 				</view>
@@ -36,10 +41,15 @@
 				<view class="nav-search-box-invoice">
 					<view class="nav-search-box">
 						<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-						<input class="uni-input nav-search-input" confirm-type="search" placeholder="请输入关键词搜索" placeholder-class="nav-input-placeholder" />
+						<input
+							class="uni-input nav-search-input"
+							confirm-type="search"
+							:placeholder="$t('invoice_index.search.placeholder')"
+							placeholder-class="nav-input-placeholder"
+						/>
 					</view>
 					<view class="nav-search-filter" @click="showFilter">
-						<text class="nav-search-filter-text">筛选</text>
+						<text class="nav-search-filter-text">{{ $t('invoice_index.drawer.button.show') }}</text>
 						<uni-icons class="nav-search-filter-icon" type="vip" size="16" color="#313131"></uni-icons>
 					</view>
 				</view>
@@ -58,20 +68,30 @@
 			</view>
 			<!-- #endif -->
 		</view>
-		<zb-drawer mode="bottom" title="筛选" :wrapperClosable="false" :visible.sync="isShowDrawer" :radius="true" :height="drawerHeight">
+		<zb-drawer mode="bottom" :title="$t('invoice_index.drawer.title')" :wrapperClosable="false" :visible.sync="isShowDrawer" :radius="true" :height="drawerHeight">
 			<view class="drawer-item-box">
 				<view class="drawer-item">
-					<view class="drawer-item-title">运单状态</view>
+					<view class="drawer-item-title">{{ $t('invoice_index.drawer.status') }}</view>
 					<view class="drawer-item-btn">
-						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 0 }" @click="setBtnType(0)">全部</view>
-						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 1 }" @click="setBtnType(1)">已签收</view>
-						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 2 }" @click="setBtnType(2)">拒收</view>
-						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 3 }" @click="setBtnType(3)">超时未签收</view>
-						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 4 }" @click="setBtnType(4)">滞留</view>
+						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 0 }" @click="setBtnType(0)">
+							{{ $t('invoice_index.drawer.status.all') }}
+						</view>
+						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 1 }" @click="setBtnType(1)">
+							{{ $t('invoice_index.drawer.status.a') }}
+						</view>
+						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 2 }" @click="setBtnType(2)">
+							{{ $t('invoice_index.drawer.status.b') }}
+						</view>
+						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 3 }" @click="setBtnType(3)">
+							{{ $t('invoice_index.drawer.status.c') }}
+						</view>
+						<view class="drawer-item-btn-type" :class="{ 'drawer-item-btn-type-active': btnType === 4 }" @click="setBtnType(4)">
+							{{ $t('invoice_index.drawer.status.d') }}
+						</view>
 					</view>
 				</view>
 				<view class="drawer-item">
-					<view class="drawer-item-title">运单日期</view>
+					<view class="drawer-item-title">{{ $t('invoice_index.drawer.date') }}</view>
 					<view class="drawer-item-btn">
 						<view class="drawer-item-btn-date">
 							<uni-icons class="drawer-item-btn-date-icon" type="calendar" size="20" color="#5BC797"></uni-icons>
@@ -79,10 +99,10 @@
 						</view>
 						<picker-view :indicator-style="pickerViewIndicatorStyle" :value="pickerViewValue" @change="chooseInvoiceDateChange">
 							<picker-view-column>
-								<view class="picker-view-item" v-for="(item, index) in pickerViewYears" :key="index">{{ item }}年</view>
+								<view class="picker-view-item" v-for="(item, index) in pickerViewYears" :key="index">{{ item }}{{ $t('invoice_index.drawer.date.year') }}</view>
 							</picker-view-column>
 							<picker-view-column>
-								<view class="picker-view-item" v-for="(item, index) in pickerViewMonths" :key="index">{{ item }}月</view>
+								<view class="picker-view-item" v-for="(item, index) in pickerViewMonths" :key="index">{{ item }}{{ $t('invoice_index.drawer.date.month') }}</view>
 							</picker-view-column>
 						</picker-view>
 					</view>
@@ -91,8 +111,8 @@
 			<view class="drawer-button-box-gap"></view>
 			<view class="drawer-button-box">
 				<view class="drawer-button">
-					<view class="drawer-button-item drawer-button-reset" @click="resetFilter">重置</view>
-					<view class="drawer-button-item drawer-button-submit" @click="submitFilter">确定</view>
+					<view class="drawer-button-item drawer-button-reset" @click="resetFilter">{{ $t('invoice_index.drawer.button.reset') }}</view>
+					<view class="drawer-button-item drawer-button-submit" @click="submitFilter">{{ $t('invoice_index.drawer.button.submit') }}</view>
 				</view>
 			</view>
 		</zb-drawer>
@@ -107,13 +127,13 @@
 							'invoice-item-order-grey': (index === 4) | ((index > 4) & (index % 3 === 0))
 						}"
 					>
-						<text class="invoice-item-order-type" v-if="index < 1">面单号：</text>
-						<text class="invoice-item-order-type" v-if="index >= 1">订单号：</text>
+						<text class="invoice-item-order-type" v-if="index < 1">{{ $t('invoice_index.card.id.a') }}：</text>
+						<text class="invoice-item-order-type" v-if="index >= 1">{{ $t('invoice_index.card.id.b') }}：</text>
 						<text class="invoice-item-order-number">ST232354565</text>
 						<img class="invoice-item-order-copy" src="/static/img/invoice/invoice-copy.png" @click="getOrderId('ST232354565')" />
 					</view>
 					<view class="invoice-item-order-detail" @click="getOrderDetail">
-						运单详情
+						{{ $t('invoice_index.card.detail') }}
 						<uni-icons class="invoice-item-order-detail-icon" type="right" size="16" color="#ffffff"></uni-icons>
 					</view>
 				</view>
@@ -128,11 +148,11 @@
 							<img src="/static/img/invoice/invoice-arrow-green.png" v-if="(index < 3) | ((index > 4) & ((index + 1) % 3 === 0))" />
 							<img src="/static/img/invoice/invoice-arrow-red.png" v-if="(index === 3) | ((index > 4) & (index % 3 === 1))" />
 							<img src="/static/img/invoice/invoice-arrow-grey.png" v-if="(index === 4) | ((index > 4) & (index % 3 === 0))" />
-							<text v-if="index < 1">待支付</text>
-							<text v-if="index === 1">进行中</text>
-							<text v-if="(index + 1) % 3 === 0">已完成</text>
-							<text v-if="(index === 3) | ((index > 4) & (index % 3 === 1))">问题件</text>
-							<text v-if="(index === 4) | ((index > 4) & (index % 3 === 0))">已取消</text>
+							<text v-if="index < 1">{{ $t('invoice_index.card.status.a') }}</text>
+							<text v-if="index === 1">{{ $t('invoice_index.card.status.b') }}</text>
+							<text v-if="(index + 1) % 3 === 0">{{ $t('invoice_index.card.status.c') }}</text>
+							<text v-if="(index === 3) | ((index > 4) & (index % 3 === 1))">{{ $t('invoice_index.card.status.d') }}</text>
+							<text v-if="(index === 4) | ((index > 4) & (index % 3 === 0))">{{ $t('invoice_index.card.status.e') }}</text>
 						</view>
 						<view class="invoice-item-info-address">
 							<text>南京市</text>
@@ -150,16 +170,16 @@
 						<text class="invoice-item-text-grey" v-if="(index === 4) | ((index > 4) & (index % 3 === 0))">订单已取消</text>
 					</view>
 					<view class="invoice-item-time">
-						<text>时间：</text>
+						<text>{{ $t('invoice_index.card.time') }}：</text>
 						<text>2022-06-18</text>
 					</view>
 				</view>
 
 				<view class="invoice-item-btn" v-if="index !== 1">
-					<view class="invoice-item-btn-order" @click="reOrder" v-if="(index === 4) | ((index > 4) & (index % 3 === 0))">重新寄件</view>
-					<view class="invoice-item-btn-order" @click="deleteOrder" v-if="index > 1">删除</view>
-					<view class="invoice-item-btn-order" @click="cancleOrder" v-if="index < 1">取消寄件</view>
-					<view class="invoice-item-btn-order invoice-item-btn-pay" @click="payOrderNow" v-if="index < 1">立即支付</view>
+					<view class="invoice-item-btn-order" @click="reOrder" v-if="(index === 4) | ((index > 4) & (index % 3 === 0))">{{ $t('invoice_index.card.button.a') }}</view>
+					<view class="invoice-item-btn-order" @click="deleteOrder" v-if="index > 1">{{ $t('invoice_index.card.button.b') }}</view>
+					<view class="invoice-item-btn-order" @click="cancleOrder" v-if="index < 1">{{ $t('invoice_index.card.button.c') }}</view>
+					<view class="invoice-item-btn-order invoice-item-btn-pay" @click="payOrderNow" v-if="index < 1">{{ $t('invoice_index.card.button.d') }}</view>
 				</view>
 			</view>
 		</view>
