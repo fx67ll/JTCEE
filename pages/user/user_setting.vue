@@ -126,6 +126,7 @@ export default {
 			// this.$i18n.locale = this.languageList[e.detail.value].key;
 		},
 		loginOut() {
+			console.log('退出登录中ing...');
 			let loadingTitle = this.$t('uni.loading.login.out');
 			uni.showLoading({
 				title: loadingTitle,

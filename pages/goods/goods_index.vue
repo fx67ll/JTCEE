@@ -51,7 +51,9 @@
 						<view class="goods-pull-item-box">
 							<view class="goods-pull-item-left"><img src="/static/img/user/user-head.png" /></view>
 							<view class="goods-pull-item-right">
-								<view class="goods-pull-item-title">任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有</view>
+								<view class="goods-pull-item-title">
+									任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有
+								</view>
 								<view class="goods-pull-item-type">
 									<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">未同步</text>
 									<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">已同步</text>
@@ -70,6 +72,7 @@
 							<!-- #ifdef H5 -->
 							<checkbox :value="'goodsRadio' + (index + 1)" checked="true" color="#ffffff" />
 							<!-- #endif -->
+							<!-- 微信暂不支持修改样式，所以暂时单独独立出 -->
 							<!-- #ifdef MP-WEIXIN -->
 							<checkbox :value="'goodsRadio' + (index + 1)" checked="true" />
 							<!-- #endif -->
@@ -78,7 +81,9 @@
 					<view class="goods-pull-item-box">
 						<view class="goods-pull-item-left"><img src="/static/img/user/user-head.png" /></view>
 						<view class="goods-pull-item-right">
-							<view class="goods-pull-item-title">任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有</view>
+							<view class="goods-pull-item-title">
+								任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有
+							</view>
 							<view class="goods-pull-item-type">
 								<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">未同步</text>
 								<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">已同步</text>
@@ -103,6 +108,7 @@
 							<!-- #ifdef H5 -->
 							<checkbox value="goodsAllRadio" checked="true" color="#ffffff" />
 							<!-- #endif -->
+							<!-- 微信暂不支持修改样式，所以暂时单独独立出 -->
 							<!-- #ifdef MP-WEIXIN -->
 							<checkbox value="goodsAllRadio" checked="true" />
 							<!-- #endif -->
@@ -168,7 +174,7 @@ export default {
 		this.initData();
 	},
 	onUnload() {
-		(this.maxDataIndex = 0), (this.listData = []), (this.loadMoreText = '加载更多'), (this.showLoadMore = false);
+		(this.maxDataIndex = 0), (this.listData = []), (this.loadMoreText = this.$t('pull.refresh.loading.init')), (this.showLoadMore = false);
 	},
 	onReachBottom() {
 		console.log('正在执行 `onReachBottom` 事件ing...');
@@ -219,17 +225,23 @@ export default {
 		},
 		bindSwiperActionClick(e) {
 			console.log(e);
-			uni.showToast({
-				title: `点击了${e.content.text}按钮，功能开发中，敬请期待！`,
-				icon: 'none'
-			});
+			if (e.index === 0) {
+				uni.navigateTo({
+					url: `/pages/goods/goods_add?addType=3&useType=2`
+				});
+			} else {
+				uni.showToast({
+					title: `点击了${e.content.text}按钮，功能开发中，敬请期待！`,
+					icon: 'none'
+				});
+			}
 		},
 		multipleEditGoods() {
 			this.isMultipleEdit = true;
 		},
 		addGoods() {
 			uni.navigateTo({
-				url: '/pages/goods/goods_add?addType=3'
+				url: '/pages/goods/goods_add?addType=3&useType=1'
 			});
 		},
 		goodsCheckChange(e) {

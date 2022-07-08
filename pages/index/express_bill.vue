@@ -25,7 +25,7 @@
 				<view class="bill-address-item-right">
 					<picker @change="bindShopPickerChange" :value="billShopIndex" :range="billShopData">
 						<view :class="billShopIndex === -1 ? 'bill-address-item-text-placeholder' : 'bill-address-item-text'">
-							{{ billShopIndex === -1 ? '请选择' : billShopData[billShopIndex] }}
+							{{ billShopIndex === -1 ? $t('express_bill.picker.placeholder') : billShopData[billShopIndex] }}
 						</view>
 					</picker>
 					<uni-icons class="bill-address-item-icon" type="right" size="18" color="#BFBFBF"></uni-icons>
@@ -39,7 +39,7 @@
 				<view class="bill-address-item-right">
 					<picker @change="bindExpressPickerChange" :value="billExpressIndex" :range="billExpressData">
 						<view :class="billExpressIndex === -1 ? 'bill-address-item-text-placeholder' : 'bill-address-item-text'">
-							{{ billExpressIndex === -1 ? '请选择' : billExpressData[billExpressIndex] }}
+							{{ billExpressIndex === -1 ? $t('express_bill.picker.placeholder') : billExpressData[billExpressIndex] }}
 						</view>
 					</picker>
 					<uni-icons class="bill-address-item-icon" type="right" size="18" color="#BFBFBF"></uni-icons>
@@ -52,7 +52,7 @@
 				<view class="form-picker-choose">
 					<!-- #ifdef MP-WEIXIN -->
 					<picker mode="date" :value="expressDate" :start="expressStartDate" :end="expressEndDate" @change="bindExpressDateChange">
-						<view :class="expressDate === 1 ? 'form-picker-text-placeholder' : 'form-picker-text'">{{ expressDate === 1 ? '请选择' : expressDate }}</view>
+						<view :class="expressDate === 1 ? 'form-picker-text-placeholder' : 'form-picker-text'">{{ expressDate === 1 ? $t('express_bill.picker.placeholder') : expressDate }}</view>
 					</picker>
 					<!-- #endif -->
 					<!-- #ifdef H5 -->
@@ -112,9 +112,9 @@
 									<view class="bill-catagory-info-right">
 										<view class="bill-catagory-info-money">
 											{{ index + 1 }}280000
-											<text class="bill-catagory-info-unit">円</text>
+											<text class="bill-catagory-info-unit">{{ $t('express_bill.catagory.unit') }}</text>
 										</view>
-										<view class="bill-catagory-info-money-text">起</view>
+										<view class="bill-catagory-info-money-text">{{ $t('express_bill.catagory.unit.text') }}</view>
 									</view>
 								</view>
 							</view>
@@ -257,6 +257,7 @@ export default {
 				}
 			});
 			// #endif
+			
 			console.log('正在获取运费计费说明ing...');
 		}
 	}
@@ -441,6 +442,7 @@ export default {
 								.bill-catagory-info-unit {
 									font-size: calc(@money-font-size / 2);
 									display: inline-block;
+									margin-left: 2rpx;
 								}
 							}
 							.bill-catagory-info-money-text {

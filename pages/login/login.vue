@@ -175,6 +175,7 @@ export default {
 			console.log('是否记住密码：' + this.isru);
 		},
 		submitLogin(type) {
+			console.log('登录中ing...');
 			if(type === 1){
 				let loadingTitle = this.$t('uni.loading.login');
 				uni.showLoading({

@@ -332,6 +332,8 @@ export default {
 		this.isGotAddressSend = JSON.parse(localStorage.getItem('isGotAddressSend'));
 		this.isGotAddressReceive = JSON.parse(localStorage.getItem('isGotAddressReceive'));
 		// #endif
+		
+		// 微信端待适配
 		// #ifdef MP-WEIXIN
 		// #endif
 	},
@@ -376,13 +378,16 @@ export default {
 	},
 	methods: {
 		goBack() {
+			
 			// #ifdef H5
 			localStorage.setItem('isGotAddressSend', 'false');
 			localStorage.setItem('isGotAddressReceive', 'false');
 			// #endif
+			
+			// 微信端待适配
 			// #ifdef MP-WEIXIN
-			// 后期适配
 			// #endif
+			
 			uni.redirectTo({
 				url: '/pages/index/index'
 			});
@@ -439,7 +444,7 @@ export default {
 		chooseNewGoods() {
 			this.isShowDrawerAddGoods = false;
 			uni.navigateTo({
-				url: '/pages/goods/goods_add?addType=1'
+				url: '/pages/goods/goods_add?addType=1&useType=1'
 			});
 		},
 		getMultipleImportModel() {
@@ -450,6 +455,7 @@ export default {
 			});
 		},
 		multipleImportFile() {
+			
 			// #ifdef H5
 			uni.chooseFile({
 				count: 1,
@@ -474,6 +480,7 @@ export default {
 				}
 			});
 			// #endif
+			
 			// #ifdef MP-WEIXIN
 			// 官方文档地址：https://developers.weixin.qq.com/miniprogram/dev/api/media/image/wx.chooseMessageFile.html
 			wx.chooseMessageFile({

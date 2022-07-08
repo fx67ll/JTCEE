@@ -122,9 +122,12 @@
 
 <script>
 import { dateArray, dateIndex } from '@/static/utils/uni-date-picker.js';
+
 // #ifdef H5
 import * as echarts from '@/node_modules/echarts';
 // #endif
+
+// 微信端待适配
 // #ifdef MP-WEIXIN
 // #endif
 
@@ -144,11 +147,11 @@ export default {
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 	},
 	mounted() {
-		// H5端正常使用echarts
 		// #ifdef H5
 		this.initChart();
 		// #endif
-		// 微信端后期再重新适配
+		
+		// 微信端待适配
 		// #ifdef MP-WEIXIN
 		// #endif
 	},

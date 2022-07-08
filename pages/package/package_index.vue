@@ -142,7 +142,7 @@ export default {
 		this.initData();
 	},
 	onUnload() {
-		(this.maxDataIndex = 0), (this.listData = []), (this.loadMoreText = '加载更多'), (this.showLoadMore = false);
+		(this.maxDataIndex = 0), (this.listData = []), (this.loadMoreText = this.$t('pull.refresh.loading.init')), (this.showLoadMore = false);
 	},
 	onReachBottom() {
 		console.log('正在执行 `onReachBottom` 事件ing...');
@@ -253,7 +253,7 @@ export default {
 		},
 		editOrder() {
 			uni.navigateTo({
-				url: '/pages/package/package_add?fromType=2'
+				url: '/pages/package/package_add?fromType=2&useType=2'
 			});
 		}
 	}

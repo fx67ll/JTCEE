@@ -121,7 +121,7 @@ export default {
 		this.initData();
 	},
 	onUnload() {
-		(this.maxDataIndex = 0), (this.listData = []), (this.loadMoreText = '加载更多'), (this.showLoadMore = false);
+		(this.maxDataIndex = 0), (this.listData = []), (this.loadMoreText = this.$t('pull.refresh.loading.init')), (this.showLoadMore = false);
 	},
 	onReachBottom() {
 		console.log('正在执行 `onReachBottom` 事件ing...');
@@ -172,6 +172,7 @@ export default {
 		},
 		checkAddress() {
 			let addressType = this.addressType;
+			
 			// #ifdef H5
 			if(addressType === '1'){
 				localStorage.setItem('isGotAddressSend', 'true');
@@ -180,9 +181,11 @@ export default {
 				localStorage.setItem('isGotAddressReceive', 'true');
 			}
 			// #endif
+			
+			// 微信端待适配
 			// #ifdef MP-WEIXIN
-			// 后期适配
 			// #endif
+			
 			uni.redirectTo({
 				url: `/pages/express/express_send?addressType=${addressType}`
 			});
