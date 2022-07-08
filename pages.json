@@ -187,6 +187,13 @@
 				"navigationStyle": "custom"
 			}
 		},
+		// 选择已关联商品
+		{
+			"path": "pages/goods/goods_choose",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
 		// 包裹预报
 		{
 			"path": "pages/package/package_add",

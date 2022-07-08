@@ -10,7 +10,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">商品管理</view>
+				<view class="top-nav-title">{{ $t('goods_choose.title') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake top-nav-fake-middle"></view>
@@ -21,12 +21,7 @@
 			<view class="top-nav-search">
 				<view class="nav-search-box">
 					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-					<input
-						class="uni-input nav-search-input"
-						confirm-type="search"
-						:placeholder="$t('top.nav.search.placeholder')"
-						placeholder-class="nav-input-placeholder"
-					/>
+					<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('top.nav.search.placeholder')" placeholder-class="nav-input-placeholder" />
 				</view>
 			</view>
 			<!-- #endif -->
@@ -34,98 +29,52 @@
 			<view class="top-nav-search top-nav-search-wx" :style="{ '--topnavsearchtop': topNavSearchTop }">
 				<view class="nav-search-box">
 					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-					<input
-						class="uni-input nav-search-input"
-						confirm-type="search"
-						:placeholder="$t('top.nav.search.placeholder')"
-						placeholder-class="nav-input-placeholder"
-					/>
+					<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('top.nav.search.placeholder')" placeholder-class="nav-input-placeholder" />
 				</view>
 			</view>
 			<!-- #endif -->
 		</view>
 		<view class="goods-pull-index">
-			<uni-swipe-action v-if="!isMultipleEdit">
-				<view class="goods-pull-item" v-for="(num, index) in listData" :key="index" @click="getGoodsDetail">
-					<uni-swipe-action-item class="goods-pull-item-swiper-action" :right-options="swiperActionOptions" :auto-close="true" @click="bindSwiperActionClick">
-						<view class="goods-pull-item-box">
-							<view class="goods-pull-item-left"><img src="/static/img/user/user-head.png" /></view>
-							<view class="goods-pull-item-right">
-								<view class="goods-pull-item-title">任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有</view>
-								<view class="goods-pull-item-type">
-									<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">未同步</text>
-									<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">已同步</text>
-								</view>
-								<view class="goods-pull-item-money">￥ 1999.99</view>
-							</view>
+			<view class="goods-pull-item" v-for="(num, index) in listData" :key="index" @click="getGoodsAndBack">
+				<view class="goods-pull-item-box">
+					<view class="goods-pull-item-left"><img src="/static/img/user/user-head.png" /></view>
+					<view class="goods-pull-item-right">
+						<view class="goods-pull-item-title">任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有</view>
+						<view class="goods-pull-item-type">
+							<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">{{ $t('goods_index.goods.status.no') }}</text>
+							<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">
+								{{ $t('goods_index.goods.status.yes') }}
+							</text>
 						</view>
-					</uni-swipe-action-item>
-				</view>
-			</uni-swipe-action>
-
-			<checkbox-group @change="goodsCheckChange" class="form-radio-default" v-if="isMultipleEdit">
-				<view class="goods-pull-item goods-pull-item-check" v-for="(num, index) in listData" :key="index">
-					<view class="goods-pull-item-checkbox">
-						<label class="form-radio-default-label goods-pull-item-label">
-							<!-- #ifdef H5 -->
-							<checkbox :value="'goodsRadio' + (index + 1)" checked="true" color="#ffffff" />
-							<!-- #endif -->
-							<!-- 微信暂不支持修改样式，所以暂时单独独立出 -->
-							<!-- #ifdef MP-WEIXIN -->
-							<checkbox :value="'goodsRadio' + (index + 1)" checked="true" />
-							<!-- #endif -->
-						</label>
-					</view>
-					<view class="goods-pull-item-box">
-						<view class="goods-pull-item-left"><img src="/static/img/user/user-head.png" /></view>
-						<view class="goods-pull-item-right">
-							<view class="goods-pull-item-title">任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有</view>
-							<view class="goods-pull-item-type">
-								<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">未同步</text>
-								<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">已同步</text>
-							</view>
-							<view class="goods-pull-item-money">￥ 1999.99</view>
-						</view>
+						<view class="goods-pull-item-money">￥ 1999.99</view>
 					</view>
 				</view>
-			</checkbox-group>
+			</view>
 		</view>
 		<view class="uni-loadmore common-loadmore" v-if="showLoadMore">{{ loadMoreText }}</view>
-		<view class="drawer-button-box-gap goods-button-box-gap"></view>
-		<view class="drawer-button-box goods-button-box">
-			<view class="drawer-button" v-if="!isMultipleEdit">
-				<view class="drawer-button-item drawer-button-reset" @click="multipleEditGoods">编辑</view>
-				<view class="drawer-button-item drawer-button-submit" @click="addGoods">添加</view>
-			</view>
-			<view class="drawer-edit" v-if="isMultipleEdit">
-				<view class="drawer-edit-all">
-					<checkbox-group @change="goodsAllCheckChange" class="form-radio-default">
-						<label class="form-radio-default-label">
-							<!-- #ifdef H5 -->
-							<checkbox value="goodsAllRadio" checked="true" color="#ffffff" />
-							<!-- #endif -->
-							<!-- 微信暂不支持修改样式，所以暂时单独独立出 -->
-							<!-- #ifdef MP-WEIXIN -->
-							<checkbox value="goodsAllRadio" checked="true" />
-							<!-- #endif -->
-							全选
-						</label>
-					</checkbox-group>
-				</view>
-				<view class="drawer-edit-button">
-					<view class="drawer-edit-btn drawer-edit-btn-delete" @click="deleteMultipleGoods">删除</view>
-					<view class="drawer-edit-btn drawer-edit-btn-quit" @click="quitMultipleEdit">完成</view>
-				</view>
-			</view>
-		</view>
+
+		<!-- 页面警告消息 -->
+		<uni-popup ref="popup" type="dialog">
+			<uni-popup-dialog
+				type="error"
+				mode="base"
+				:title="this.$t('popup.warning.title')"
+				:content="this.$t('popup.warning.content')"
+				:confirmText="this.$t('popup.warning.confirmText')"
+				:cancelText="this.$t('popup.warning.cancelText')"
+				@confirm="confirmErrorDialog"
+			></uni-popup-dialog>
+		</uni-popup>
 	</view>
 </template>
 <script>
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
+import uniPopup from '@/uni_modules/uni-popup/components/uni-popup/uni-popup.vue';
 import pxToRpx from '@/static/utils/px-to-rpx.js';
 export default {
 	components: {
-		uniIcons
+		uniIcons,
+		uniPopup
 	},
 	data() {
 		return {
@@ -140,25 +89,10 @@ export default {
 			loadMoreText: this.$t('pull.refresh.loading'),
 			showLoadMore: false,
 			maxDataIndex: 0,
-			// 是否在批量编辑状态
-			isMultipleEdit: false,
-			// 滑动卡片按钮数据
-			swiperActionOptions: [
-				{
-					text: '编辑',
-					style: {
-						backgroundColor: '#F8BB32'
-					}
-				},
-				{
-					text: '删除',
-					style: {
-						backgroundColor: '#FF5147'
-					}
-				}
-			],
-			// 是否滑动打开
-			isSwiperActionOpened: false
+			// 上一个页面的返回类型，参考上一个页面说明
+			fromType: '1',
+			// 从什么地方进入的商品添加，1.寄件 2.包裹预报
+			chooseType: '1'
 		};
 	},
 	onShow() {
@@ -166,8 +100,11 @@ export default {
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 		this.topNavSearchTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 88 + 'rpx';
 	},
-	onLoad() {
+	onLoad(option) {
 		this.initData();
+
+		this.fromType = option.fromType;
+		this.chooseType = option.chooseType;
 	},
 	onUnload() {
 		(this.maxDataIndex = 0), (this.listData = []), (this.loadMoreText = this.$t('pull.refresh.loading.init')), (this.showLoadMore = false);
@@ -189,9 +126,18 @@ export default {
 	},
 	methods: {
 		goBack() {
-			uni.redirectTo({
-				url: '/pages/user/user_index'
-			});
+			let fromType = this.fromType;
+			if (this.chooseType === '1') {
+				uni.redirectTo({
+					url: '/pages/express/express_send'
+				});
+			} else if (this.chooseType === '2') {
+				uni.redirectTo({
+					url: `/pages/package/package_add?fromType=${fromType}`
+				});
+			} else {
+				this.$refs.popup.open();
+			}
 		},
 		initData() {
 			setTimeout(() => {
@@ -214,38 +160,20 @@ export default {
 			}
 			this.listData = this.listData.concat(data);
 		},
-		getGoodsDetail() {
-			uni.navigateTo({
-				url: '/pages/goods/goods_detail'
-			});
-		},
-		bindSwiperActionClick(e) {
-			console.log(e);
-			uni.showToast({
-				title: `点击了${e.content.text}按钮，功能开发中，敬请期待！`,
-				icon: 'none'
-			});
-		},
-		multipleEditGoods() {
-			this.isMultipleEdit = true;
-		},
-		addGoods() {
-			uni.navigateTo({
-				url: '/pages/goods/goods_add?addType=3'
-			});
-		},
-		goodsCheckChange(e) {
-			console.log('goodsRadio 发生 change 事件，携带值为', e.detail.value);
-		},
-		goodsAllCheckChange(e) {
-			console.log('goodsAllRadio 发生 change 事件，携带值为', e.detail.value);
-		},
-		deleteMultipleGoods() {
-			console.log('批量删除商品中ing...');
-			this.showTestToast(0);
-		},
-		quitMultipleEdit() {
-			this.isMultipleEdit = false;
+		getGoodsAndBack(){
+			// 微信待适配，且页面解析需要添加
+			let fromType = this.fromType;
+			if (this.chooseType === '1') {
+				uni.redirectTo({
+					url: '/pages/express/express_send'
+				});
+			} else if (this.chooseType === '2') {
+				uni.redirectTo({
+					url: `/pages/package/package_add?fromType=${fromType}`
+				});
+			} else {
+				this.$refs.popup.open();
+			}
 		}
 	}
 };

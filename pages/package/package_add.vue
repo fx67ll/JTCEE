@@ -248,12 +248,11 @@ export default {
 			this.isShowDrawerAddGoods = true;
 		},
 		chooseRelativeGoods() {
-			uni.showToast({
-				title: '您选择了添加已关联大数据平台商品！',
-				icon: 'none',
-				duration: 1998
-			});
 			this.isShowDrawerAddGoods = false;
+			let fromType = this.fromType;
+			uni.navigateTo({
+				url: `/pages/goods/goods_choose?chooseType=2&fromType=${fromType}`
+			});
 		},
 		chooseNewGoods() {
 			this.isShowDrawerAddGoods = false;

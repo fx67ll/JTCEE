@@ -315,7 +315,7 @@ export default {
 	left: 0;
 	overflow: hidden;
 	margin: 0;
-	z-index: 9;
+	z-index: 11;
 }
 .content--visible_top {
 	border-bottom-left-radius: 8rpx;
