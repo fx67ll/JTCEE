@@ -70,6 +70,8 @@
 	"index.beta.search": "查快递",
 	"index.beta.get": "包裹预报",
 	"index.beta.scan": "扫一扫",
+	
+	"scan_qr.title": "联络客服",
 
 	"express_bill.title": "运费计算",
 	"express_bill.form.shop": "代理店",

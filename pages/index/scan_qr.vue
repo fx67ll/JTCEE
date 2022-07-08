@@ -11,14 +11,14 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">扫一扫</view>
+				<view class="top-nav-title">{{ $t('scan_qr.title') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake"></view>
 			<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		</view>
 
-		<div id="reader" class="html5-qrcode" :style="{ '--clientheight': clientHeight }"></div>
+		<web-view></web-view>
 
 		<!-- 页面警告消息 -->
 		<uni-popup ref="popup" type="dialog">
@@ -38,7 +38,6 @@
 <script>
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
 import uniPopup from '@/uni_modules/uni-popup/components/uni-popup/uni-popup.vue';
-import { Html5Qrcode } from '@/node_modules/html5-qrcode';
 export default {
 	components: {
 		uniIcons,
@@ -48,7 +47,7 @@ export default {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
 
-		this.useCamera();
+		this.showTestToast(1);
 	},
 	onLoad(option) {
 		this.scanType = option.scanType;
@@ -73,11 +72,7 @@ export default {
 			// 上一个页面的返回类型，参考上一个页面说明
 			fromType: '1',
 			// 从什么地方进入的商品添加，1.寄件 2.包裹预报 3.商品管理
-			addType: '1',
-			// html5扫码
-			html5QrCode: null,
-			readerDom: null,
-			scanConfig: null
+			addType: '1'
 		};
 	},
 	methods: {
@@ -96,133 +91,6 @@ export default {
 			} else {
 				this.$refs.popup.open();
 			}
-		},
-		// 初始化扫码配置
-		initHtml5qrCode() {
-			this.html5QrCode = new Html5Qrcode('reader');
-			this.readerDom = document.getElementById('reader');
-			
-			// this.readerDom = uni.createSelectorQuery().select('#reader');
-			// this.readerDom
-			// 	.boundingClientRect(data => {
-			// 		console.log(data);
-			// 	})
-			// 	.exec();
-
-			this.scanConfig = {
-				fps: 10,
-				qrbox: {
-					width: '100%',
-					height: this.clientHeight
-				}
-			};
-		},
-		// 使用相机
-		useCamera() {
-			this.initHtml5qrCode();
-			this.readerDom.style.display = 'block';
-			Html5Qrcode.getCameras()
-				.then(devices => {
-					if (devices && devices.length) {
-						let cameraId = '';
-						if (devices.length == 1) {
-							// 前置摄像头
-							cameraId = devices[0].id;
-						} else {
-							// 后置摄像头
-							cameraId = devices[1].id;
-						}
-						if (cameraId) {
-							this.startWithCameraId(cameraId);
-						}
-					} else {
-						this.startWithoutCameraId();
-					}
-				})
-				.catch(err => {
-					uni.showToast({
-						title: '没有获取到摄像头设备！',
-						icon: 'none',
-						duration: 1998
-					});
-				});
-		},
-		// 带相机ID扫描
-		startWithCameraId(cameraId) {
-			let self = this;
-			html5QrCode
-				.start(
-					{
-						deviceId: {
-							exact: cameraId
-						}
-					},
-					self.scanConfig,
-					self.onScanSuccess,
-					self.onScanFailure
-				)
-				.catch(error => {
-					let err = JSON.stringify(error);
-					uni.showModal({
-						title: '扫码异常',
-						content: `异常报告：${err}`,
-						success: function(res) {
-							if (res.confirm) {
-								console.log('用户点击确定');
-							} else if (res.cancel) {
-								console.log('用户点击取消');
-							}
-						}
-					});
-				});
-		},
-		// 不带相机ID扫描，允许传递约束来代替相机设备ID
-		startWithoutCameraId() {
-			let self = this;
-			// environment表示后置摄像头，换成user则表示前置摄像头
-			html5QrCode.start(
-				{
-					facingMode: 'environment'
-				} || {
-					facingMode: {
-						exact: 'environment'
-					}
-				},
-				self.scanConfig,
-				self.onScanSuccess,
-				self.onScanFailure
-			);
-		},
-		//扫码解析成功后按照自己的需求做后续的操作
-		onScanSuccess(decodedText, decodedResult) {
-			let res = JSON.stringify(decodedResult);
-			uni.showModal({
-				title: '扫码成功',
-				content: `扫码结果：${decodedText}
-						  结果解析：${res}`,
-				success: function(res) {
-					if (res.confirm) {
-						console.log('用户点击确定');
-					} else if (res.cancel) {
-						console.log('用户点击取消');
-					}
-				}
-			});
-		},
-		//扫码解析失败后按照自己的需求做后续的操作
-		onScanFailure(error) {
-			let err = JSON.stringify(error);
-			uni.showModal({
-				title: '扫码异常',
-				content: `异常报告：${err}`,
-				success: function(res) {
-					if (res.confirm) {
-						console.log('用户点击确定');
-					} else if (res.cancel) {
-						console.log('用户点击取消');
-					}
-				}
-			});
 		}
 	}
 };
@@ -264,13 +132,6 @@ export default {
 			background-color: @topic-bgc;
 			z-index: -1;
 		}
-	}
-
-	.html5-qrcode {
-		width: 100%;
-		height: var(--clientheight);
-		position: fixed;
-		top: 0;
 	}
 }
 </style>
