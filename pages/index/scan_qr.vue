@@ -18,7 +18,7 @@
 			<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		</view>
 
-		<web-view class="html5-qr-code" :style="{ '--clientheight': clientHeight }" src="https://www.fx67ll.com/scan.html"></web-view>
+		<web-view class="html5-qr-code" :style="{ '--clientheight': clientHeight }" src="https://www.fx67ll.com/scan.html" allow="camera"></web-view>
 
 		<!-- 页面警告消息 -->
 		<uni-popup ref="popup" type="dialog">
@@ -137,7 +137,6 @@ export default {
 		height: var(--clientheight);
 		position: fixed;
 		top: 0;
-		z-index: 1;
 	}
 }
 </style>
