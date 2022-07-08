@@ -21,12 +21,7 @@
 			<view class="top-nav-search">
 				<view class="nav-search-box">
 					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-					<input
-						class="uni-input nav-search-input"
-						confirm-type="search"
-						:placeholder="$t('top.nav.search.placeholder')"
-						placeholder-class="nav-input-placeholder"
-					/>
+					<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('top.nav.search.placeholder')" placeholder-class="nav-input-placeholder" />
 				</view>
 			</view>
 			<!-- #endif -->
@@ -34,12 +29,7 @@
 			<view class="top-nav-search top-nav-search-wx" :style="{ '--topnavsearchtop': topNavSearchTop }">
 				<view class="nav-search-box">
 					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-					<input
-						class="uni-input nav-search-input"
-						confirm-type="search"
-						:placeholder="$t('top.nav.search.placeholder')"
-						placeholder-class="nav-input-placeholder"
-					/>
+					<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('top.nav.search.placeholder')" placeholder-class="nav-input-placeholder" />
 				</view>
 			</view>
 			<!-- #endif -->
@@ -55,8 +45,12 @@
 									任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有
 								</view>
 								<view class="goods-pull-item-type">
-									<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">{{ $t('goods_index.goods.status.no') }}</text>
-									<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">{{ $t('goods_index.goods.status.yes') }}</text>
+									<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">
+										{{ $t('goods_index.goods.status.no') }}
+									</text>
+									<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">
+										{{ $t('goods_index.goods.status.yes') }}
+									</text>
 								</view>
 								<view class="goods-pull-item-money">￥ 1999.99</view>
 							</view>
@@ -85,8 +79,12 @@
 								任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有
 							</view>
 							<view class="goods-pull-item-type">
-								<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">{{ $t('goods_index.goods.status.no') }}</text>
-								<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">{{ $t('goods_index.goods.status.yes') }}</text>
+								<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">
+									{{ $t('goods_index.goods.status.no') }}
+								</text>
+								<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">
+									{{ $t('goods_index.goods.status.yes') }}
+								</text>
 							</view>
 							<view class="goods-pull-item-money">￥ 1999.99</view>
 						</view>
@@ -232,7 +230,8 @@ export default {
 			} else {
 				uni.showToast({
 					title: `点击了${e.content.text}按钮，功能开发中，敬请期待！`,
-					icon: 'none'
+					icon: 'none',
+					duration: 1998
 				});
 			}
 		},

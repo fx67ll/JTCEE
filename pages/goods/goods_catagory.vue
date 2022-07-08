@@ -6,9 +6,8 @@
 export default {
 	data() {
 		return {};
-	},
-	methods: {}
+	}
 };
 </script>
 
-<style></style>
+<style lang="less"></style>

@@ -213,7 +213,8 @@ export default {
 			console.log(e);
 			uni.showToast({
 				title: `点击了${e.content.text}按钮，功能开发中，敬请期待！`,
-				icon: 'none'
+				icon: 'none',
+				duration: 1998
 			});
 		},
 		editAddress() {
