@@ -22,12 +22,7 @@
 				<view class="nav-search-box-invoice">
 					<view class="nav-search-box">
 						<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-						<input
-							class="uni-input nav-search-input"
-							confirm-type="search"
-							:placeholder="$t('top.nav.search.placeholder')"
-							placeholder-class="nav-input-placeholder"
-						/>
+						<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('top.nav.search.placeholder')" placeholder-class="nav-input-placeholder" />
 					</view>
 					<view class="nav-search-filter" @click="showFilter">
 						<text class="nav-search-filter-text">{{ $t('invoice_index.drawer.button.show') }}</text>
@@ -41,12 +36,7 @@
 				<view class="nav-search-box-invoice">
 					<view class="nav-search-box">
 						<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-						<input
-							class="uni-input nav-search-input"
-							confirm-type="search"
-							:placeholder="$t('top.nav.search.placeholder')"
-							placeholder-class="nav-input-placeholder"
-						/>
+						<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('top.nav.search.placeholder')" placeholder-class="nav-input-placeholder" />
 					</view>
 					<view class="nav-search-filter" @click="showFilter">
 						<text class="nav-search-filter-text">{{ $t('invoice_index.drawer.button.show') }}</text>
@@ -369,8 +359,8 @@ export default {
 		deleteOrder() {
 			let self = this;
 			uni.showModal({
-				title: '提示',
-				content: '删除后无法恢复订单，确认删除该笔订单吗？',
+				title: self.$t('invoice_index.modal.delete.title'),
+				content: `${self.$t('invoice_index.modal.delete.content')}`,
 				success: function(res) {
 					if (res.confirm) {
 						console.log('用户点击确定');
@@ -384,8 +374,8 @@ export default {
 		cancleOrder() {
 			let self = this;
 			uni.showModal({
-				title: '提示',
-				content: '确认取消该笔订单吗？',
+				title: self.$t('invoice_index.modal.cancle.title'),
+				content: `${self.$t('invoice_index.modal.cancle.content')}`,
 				success: function(res) {
 					if (res.confirm) {
 						console.log('用户点击确定');

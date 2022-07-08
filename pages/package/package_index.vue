@@ -21,12 +21,7 @@
 			<view class="top-nav-search">
 				<view class="nav-search-box">
 					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-					<input
-						class="uni-input nav-search-input"
-						confirm-type="search"
-						:placeholder="$t('top.nav.search.placeholder')"
-						placeholder-class="nav-input-placeholder"
-					/>
+					<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('top.nav.search.placeholder')" placeholder-class="nav-input-placeholder" />
 				</view>
 			</view>
 			<!-- #endif -->
@@ -34,12 +29,7 @@
 			<view class="top-nav-search top-nav-search-wx" :style="{ '--topnavsearchtop': topNavSearchTop }">
 				<view class="nav-search-box">
 					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-					<input
-						class="uni-input nav-search-input"
-						confirm-type="search"
-						:placeholder="$t('top.nav.search.placeholder')"
-						placeholder-class="nav-input-placeholder"
-					/>
+					<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('top.nav.search.placeholder')" placeholder-class="nav-input-placeholder" />
 				</view>
 			</view>
 			<!-- #endif -->
@@ -245,8 +235,8 @@ export default {
 		deleteOrder() {
 			let self = this;
 			uni.showModal({
-				title: '提示',
-				content: '删除后无法恢复，确认删除吗？',
+				title: self.$t('package_index.modal.delete.title'),
+				content: `${self.$t('package_index.modal.delete.content')}`,
 				success: function(res) {
 					if (res.confirm) {
 						console.log('用户点击确定');
