@@ -18,7 +18,7 @@
 			<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		</view>
 
-		<web-view></web-view>
+		<web-view class="html5-qr-code" :style="{ '--clientheight': clientHeight }" src="https://www.fx67ll.com/scan.html"></web-view>
 
 		<!-- 页面警告消息 -->
 		<uni-popup ref="popup" type="dialog">
@@ -46,8 +46,6 @@ export default {
 	onShow() {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
-
-		this.showTestToast(1);
 	},
 	onLoad(option) {
 		this.scanType = option.scanType;
@@ -132,6 +130,14 @@ export default {
 			background-color: @topic-bgc;
 			z-index: -1;
 		}
+	}
+	
+	.html5-qr-code{
+		width: 100%;
+		height: var(--clientheight);
+		position: fixed;
+		top: 0;
+		z-index: 1;
 	}
 }
 </style>
