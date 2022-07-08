@@ -275,10 +275,21 @@
 	"package_add.button.save": "保存",
 	"package_add.button.submit": "提交",
 
+	"package_index.title": "包裹管理",
+	"package_index.search.placeholder": "请输入关键词搜索",
+	"package_index.tab.package.wait": "待收货",
+	"package_index.tab.package.arrival": "已到库",
+	"package_index.card.id": "快递单号",
+	"package_index.card.detail": "包裹详情",
+	"package_index.card.shop.name": "门店名称",
+	"package_index.card.shop.address": "门店地址",
+	"package_index.card.shop.phone": "门店电话",
+	"package_index.card.button.delete": "删除",
+	"package_index.card.button.edit": "编辑",
+	"package_index.card.button.express": "去寄件",
 
-
-	"package_index": "待处理",
-	"package_detail": "待处理",
+	"package_detail.title": "包裹详情",
+	"package_detail.option.placeholder": "暂无数据",
 
 	"goods_index": "待处理",
 	"goods_detail": "待处理",

@@ -10,7 +10,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">包裹管理</view>
+				<view class="top-nav-title">{{ $t('package_index.title') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake top-nav-fake-high"></view>
@@ -21,7 +21,12 @@
 			<view class="top-nav-search">
 				<view class="nav-search-box">
 					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-					<input class="uni-input nav-search-input" confirm-type="search" placeholder="请输入关键词搜索" placeholder-class="nav-input-placeholder" />
+					<input
+						class="uni-input nav-search-input"
+						confirm-type="search"
+						:placeholder="$t('package_index.search.placeholder')"
+						placeholder-class="nav-input-placeholder"
+					/>
 				</view>
 			</view>
 			<!-- #endif -->
@@ -29,7 +34,12 @@
 			<view class="top-nav-search top-nav-search-wx" :style="{ '--topnavsearchtop': topNavSearchTop }">
 				<view class="nav-search-box">
 					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-					<input class="uni-input nav-search-input" confirm-type="search" placeholder="请输入关键词搜索" placeholder-class="nav-input-placeholder" />
+					<input
+						class="uni-input nav-search-input"
+						confirm-type="search"
+						:placeholder="$t('package_index.search.placeholder')"
+						placeholder-class="nav-input-placeholder"
+					/>
 				</view>
 			</view>
 			<!-- #endif -->
@@ -56,12 +66,12 @@
 							'package-item-order-grey': index < 4
 						}"
 					>
-						<text class="package-item-order-type">快递单号：</text>
+						<text class="package-item-order-type">{{ $t('package_index.card.id') }}：</text>
 						<text class="package-item-order-number">ST232354565</text>
 						<img class="package-item-order-copy" src="/static/img/invoice/invoice-copy.png" @click="getOrderId('ST232354565')" />
 					</view>
 					<view class="package-item-order-detail" @click="getOrderDetail">
-						包裹详情
+						{{ $t('package_index.card.detail') }}
 						<uni-icons class="package-item-order-detail-icon" type="right" size="16" color="#ffffff"></uni-icons>
 					</view>
 				</view>
@@ -71,17 +81,17 @@
 					<view class="package-item-content-shop">
 						<view class="package-item-content-shop-item">
 							<uni-icons class="package-item-content-shop-icon" type="shop" size="18" color="#4A4A4A"></uni-icons>
-							<text>门店名称：</text>
+							<text>{{ $t('package_index.card.shop.name') }}：</text>
 							<text>东京港区虎之门新城711</text>
 						</view>
 						<view class="package-item-content-shop-item">
 							<uni-icons class="package-item-content-shop-icon" type="location" size="18" color="#4A4A4A"></uni-icons>
-							<text>门店地址：</text>
+							<text>{{ $t('package_index.card.shop.address') }}：</text>
 							<text>港区ホームページへようこそ，東京都港区ホームページです</text>
 						</view>
 						<view class="package-item-content-shop-item">
 							<uni-icons class="package-item-content-shop-icon" type="phone" size="18" color="#4A4A4A"></uni-icons>
-							<text>门店电话：</text>
+							<text>{{ $t('package_index.card.shop.phone') }}：</text>
 							<text>
 								18866661111
 								<img class="package-item-content-shop-copy" src="/static/img/invoice/invoice-copy-qr.png" @click="getShopPhone('18866661111')" />
@@ -91,9 +101,9 @@
 				</view>
 
 				<view class="package-item-btn">
-					<view class="package-item-btn-order" @click="deleteOrder">删除</view>
-					<view class="package-item-btn-order" @click="editOrder" v-if="index < 4">编辑</view>
-					<view class="package-item-btn-order package-item-btn-pay" @click="payOrderNow" v-if="index >= 4">去寄件</view>
+					<view class="package-item-btn-order" @click="deleteOrder">{{ $t('package_index.card.button.delete') }}</view>
+					<view class="package-item-btn-order" @click="editOrder" v-if="index < 4">{{ $t('package_index.card.button.edit') }}</view>
+					<view class="package-item-btn-order package-item-btn-pay" @click="payOrderNow" v-if="index >= 4">{{ $t('package_index.card.button.express') }}</view>
 				</view>
 			</view>
 		</view>
@@ -129,7 +139,7 @@ export default {
 			// tab索引
 			tabCurrentIndex: 0,
 			// tab数据
-			tabDataList: ['待收货', '已到库']
+			tabDataList: [this.$t('package_index.tab.package.wait'), this.$t('package_index.tab.package.arrival')]
 		};
 	},
 	onShow() {

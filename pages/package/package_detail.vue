@@ -11,7 +11,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">包裹详情</view>
+				<view class="top-nav-title">{{ $t('package_detail.title') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake"></view>
@@ -22,17 +22,17 @@
 			<view class="common-form-item-note">
 				<view class="common-form-item-note-title package-form-item-note-title-star">
 					<text class="form-must-have">*</text>
-					包裹简介
+					{{ $t('package_add.option.name') }}
 				</view>
 				<view class="common-form-item-note-textaera package-form-item-note-textaera">
-					<textarea class="form-textarea-default" placeholder="暂无数据" placeholder-class="form-input-placeholder" disabled />
+					<textarea class="form-textarea-default" :placeholder="$t('package_detail.option.placeholder')" placeholder-class="form-input-placeholder" disabled />
 				</view>
 			</view>
 
 			<view class="common-form-item common-form-item-nosplit">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					包裹物品
+					{{ $t('package_add.option.goods') }}
 				</view>
 			</view>
 
@@ -49,47 +49,71 @@
 			<view class="common-form-item">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					快递公司
+					{{ $t('package_add.option.express.company') }}
 				</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="暂无数据" placeholder-class="form-input-placeholder" disabled />
+					<input
+						class="uni-input form-input-default"
+						type="text"
+						:placeholder="$t('package_detail.option.placeholder')"
+						placeholder-class="form-input-placeholder"
+						disabled
+					/>
 				</view>
 			</view>
 
 			<view class="common-form-item">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					快递单号
+					{{ $t('package_add.option.express.id') }}
 				</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="暂无数据" placeholder-class="form-input-placeholder" disabled />
+					<input
+						class="uni-input form-input-default"
+						type="text"
+						:placeholder="$t('package_detail.option.placeholder')"
+						placeholder-class="form-input-placeholder"
+						disabled
+					/>
 				</view>
 			</view>
 
 			<view class="common-form-item">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					交付门店
+					{{ $t('package_add.option.shop') }}
 				</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="暂无数据" placeholder-class="form-input-placeholder" disabled />
+					<input
+						class="uni-input form-input-default"
+						type="text"
+						:placeholder="$t('package_detail.option.placeholder')"
+						placeholder-class="form-input-placeholder"
+						disabled
+					/>
 				</view>
 			</view>
 
 			<view class="common-form-item">
 				<view class="form-item-title form-item-title-long">
 					<text class="form-must-have">*</text>
-					是否保留快递原包装
+					{{ $t('package_add.option.is.save.pack') }}
 				</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="暂无数据" placeholder-class="form-input-placeholder" disabled />
+					<input
+						class="uni-input form-input-default"
+						type="text"
+						:placeholder="$t('package_detail.option.placeholder')"
+						placeholder-class="form-input-placeholder"
+						disabled
+					/>
 				</view>
 			</view>
 
 			<view class="common-form-item-note">
-				<view class="common-form-item-note-title package-form-item-note-title">备注</view>
+				<view class="common-form-item-note-title package-form-item-note-title">{{ $t('package_add.option.note') }}</view>
 				<view class="common-form-item-note-textaera">
-					<textarea class="form-textarea-default" placeholder="暂无数据" placeholder-class="form-input-placeholder" disabled />
+					<textarea class="form-textarea-default" :placeholder="$t('package_detail.option.placeholder')" placeholder-class="form-input-placeholder" disabled />
 				</view>
 			</view>
 		</view>
