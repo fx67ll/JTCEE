@@ -249,10 +249,34 @@
 	"express_send.drawer.c.price.rule.content": "首重(1.0kg)5000円，续重3000円/kg",
 	"express_send.drawer.c.insure": "保价",
 	"express_send.drawer.c.service": "服务",
-	
+
 	"express_address.tilte": "地址簿",
 
-	"package_add": "待处理",
+	"package_add.title.add": "包裹预报",
+	"package_add.title.edit": "编辑包裹",
+	"package_add.option.name": "包裹简介",
+	"package_add.option.name.placeholder": "包裹简介",
+	"package_add.option.goods": "包裹物品",
+	"package_add.option.goods.placeholder": "添加商品",
+	"package_add.option.express.company": "快递公司",
+	"package_add.option.express.company.placeholder": "请选择快递公司",
+	"package_add.option.express.id": "快递单号",
+	"package_add.option.express.id.placeholder": "请录入快递单号",
+	"package_add.option.shop": "交付门店",
+	"package_add.option.shop.placeholder": "请选择交付门店",
+	"package_add.option.is.save.pack": "是否保留快递原包装",
+	"package_add.option.note": "备注",
+	"package_add.option.note.placeholder": "请输入备注信息",
+	"package_add.tip.title": "温馨提示",
+	"package_add.tip.a": "1. 您可以直接复制购物网站中的快递单号添加到您的国内包裹中",
+	"package_add.tip.b": "2. 保留原包装可能会增加体积和重量",
+	"package_add.tip.c": "3. 为避免丢失，重量0.5kg以下或长宽高小于30cm的包裹，将不会拆快递原包装",
+	"package_add.tip.d": "4. 如遇更多问题，可咨询客服人员",
+	"package_add.button.save": "保存",
+	"package_add.button.submit": "提交",
+
+
+
 	"package_index": "待处理",
 	"package_detail": "待处理",
 

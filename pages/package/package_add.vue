@@ -11,7 +11,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">{{ useType === '1' ? '包裹预报' : '编辑包裹' }}</view>
+				<view class="top-nav-title">{{ useType === '1' ? $t('package_add.title.add') : $t('package_add.title.edit') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake"></view>
@@ -22,20 +22,26 @@
 			<view class="common-form-item-note">
 				<view class="common-form-item-note-title-high">
 					<text class="form-must-have form-textaera-must-have">*</text>
-					包裹简介
+					{{ $t('package_add.option.name') }}
 				</view>
 				<view class="common-form-item-note-textaera package-form-item-note-textaera">
-					<textarea class="form-textarea-default" placeholder="请输入包裹中物品内容简介" placeholder-class="form-input-placeholder" />
+					<textarea class="form-textarea-default" :placeholder="$t('package_add.option.name.placeholder')" placeholder-class="form-input-placeholder" />
 				</view>
 			</view>
 
 			<view class="common-form-item common-form-item-nosplit">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					包裹物品
+					{{ $t('package_add.option.goods') }}
 				</view>
 				<view class="form-item-arrow" @click="addGoods">
-					<input class="uni-input form-input-default" type="text" placeholder="添加商品" placeholder-class="form-input-placeholder" disabled />
+					<input
+						class="uni-input form-input-default"
+						type="text"
+						:placeholder="$t('package_add.option.goods.placeholder')"
+						placeholder-class="form-input-placeholder"
+						disabled
+					/>
 					<uni-icons class="form-item-arrow-icon form-item-common-icon" type="shop-filled" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
@@ -53,14 +59,14 @@
 			<view class="common-form-item">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					快递公司
+					{{ $t('package_add.option.express.company') }}
 				</view>
 				<picker @change="bindDeliverPickerChange" :value="deliverIndex" :range="deliverData">
 					<view class="form-item-arrow">
 						<input
 							class="uni-input form-input-default"
 							type="text"
-							placeholder="请选择快递公司"
+							:placeholder="$t('package_add.option.express.company.placeholder')"
 							placeholder-class="form-input-placeholder"
 							disabled
 							v-model="deliverData[deliverIndex]"
@@ -73,10 +79,15 @@
 			<view class="common-form-item">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					快递单号
+					{{ $t('package_add.option.express.id') }}
 				</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="请录入快递单号" placeholder-class="form-input-placeholder" />
+					<input
+						class="uni-input form-input-default"
+						type="text"
+						:placeholder="$t('package_add.option.express.id.placeholder')"
+						placeholder-class="form-input-placeholder"
+					/>
 					<uni-icons class="form-item-arrow-icon" type="scan" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
@@ -84,14 +95,14 @@
 			<view class="common-form-item">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					交付门店
+					{{ $t('package_add.option.shop') }}
 				</view>
 				<picker @change="bindDeliverShopPickerChange" :value="deliverShopIndex" :range="deliverShopData">
 					<view class="form-item-arrow">
 						<input
 							class="uni-input form-input-default"
 							type="text"
-							placeholder="请选择交付门店"
+							:placeholder="$t('package_add.option.shop.placeholder')"
 							placeholder-class="form-input-placeholder"
 							disabled
 							v-model="deliverShopData[deliverShopIndex]"
@@ -104,7 +115,7 @@
 			<view class="common-form-item">
 				<view class="form-item-title form-item-title-long">
 					<text class="form-must-have">*</text>
-					是否保留快递原包装
+					{{ $t('package_add.option.is.save.pack') }}
 				</view>
 				<view class="form-item-arrow">
 					<checkbox-group @change="packCheckChange" class="form-radio-default">
@@ -122,34 +133,41 @@
 			</view>
 
 			<view class="common-form-item-note">
-				<view class="common-form-item-note-title package-form-item-note-title">备注</view>
+				<view class="common-form-item-note-title package-form-item-note-title">{{ $t('package_add.option.note') }}</view>
 				<view class="common-form-item-note-textaera">
-					<textarea class="form-textarea-default" placeholder="请输入备注信息" placeholder-class="form-input-placeholder" />
+					<textarea class="form-textarea-default" :placeholder="$t('package_add.option.note.placeholder')" placeholder-class="form-input-placeholder" />
 				</view>
 			</view>
 		</view>
 
 		<view class="package-tip">
-			<view class="package-tip-title">温馨提示：</view>
+			<view class="package-tip-title">{{ $t('package_add.tip.title') }}：</view>
 			<view class="package-tip-content">
-				<text>1. 您可以直接复制购物网站中的快递单号添加到您的国内包裹中</text>
-				<text>2. 保留原包装可能会增加体积和重量</text>
-				<text>3. 为避免丢失，重量0.5kg以下或长宽高小于30cm的包裹，将不会拆快递原包装</text>
-				<text>4. 如遇更多问题，可咨询客服人员</text>
+				<text>{{ $t('package_add.tip.a') }}</text>
+				<text>{{ $t('package_add.tip.b') }}</text>
+				<text>{{ $t('package_add.tip.c') }}</text>
+				<text>{{ $t('package_add.tip.d') }}</text>
 			</view>
 		</view>
 
 		<view class="drawer-button-box-gap package-button-box-gap"></view>
 		<view class="drawer-button-box package-button-box">
 			<view class="drawer-button">
-				<view class="drawer-button-item drawer-button-reset" @click="savePackage">保存</view>
-				<view class="drawer-button-item drawer-button-submit" @click="submitpackage">提交</view>
+				<view class="drawer-button-item drawer-button-reset" @click="savePackage">{{ $t('package_add.button.save') }}</view>
+				<view class="drawer-button-item drawer-button-submit" @click="submitpackage">{{ $t('package_add.button.submit') }}</view>
 			</view>
 		</view>
 
-		<zb-drawer mode="bottom" title="添加商品" :wrapperClosable="false" :visible.sync="isShowDrawerAddGoods" :radius="true" :height="addGoodsDrawerHeight">
-			<view class="package-goods-add" @click="chooseRelativeGoods">添加已关联大数据平台商品</view>
-			<view class="package-goods-add" @click="chooseNewGoods">添加新商品</view>
+		<zb-drawer
+			mode="bottom"
+			:title="$t('express_send.drawer.a.title')"
+			:wrapperClosable="false"
+			:visible.sync="isShowDrawerAddGoods"
+			:radius="true"
+			:height="addGoodsDrawerHeight"
+		>
+			<view class="package-goods-add" @click="chooseRelativeGoods">{{ $t('express_send.drawer.a.add.old') }}</view>
+			<view class="package-goods-add" @click="chooseNewGoods">{{ $t('express_send.drawer.a.add.new') }}</view>
 		</zb-drawer>
 
 		<!-- 页面警告消息 -->
