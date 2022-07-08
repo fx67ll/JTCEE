@@ -11,7 +11,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">寄件</view>
+				<view class="top-nav-title">{{ $t('express_send.title') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake"></view>
@@ -21,42 +21,42 @@
 		<view class="express-address">
 			<view class="express-address-item">
 				<view class="express-address-item-left">
-					<view class="express-address-item-font express-address-item-font-green">寄</view>
+					<view class="express-address-item-font express-address-item-font-green">{{ $t('express_send.address.get.icon') }}</view>
 					<view class="express-address-item-info">
 						<view class="express-address-item-person">
 							<text class="express-address-item-person-name" v-if="isGotAddressSend">何瑞</text>
 							<text class="express-address-item-person-phone" v-if="isGotAddressSend">18095640133</text>
-							<text class="express-address-item-person-unselected" v-if="!isGotAddressSend">收件人信息</text>
+							<text class="express-address-item-person-unselected" v-if="!isGotAddressSend">{{ $t('express_send.address.get.info') }}</text>
 						</view>
 						<view class="express-address-item-address">
 							<text class="express-address-item-address-selected" v-if="isGotAddressSend">江苏南京市建邺区城区莲花新城2号半山国际2单元309室</text>
-							<text class="express-address-item-address-unselected" v-if="!isGotAddressSend">新建或选择收件人姓名、电话以及详细地址</text>
+							<text class="express-address-item-address-unselected" v-if="!isGotAddressSend">{{ $t('express_send.address.get.address') }}</text>
 						</view>
 					</view>
 				</view>
 				<view class="express-address-item-right" @click="getExpressAddress(1)">
 					<img class="express-address-item-icon" src="/static/img/express/express-get-address.png" />
-					<text class="express-address-item-text">地址簿</text>
+					<text class="express-address-item-text">{{ $t('express_send.address.book') }}</text>
 				</view>
 			</view>
 			<view class="express-address-item">
 				<view class="express-address-item-left">
-					<view class="express-address-item-font express-address-item-font-red">收</view>
+					<view class="express-address-item-font express-address-item-font-red">{{ $t('express_send.address.send.icon') }}</view>
 					<view class="express-address-item-info">
 						<view class="express-address-item-person">
 							<text class="express-address-item-person-name" v-if="isGotAddressReceive">何瑞</text>
 							<text class="express-address-item-person-phone" v-if="isGotAddressReceive">18095640133</text>
-							<text class="express-address-item-person-unselected" v-if="!isGotAddressReceive">收件人信息</text>
+							<text class="express-address-item-person-unselected" v-if="!isGotAddressReceive">{{ $t('express_send.address.send.info') }}</text>
 						</view>
 						<view class="express-address-item-address">
 							<text class="express-address-item-address-selected" v-if="isGotAddressReceive">江苏南京市建邺区城区莲花新城2号半山国际2单元309室</text>
-							<text class="express-address-item-address-unselected" v-if="!isGotAddressReceive">新建或选择收件人姓名、电话以及详细地址</text>
+							<text class="express-address-item-address-unselected" v-if="!isGotAddressReceive">{{ $t('express_send.address.send.address') }}</text>
 						</view>
 					</view>
 				</view>
 				<view class="express-address-item-right" @click="getExpressAddress(2)">
 					<img class="express-address-item-icon" src="/static/img/express/express-get-address.png" />
-					<text class="express-address-item-text">地址簿</text>
+					<text class="express-address-item-text">{{ $t('express_send.address.book') }}</text>
 				</view>
 			</view>
 		</view>
@@ -64,10 +64,10 @@
 		<view class="card-two card-two-express" :class="{ 'card-two-long': !isSingle }">
 			<view class="card-two-head">
 				<view class="card-two-head-item" :class="{ 'card-two-head-item-active': isSingle, 'card-two-head-item-first': !isSingle }" @click="isExpressSendSingle(true)">
-					单个寄件
+					{{ $t('express_send.express.type.single') }}
 				</view>
 				<view class="card-two-head-item" :class="{ 'card-two-head-item-active': !isSingle, 'card-two-head-item-second': isSingle }" @click="isExpressSendSingle(false)">
-					批量寄件
+					{{ $t('express_send.express.type.multiple') }}
 				</view>
 			</view>
 
@@ -77,10 +77,10 @@
 				<view class="common-form-item common-form-item-nosplit">
 					<view class="form-item-title">
 						<text class="form-must-have">*</text>
-						选择商品
+						{{ $t('express_send.option.goods') }}
 					</view>
 					<view class="form-item-arrow" @click="addGoods">
-						<input class="uni-input form-input-default" type="text" placeholder="添加商品" placeholder-class="form-input-placeholder" disabled />
+						<input class="uni-input form-input-default" type="text" :placeholder="$t('express_send.option.goods.placeholder')" placeholder-class="form-input-placeholder" disabled />
 						<uni-icons class="form-item-arrow-icon form-item-common-icon" type="shop-filled" size="18" color="#A6A6A6"></uni-icons>
 					</view>
 				</view>
@@ -98,7 +98,7 @@
 				<view class="form-number">
 					<view class="form-number-title">
 						<text class="form-must-have">*</text>
-						包裹重量（kg）
+						{{ $t('express_bill.form.weight') }}（kg）
 					</view>
 					<uni-number-box :value="billExpressWeight"></uni-number-box>
 				</view>
@@ -107,28 +107,28 @@
 					<view class="form-volume-top">
 						<view class="form-volume-title">
 							<text class="form-must-have">*</text>
-							包裹体积（m³）
+							{{ $t('express_bill.form.volume') }}（m³）
 						</view>
 						<!-- <view class="form-volume-count">0</view> -->
 						<uni-number-box :disabled="true" :value="billExpressVolume"></uni-number-box>
 					</view>
 					<view class="form-volume-bottom">
 						<view class="form-volume-item">
-							<input class="uni-input form-volume-item-input" type="number" placeholder="长" />
+							<input class="uni-input form-volume-item-input" type="number" :placeholder="$t('express_bill.form.volume.long')" />
 							<text class="form-volume-item-text">
 								CM
 								<uni-icons class="form-volume-item-icon" type="closeempty" size="16" color="#313131"></uni-icons>
 							</text>
 						</view>
 						<view class="form-volume-item">
-							<input class="uni-input form-volume-item-input" type="number" placeholder="宽" />
+							<input class="uni-input form-volume-item-input" type="number" :placeholder="$t('express_bill.form.volume.wide')" />
 							<text class="form-volume-item-text">
 								CM
 								<uni-icons class="form-volume-item-icon" type="closeempty" size="16" color="#313131"></uni-icons>
 							</text>
 						</view>
 						<view class="form-volume-item">
-							<input class="uni-input form-volume-item-input" type="number" placeholder="高" />
+							<input class="uni-input form-volume-item-input" type="number" :placeholder="$t('express_bill.form.volume.high')" />
 							<text class="form-volume-item-text">CM</text>
 						</view>
 					</view>
@@ -138,15 +138,15 @@
 			<view class="card-two-content card-two-content-express" v-if="!isSingle">
 				<view class="express-upload">
 					<view class="express-upload-top">
-						<view class="express-upload-title">模板上传</view>
+						<view class="express-upload-title">{{ $t('express_send.express.multiple.title') }}</view>
 						<view class="express-upload-model" @click="getMultipleImportModel">
 							<uni-icons class="express-upload-model-icon" type="download-filled" size="16" color="#F8BB32"></uni-icons>
-							<text class="express-upload-model-text">下载模板</text>
+							<text class="express-upload-model-text">{{ $t('express_send.express.multiple.download') }}</text>
 						</view>
 					</view>
 					<view class="express-upload-content">
-						<view class="express-upload-btn" @click="multipleImportFile">点击上传</view>
-						<view class="express-upload-tip">仅限于上传小于等于5M的模板excel</view>
+						<view class="express-upload-btn" @click="multipleImportFile">{{ $t('express_send.express.multiple.import') }}</view>
+						<view class="express-upload-tip">{{ $t('express_send.express.multiple.tip') }}</view>
 					</view>
 				</view>
 			</view>
@@ -154,29 +154,29 @@
 
 		<view class="express-note">
 			<view class="common-form-item-note">
-				<view class="common-form-item-note-title">备注</view>
+				<view class="common-form-item-note-title">{{$t('express_send.option.note')}}</view>
 				<view class="common-form-item-note-textaera">
-					<textarea class="form-textarea-default" placeholder="请输入备注信息" placeholder-class="form-input-placeholder" />
+					<textarea class="form-textarea-default" :placeholder="$t('express_send.option.note.placeholder')" placeholder-class="form-input-placeholder" />
 				</view>
 			</view>
 		</view>
 
 		<view class="express-service">
-			<view class="express-service-tip">高价值、易损坏物品建议保价，丢损必赔更安全</view>
+			<view class="express-service-tip">{{$t('express_send.option.insure.tip')}}</view>
 			<view class="common-form-item">
 				<view class="form-item-title">
-					保价
+					{{$t('express_send.option.insure')}}
 					<uni-icons class="form-item-title-icon" type="help" size="18" color="#A6A6A6" @click="showInsureTip"></uni-icons>
 				</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="number" placeholder="请输入保价价格" placeholder-class="form-input-placeholder" />
+					<input class="uni-input form-input-default" type="number" :placeholder="$t('express_send.option.insure.placeholder')" placeholder-class="form-input-placeholder" />
 					<uni-icons class="form-item-arrow-icon form-item-common-icon" type="vip-filled" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
 			<view class="common-form-item">
-				<view class="form-item-title">服务</view>
+				<view class="form-item-title">{{$t('express_send.option.service')}}</view>
 				<view class="form-item-arrow" @click="getExpressService">
-					<input class="uni-input form-input-default" type="text" placeholder="请选择需要的附加服务" placeholder-class="form-input-placeholder" disabled />
+					<input class="uni-input form-input-default" type="text" :placeholder="$t('express_send.option.service.placeholder')" placeholder-class="form-input-placeholder" disabled />
 					<uni-icons class="form-item-arrow-icon" type="right" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
@@ -186,7 +186,7 @@
 			<view class="common-form-item">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					交付方式
+					{{$t('express_send.option.deliver')}}
 					<uni-icons class="form-item-title-icon" type="help" size="18" color="#A6A6A6" @click="showDeliverTip"></uni-icons>
 				</view>
 				<picker @change="bindDeliverPickerChange" :value="deliverIndex" :range="deliverData">
@@ -194,7 +194,7 @@
 						<input
 							class="uni-input form-input-default"
 							type="text"
-							placeholder="请选择交付方式"
+							:placeholder="$t('express_send.option.deliver.placeholder')"
 							placeholder-class="form-input-placeholder"
 							disabled
 							v-model="deliverData[deliverIndex]"
@@ -206,24 +206,24 @@
 			<view class="common-form-item" v-if="deliverIndex === 1">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					快递单号
+					{{$t('express_send.option.express')}}
 				</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="请录入快递单号" placeholder-class="form-input-placeholder" />
+					<input class="uni-input form-input-default" type="text" :placeholder="$t('express_send.option.express.placeholder')" placeholder-class="form-input-placeholder" />
 					<uni-icons class="form-item-arrow-icon" type="scan" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
 			<view class="common-form-item">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					交付门店
+					{{$t('express_send.option.shop')}}
 				</view>
 				<picker @change="bindDeliverShopPickerChange" :value="deliverShopIndex" :range="deliverShopData">
 					<view class="form-item-arrow">
 						<input
 							class="uni-input form-input-default"
 							type="text"
-							placeholder="请选择交付门店"
+							:placeholder="$t('express_send.option.shop.placeholder')"
 							placeholder-class="form-input-placeholder"
 							disabled
 							v-model="deliverShopData[deliverShopIndex]"
@@ -240,33 +240,33 @@
 				<view class="express-send-bottom-bill">
 					<view class="express-send-bottom-bill-info">
 						<view class="express-send-bottom-bill-info-left">
-							<text class="express-send-bottom-bill-title">预估费用</text>
+							<text class="express-send-bottom-bill-title">{{ $t('express_send.bottom.title') }}</text>
 							<text class="express-send-bottom-bill-unit">￥</text>
 							<text class="express-send-bottom-bill-money">999999</text>
 							<text class="express-send-bottom-bill-money-plus">+</text>
 						</view>
 						<view class="express-send-bottom-bill-info-right" @click="getExpressOrderDetail">
-							<text class="express-send-bottom-bill-more">明细</text>
+							<text class="express-send-bottom-bill-more">{{ $t('express_send.bottom.detail') }}</text>
 							<uni-icons class="express-send-bottom-bill-icon" type="info" size="15" color="#313131"></uni-icons>
 						</view>
 					</view>
-					<view class="express-send-bottom-bill-tip">以店员实际审查后录单结果为准</view>
+					<view class="express-send-bottom-bill-tip">{{ $t('express_send.bottom.tip') }}</view>
 				</view>
 				<view class="express-send-bottom-button">
-					<view class="express-send-bottom-button-item express-send-bottom-button-reset" @click="saveExpressOrder">保存</view>
-					<view class="express-send-bottom-button-item express-send-bottom-button-submit" @click="payExpressOrder">下单</view>
+					<view class="express-send-bottom-button-item express-send-bottom-button-reset" @click="saveExpressOrder">{{ $t('express_send.bottom.button.save') }}</view>
+					<view class="express-send-bottom-button-item express-send-bottom-button-submit" @click="payExpressOrder">{{ $t('express_send.bottom.button.submit') }}</view>
 				</view>
 			</view>
 		</view>
 
 		<!-- 商品弹窗 -->
-		<zb-drawer mode="bottom" title="添加商品" :wrapperClosable="false" :visible.sync="isShowDrawerAddGoods" :radius="true" :height="addGoodsDrawerHeight">
-			<view class="express-goods-add" @click="chooseRelativeGoods">添加已关联大数据平台商品</view>
-			<view class="express-goods-add" @click="chooseNewGoods">添加新商品</view>
+		<zb-drawer mode="bottom" :title="$t('express_send.drawer.a.title')" :wrapperClosable="false" :visible.sync="isShowDrawerAddGoods" :radius="true" :height="addGoodsDrawerHeight">
+			<view class="express-goods-add" @click="chooseRelativeGoods">{{ $t('express_send.drawer.a.add.old') }}</view>
+			<view class="express-goods-add" @click="chooseNewGoods">{{ $t('express_send.drawer.a.add.new') }}</view>
 		</zb-drawer>
 
 		<!-- 服务弹窗 -->
-		<zb-drawer mode="bottom" title="服务" :wrapperClosable="false" :visible.sync="isShowDrawerService" :radius="true" :height="serviceDrawerHeight">
+		<zb-drawer mode="bottom" :title="$t('express_send.drawer.b.title')" :wrapperClosable="false" :visible.sync="isShowDrawerService" :radius="true" :height="serviceDrawerHeight">
 			<checkbox-group @change="serviceCheckChange" class="form-radio-default">
 				<view class="express-service-radio">
 					<label class="form-radio-default-label">
@@ -286,25 +286,25 @@
 		</zb-drawer>
 
 		<!-- 明细弹窗 -->
-		<zb-drawer mode="bottom" title="预估费用" :wrapperClosable="false" :visible.sync="isShowDrawerBillDetail" :radius="true" :height="billDetailDrawerHeight">
+		<zb-drawer mode="bottom" :title="$t('express_send.drawer.c.title')" :wrapperClosable="false" :visible.sync="isShowDrawerBillDetail" :radius="true" :height="billDetailDrawerHeight">
 			<view class="express-detail-pay express-detail-pay-red">
-				<text>基础费用</text>
+				<text>{{ $t('express_send.drawer.c.price.base') }}</text>
 				<text>1238953210円</text>
 			</view>
 			<view class="express-detail-pay express-detail-pay-grey">
-				<text>计费费用</text>
+				<text>{{ $t('express_send.drawer.c.price.more') }}</text>
 				<text>10kg</text>
 			</view>
 			<view class="express-detail-pay express-detail-pay-grey express-detail-pay-split">
-				<text>计费规则</text>
-				<text>首重(1.0kg)5000円，续重3000円/kg</text>
+				<text>{{ $t('express_send.drawer.c.price.rule') }}</text>
+				<text>{{ $t('express_send.drawer.c.price.rule.content') }}</text>
 			</view>
 			<view class="express-detail-pay express-detail-pay-more">
-				<text>保价</text>
+				<text>{{ $t('express_send.drawer.c.insure') }}</text>
 				<text>100円</text>
 			</view>
 			<view class="express-detail-pay express-detail-pay-more">
-				<text>服务</text>
+				<text>{{ $t('express_send.drawer.c.service') }}</text>
 				<text>补税1000円、打包费500円、打包费500円</text>
 			</view>
 		</zb-drawer>
@@ -332,7 +332,7 @@ export default {
 		this.isGotAddressSend = JSON.parse(localStorage.getItem('isGotAddressSend'));
 		this.isGotAddressReceive = JSON.parse(localStorage.getItem('isGotAddressReceive'));
 		// #endif
-		
+
 		// 微信端待适配
 		// #ifdef MP-WEIXIN
 		// #endif
@@ -348,7 +348,7 @@ export default {
 			// tab索引
 			tabCurrentIndex: 0,
 			// tab数据
-			tabDataList: ['杂货', '重货', '专线'],
+			tabDataList: [this.$t('express_bill.catagory.sundry.goods'), this.$t('express_bill.catagory.special.line'), this.$t('express_bill.catagory.high.weight')],
 			// 选取地址后的返回信息
 			addressType: '',
 			isGotAddressReceive: false,
@@ -378,16 +378,15 @@ export default {
 	},
 	methods: {
 		goBack() {
-			
 			// #ifdef H5
 			localStorage.setItem('isGotAddressSend', 'false');
 			localStorage.setItem('isGotAddressReceive', 'false');
 			// #endif
-			
+
 			// 微信端待适配
 			// #ifdef MP-WEIXIN
 			// #endif
-			
+
 			uni.redirectTo({
 				url: '/pages/index/index'
 			});
@@ -398,9 +397,11 @@ export default {
 				url: `/pages/express/express_address?addressType=${type}`
 			});
 			// #endif
+
+			// 微信端待适配
 			// #ifdef MP-WEIXIN
-			this.showTestToast(0);
 			console.log('微信暂不支持模拟选择地址');
+			this.showTestToast(0);
 			// #endif
 		},
 		isExpressSendSingle(val) {
@@ -449,13 +450,12 @@ export default {
 		},
 		getMultipleImportModel() {
 			uni.showToast({
-				title: '暂无提供模板文件下载，敬请期待！',
+				title: '暂无模板文件提供下载，敬请期待！',
 				icon: 'none',
 				duration: 1998
 			});
 		},
 		multipleImportFile() {
-			
 			// #ifdef H5
 			uni.chooseFile({
 				count: 1,
@@ -480,7 +480,7 @@ export default {
 				}
 			});
 			// #endif
-			
+
 			// #ifdef MP-WEIXIN
 			// 官方文档地址：https://developers.weixin.qq.com/miniprogram/dev/api/media/image/wx.chooseMessageFile.html
 			wx.chooseMessageFile({
