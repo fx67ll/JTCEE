@@ -11,7 +11,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">{{ useType === '1' ? '添加商品' : '修改商品' }}</view>
+				<view class="top-nav-title">{{ useType === '1' ? $t('goods_add.title.add') : $t('goods_add.title.edit') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake"></view>
@@ -23,7 +23,7 @@
 				fileMediatype="image"
 				mode="grid"
 				limit="9"
-				title="商品图片"
+				:title="$t('goods_add.option.image')"
 				@select="imgUploadSelect"
 				@progress="imgUploadProgress"
 				@success="imgUploadsSuccess"
@@ -37,57 +37,57 @@
 			<view class="common-form-item">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					商品价值
+					{{ $t('goods_add.option.value') }}
 				</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="number" placeholder="请输入商品价值" placeholder-class="form-input-placeholder" />
+					<input class="uni-input form-input-default" type="number" :placeholder="$t('goods_add.option.value.placeholder')" placeholder-class="form-input-placeholder" />
 					<uni-icons class="form-item-arrow-icon" type="vip" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
 			<view class="common-form-item-note">
 				<view class="common-form-item-note-title-high">
 					<text class="form-must-have">*</text>
-					商品标题
+					{{ $t('goods_add.option.title') }}
 				</view>
 				<view class="common-form-item-note-textaera">
-					<textarea class="form-textarea-default" placeholder="请输入商品标题" placeholder-class="form-input-placeholder" />
+					<textarea class="form-textarea-default" :placeholder="$t('goods_add.option.title.placeholder')" placeholder-class="form-input-placeholder" />
 				</view>
 			</view>
 		</view>
 
 		<view class="goods-card">
 			<view class="common-form-item">
-				<view class="form-item-title">商品品牌</view>
+				<view class="form-item-title">{{ $t('goods_add.option.brand') }}</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="请输入商品品牌" placeholder-class="form-input-placeholder" />
+					<input class="uni-input form-input-default" type="text" :placeholder="$t('goods_add.option.brand.placeholder')" placeholder-class="form-input-placeholder" />
 					<uni-icons class="form-item-arrow-icon" type="medal" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
 			<view class="common-form-item">
-				<view class="form-item-title">商品产地</view>
+				<view class="form-item-title">{{ $t('goods_add.option.address') }}</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="请输入商品产地" placeholder-class="form-input-placeholder" />
+					<input class="uni-input form-input-default" type="text" :placeholder="$t('goods_add.option.address.placeholder')" placeholder-class="form-input-placeholder" />
 					<uni-icons class="form-item-arrow-icon" type="location" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
 			<view class="common-form-item" @click="getGoodsType">
-				<view class="form-item-title">商品分类</view>
+				<view class="form-item-title">{{ $t('goods_add.option.catagory') }}</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" placeholder="请选择商品分类" placeholder-class="form-input-placeholder" />
+					<input class="uni-input form-input-default" type="text" :placeholder="$t('goods_add.option.catagory.placeholder')" placeholder-class="form-input-placeholder" />
 					<uni-icons class="form-item-arrow-icon" type="right" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
 			<view class="common-form-item-note">
-				<view class="common-form-item-note-title-high">商品简介</view>
+				<view class="common-form-item-note-title-high">{{ $t('goods_add.option.desc') }}</view>
 				<view class="common-form-item-note-textaera">
-					<textarea class="form-textarea-default" placeholder="请输入商品简介" placeholder-class="form-input-placeholder" />
+					<textarea class="form-textarea-default" :placeholder="$t('goods_add.option.desc.placeholder')" placeholder-class="form-input-placeholder" />
 				</view>
 			</view>
 		</view>
 
 		<view class="goods-card">
 			<view class="common-form-item">
-				<text class="form-item-title">是否保存到我的商品</text>
+				<text class="form-item-title">{{ $t('goods_add.option.is.save.my.goods') }}</text>
 				<switch class="form-switch-default" :checked="saveMyGoodsSetting" color="#5BC797" @change="saveMyGoodsSwitchChange" />
 			</view>
 		</view>
@@ -97,9 +97,9 @@
 			<view class="drawer-add">
 				<view class="drawer-add-scan" @click="scanGoods">
 					<uni-icons class="drawer-add-scan-icon" type="scan" size="24" color="#BFBFBF"></uni-icons>
-					<text>扫码自动填入商品信息</text>
+					<text>{{ $t('goods_add.button.scan') }}</text>
 				</view>
-				<view class="drawer-add-submit" @click="submitAdd">添加</view>
+				<view class="drawer-add-submit" @click="submitAdd">{{ $t('goods_add.button.add') }}</view>
 			</view>
 		</view>
 

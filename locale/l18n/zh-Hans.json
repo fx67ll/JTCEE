@@ -307,7 +307,28 @@
 	"goods_detail.content.catagory": "商品分类",
 	"goods_detail.content.desc": "商品简介",
 	
-	"goods_add": "待处理",
-	"goods_choose": "待处理",
+	"goods_add.title.add": "添加商品",
+	"goods_add.title.edit": "修改商品",
+	"goods_add.option.image": "商品图片",
+	"goods_add.option.value": "商品价值",
+	"goods_add.option.value.placeholder": "请输入商品价值",
+	"goods_add.option.title": "商品标题",
+	"goods_add.option.title.placeholder": "请输入商品标题",
+	"goods_add.option.brand": "商品品牌",
+	"goods_add.option.brand.placeholder": "请输入商品品牌",
+	"goods_add.option.address": "商品产地",
+	"goods_add.option.address.placeholder": "请输入商品产地",
+	"goods_add.option.catagory": "商品分类",
+	"goods_add.option.catagory.placeholder": "请选择商品分类",
+	"goods_add.option.desc": "商品简介",
+	"goods_add.option.desc.placeholder": "请输入商品简介",
+	"goods_add.option.is.save.my.goods": "是否保存到我的商品",
+	"goods_add.button.scan": "扫码自动填入商品信息",
+	"goods_add.button.add": "添加",
+	
+	"goods_choose.title": "选择商品",
+	
+	
+	
 	"goods_catagory": "待处理"
 }
