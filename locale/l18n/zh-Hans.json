@@ -299,7 +299,14 @@
 	"goods_index.goods.button.delete": "删除",
 	"goods_index.goods.button.finish": "完成",
 	
-	"goods_detail": "待处理",
+	"goods_detail.title": "商品详情",
+	"goods_detail.content.title": "详情",
+	"goods_detail.content.info": "规格参数",
+	"goods_detail.content.brand": "商品品牌",
+	"goods_detail.content.address": "商品产地",
+	"goods_detail.content.catagory": "商品分类",
+	"goods_detail.content.desc": "商品简介",
+	
 	"goods_add": "待处理",
 	"goods_choose": "待处理",
 	"goods_catagory": "待处理"

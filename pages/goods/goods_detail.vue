@@ -11,7 +11,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">商品详情</view>
+				<view class="top-nav-title">{{ $t('goods_detail.title') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake"></view>
@@ -48,36 +48,36 @@
 				999999
 			</view>
 			<view class="goods-status">
-				<text class="goods-status-text goods-status-orange" v-if="1 !== 1">未同步</text>
-				<text class="goods-status-text goods-status-green">已同步</text>
+				<text class="goods-status-text goods-status-orange" v-if="1 !== 1">{{ $t('goods_index.goods.status.no') }}</text>
+				<text class="goods-status-text goods-status-green">{{ $t('goods_index.goods.status.yes') }}</text>
 			</view>
 			<view class="goods-title">任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有</view>
 		</view>
 		<view class="goods-content">
-			<view class="goods-content-title">详情</view>
+			<view class="goods-content-title">{{ $t('goods_detail.content.title') }}</view>
 			<view class="goods-content-title-second">
 				<uni-icons class="goods-content-title-icon" type="shop" size="16" color="#242424" @click="goBack"></uni-icons>
-				规格参数
+				{{ $t('goods_detail.content.info') }}
 			</view>
 			<view class="goods-content-info">
 				<uni-table border emptyText="暂无更多数据">
 					<uni-tr>
-						<uni-td class="goods-content-info-td goods-content-info-th">商品品牌</uni-td>
+						<uni-td class="goods-content-info-td goods-content-info-th">{{ $t('goods_detail.content.brand') }}</uni-td>
 						<uni-td class="goods-content-info-td goods-content-info-tr">任天堂 Nintendo</uni-td>
 					</uni-tr>
 					<uni-tr>
-						<uni-td class="goods-content-info-td goods-content-info-th">商品产地</uni-td>
+						<uni-td class="goods-content-info-td goods-content-info-th">{{ $t('goods_detail.content.address') }}</uni-td>
 						<uni-td class="goods-content-info-td goods-content-info-tr">日本</uni-td>
 					</uni-tr>
 					<uni-tr>
-						<uni-td class="goods-content-info-td goods-content-info-th">商品分类</uni-td>
+						<uni-td class="goods-content-info-td goods-content-info-th">{{ $t('goods_detail.content.catagory') }}</uni-td>
 						<uni-td class="goods-content-info-td goods-content-info-tr">游戏掌机</uni-td>
 					</uni-tr>
 				</uni-table>
 			</view>
 			<view class="goods-content-title-second">
 				<uni-icons class="goods-content-title-icon" type="map" size="16" color="#242424" @click="goBack"></uni-icons>
-				商品简介
+				{{ $t('goods_detail.content.desc') }}
 			</view>
 			<view class="goods-content-desc">
 				任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有
