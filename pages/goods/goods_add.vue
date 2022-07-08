@@ -11,7 +11,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">添加商品</view>
+				<view class="top-nav-title">{{ useType === '1' ? '添加商品' : '修改商品' }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake"></view>
@@ -137,6 +137,7 @@ export default {
 			this.fromType = option.fromType;
 		}
 		this.addType = option.addType;
+		this.useType = option.useType;
 	},
 	data() {
 		return {
@@ -144,9 +145,11 @@ export default {
 			clientHeight: 'auto',
 			// 状态栏高度，用于微信小程序适配
 			statusBarHeight: 0,
-			// 上一个页面的进入记录
+			// 当前页面用途，1.添加商品 2.修改商品
+			useType: '1',
+			// 上一个页面的返回类型，参考上一个页面说明
 			fromType: '1',
-			// 从什么地方进入的商品添加
+			// 从什么地方进入的商品添加，1.寄件 2.包裹预报 3.商品管理
 			addType: '1',
 			// 是否保存到我的商品
 			saveMyGoodsSetting: true
