@@ -49,13 +49,15 @@
 				"goods_index",
 				"goods_add",
 				"goods_catagory",
-				"goods_detail"
+				"goods_detail",
+				"goods_choose"
 			]
 		}, {
 			"root": "pages/package",
 			"pages": [
 				"package_index",
-				"package_add"
+				"package_add",
+				"package_detail"
 			]
 		}
 	],
