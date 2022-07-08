@@ -10,7 +10,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">{{ useType === '1' ? '新建地址' : '修改地址' }}</view>
+				<view class="top-nav-title">{{ useType === '1' ? $t('address_add.title.add') : $t('address_add.title.edit') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake"></view>
@@ -19,80 +19,111 @@
 		<view class="card-two" :class="{ 'card-two-long': !isCN }">
 			<view class="card-two-head">
 				<view class="card-two-head-item" :class="{ 'card-two-head-item-active': isCN, 'card-two-head-item-first': !isCN }" @click="isChinaAddress(true)">
-					国内
+					{{ $t('address_add.title.cn') }}
 				</view>
 				<view class="card-two-head-item" :class="{ 'card-two-head-item-active': !isCN, 'card-two-head-item-second': isCN }" @click="isChinaAddress(false)">
-					日本
+					{{ $t('address_add.title.jp') }}
 				</view>
 			</view>
 			<view class="card-two-content">
 				<view class="common-form-item">
-					<view class="form-item-title">姓名</view>
-					<input class="uni-input form-input-default" type="text" placeholder="请输入姓名" placeholder-class="form-input-placeholder" />
-				</view>
-				<view class="common-form-item" v-if="isCN">
-					<view class="form-item-title">电话</view>
-					<input class="uni-input form-input-default" type="number" placeholder="请输入电话" placeholder-class="form-input-placeholder" />
-				</view>
-				<view class="common-form-item" v-if="!isCN">
-					<view class="form-item-title">手机号码</view>
-					<input class="uni-input form-input-default" type="number" placeholder="请输入手机号码" placeholder-class="form-input-placeholder" />
-				</view>
-				<view class="common-form-item" v-if="isCN">
-					<view class="form-item-title">城市/区域</view>
+					<view class="form-item-title">{{ $t('address_add.option.name.cn') }}</view>
 					<input
 						class="uni-input form-input-default"
 						type="text"
-						placeholder="请选择城市/区域"
+						:placeholder="$t('address_add.option.name.placeholder.cn')"
+						placeholder-class="form-input-placeholder"
+					/>
+				</view>
+				<view class="common-form-item" v-if="isCN">
+					<view class="form-item-title">{{ $t('address_add.option.phone.cn') }}</view>
+					<input
+						class="uni-input form-input-default"
+						type="number"
+						:placeholder="$t('address_add.option.phone.placeholder.cn')"
+						placeholder-class="form-input-placeholder"
+					/>
+				</view>
+				<view class="common-form-item" v-if="!isCN">
+					<view class="form-item-title">{{ $t('address_add.option.phone.jp') }}</view>
+					<input
+						class="uni-input form-input-default"
+						type="number"
+						:placeholder="$t('address_add.option.phone.placeholder.jp')"
+						placeholder-class="form-input-placeholder"
+					/>
+				</view>
+				<view class="common-form-item" v-if="isCN">
+					<view class="form-item-title">{{ $t('address_add.option.city.cn') }}</view>
+					<input
+						class="uni-input form-input-default"
+						type="text"
+						:placeholder="$t('address_add.option.city.placeholder.cn')"
 						placeholder-class="form-input-placeholder"
 						:disabled="true"
 						:value="addressCityCN"
 						@click="getAddressCityCN"
 					/>
-					<zb-drawer mode="bottom" title="选择城市/地区" :wrapperClosable="false" :visible.sync="isShowDrawer" :radius="true" :height="drawerHeight">
+					<zb-drawer
+						mode="bottom"
+						:title="$t('address_add.option.city.drawer.title.cn')"
+						:wrapperClosable="false"
+						:visible.sync="isShowDrawerCN"
+						:radius="true"
+						:height="drawerHeightCN"
+					>
 						<t-index-address @select="selectCity"></t-index-address>
 					</zb-drawer>
 				</view>
 				<view class="common-form-item" v-if="!isCN">
-					<view class="form-item-title">县市/区域</view>
+					<view class="form-item-title">{{ $t('address_add.option.city.jp') }}</view>
 					<input
 						class="uni-input form-input-default"
 						type="text"
-						placeholder="请选择县市/区域"
+						:placeholder="$t('address_add.option.city.placeholder.jp')"
 						placeholder-class="form-input-placeholder"
 						:disabled="true"
 						:value="addressCityJP"
 						@click="getAddressCityJP"
 					/>
+					<!-- 日本地区数据待匹配 -->
+					<!-- <zb-drawer mode="bottom" :title="$t('address_add.option.city.drawer.title.jp')" :wrapperClosable="false" :visible.sync="isShowDrawerJP" :radius="true" :height="drawerHeightJP">
+						<t-index-address @select="selectCity"></t-index-address>
+					</zb-drawer> -->
 				</view>
 				<view class="common-form-item">
-					<view class="form-item-title">邮编</view>
-					<input class="uni-input form-input-default" type="text" placeholder="请输入邮编" placeholder-class="form-input-placeholder" />
+					<view class="form-item-title">{{ $t('address_add.option.mail.cn') }}</view>
+					<input
+						class="uni-input form-input-default"
+						type="text"
+						:placeholder="$t('address_add.option.mail.placeholder.cn')"
+						placeholder-class="form-input-placeholder"
+					/>
 				</view>
 				<view class="common-form-item-big">
-					<view class="common-form-item-big-title">详细地址</view>
+					<view class="common-form-item-big-title">{{ $t('address_add.option.address.cn') }}</view>
 					<view class="common-form-item-big-textaera">
-						<textarea class="form-textarea-default" placeholder="请输入详细地址（精确到门牌号）" placeholder-class="form-input-placeholder" />
+						<textarea class="form-textarea-default" :placeholder="$t('address_add.option.address.placeholder')" placeholder-class="form-input-placeholder" />
 					</view>
 				</view>
 			</view>
 		</view>
 		<view class="address-id">
 			<view class="common-form-item">
-				<view class="form-item-title">身份证号码</view>
+				<view class="form-item-title">{{ $t('address_add.option.id') }}</view>
 				<!-- #ifdef H5 -->
-				<input class="uni-input form-input-default" type="text" placeholder="请输入身份证号码" placeholder-class="form-input-placeholder" />
+				<input class="uni-input form-input-default" type="text" :placeholder="$t('address_add.option.id.placeholder')" placeholder-class="form-input-placeholder" />
 				<!-- #endif -->
 				<!-- #ifdef MP-WEIXIN -->
-				<input class="uni-input form-input-default" type="idcard" placeholder="身份证号码" placeholder-class="form-input-placeholder" />
+				<input class="uni-input form-input-default" type="idcard" :placeholder="$t('address_add.option.id.placeholder')" placeholder-class="form-input-placeholder" />
 				<!-- #endif -->
 			</view>
 			<view class="common-form-item-big">
-				<view class="common-form-item-big-title">上传身份证照片</view>
+				<view class="common-form-item-big-title">{{ $t('address_add.option.id.import') }}</view>
 				<view class="common-form-item-big-import">
 					<view class="common-form-item-big-import-box" @click="importIdImg(1)" v-if="idImgArrFront.length === 0">
 						<img class="common-form-item-big-import-img" src="/static/img/address/address-import-id.png" />
-						<text class="common-form-item-big-import-text">身份证正面</text>
+						<text class="common-form-item-big-import-text">{{ $t('address_add.option.id.import.front') }}</text>
 					</view>
 					<view class="common-form-item-big-import-box" v-if="idImgArrFront.length > 0">
 						<uni-icons class="common-form-item-big-result-icon" type="trash" size="24" color="#BFBFBF" @click="deleteImportImg(1)"></uni-icons>
@@ -100,7 +131,7 @@
 					</view>
 					<view class="common-form-item-big-import-box" @click="importIdImg(2)" v-if="idImgArrBack.length === 0">
 						<img class="common-form-item-big-import-img" src="/static/img/address/address-import-id.png" />
-						<text class="common-form-item-big-import-text">身份证反面</text>
+						<text class="common-form-item-big-import-text">{{ $t('address_add.option.id.import.back') }}</text>
 					</view>
 					<view class="common-form-item-big-import-box" v-if="idImgArrBack.length > 0">
 						<uni-icons class="common-form-item-big-result-icon" type="trash" size="24" color="#BFBFBF" @click="deleteImportImg(2)"></uni-icons>
@@ -111,29 +142,31 @@
 		</view>
 		<view class="address-default">
 			<view class="common-form-item">
-				<text class="form-item-title">地址类别</text>
+				<text class="form-item-title">{{ $t('address_add.option.address.type') }}</text>
 				<radio-group @change="addressRadioChange" class="form-radio-default">
 					<label class="form-radio-default-label">
 						<radio value="addressRadioTypeGet" checked="true" color="#5BC797" />
-						收件人
+						{{ $t('address_add.option.address.type.get') }}
 					</label>
 					<label class="form-radio-default-label">
 						<radio value="addressRadioTypeSend" checked="false" color="#5BC797" />
-						寄件人
+						{{ $t('address_add.option.address.type.send') }}
 					</label>
 				</radio-group>
 			</view>
 			<view class="address-default-box">
 				<view class="address-default-left">
-					<view class="address-default-title">设置默认地址</view>
-					<view class="address-default-tip">提示：会优先使用该地址</view>
+					<view class="address-default-title">{{ $t('address_add.option.default.address') }}</view>
+					<view class="address-default-tip">{{ $t('address_add.option.default.address.tip') }}</view>
 				</view>
 				<switch class="form-switch-default address-default-switch" :checked="defaultSetting" color="#5BC797" @change="defaultSwitchChange" />
 			</view>
 		</view>
 		<view class="bottom-gap bottom-gap-address bottom-gap-address-default"></view>
 		<view class="bottom-menu bottom-menu-address">
-			<view class="bottom-menu-btn" @click="saveAddresss"><text class="bottom-menu-btn-text bottom-menu-btn-text-save">保存</text></view>
+			<view class="bottom-menu-btn" @click="saveAddresss">
+				<text class="bottom-menu-btn-text bottom-menu-btn-text-save">{{ $t('address_add.button.save') }}</text>
+			</view>
 		</view>
 	</view>
 </template>
@@ -161,10 +194,14 @@ export default {
 			useType: '1',
 			// 国内地址或者日本地址
 			isCN: true,
-			// 是否显示筛选框
-			isShowDrawer: false,
-			// 筛选框高度
-			drawerHeight: '80%',
+			// 是否显示CN筛选框
+			isShowDrawerCN: false,
+			// CN筛选框高度
+			drawerHeightCN: '80%',
+			// 是否显示JP筛选框
+			isShowDrawerJP: false,
+			// JP筛选框高度
+			drawerHeightJP: '80%',
 			// 中日地区
 			addressCityCN: '',
 			addressCityJP: '',
@@ -185,7 +222,7 @@ export default {
 			this.isCN = val;
 		},
 		getAddressCityCN() {
-			this.isShowDrawer = true;
+			this.isShowDrawerCN = true;
 		},
 		getAddressCityJP() {
 			uni.showToast({
@@ -197,7 +234,7 @@ export default {
 		selectCity(data) {
 			console.log('当前选中的城市数据：' + JSON.stringify(data));
 			this.addressCityCN = data.name;
-			this.isShowDrawer = false;
+			this.isShowDrawerCN = false;
 		},
 		importIdImg(type) {
 			let self = this;
@@ -229,13 +266,13 @@ export default {
 
 					if (type === 1) {
 						uni.showToast({
-							title: '身份证正面上传功能异常，请联系管理员！',
+							title: self.$t('address_add.option.id.import.front.tip.error'),
 							icon: 'none',
 							duration: 5000
 						});
 					} else {
 						uni.showToast({
-							title: '身份证反面上传功能异常，请联系管理员！',
+							title: self.$t('address_add.option.id.import.back.tip.error'),
 							icon: 'none',
 							duration: 5000
 						});
@@ -248,14 +285,17 @@ export default {
 			});
 			// #endif
 
+			// 微信端待适配
 			// #ifdef MP-WEIXIN
 			// #endif
 		},
 		deleteImportImg(type) {
 			let self = this;
 			uni.showModal({
-				title: '提示',
-				content: `确定删除身份证${type === 1 ? '正面' : '反面'}照片吗`,
+				title: self.$t('address_add.option.id.import.modal.title'),
+				content: `${self.$t('address_add.option.id.import.modal.text.a')}${
+					type === 1 ? self.$t('address_add.option.id.import.modal.text.b') : self.$t('address_add.option.id.import.modal.text.c')
+				}${self.$t('address_add.option.id.import.modal.text.d')}`,
 				success: function(res) {
 					if (res.confirm) {
 						console.log('用户点击确定');

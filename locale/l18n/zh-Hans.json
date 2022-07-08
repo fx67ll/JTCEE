@@ -8,6 +8,7 @@
 
 	"pull.refresh.loading": "加载中...",
 	"pull.refresh.nomore": "没有更多数据了!",
+	"pull.refresh.loading.init": "加载中...",
 
 	"popup.warning.title": "系统警告",
 	"popup.warning.content": "出现未知错误，请联系管理员！",
@@ -81,7 +82,10 @@
 	"express_bill.catagory.high.weight": "重货",
 	"express_bill.catagory.type": "特惠寄",
 	"express_bill.catagory.info": "首重(1.0kg)180円，续重100円/kg",
+	"express_bill.catagory.unit": "円",
+	"express_bill.catagory.unit.text": "起",
 	"express_bill.catagory.more": "运费计费说明",
+	"express_bill.picker.placeholder": "待选择",
 
 	"bottom_menu.home": "首页",
 	"bottom_menu.user": "我的",
@@ -113,11 +117,51 @@
 	"address_index.setting.default.delete": "删除",
 	"address_index.card.default.address": "默认地址",
 	"address_index.button.add.address": "新建地址",
-
-	"address_add": "待处理",
-	"help_service": "待处理",
+	
+	"address_add.title.add": "新建地址",
+	"address_add.title.edit": "修改地址",
+	"address_add.title.cn": "国内",
+	"address_add.title.jp": "日本",
+	"address_add.option.name.cn": "姓名",
+	"address_add.option.name.placeholder.cn": "请输入姓名",
+	"address_add.option.phone.cn": "电话",
+	"address_add.option.phone.placeholder.cn": "请输入电话",
+	"address_add.option.phone.jp": "手机号码",
+	"address_add.option.phone.placeholder.jp": "请输入手机号码",
+	"address_add.option.city.cn": "城市/区域",
+	"address_add.option.city.placeholder.cn": "请选择城市/区域",
+	"address_add.option.city.drawer.title.cn": "选择城市",
+	"address_add.option.city.jp": "县市/区域",
+	"address_add.option.city.placeholder.jp": "请选择县市/区域",
+	"address_add.option.city.drawer.title.jp": "选择县市",
+	"address_add.option.mail.cn": "邮编",
+	"address_add.option.mail.placeholder.cn": "请输入邮编",
+	"address_add.option.address.cn": "详细地址",
+	"address_add.option.address.placeholder": "请输入详细地址（精确到门牌号）",
+	"address_add.option.id": "身份证号码",
+	"address_add.option.id.placeholder": "请输入身份证号码",
+	"address_add.option.id.import": "上传身份证照片",
+	"address_add.option.id.import.front": "身份证正面",
+	"address_add.option.id.import.back": "身份证反面",
+	"address_add.option.id.import.front.tip.error": "身份证正面上传功能异常，请联系管理员！",
+	"address_add.option.id.import.back.tip.error": "身份证反面上传功能异常，请联系管理员！",
+	"address_add.option.id.import.modal.title": "提示",
+	"address_add.option.id.import.modal.text.a": "确定删除身份证",
+	"address_add.option.id.import.modal.text.b": "正面",
+	"address_add.option.id.import.modal.text.c": "反面",
+	"address_add.option.id.import.modal.text.d": "照片吗",
+	"address_add.option.address.type": "地址类别",
+	"address_add.option.address.type.get": "收件人",
+	"address_add.option.address.type.send": "寄件人",
+	"address_add.option.default.address": "设置默认地址",
+	"address_add.option.default.address.tip": "提示：会优先使用该地址",
+	"address_add.button.save": "保存",
+	
+	"help_service.title": "联络客服",
 
 	"invoice_index": "待处理",
+	
+	
 	"invoice_detail": "待处理",
 	"invoice_qr": "待处理",
 
@@ -129,5 +173,9 @@
 	"package_index": "待处理",
 	"package_detail": "待处理",
 
-	"goods_index": "待处理"
+	"goods_index": "待处理",
+	"goods_detail": "待处理",
+	"goods_add": "待处理",
+	"goods_choose": "待处理",
+	"goods_catagory": "待处理"
 }
