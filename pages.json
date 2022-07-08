@@ -64,6 +64,13 @@
 				"navigationStyle": "custom"
 			}
 		},
+		// 扫码
+		{
+			"path": "pages/index/scan_qr",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
 		// 我的
 		{
 			"path": "pages/user/user_index",

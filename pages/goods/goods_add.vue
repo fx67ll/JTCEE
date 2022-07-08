@@ -201,7 +201,12 @@ export default {
 			console.log('saveMyGoodsSwitch 发生 change 事件，携带值为', e.detail.value);
 		},
 		scanGoods() {
-			this.showTestToast(0);
+			let useType = this.useType;
+			let fromType = this.fromType;
+			let addType = this.addType;
+			uni.navigateTo({
+				url: `/pages/index/scan_qr?scanType=2&useType=${useType}&fromType=${fromType}&addType=${addType}`
+			});
 		},
 		submitAdd() {
 			this.showTestToast(0);

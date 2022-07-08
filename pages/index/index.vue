@@ -109,7 +109,7 @@
 				<view class="index-beta-item-img"><img src="/static/img/index/express-get.png" /></view>
 				<view class="index-beta-item-text">{{ $t('index.beta.get') }}</view>
 			</view>
-			<view class="index-beta-item" @click="openDialogTest">
+			<view class="index-beta-item" @click="goScanQR">
 				<view class="index-beta-item-img"><img src="/static/img/index/express-scan.png" /></view>
 				<view class="index-beta-item-text">{{ $t('index.beta.scan') }}</view>
 			</view>
@@ -191,6 +191,11 @@ export default {
 		goPackageAdd() {
 			uni.navigateTo({
 				url: '/pages/package/package_add?fromType=1&useType=1'
+			});
+		},
+		goScanQR() {
+			uni.navigateTo({
+				url: '/pages/index/scan_qr?scanType=1'
 			});
 		}
 	}
