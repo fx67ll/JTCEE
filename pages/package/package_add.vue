@@ -11,7 +11,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">包裹预报</view>
+				<view class="top-nav-title">{{ useType === '1' ? '包裹预报' : '编辑包裹' }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake"></view>
@@ -112,6 +112,7 @@
 							<!-- #ifdef H5 -->
 							<checkbox value="packRadio" checked="true" color="#ffffff" />
 							<!-- #endif -->
+							<!-- 微信暂不支持修改样式，所以暂时单独独立出 -->
 							<!-- #ifdef MP-WEIXIN -->
 							<checkbox value="packRadio" checked="true" />
 							<!-- #endif -->
@@ -180,6 +181,7 @@ export default {
 	},
 	onLoad(option) {
 		this.fromType = option.fromType;
+		this.useType = option.useType;
 	},
 	data() {
 		return {
@@ -187,6 +189,8 @@ export default {
 			clientHeight: 'auto',
 			// 状态栏高度，用于微信小程序适配
 			statusBarHeight: 0,
+			// 当前页面用途
+			useType: '1',
 			// 从首页还是包裹管理
 			fromType: '1',
 			// 商品数据
@@ -237,7 +241,7 @@ export default {
 			this.isShowDrawerAddGoods = false;
 			let fromType = this.fromType;
 			uni.navigateTo({
-				url: `/pages/goods/goods_add?addType=2&fromType=${fromType}`
+				url: `/pages/goods/goods_add?addType=2&fromType=${fromType}&useType=1`
 			});
 		},
 		bindDeliverPickerChange(e) {
