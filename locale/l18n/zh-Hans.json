@@ -117,7 +117,7 @@
 	"address_index.setting.default.delete": "删除",
 	"address_index.card.default.address": "默认地址",
 	"address_index.button.add.address": "新建地址",
-	
+
 	"address_add.title.add": "新建地址",
 	"address_add.title.edit": "修改地址",
 	"address_add.title.cn": "国内",
@@ -156,7 +156,7 @@
 	"address_add.option.default.address": "设置默认地址",
 	"address_add.option.default.address.tip": "提示：会优先使用该地址",
 	"address_add.button.save": "保存",
-	
+
 	"help_service.title": "联络客服",
 
 	"invoice_index.title": "运单管理",
@@ -187,9 +187,22 @@
 	"invoice_index.card.button.b": "删除",
 	"invoice_index.card.button.c": "取消寄件",
 	"invoice_index.card.button.d": "立即支付",
-	
-	"invoice_detail": "待处理",
-	"invoice_qr": "待处理",
+
+	"invoice_detail.title": "运单状态",
+	"invoice_detail.id": "面单号",
+	"invoice_detail.detail": "电子存根",
+	"invoice_detail.time": "签收时间",
+
+	"invoice_qr.title": "运单详情",
+	"invoice_qr.id": "订单号",
+	"invoice_qr.shop.name": "门店名称",
+	"invoice_qr.shop.address": "门店地址",
+	"invoice_qr.shop.phone": "门店电话",
+	"invoice_qr.package.info": "包裹信息",
+	"invoice_qr.package.weight": "包裹重量",
+	"invoice_qr.package.volume": "包裹体积",
+	"invoice_qr.package.insure": "保价",
+	"invoice_qr.package.service": "服务",
 
 	"express_send": "待处理",
 	"express_address": "待处理",

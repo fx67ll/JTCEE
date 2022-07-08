@@ -11,7 +11,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">运单状态</view>
+				<view class="top-nav-title">{{ $t('invoice_detail.title') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake"></view>
@@ -20,12 +20,12 @@
 		<view class="invoice-detail-card">
 			<view class="invoice-item-top">
 				<view class="invoice-item-order-id invoice-item-order-green">
-					<text class="invoice-item-order-type">面单号：</text>
+					<text class="invoice-item-order-type">{{ $t('invoice_detail.id') }}：</text>
 					<text class="invoice-item-order-number">ST232354565</text>
 					<img class="invoice-item-order-copy" src="/static/img/invoice/invoice-copy.png" @click="getOrderId('ST232354565')" />
 				</view>
 				<view class="invoice-item-order-detail" @click="getOrderQr">
-					电子存根
+					{{ $t('invoice_detail.detail') }}
 					<uni-icons class="invoice-item-order-detail-icon" type="right" size="16" color="#ffffff"></uni-icons>
 				</view>
 			</view>
@@ -33,7 +33,7 @@
 				<view class="invoice-detail-status">
 					<view class="invoice-detail-status-text">已签收</view>
 					<view class="invoice-detail-status-time">
-						<text>签收时间：</text>
+						<text>{{ $t('invoice_detail.time') }}：</text>
 						<text>2022-06-18 16:16</text>
 					</view>
 				</view>

@@ -11,7 +11,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">运单详情</view>
+				<view class="top-nav-title">{{ $t('invoice_qr.title') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake"></view>
@@ -19,7 +19,7 @@
 		</view>
 		<view class="invoice-qr-card">
 			<view class="invoice-qr-card-top">
-				<text>订单号：</text>
+				<text>{{ $t('invoice_qr.id') }}：</text>
 				<text>ST232354565</text>
 				<img class="invoice-qr-copy" src="/static/img/invoice/invoice-copy-qr.png" @click="getOrderId('ST232354565')" />
 			</view>
@@ -27,22 +27,22 @@
 				<view class="invoice-qr-img"><img src="./img/invoice-qr-temp.png" /></view>
 				<view class="invoice-qr-shop">
 					<view class="invoice-qr-shop-item">
-						<text>门店名称：</text>
+						<text>{{ $t('invoice_qr.shop.name') }}：</text>
 						<text>东京港区虎之门新城711</text>
 					</view>
 					<view class="invoice-qr-shop-item">
-						<text>门店地址：</text>
+						<text>{{ $t('invoice_qr.shop.address') }}：</text>
 						<text>港区ホームページへようこそ，東京都港区ホームページです</text>
 					</view>
 					<view class="invoice-qr-shop-item">
-						<text>门店电话：</text>
+						<text>{{ $t('invoice_qr.shop.phone') }}：</text>
 						<text>18866661111</text>
 					</view>
 				</view>
 			</view>
 		</view>
 		<view class="invoice-qr-package">
-			<view class="invoice-qr-package-title">包裹信息</view>
+			<view class="invoice-qr-package-title">{{ $t('invoice_qr.package.info') }}</view>
 			<view class="invoice-qr-package-goods">
 				<view class="invoice-qr-goods-item" v-for="(num, index) in listData" :key="index">
 					<img src="/static/img/user/user-head.png" />
@@ -51,19 +51,19 @@
 			</view>
 			<view class="invoice-qr-package-info">
 				<view class="invoice-qr-package-item">
-					<text>包裹重量</text>
+					<text>{{ $t('invoice_qr.package.weight') }}</text>
 					<text>10kg</text>
 				</view>
 				<view class="invoice-qr-package-item">
-					<text>包裹体积</text>
+					<text>{{ $t('invoice_qr.package.volume') }}</text>
 					<text>0m³</text>
 				</view>
 				<view class="invoice-qr-package-item">
-					<text>保价</text>
+					<text>{{ $t('invoice_qr.package.insure') }}</text>
 					<text>500円</text>
 				</view>
 				<view class="invoice-qr-package-item">
-					<text>服务</text>
+					<text>{{ $t('invoice_qr.package.service') }}</text>
 					<text>补税12000円、打包费1000円</text>
 				</view>
 			</view>
