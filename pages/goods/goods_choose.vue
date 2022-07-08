@@ -24,7 +24,7 @@
 					<input
 						class="uni-input nav-search-input"
 						confirm-type="search"
-						:placeholder="$t('address_index.search.placeholder')"
+						:placeholder="$t('top.nav.search.placeholder')"
 						placeholder-class="nav-input-placeholder"
 					/>
 				</view>
@@ -37,7 +37,7 @@
 					<input
 						class="uni-input nav-search-input"
 						confirm-type="search"
-						:placeholder="$t('address_index.search.placeholder')"
+						:placeholder="$t('top.nav.search.placeholder')"
 						placeholder-class="nav-input-placeholder"
 					/>
 				</view>
