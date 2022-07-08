@@ -10,7 +10,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">商品管理</view>
+				<view class="top-nav-title">{{ $t('goods_index.title') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake top-nav-fake-middle"></view>
@@ -24,7 +24,7 @@
 					<input
 						class="uni-input nav-search-input"
 						confirm-type="search"
-						:placeholder="$t('address_index.search.placeholder')"
+						:placeholder="$t('top.nav.search.placeholder')"
 						placeholder-class="nav-input-placeholder"
 					/>
 				</view>
@@ -37,7 +37,7 @@
 					<input
 						class="uni-input nav-search-input"
 						confirm-type="search"
-						:placeholder="$t('address_index.search.placeholder')"
+						:placeholder="$t('top.nav.search.placeholder')"
 						placeholder-class="nav-input-placeholder"
 					/>
 				</view>
@@ -55,8 +55,8 @@
 									任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有
 								</view>
 								<view class="goods-pull-item-type">
-									<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">未同步</text>
-									<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">已同步</text>
+									<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">{{ $t('goods_index.goods.status.no') }}</text>
+									<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">{{ $t('goods_index.goods.status.yes') }}</text>
 								</view>
 								<view class="goods-pull-item-money">￥ 1999.99</view>
 							</view>
@@ -85,8 +85,8 @@
 								任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有
 							</view>
 							<view class="goods-pull-item-type">
-								<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">未同步</text>
-								<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">已同步</text>
+								<text class="goods-pull-item-type-text goods-pull-item-type-orange" v-if="index < 2 || index % 2 === 0">{{ $t('goods_index.goods.status.no') }}</text>
+								<text class="goods-pull-item-type-text goods-pull-item-type-green" v-if="(index >= 2) & (index % 2 !== 0)">{{ $t('goods_index.goods.status.yes') }}</text>
 							</view>
 							<view class="goods-pull-item-money">￥ 1999.99</view>
 						</view>
@@ -98,8 +98,8 @@
 		<view class="drawer-button-box-gap goods-button-box-gap"></view>
 		<view class="drawer-button-box goods-button-box">
 			<view class="drawer-button" v-if="!isMultipleEdit">
-				<view class="drawer-button-item drawer-button-reset" @click="multipleEditGoods">编辑</view>
-				<view class="drawer-button-item drawer-button-submit" @click="addGoods">添加</view>
+				<view class="drawer-button-item drawer-button-reset" @click="multipleEditGoods">{{ $t('goods_index.goods.button.edit') }}</view>
+				<view class="drawer-button-item drawer-button-submit" @click="addGoods">{{ $t('goods_index.goods.button.add') }}</view>
 			</view>
 			<view class="drawer-edit" v-if="isMultipleEdit">
 				<view class="drawer-edit-all">
@@ -112,13 +112,13 @@
 							<!-- #ifdef MP-WEIXIN -->
 							<checkbox value="goodsAllRadio" checked="true" />
 							<!-- #endif -->
-							全选
+							{{ $t('goods_index.goods.button.all') }}
 						</label>
 					</checkbox-group>
 				</view>
 				<view class="drawer-edit-button">
-					<view class="drawer-edit-btn drawer-edit-btn-delete" @click="deleteMultipleGoods">删除</view>
-					<view class="drawer-edit-btn drawer-edit-btn-quit" @click="quitMultipleEdit">完成</view>
+					<view class="drawer-edit-btn drawer-edit-btn-delete" @click="deleteMultipleGoods">{{ $t('goods_index.goods.button.delete') }}</view>
+					<view class="drawer-edit-btn drawer-edit-btn-quit" @click="quitMultipleEdit">{{ $t('goods_index.goods.button.finish') }}</view>
 				</view>
 			</view>
 		</view>

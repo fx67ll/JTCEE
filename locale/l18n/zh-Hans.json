@@ -14,6 +14,11 @@
 	"popup.warning.content": "出现未知错误，请联系管理员！",
 	"popup.warning.confirmText": "返回首页",
 	"popup.warning.cancelText": "关闭",
+	
+	"top.nav.search.placeholder": "请输入关键词搜索",
+	
+	"bottom_menu.home": "首页",
+	"bottom_menu.user": "我的",
 
 	"login.login": "登录",
 	"login.register": "注册",
@@ -87,9 +92,6 @@
 	"express_bill.catagory.more": "运费计费说明",
 	"express_bill.picker.placeholder": "待选择",
 
-	"bottom_menu.home": "首页",
-	"bottom_menu.user": "我的",
-
 	"user_index.express.use": "已寄件数",
 	"user_index.express.get": "待取件数",
 	"user_index.express.money": "运费总计(円)",
@@ -110,7 +112,6 @@
 	"user_setting.setting.language": "切换语言",
 
 	"address_index.tilte": "地址管理",
-	"address_index.search.placeholder": "请输入关键词搜索",
 	"address_index.tab.user.send": "收件人",
 	"address_index.tab.user.get": "寄件人",
 	"address_index.setting.default.address": "设为默认地址",
@@ -160,7 +161,6 @@
 	"help_service.title": "联络客服",
 
 	"invoice_index.title": "运单管理",
-	"invoice_index.search.placeholder": "请输入关键词搜索",
 	"invoice_index.drawer.button.show": "筛选",
 	"invoice_index.drawer.title": "筛选",
 	"invoice_index.drawer.status": "运单状态",
@@ -276,7 +276,6 @@
 	"package_add.button.submit": "提交",
 
 	"package_index.title": "包裹管理",
-	"package_index.search.placeholder": "请输入关键词搜索",
 	"package_index.tab.package.wait": "待收货",
 	"package_index.tab.package.arrival": "已到库",
 	"package_index.card.id": "快递单号",
@@ -291,7 +290,15 @@
 	"package_detail.title": "包裹详情",
 	"package_detail.option.placeholder": "暂无数据",
 
-	"goods_index": "待处理",
+	"goods_index.title": "商品管理",
+	"goods_index.goods.status.no": "未同步",
+	"goods_index.goods.status.yes": "已同步",
+	"goods_index.goods.button.edit": "编辑",
+	"goods_index.goods.button.add": "添加",
+	"goods_index.goods.button.all": "全选",
+	"goods_index.goods.button.delete": "删除",
+	"goods_index.goods.button.finish": "完成",
+	
 	"goods_detail": "待处理",
 	"goods_add": "待处理",
 	"goods_choose": "待处理",
