@@ -144,8 +144,8 @@ export default {
 				this.maxDataIndex = 0;
 				this.listData = [];
 				let data = [];
-				this.maxDataIndex += 5;
-				for (var i = this.maxDataIndex - 4; i < this.maxDataIndex + 1; i++) {
+				this.maxDataIndex += 10;
+				for (var i = this.maxDataIndex - 9; i < this.maxDataIndex + 1; i++) {
 					data.push(i);
 				}
 				this.listData = this.listData.concat(data);
@@ -154,8 +154,8 @@ export default {
 		},
 		setListData() {
 			let data = [];
-			this.maxDataIndex += 5;
-			for (var i = this.maxDataIndex - 4; i < this.maxDataIndex + 1; i++) {
+			this.maxDataIndex += 10;
+			for (var i = this.maxDataIndex - 9; i < this.maxDataIndex + 1; i++) {
 				data.push(i);
 			}
 			this.listData = this.listData.concat(data);
@@ -244,16 +244,6 @@ export default {
 			background-color: @topic-bgc;
 			z-index: -1;
 		}
-	}
-
-	@drawer-button-height: 76rpx;
-	@drawer-button-bottom: 50rpx;
-	.goods-button-box {
-		position: fixed;
-	}
-	.goods-button-box-gap {
-		width: 100%;
-		height: calc(@drawer-button-height + @drawer-button-bottom - 10rpx);
 	}
 
 	.goods-pull-index {

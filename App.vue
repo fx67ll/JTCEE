@@ -35,6 +35,7 @@ export default {
 /* 折叠面板标题公共样式 */
 .uni-collapse-item__title-box {
 	color: #f8bb32 !important;
+	/* color: #313131 !important; */
 }
 .uni-collapse-item__title-text {
 	font-size: 32rpx !important;

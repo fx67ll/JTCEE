@@ -307,16 +307,6 @@ export default {
 		}
 	}
 
-	@drawer-button-height: 76rpx;
-	@drawer-button-bottom: 50rpx;
-	.goods-button-box {
-		position: fixed;
-	}
-	.goods-button-box-gap {
-		width: 100%;
-		height: calc(@drawer-button-height + @drawer-button-bottom - 10rpx);
-	}
-
 	.goods-pull-index {
 		width: calc(100% - @base-gap * 2);
 		margin: 50rpx auto 0 auto;

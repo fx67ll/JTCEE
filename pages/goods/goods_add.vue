@@ -195,7 +195,10 @@ export default {
 			console.log('删除成功：', e);
 		},
 		getGoodsType() {
-			this.showTestToast(0);
+			let self = this;
+			uni.navigateTo({
+				url: `/pages/goods/goods_catagory?fromType=${self.fromType}&addType=${self.addType}&useType=${self.useType}`
+			});
 		},
 		saveMyGoodsSwitchChange(e) {
 			console.log('saveMyGoodsSwitch 发生 change 事件，携带值为', e.detail.value);
@@ -273,11 +276,7 @@ export default {
 
 	@drawer-button-height: 76rpx;
 	@drawer-button-bottom: 50rpx;
-	.goods-button-box {
-		position: fixed;
-	}
 	.goods-button-box-gap {
-		width: 100%;
 		height: calc(@drawer-button-height + @drawer-button-bottom - 25rpx);
 	}
 }
