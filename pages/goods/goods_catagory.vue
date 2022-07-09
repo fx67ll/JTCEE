@@ -16,56 +16,43 @@
 			</view>
 			<view class="top-nav-fake top-nav-fake-middle"></view>
 			<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
+			
+			<!-- 搜索框 -->
+			<!-- #ifdef H5 -->
+			<view class="top-nav-search">
+				<view class="nav-search-box">
+					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
+					<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('top.nav.search.placeholder')" placeholder-class="nav-input-placeholder" />
+				</view>
+			</view>
+			<!-- #endif -->
+			<!-- #ifdef MP-WEIXIN -->
+			<view class="top-nav-search top-nav-search-wx" :style="{ '--topnavsearchtop': topNavSearchTop }">
+				<view class="nav-search-box">
+					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
+					<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('top.nav.search.placeholder')" placeholder-class="nav-input-placeholder" />
+				</view>
+			</view>
+			<!-- #endif -->
 		</view>
 
-		<!-- 搜索框 -->
-		<!-- #ifdef H5 -->
-		<view class="top-nav-search">
-			<view class="nav-search-box">
-				<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-				<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('top.nav.search.placeholder')" placeholder-class="nav-input-placeholder" />
-			</view>
-		</view>
-		<!-- #endif -->
-		<!-- #ifdef MP-WEIXIN -->
-		<view class="top-nav-search top-nav-search-wx" :style="{ '--topnavsearchtop': topNavSearchTop }">
-			<view class="nav-search-box">
-				<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-				<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('top.nav.search.placeholder')" placeholder-class="nav-input-placeholder" />
-			</view>
-		</view>
-		<!-- #endif -->
 
 		<view class="goods-collapse">
 			<uni-collapse ref="collapse" v-model="collapseValue" @change="collapseChange">
 				<radio-group @change="goodsCatagoryRadioChange">
-					<uni-collapse-item 
-					:title="'物品大类' + (index + 1)" 
-					v-for="(num, index) in goodsCatagoryListData" :key="index">
+					<uni-collapse-item :title="'物品大类' + (index + 1)" v-for="(num, index) in goodsCatagoryListData" :key="index">
 						<view class="goods-collapse-content">
 							<view class="goods-collapse-item">
-								<view class="goods-collapse-item-title">
-									{{ '物品子类' + (index + 1) + '-1' }}
-								</view>
-								<label class="goods-collapse-item-label">
-									<radio :value="'物品小类' + (index + 1)" :checked="index === 0" color="#5BC797" />
-								</label>
+								<view class="goods-collapse-item-title">{{ '物品子类' + (index + 1) + '-1' }}</view>
+								<label class="goods-collapse-item-label"><radio :value="'物品小类' + (index + 1)" :checked="index === 0" color="#5BC797" /></label>
 							</view>
 							<view class="goods-collapse-item">
-								<view class="goods-collapse-item-title">
-									{{ '物品子类' + (index + 1) + '-2' }}
-								</view>
-								<label class="goods-collapse-item-label">
-									<radio :value="'物品小类' + (index + 1)" :checked="index === 0" color="#5BC797" />
-								</label>
+								<view class="goods-collapse-item-title">{{ '物品子类' + (index + 1) + '-2' }}</view>
+								<label class="goods-collapse-item-label"><radio :value="'物品小类' + (index + 1)" :checked="index === 0" color="#5BC797" /></label>
 							</view>
 							<view class="goods-collapse-item">
-								<view class="goods-collapse-item-title">
-									{{ '物品子类' + (index + 1) + '-3' }}
-								</view>
-								<label class="goods-collapse-item-label">
-									<radio :value="'物品小类' + (index + 1)" :checked="index === 0" color="#5BC797" />
-								</label>
+								<view class="goods-collapse-item-title">{{ '物品子类' + (index + 1) + '-3' }}</view>
+								<label class="goods-collapse-item-label"><radio :value="'物品小类' + (index + 1)" :checked="index === 0" color="#5BC797" /></label>
 							</view>
 						</view>
 					</uni-collapse-item>
@@ -93,7 +80,7 @@ export default {
 	onShow() {
 		this.clientHeight = uni.getWindowInfo().windowHeight + 'px';
 		this.statusBarHeight = uni.getWindowInfo().statusBarHeight + 'px';
-		this.topNavSearchTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 114 + 'rpx';
+		this.topNavSearchTop = pxToRpx(uni.getWindowInfo().statusBarHeight) + 88 + 'rpx';
 	},
 	onLoad(option) {
 		if (option.fromType) {
@@ -174,6 +161,10 @@ export default {
 			top: var(--statusbarheight);
 		}
 
+		.top-nav-search {
+			padding-bottom: @search-box-padding-bottom;
+		}
+		
 		.top-nav-search-wx {
 			top: var(--topnavsearchtop);
 		}
@@ -189,10 +180,6 @@ export default {
 		}
 	}
 
-	.top-nav-search {
-		padding-bottom: @search-box-padding-bottom;
-	}
-
 	.goods-collapse {
 		width: calc(100% - @base-gap * 2);
 		margin: calc(@search-box-padding-bottom + 25rpx) auto 0 auto;
@@ -201,17 +188,17 @@ export default {
 		.goods-collapse-content {
 			width: calc(100% - @base-gap * 2);
 			margin: 0 auto 10rpx auto;
-			.goods-collapse-item{
+			.goods-collapse-item {
 				padding: 15rpx 0;
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
 				border-top: 1rpx solid @topic-split;
-				.goods-collapse-item-title{
+				.goods-collapse-item-title {
 					color: @topic-green;
 					font-size: 28rpx;
 				}
-				.goods-collapse-item-label{
+				.goods-collapse-item-label {
 					position: relative;
 					left: 20rpx;
 				}
