@@ -21,12 +21,7 @@
 			<view class="top-nav-search">
 				<view class="nav-search-box">
 					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-					<input
-						class="uni-input nav-search-input"
-						confirm-type="search"
-						:placeholder="$t('top.nav.search.placeholder')"
-						placeholder-class="nav-input-placeholder"
-					/>
+					<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('top.nav.search.placeholder')" placeholder-class="nav-input-placeholder" />
 				</view>
 			</view>
 			<!-- #endif -->
@@ -34,12 +29,7 @@
 			<view class="top-nav-search top-nav-search-wx" :style="{ '--topnavsearchtop': topNavSearchTop }">
 				<view class="nav-search-box">
 					<uni-icons class="nav-search-icon" type="search" size="23" color="#A0A0A0"></uni-icons>
-					<input
-						class="uni-input nav-search-input"
-						confirm-type="search"
-						:placeholder="$t('top.nav.search.placeholder')"
-						placeholder-class="nav-input-placeholder"
-					/>
+					<input class="uni-input nav-search-input" confirm-type="search" :placeholder="$t('top.nav.search.placeholder')" placeholder-class="nav-input-placeholder" />
 				</view>
 			</view>
 			<!-- #endif -->
@@ -172,20 +162,34 @@ export default {
 		},
 		checkAddress() {
 			let addressType = this.addressType;
-			
-			// #ifdef H5
-			if(addressType === '1'){
+
+			if (addressType === '1') {
+				// #ifdef H5
 				localStorage.setItem('isGotAddressSend', 'true');
+				// #endif
+
+				// 微信端不支持localStorage
+				// #ifdef MP-WEIXIN
+				wx.setStorage({
+					key: 'isGotAddressSend',
+					data: 'true'
+				});
+				// #endif
 			}
-			if(addressType === '2'){
+			if (addressType === '2') {
+				// #ifdef H5
 				localStorage.setItem('isGotAddressReceive', 'true');
+				// #endif
+
+				// 微信端不支持localStorage
+				// #ifdef MP-WEIXIN
+				wx.setStorage({
+					key: 'isGotAddressReceive',
+					data: 'true'
+				});
+				// #endif
 			}
-			// #endif
-			
-			// 微信端待适配
-			// #ifdef MP-WEIXIN
-			// #endif
-			
+
 			uni.redirectTo({
 				url: `/pages/express/express_send?addressType=${addressType}`
 			});

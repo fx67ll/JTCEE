@@ -160,8 +160,28 @@ export default {
 			}
 			this.listData = this.listData.concat(data);
 		},
-		getGoodsAndBack(){
-			// 微信待适配，且页面解析需要添加
+		getGoodsAndBack() {
+			// 这里的解析后续如果数据结构复杂，考虑使用vuex
+			
+			// #ifdef H5
+			localStorage.setItem('key', 'value');
+			console.log(localStorage.getItem('key'));
+			// #endif
+			
+			// 微信端不支持localStorage
+			// #ifdef MP-WEIXIN
+			wx.setStorage({
+				key: 'key',
+				data: 'value'
+			});
+			wx.getStorage({
+				key: 'key',
+				success(res) {
+					console.log(res.data);
+				}
+			});
+			// #endif
+
 			let fromType = this.fromType;
 			if (this.chooseType === '1') {
 				uni.redirectTo({

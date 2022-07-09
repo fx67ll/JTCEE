@@ -80,7 +80,13 @@
 						{{ $t('express_send.option.goods') }}
 					</view>
 					<view class="form-item-arrow" @click="addGoods">
-						<input class="uni-input form-input-default" type="text" :placeholder="$t('express_send.option.goods.placeholder')" placeholder-class="form-input-placeholder" disabled />
+						<input
+							class="uni-input form-input-default"
+							type="text"
+							:placeholder="$t('express_send.option.goods.placeholder')"
+							placeholder-class="form-input-placeholder"
+							disabled
+						/>
 						<uni-icons class="form-item-arrow-icon form-item-common-icon" type="shop-filled" size="18" color="#A6A6A6"></uni-icons>
 					</view>
 				</view>
@@ -154,7 +160,7 @@
 
 		<view class="express-note">
 			<view class="common-form-item-note">
-				<view class="common-form-item-note-title">{{$t('express_send.option.note')}}</view>
+				<view class="common-form-item-note-title">{{ $t('express_send.option.note') }}</view>
 				<view class="common-form-item-note-textaera">
 					<textarea class="form-textarea-default" :placeholder="$t('express_send.option.note.placeholder')" placeholder-class="form-input-placeholder" />
 				</view>
@@ -162,21 +168,32 @@
 		</view>
 
 		<view class="express-service">
-			<view class="express-service-tip">{{$t('express_send.option.insure.tip')}}</view>
+			<view class="express-service-tip">{{ $t('express_send.option.insure.tip') }}</view>
 			<view class="common-form-item">
 				<view class="form-item-title">
-					{{$t('express_send.option.insure')}}
+					{{ $t('express_send.option.insure') }}
 					<uni-icons class="form-item-title-icon" type="help" size="18" color="#A6A6A6" @click="showInsureTip"></uni-icons>
 				</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="number" :placeholder="$t('express_send.option.insure.placeholder')" placeholder-class="form-input-placeholder" />
+					<input
+						class="uni-input form-input-default"
+						type="number"
+						:placeholder="$t('express_send.option.insure.placeholder')"
+						placeholder-class="form-input-placeholder"
+					/>
 					<uni-icons class="form-item-arrow-icon form-item-common-icon" type="vip-filled" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
 			<view class="common-form-item">
-				<view class="form-item-title">{{$t('express_send.option.service')}}</view>
+				<view class="form-item-title">{{ $t('express_send.option.service') }}</view>
 				<view class="form-item-arrow" @click="getExpressService">
-					<input class="uni-input form-input-default" type="text" :placeholder="$t('express_send.option.service.placeholder')" placeholder-class="form-input-placeholder" disabled />
+					<input
+						class="uni-input form-input-default"
+						type="text"
+						:placeholder="$t('express_send.option.service.placeholder')"
+						placeholder-class="form-input-placeholder"
+						disabled
+					/>
 					<uni-icons class="form-item-arrow-icon" type="right" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
@@ -186,7 +203,7 @@
 			<view class="common-form-item">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					{{$t('express_send.option.deliver')}}
+					{{ $t('express_send.option.deliver') }}
 					<uni-icons class="form-item-title-icon" type="help" size="18" color="#A6A6A6" @click="showDeliverTip"></uni-icons>
 				</view>
 				<picker @change="bindDeliverPickerChange" :value="deliverIndex" :range="deliverData">
@@ -206,17 +223,22 @@
 			<view class="common-form-item" v-if="deliverIndex === 1">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					{{$t('express_send.option.express')}}
+					{{ $t('express_send.option.express') }}
 				</view>
 				<view class="form-item-arrow">
-					<input class="uni-input form-input-default" type="text" :placeholder="$t('express_send.option.express.placeholder')" placeholder-class="form-input-placeholder" />
+					<input
+						class="uni-input form-input-default"
+						type="text"
+						:placeholder="$t('express_send.option.express.placeholder')"
+						placeholder-class="form-input-placeholder"
+					/>
 					<uni-icons class="form-item-arrow-icon" type="scan" size="18" color="#A6A6A6"></uni-icons>
 				</view>
 			</view>
 			<view class="common-form-item">
 				<view class="form-item-title">
 					<text class="form-must-have">*</text>
-					{{$t('express_send.option.shop')}}
+					{{ $t('express_send.option.shop') }}
 				</view>
 				<picker @change="bindDeliverShopPickerChange" :value="deliverShopIndex" :range="deliverShopData">
 					<view class="form-item-arrow">
@@ -260,13 +282,27 @@
 		</view>
 
 		<!-- 商品弹窗 -->
-		<zb-drawer mode="bottom" :title="$t('express_send.drawer.a.title')" :wrapperClosable="false" :visible.sync="isShowDrawerAddGoods" :radius="true" :height="addGoodsDrawerHeight">
+		<zb-drawer
+			mode="bottom"
+			:title="$t('express_send.drawer.a.title')"
+			:wrapperClosable="false"
+			:visible.sync="isShowDrawerAddGoods"
+			:radius="true"
+			:height="addGoodsDrawerHeight"
+		>
 			<view class="express-goods-add" @click="chooseRelativeGoods">{{ $t('express_send.drawer.a.add.old') }}</view>
 			<view class="express-goods-add" @click="chooseNewGoods">{{ $t('express_send.drawer.a.add.new') }}</view>
 		</zb-drawer>
 
 		<!-- 服务弹窗 -->
-		<zb-drawer mode="bottom" :title="$t('express_send.drawer.b.title')" :wrapperClosable="false" :visible.sync="isShowDrawerService" :radius="true" :height="serviceDrawerHeight">
+		<zb-drawer
+			mode="bottom"
+			:title="$t('express_send.drawer.b.title')"
+			:wrapperClosable="false"
+			:visible.sync="isShowDrawerService"
+			:radius="true"
+			:height="serviceDrawerHeight"
+		>
 			<checkbox-group @change="serviceCheckChange" class="form-radio-default">
 				<view class="express-service-radio">
 					<label class="form-radio-default-label">
@@ -286,7 +322,14 @@
 		</zb-drawer>
 
 		<!-- 明细弹窗 -->
-		<zb-drawer mode="bottom" :title="$t('express_send.drawer.c.title')" :wrapperClosable="false" :visible.sync="isShowDrawerBillDetail" :radius="true" :height="billDetailDrawerHeight">
+		<zb-drawer
+			mode="bottom"
+			:title="$t('express_send.drawer.c.title')"
+			:wrapperClosable="false"
+			:visible.sync="isShowDrawerBillDetail"
+			:radius="true"
+			:height="billDetailDrawerHeight"
+		>
 			<view class="express-detail-pay express-detail-pay-red">
 				<text>{{ $t('express_send.drawer.c.price.base') }}</text>
 				<text>1238953210円</text>
@@ -333,8 +376,21 @@ export default {
 		this.isGotAddressReceive = JSON.parse(localStorage.getItem('isGotAddressReceive'));
 		// #endif
 
-		// 微信端待适配
+		// 微信端不支持localStorage
 		// #ifdef MP-WEIXIN
+		let self = this;
+		wx.getStorage({
+			key: 'isGotAddressSend',
+			success(res) {
+				self.isGotAddressSend = JSON.parse(res.data);
+			}
+		});
+		wx.getStorage({
+			key: 'isGotAddressReceive',
+			success(res) {
+				self.isGotAddressReceive = JSON.parse(res.data);
+			}
+		});
 		// #endif
 	},
 	data() {
@@ -383,8 +439,16 @@ export default {
 			localStorage.setItem('isGotAddressReceive', 'false');
 			// #endif
 
-			// 微信端待适配
+			// 微信端不支持localStorage
 			// #ifdef MP-WEIXIN
+			wx.setStorage({
+				key: 'isGotAddressSend',
+				data: 'false'
+			});
+			wx.setStorage({
+				key: 'isGotAddressReceive',
+				data: 'false'
+			});
 			// #endif
 
 			uni.redirectTo({
@@ -392,17 +456,9 @@ export default {
 			});
 		},
 		getExpressAddress(type) {
-			// #ifdef H5
 			uni.navigateTo({
 				url: `/pages/express/express_address?addressType=${type}`
 			});
-			// #endif
-
-			// 微信端待适配
-			// #ifdef MP-WEIXIN
-			console.log('微信暂不支持模拟选择地址');
-			this.showTestToast(0);
-			// #endif
 		},
 		isExpressSendSingle(val) {
 			this.isSingle = val;
