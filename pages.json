@@ -86,6 +86,13 @@
 				"navigationStyle": "custom"
 			}
 		},
+		// 邮箱设置
+		{
+			"path": "pages/user/user_mail",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
 		// 地址一览
 		{
 			"path": "pages/address/address_index",

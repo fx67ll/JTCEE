@@ -105,8 +105,9 @@ export default {
 			});
 		},
 		proveMail() {
-			console.log('修改/验证邮箱中ing...');
-			this.showTestToast(0);
+			uni.navigateTo({
+				url: '/pages/user/user_mail'
+			});
 		},
 		passwordSwitchChange(e) {
 			console.log('passwordSwitch 发生 change 事件，携带值为', e.detail.value);
