@@ -131,8 +131,8 @@ export default {
 			z-index: -1;
 		}
 	}
-	
-	.html5-qr-code{
+
+	.html5-qr-code {
 		width: 100%;
 		height: var(--clientheight);
 		position: fixed;

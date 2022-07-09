@@ -68,7 +68,8 @@
 		{
 			"path": "pages/index/scan_qr",
 			"style": {
-				"navigationStyle": "custom"
+				"navigationStyle": "custom",
+				"disableScroll": true
 			}
 		},
 		// 我的
