@@ -51,11 +51,13 @@
 	"notice_catagory.title": "通知",
 	"notice_catagory.read": "全部已读",
 	"notice_catagory.notice.express": "快递消息",
-	"notice_catagory.notice.public": "公告",
+	"notice_catagory.notice.public": "通知详情",
 
 	"notice_index.express.id": "快递单号",
 	"notice_index.express.time": "签收时间",
 	"notice_index.more": "查看详细",
+	
+	"notice_detail.title": "通知详情",
 
 	"index.search.goods": "商品搜索",
 	"index.alpha.count": "运费计算",
@@ -112,6 +114,8 @@
 	"user_setting.setting.mail.order": "订单状态发生变化是否接收邮件通知",
 	"user_setting.login.out": "退出登录",
 	"user_setting.setting.language": "切换语言",
+	
+	"user_setting.mail": "验证/修改邮箱",
 
 	"address_index.tilte": "地址管理",
 	"address_index.tab.user.send": "收件人",
