@@ -262,7 +262,7 @@ export default {
 				},
 				// 接口调用失败的回调函数，小程序、App
 				fail: function(res) {
-					console.log('接口调用失败:' + JSON.stringify(res));
+					console.log('H5图片上传接口调用失败:' + JSON.stringify(res));
 
 					if (type === 1) {
 						uni.showToast({
@@ -280,13 +280,54 @@ export default {
 				},
 				// 接口调用结束的回调函数（调用成功、失败都会执行），全平台
 				complete: function(res) {
-					console.log('接口调用结束:' + JSON.stringify(res));
+					console.log('H5图片上传接口调用结束:' + JSON.stringify(res));
 				}
 			});
 			// #endif
 
-			// 微信端待适配
+			// 官方文档地址：https://developers.weixin.qq.com/miniprogram/dev/api/media/video/wx.chooseMedia.html
 			// #ifdef MP-WEIXIN
+			wx.chooseMedia({
+				count: 1,
+				mediaType: ['image'],
+				sourceType: ['album'],
+				// sizeType	Array.<string>	['original', 'compressed']	否	仅对 mediaType 为 image 时有效，是否压缩所选文件
+				sizeType: ['original'],
+				maxDuration: 30,
+				camera: 'back',
+				success(res) {
+					console.log(JSON.stringify(res.tempFiles[0]));
+					if (type === 1) {
+						self.idImgArrFront = [];
+						self.idImgArrFront.push(res.tempFiles[0].tempFilePath);
+						console.log('正面上传：' + self.idImgArrFront);
+					} else {
+						self.idImgArrBack = [];
+						self.idImgArrBack.push(res.tempFiles[0].tempFilePath);
+						console.log('反面上传：' + self.idImgArrBack);
+					}
+				},
+				fail(res) {
+					console.log('微信文件图片上传接口调用失败:' + JSON.stringify(res));
+
+					if (type === 1) {
+						uni.showToast({
+							title: self.$t('address_add.option.id.import.front.tip.error'),
+							icon: 'none',
+							duration: 5000
+						});
+					} else {
+						uni.showToast({
+							title: self.$t('address_add.option.id.import.back.tip.error'),
+							icon: 'none',
+							duration: 5000
+						});
+					}
+				},
+				complete(res) {
+					console.log('微信文件图片上传接口调用结束:' + JSON.stringify(res));
+				}
+			});
 			// #endif
 		},
 		deleteImportImg(type) {
