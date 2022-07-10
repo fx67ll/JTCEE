@@ -35,9 +35,9 @@
 			<!-- #endif -->
 		</view>
 		<view class="goods-pull-index">
-			<view class="goods-pull-item" v-for="(num, index) in listData" :key="index" @click="getGoodsAndBack">
+			<view class="goods-pull-item" v-for="(num, index) in listData" :key="index" @click="goBack">
 				<view class="goods-pull-item-box">
-					<view class="goods-pull-item-left"><img src="/static/img/user/user-head.png" /></view>
+					<view class="goods-pull-item-left"><img src="https://www.fx67ll.com/JTCEE/static/img/user/user-head.png" /></view>
 					<view class="goods-pull-item-right">
 						<view class="goods-pull-item-title">任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有</view>
 						<view class="goods-pull-item-type">
@@ -70,7 +70,7 @@
 <script>
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
 import uniPopup from '@/uni_modules/uni-popup/components/uni-popup/uni-popup.vue';
-import pxToRpx from '@/static/utils/px-to-rpx.js';
+import pxToRpx from '@/utils/px-to-rpx.js';
 export default {
 	components: {
 		uniIcons,
@@ -200,7 +200,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 .goods-box {
 	width: 100%;
