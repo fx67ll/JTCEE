@@ -110,7 +110,9 @@
 					<view class="bottom-menu-icon"><img src="https://www.fx67ll.com/JTCEE/static/img/bottom/bottom-home.png" /></view>
 					<view class="bottom-menu-text">{{ $t('bottom_menu.home') }}</view>
 				</view>
-				<view class="bottom-menu-logo"><!-- <img src="" /> --></view>
+				<view class="bottom-menu-logo">
+					<img src="https://www.fx67ll.com/JTCEE/static/img/logo/logo2-1.png" />
+				</view>
 				<view class="bottom-menu-item">
 					<view class="bottom-menu-icon"><img src="https://www.fx67ll.com/JTCEE/static/img/bottom/bottom-user-active.png" /></view>
 					<view class="bottom-menu-text">{{ $t('bottom_menu.user') }}</view>
