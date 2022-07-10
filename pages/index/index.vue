@@ -8,7 +8,9 @@
 		<!-- #endif -->
 		<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		<view class="index-search">
-			<view class="index-search-logo"><!-- <img src=""> --></view>
+			<view class="index-search-logo">
+				<img src="/static/img/logo/logo2-3.png">
+			</view>
 			<!-- 微信小程序特供搜索框，避开关闭按钮 -->
 			<!-- #ifdef MP-WEIXIN -->
 			<view class="index-search-box index-search-box-wx">
@@ -121,7 +123,9 @@
 					<view class="bottom-menu-icon"><img src="/static/img/bottom/bottom-home-active.png" /></view>
 					<view class="bottom-menu-text">{{ $t('bottom_menu.home') }}</view>
 				</view>
-				<view class="bottom-menu-logo"><!-- <img src="" /> --></view>
+				<view class="bottom-menu-logo">
+					<img src="/static/img/logo/logo2-1.png" />
+				</view>
 				<view class="bottom-menu-item" @click="goUserIndex">
 					<view class="bottom-menu-icon"><img src="/static/img/bottom/bottom-user.png" /></view>
 					<view class="bottom-menu-text">{{ $t('bottom_menu.user') }}</view>
@@ -234,20 +238,24 @@ export default {
 		display: flex;
 		justify-content: flex-start;
 		.index-search-logo {
-			width: 150rpx;
+			width: 80rpx;
+			height: 68rpx;
 			// border: @test-line-width solid @topic-green;
-			margin-left: 30rpx;
+			margin-left: 40rpx;
+			position: relative;
+			top: 10rpx;
 			img {
 				width: 100%;
 				height: 100%;
 			}
 		}
 		.index-search-box {
-			width: calc(100% - 210rpx);
+			width: calc(100% - 190rpx);
 			height: calc(100% - 30rpx);
 			border: 1rpx solid #e9e9e9;
 			border-radius: 34rpx;
 			margin-top: 14rpx;
+			margin-left: 30rpx;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
