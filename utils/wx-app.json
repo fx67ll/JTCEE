@@ -16,13 +16,15 @@
 			"pages": [
 				"index",
 				"express_bill",
-				"help_service"
+				"help_service",
+				"scan_qr"
 			]
 		}, {
 			"root": "pages/user",
 			"pages": [
 				"user_index",
-				"user_setting"
+				"user_setting",
+				"user_mail"
 			]
 		}, {
 			"root": "pages/address",
