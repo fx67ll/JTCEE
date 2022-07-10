@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/img/logo.png"></image>
+		<image class="logo" src="https://www.fx67ll.com/JTCEE/static/img/logo.png"></image>
 		<view class="text-area">
 			<text class="title">{{title}}</text>
 		</view>

@@ -3,7 +3,7 @@
 		<!-- #ifdef APP-PLUS -->
 		<view class="status_bar"><!-- 这里是状态栏，用于app端的状态栏抵消 --></view>
 		<!-- #endif -->
-		<view class="login-img"><img src="/static/img/login/login-img-bg.png" /></view>
+		<view class="login-img"><img src="https://www.fx67ll.com/JTCEE/static/img/login/login-img-bg.png" /></view>
 		<view class="login-info">
 			<view class="login-card" :class="{ 'login-card-long': !islc }">
 				<view class="login-card-head">
@@ -100,7 +100,7 @@
 							@blur="inputBlur('check')"
 							@focus="inputFocus('check')"
 						/>
-						<img class="login-form-icon" src="/static/img/login/warning.png" />
+						<img class="login-form-icon" src="https://www.fx67ll.com/JTCEE/static/img/login/warning.png" />
 					</view>
 				</view>
 			</view>
@@ -134,7 +134,7 @@
 				<text class="login-wx-title-text">{{ $t('login.login') }}</text>
 				<text class="login-wx-title-line"></text>
 			</view>
-			<view class="login-wx-icon" @click="wxLogin"><img src="/static/img/login/wx.png" /></view>
+			<view class="login-wx-icon" @click="wxLogin"><img src="https://www.fx67ll.com/JTCEE/static/img/login/wx.png" /></view>
 		</view>
 	</view>
 </template>
@@ -202,7 +202,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 // 标准左右间隔
 @width-gap: 120rpx;

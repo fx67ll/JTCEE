@@ -21,7 +21,7 @@
 			<uni-collapse ref="collapse" v-model="collapseValue" @change="collapseChange">
 				<uni-collapse-item
 					:title="index < 6 ? '服务问题 - ' + (index + 1) : '包裹问题 - ' + (index + 1)"
-					:thumb="index < 6 ? '/static/img/index/get-service.png' : '/static/img/address/address-user-send.png'"
+					:thumb="index < 6 ? 'https://www.fx67ll.com/JTCEE/static/img/index/get-service.png' : 'https://www.fx67ll.com/JTCEE/static/img/address/address-user-send.png'"
 					:disabled="index === 5"
 					:show-animation="index === 6 ? false : true"
 					v-for="(num, index) in helpListData"
@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 .help-box {
 	width: 100%;

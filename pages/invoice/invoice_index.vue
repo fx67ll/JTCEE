@@ -120,7 +120,7 @@
 						<text class="invoice-item-order-type" v-if="index < 1">{{ $t('invoice_index.card.id.a') }}：</text>
 						<text class="invoice-item-order-type" v-if="index >= 1">{{ $t('invoice_index.card.id.b') }}：</text>
 						<text class="invoice-item-order-number">ST232354565</text>
-						<img class="invoice-item-order-copy" src="/static/img/invoice/invoice-copy.png" @click="getOrderId('ST232354565')" />
+						<img class="invoice-item-order-copy" src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice-copy.png" @click="getOrderId('ST232354565')" />
 					</view>
 					<view class="invoice-item-order-detail" @click="getOrderDetail">
 						{{ $t('invoice_index.card.detail') }}
@@ -135,9 +135,9 @@
 							<text>何瑞</text>
 						</view>
 						<view class="invoice-item-info-address-status">
-							<img src="/static/img/invoice/invoice-arrow-green.png" v-if="(index < 3) | ((index > 4) & ((index + 1) % 3 === 0))" />
-							<img src="/static/img/invoice/invoice-arrow-red.png" v-if="(index === 3) | ((index > 4) & (index % 3 === 1))" />
-							<img src="/static/img/invoice/invoice-arrow-grey.png" v-if="(index === 4) | ((index > 4) & (index % 3 === 0))" />
+							<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice-arrow-green.png" v-if="(index < 3) | ((index > 4) & ((index + 1) % 3 === 0))" />
+							<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice-arrow-red.png" v-if="(index === 3) | ((index > 4) & (index % 3 === 1))" />
+							<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice-arrow-grey.png" v-if="(index === 4) | ((index > 4) & (index % 3 === 0))" />
 							<text v-if="index < 1">{{ $t('invoice_index.card.status.a') }}</text>
 							<text v-if="index === 1">{{ $t('invoice_index.card.status.b') }}</text>
 							<text v-if="(index + 1) % 3 === 0">{{ $t('invoice_index.card.status.c') }}</text>
@@ -191,8 +191,8 @@
 <script>
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
 import vTabs from '@/uni_modules/v-tabs/v-tabs.vue';
-import { dataYears, dataMonths, pickerViewMonth } from '@/static/utils/uni-date-picker.js';
-import pxToRpx from '@/static/utils/px-to-rpx.js';
+import { dataYears, dataMonths, pickerViewMonth } from '@/utils/uni-date-picker.js';
+import pxToRpx from '@/utils/px-to-rpx.js';
 import uniPopup from '@/uni_modules/uni-popup/components/uni-popup/uni-popup.vue';
 export default {
 	components: {
@@ -395,7 +395,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 @import url('@/pages/invoice/style/invoice-common.less');
 
 .invoice-box {

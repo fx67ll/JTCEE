@@ -21,7 +21,7 @@
 			<view class="invoice-qr-card-top">
 				<text>{{ $t('invoice_qr.id') }}：</text>
 				<text>ST232354565</text>
-				<img class="invoice-qr-copy" src="/static/img/invoice/invoice-copy-qr.png" @click="getOrderId('ST232354565')" />
+				<img class="invoice-qr-copy" src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice-copy-qr.png" @click="getOrderId('ST232354565')" />
 			</view>
 			<view class="invoice-qr-card-bottom">
 				<view class="invoice-qr-img"><img src="./img/invoice-qr-temp.png" /></view>
@@ -45,7 +45,7 @@
 			<view class="invoice-qr-package-title">{{ $t('invoice_qr.package.info') }}</view>
 			<view class="invoice-qr-package-goods">
 				<view class="invoice-qr-goods-item" v-for="(num, index) in listData" :key="index">
-					<img src="/static/img/user/user-head.png" />
+					<img src="https://www.fx67ll.com/JTCEE/static/img/user/user-head.png" />
 					<text>任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有</text>
 				</view>
 			</view>
@@ -127,7 +127,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 .invoice-qr-box {
 	width: 100%;

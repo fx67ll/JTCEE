@@ -58,7 +58,7 @@
 					>
 						<text class="package-item-order-type">{{ $t('package_index.card.id') }}：</text>
 						<text class="package-item-order-number">ST232354565</text>
-						<img class="package-item-order-copy" src="/static/img/invoice/invoice-copy.png" @click="getOrderId('ST232354565')" />
+						<img class="package-item-order-copy" src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice-copy.png" @click="getOrderId('ST232354565')" />
 					</view>
 					<view class="package-item-order-detail" @click="getOrderDetail">
 						{{ $t('package_index.card.detail') }}
@@ -84,7 +84,7 @@
 							<text>{{ $t('package_index.card.shop.phone') }}：</text>
 							<text>
 								18866661111
-								<img class="package-item-content-shop-copy" src="/static/img/invoice/invoice-copy-qr.png" @click="getShopPhone('18866661111')" />
+								<img class="package-item-content-shop-copy" src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice-copy-qr.png" @click="getShopPhone('18866661111')" />
 							</text>
 						</view>
 					</view>
@@ -103,8 +103,8 @@
 <script>
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
 import vTabs from '@/uni_modules/v-tabs/v-tabs.vue';
-import { dataYears, dataMonths, pickerViewMonth } from '@/static/utils/uni-date-picker.js';
-import pxToRpx from '@/static/utils/px-to-rpx.js';
+import { dataYears, dataMonths, pickerViewMonth } from '@/utils/uni-date-picker.js';
+import pxToRpx from '@/utils/px-to-rpx.js';
 import uniPopup from '@/uni_modules/uni-popup/components/uni-popup/uni-popup.vue';
 export default {
 	components: {
@@ -261,7 +261,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 .package-box {
 	width: 100%;

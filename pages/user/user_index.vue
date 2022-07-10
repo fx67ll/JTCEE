@@ -3,13 +3,13 @@
 		<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		<view class="user-info">
 			<!-- #ifdef H5 -->
-			<view class="user-info-setting"><img src="/static/img/user/user-setting.png" @click="goUserSetting" /></view>
+			<view class="user-info-setting"><img src="https://www.fx67ll.com/JTCEE/static/img/user/user-setting.png" @click="goUserSetting" /></view>
 			<!-- #endif -->
 			<!-- #ifdef MP-WEIXIN -->
-			<view class="user-info-setting user-info-setting-wx"><img src="/static/img/user/user-setting.png" @click="goUserSetting" /></view>
+			<view class="user-info-setting user-info-setting-wx"><img src="https://www.fx67ll.com/JTCEE/static/img/user/user-setting.png" @click="goUserSetting" /></view>
 			<!-- #endif -->
 			<view class="user-info-content">
-				<view class="user-info-head"><img src="/static/img/user/user-head.png" /></view>
+				<view class="user-info-head"><img src="https://www.fx67ll.com/JTCEE/static/img/user/user-head.png" /></view>
 				<view class="user-info-text">
 					<view class="user-info-text-name">神鹰快递</view>
 					<view class="user-info-text-mail">sykd@gmail.com</view>
@@ -19,19 +19,19 @@
 		<view class="user-card">
 			<view class="user-card-box">
 				<view class="user-card-item">
-					<view class="user-card-item-img"><img src="/static/img/user/user-express-use.png" /></view>
+					<view class="user-card-item-img"><img src="https://www.fx67ll.com/JTCEE/static/img/user/user-express-use.png" /></view>
 					<!-- 这里后期用js动态处理一下，超过九位数显示999999999+ -->
 					<view class="user-card-item-num"><text class="user-card-item-num-text">1998</text></view>
 					<view class="user-card-item-text">{{ $t('user_index.express.use') }}</view>
 				</view>
 				<view class="user-card-item">
-					<view class="user-card-item-img"><img src="/static/img/user/user-express-get.png" /></view>
+					<view class="user-card-item-img"><img src="https://www.fx67ll.com/JTCEE/static/img/user/user-express-get.png" /></view>
 					<!-- 这里后期用js动态处理一下，超过九位数显示999999999+ -->
 					<view class="user-card-item-num"><text class="user-card-item-num-text">23</text></view>
 					<view class="user-card-item-text">{{ $t('user_index.express.get') }}</view>
 				</view>
 				<view class="user-card-item">
-					<view class="user-card-item-img"><img src="/static/img/user/user-express-money.png" /></view>
+					<view class="user-card-item-img"><img src="https://www.fx67ll.com/JTCEE/static/img/user/user-express-money.png" /></view>
 					<!-- 这里后期用js动态处理一下，超过九位数显示999999999+ -->
 					<view class="user-card-item-num">
 						<text class="user-card-item-num-text">99</text>
@@ -44,28 +44,28 @@
 		<view class="user-manager">
 			<view class="user-manager-item" @click="goGetExpress">
 				<view class="user-manager-title">
-					<view class="user-manager-title-img"><img src="/static/img/user/user-express.png" /></view>
+					<view class="user-manager-title-img"><img src="https://www.fx67ll.com/JTCEE/static/img/user/user-express.png" /></view>
 					<text class="user-manager-title-text">{{ $t('user_index.manager.express') }}</text>
 				</view>
 				<view class="user-manager-icon"><uni-icons type="right" size="16" color="#BFBFBF"></uni-icons></view>
 			</view>
 			<view class="user-manager-item" @click="goManagerGoods">
 				<view class="user-manager-title">
-					<view class="user-manager-title-img"><img src="/static/img/user/user-goods.png" /></view>
+					<view class="user-manager-title-img"><img src="https://www.fx67ll.com/JTCEE/static/img/user/user-goods.png" /></view>
 					<text class="user-manager-title-text">{{ $t('user_index.manager.goods') }}</text>
 				</view>
 				<view class="user-manager-icon"><uni-icons type="right" size="16" color="#BFBFBF"></uni-icons></view>
 			</view>
 			<view class="user-manager-item" @click="goManagerAddress">
 				<view class="user-manager-title">
-					<view class="user-manager-title-img"><img src="/static/img/user/user-address.png" /></view>
+					<view class="user-manager-title-img"><img src="https://www.fx67ll.com/JTCEE/static/img/user/user-address.png" /></view>
 					<text class="user-manager-title-text">{{ $t('user_index.manager.address') }}</text>
 				</view>
 				<view class="user-manager-icon"><uni-icons type="right" size="16" color="#BFBFBF"></uni-icons></view>
 			</view>
 			<view class="user-manager-item" @click="getMoreNotice">
 				<view class="user-manager-title">
-					<view class="user-manager-title-img"><img src="/static/img/user/user-notice.png" /></view>
+					<view class="user-manager-title-img"><img src="https://www.fx67ll.com/JTCEE/static/img/user/user-notice.png" /></view>
 					<text class="user-manager-title-text">{{ $t('user_index.manager.notice') }}</text>
 				</view>
 				<view class="user-manager-icon">
@@ -76,7 +76,7 @@
 			</view>
 			<view class="user-manager-item" @click="goGetPackage">
 				<view class="user-manager-title">
-					<view class="user-manager-title-img"><img src="/static/img/user/user-package.png" /></view>
+					<view class="user-manager-title-img"><img src="https://www.fx67ll.com/JTCEE/static/img/user/user-package.png" /></view>
 					<text class="user-manager-title-text">{{ $t('user_index.manager.package') }}</text>
 				</view>
 				<view class="user-manager-icon"><uni-icons type="right" size="16" color="#BFBFBF"></uni-icons></view>
@@ -107,12 +107,12 @@
 		<view class="bottom-menu">
 			<view class="bottom-menu-box">
 				<view class="bottom-menu-item" @click="goHome">
-					<view class="bottom-menu-icon"><img src="/static/img/bottom/bottom-home.png" /></view>
+					<view class="bottom-menu-icon"><img src="https://www.fx67ll.com/JTCEE/static/img/bottom/bottom-home.png" /></view>
 					<view class="bottom-menu-text">{{ $t('bottom_menu.home') }}</view>
 				</view>
 				<view class="bottom-menu-logo"><!-- <img src="" /> --></view>
 				<view class="bottom-menu-item">
-					<view class="bottom-menu-icon"><img src="/static/img/bottom/bottom-user-active.png" /></view>
+					<view class="bottom-menu-icon"><img src="https://www.fx67ll.com/JTCEE/static/img/bottom/bottom-user-active.png" /></view>
 					<view class="bottom-menu-text">{{ $t('bottom_menu.user') }}</view>
 				</view>
 			</view>
@@ -121,7 +121,7 @@
 </template>
 
 <script>
-import { dateArray, dateIndex } from '@/static/utils/uni-date-picker.js';
+import { dateArray, dateIndex } from '@/utils/uni-date-picker.js';
 
 // #ifdef H5
 import * as echarts from '@/node_modules/echarts';
@@ -280,7 +280,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 @offset-top: -80rpx;
 
@@ -301,7 +301,7 @@ export default {
 	.user-info {
 		width: 100%;
 		height: 420rpx;
-		background-image: url('/static/img/user/user-info-bg.png');
+		background-image: url('https://www.fx67ll.com/JTCEE/static/img/user/user-info-bg.png');
 		background-size: 100% 100%;
 
 		@setting-size: 40rpx;

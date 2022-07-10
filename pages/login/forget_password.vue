@@ -61,13 +61,13 @@
 							@blur="inputBlur('check')"
 							@focus="inputFocus('check')"
 						/>
-						<img class="login-form-icon" src="/static/img/login/warning.png" />
+						<img class="login-form-icon" src="https://www.fx67ll.com/JTCEE/static/img/login/warning.png" />
 					</view>
 				</view>
 			</view>
 			<view class="login-btn">
 				<view class="login-btn-gb" @click="backLogin">
-					<view class="login-btn-gb-arrow"><img src="/static/img/login/arrow.png" /></view>
+					<view class="login-btn-gb-arrow"><img src="https://www.fx67ll.com/JTCEE/static/img/login/arrow.png" /></view>
 					{{ fromType === '1' ? $t('forget_password.login') : $t('forget_password.back') }}
 				</view>
 				<view class="login-btn-submit" @click="submitPassword">{{ $t('forget_password.title.edit') }}</view>
@@ -137,7 +137,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 // 标准左右间隔
 @width-gap: 120rpx;

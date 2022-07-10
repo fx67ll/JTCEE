@@ -22,7 +22,7 @@
 				<view class="invoice-item-order-id invoice-item-order-green">
 					<text class="invoice-item-order-type">{{ $t('invoice_detail.id') }}：</text>
 					<text class="invoice-item-order-number">ST232354565</text>
-					<img class="invoice-item-order-copy" src="/static/img/invoice/invoice-copy.png" @click="getOrderId('ST232354565')" />
+					<img class="invoice-item-order-copy" src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice-copy.png" @click="getOrderId('ST232354565')" />
 				</view>
 				<view class="invoice-item-order-detail" @click="getOrderQr">
 					{{ $t('invoice_detail.detail') }}
@@ -43,7 +43,7 @@
 						<text>南京市</text>
 						<text>何瑞</text>
 					</view>
-					<view class="invoice-item-info-address-status"><img src="/static/img/invoice/invoice-arrow-grey.png" /></view>
+					<view class="invoice-item-info-address-status"><img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice-arrow-grey.png" /></view>
 					<view class="invoice-item-info-address">
 						<text>南京市</text>
 						<text>何瑞</text>
@@ -63,22 +63,22 @@
 							'invoice-detail-info-card-icon-grey': index >= 5
 						}"
 					>
-						<img src="/static/img/invoice/invoice_yqs.png" v-if="item.status === 1" />
-						<img src="/static/img/invoice/invoice_yn.png" v-if="item.status === 2"/>
-						<img src="/static/img/invoice/invoice_zl.png" v-if="item.status === 3"/>
-						<img src="/static/img/invoice/invoice_cswqs.png" v-if="item.status === 4"/>
-						<img src="/static/img/invoice/invoice_jq.png" v-if="item.status === 5"/>
-						<img src="/static/img/invoice/invoice_th.png" v-if="item.status === 6"/>
-						<img src="/static/img/invoice/invoice_dqj.png" v-if="item.status === 7"/>
-						<img src="/static/img/invoice/invoice_psz.png" v-if="item.status === 8"/>
-						<img src="/static/img/invoice/invoice_ysz.png" v-if="item.status === 9"/>
-						<img src="/static/img/invoice/invoice_qgz.png" v-if="item.status === 10"/>
-						<img src="/static/img/invoice/invoice_yqs.png" v-if="item.status === 11"/>
-						<img src="/static/img/invoice/invoice_yck.png" v-if="item.status === 12"/>
-						<img src="/static/img/invoice/invoice_yls.png" v-if="item.status === 13"/>
-						<img src="/static/img/invoice/invoice_lsz.png" v-if="item.status === 14"/>
-						<img src="/static/img/invoice/invoice_yld.png" v-if="item.status === 15"/>
-						<img src="/static/img/invoice/invoice_ldz.png" v-if="item.status === 16"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_yqs.png" v-if="item.status === 1" />
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_yn.png" v-if="item.status === 2"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_zl.png" v-if="item.status === 3"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_cswqs.png" v-if="item.status === 4"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_jq.png" v-if="item.status === 5"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_th.png" v-if="item.status === 6"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_dqj.png" v-if="item.status === 7"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_psz.png" v-if="item.status === 8"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_ysz.png" v-if="item.status === 9"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_qgz.png" v-if="item.status === 10"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_yqs.png" v-if="item.status === 11"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_yck.png" v-if="item.status === 12"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_yls.png" v-if="item.status === 13"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_lsz.png" v-if="item.status === 14"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_yld.png" v-if="item.status === 15"/>
+						<img src="https://www.fx67ll.com/JTCEE/static/img/invoice/invoice_ldz.png" v-if="item.status === 16"/>
 					</view>
 					<view class="invoice-detail-info-card-line"></view>
 				</view>
@@ -251,7 +251,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 @import url('@/pages/invoice/style/invoice-common.less');
 
 .invoice-detail-box {

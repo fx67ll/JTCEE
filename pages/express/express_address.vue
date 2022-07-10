@@ -51,8 +51,8 @@
 				<view class="address-pull-item-box" @click="checkAddress">
 					<view class="address-pull-item-top">
 						<view class="address-pull-item-top-left">
-							<img class="address-pull-item-top-icon" src="/static/img/address/address-user-send.png" v-if="tabCurrentIndex === 0" />
-							<img class="address-pull-item-top-icon" src="/static/img/address/address-user-get.png" v-if="tabCurrentIndex === 1" />
+							<img class="address-pull-item-top-icon" src="https://www.fx67ll.com/JTCEE/static/img/address/address-user-send.png" v-if="tabCurrentIndex === 0" />
+							<img class="address-pull-item-top-icon" src="https://www.fx67ll.com/JTCEE/static/img/address/address-user-get.png" v-if="tabCurrentIndex === 1" />
 							<text class="address-pull-item-top-name">张三</text>
 							<text class="address-pull-item-top-phone">166 9999 3333</text>
 						</view>
@@ -71,7 +71,7 @@
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
 import vTabs from '@/uni_modules/v-tabs/v-tabs.vue';
 import uniSwipeAction from '@/uni_modules/uni-swipe-action/components/uni-swipe-action/uni-swipe-action.vue';
-import pxToRpx from '@/static/utils/px-to-rpx.js';
+import pxToRpx from '@/utils/px-to-rpx.js';
 export default {
 	components: {
 		uniIcons,
@@ -199,7 +199,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 .address-box {
 	width: 100%;

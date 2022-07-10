@@ -122,7 +122,7 @@
 				<view class="common-form-item-big-title">{{ $t('address_add.option.id.import') }}</view>
 				<view class="common-form-item-big-import">
 					<view class="common-form-item-big-import-box" @click="importIdImg(1)" v-if="idImgArrFront.length === 0">
-						<img class="common-form-item-big-import-img" src="/static/img/address/address-import-id.png" />
+						<img class="common-form-item-big-import-img" src="https://www.fx67ll.com/JTCEE/static/img/address/address-import-id.png" />
 						<text class="common-form-item-big-import-text">{{ $t('address_add.option.id.import.front') }}</text>
 					</view>
 					<view class="common-form-item-big-import-box" v-if="idImgArrFront.length > 0">
@@ -130,7 +130,7 @@
 						<img class="common-form-item-big-result-img" :src="idImgArrFront[0]" @click="previewImportImg(1)" />
 					</view>
 					<view class="common-form-item-big-import-box" @click="importIdImg(2)" v-if="idImgArrBack.length === 0">
-						<img class="common-form-item-big-import-img" src="/static/img/address/address-import-id.png" />
+						<img class="common-form-item-big-import-img" src="https://www.fx67ll.com/JTCEE/static/img/address/address-import-id.png" />
 						<text class="common-form-item-big-import-text">{{ $t('address_add.option.id.import.back') }}</text>
 					</view>
 					<view class="common-form-item-big-import-box" v-if="idImgArrBack.length > 0">
@@ -393,7 +393,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 .address-add-box {
 	width: 100%;

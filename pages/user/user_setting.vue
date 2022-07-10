@@ -145,7 +145,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 .user-setting-box {
 	width: 100%;

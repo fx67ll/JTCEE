@@ -14,7 +14,7 @@
 		<view class="top-nav-fake"></view>
 		<view class="notice-catagory">
 			<view class="notice-item" @click="goNoticeList(0)">
-				<view class="notice-item-left"><img src="/static/img/notice/notice_express.png" /></view>
+				<view class="notice-item-left"><img src="https://www.fx67ll.com/JTCEE/static/img/notice/notice_express.png" /></view>
 				<view class="notice-item-right">
 					<view class="notice-item-right-top">
 						<view class="notice-item-right-title">{{ $t('notice_catagory.notice.express') }}</view>
@@ -24,7 +24,7 @@
 				</view>
 			</view>
 			<view class="notice-item" @click="goNoticeList(1)">
-				<view class="notice-item-left"><img src="/static/img/notice/notice_office.png" /></view>
+				<view class="notice-item-left"><img src="https://www.fx67ll.com/JTCEE/static/img/notice/notice_office.png" /></view>
 				<view class="notice-item-right">
 					<view class="notice-item-right-top">
 						<view class="notice-item-right-title">{{ $t('notice_catagory.notice.public') }}</view>
@@ -107,7 +107,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 .notice-box {
 	width: 100%;

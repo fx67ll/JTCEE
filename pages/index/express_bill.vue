@@ -19,7 +19,7 @@
 		<view class="bill-address">
 			<view class="bill-address-item">
 				<view class="bill-address-item-left">
-					<view class="bill-address-item-img"><img src="/static/img/index/bill-shop.png" /></view>
+					<view class="bill-address-item-img"><img src="https://www.fx67ll.com/JTCEE/static/img/index/bill-shop.png" /></view>
 					<view class="bill-address-item-title">{{ $t('express_bill.form.shop') }}</view>
 				</view>
 				<view class="bill-address-item-right">
@@ -33,7 +33,7 @@
 			</view>
 			<view class="bill-address-item">
 				<view class="bill-address-item-left">
-					<view class="bill-address-item-img"><img src="/static/img/index/bill-express.png" /></view>
+					<view class="bill-address-item-img"><img src="https://www.fx67ll.com/JTCEE/static/img/index/bill-express.png" /></view>
 					<view class="bill-address-item-title">{{ $t('express_bill.form.express') }}</view>
 				</view>
 				<view class="bill-address-item-right">
@@ -134,10 +134,10 @@
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
 import uniNumberBox from '@/uni_modules/uni-number-box/components/uni-number-box/uni-number-box.vue';
 import vTabs from '@/uni_modules/v-tabs/v-tabs-fx67ll.vue';
-import { getDate, currentDate } from '@/static/utils/uni-date-picker.js';
+import { getDate, currentDate } from '@/utils/uni-date-picker.js';
 import uniDatetimePicker from '@/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue';
 import moment from '@/node_modules/moment';
-import pxToRpx from '@/static/utils/px-to-rpx.js';
+import pxToRpx from '@/utils/px-to-rpx.js';
 export default {
 	components: {
 		uniIcons,
@@ -183,9 +183,9 @@ export default {
 			// tab宽度，根据需要自行计算
 			tabItemWidth: '216rpx',
 			// tab说明图片地址
-			tabImgUrlList: ['/static/img/page/bill-sundry-goods.jpg', '/static/img/page/bill-special-line.png', '/static/img/page/bill-high-weight.png'],
+			tabImgUrlList: ['https://www.fx67ll.com/JTCEE/static/img/page/bill-sundry-goods.jpg', 'https://www.fx67ll.com/JTCEE/static/img/page/bill-special-line.png', 'https://www.fx67ll.com/JTCEE/static/img/page/bill-high-weight.png'],
 			// tab说明图片地址，微信必须使用http或者https的图片网络地址
-			tabImgUrlListWx: ['/static/img/page/bill-sundry-goods.jpg', '/static/img/page/bill-special-line.png', '/static/img/page/bill-high-weight.png']
+			tabImgUrlListWx: ['https://www.fx67ll.com/JTCEE/static/img/page/bill-sundry-goods.jpg', 'https://www.fx67ll.com/JTCEE/static/img/page/bill-special-line.png', 'https://www.fx67ll.com/JTCEE/static/img/page/bill-high-weight.png']
 		};
 	},
 	computed: {
@@ -265,7 +265,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 .bill-box {
 	width: 100%;

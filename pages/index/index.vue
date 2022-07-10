@@ -36,7 +36,7 @@
 				indicator-active-color="#50B38C"
 			>
 				<swiper-item>
-					<view class="swiper-item"><img src="/static/img/index/index-banner.png" /></view>
+					<view class="swiper-item"><img src="https://www.fx67ll.com/JTCEE/static/img/index/index-banner.png" /></view>
 				</swiper-item>
 				<swiper-item>
 					<view class="swiper-item">
@@ -58,19 +58,19 @@
 		<!-- #endif -->
 		<view class="index-function-alpha">
 			<view class="index-alpha-item">
-				<view class="index-alpha-item-img" @click="countExpressBill"><img src="/static/img/index/bill-count.png" /></view>
+				<view class="index-alpha-item-img" @click="countExpressBill"><img src="https://www.fx67ll.com/JTCEE/static/img/index/bill-count.png" /></view>
 				<view class="index-alpha-item-text">{{ $t('index.alpha.count') }}</view>
 			</view>
 			<view class="index-alpha-item" @click="openDialogTest">
-				<view class="index-alpha-item-img"><img src="/static/img/index/bill-explain.png" /></view>
+				<view class="index-alpha-item-img"><img src="https://www.fx67ll.com/JTCEE/static/img/index/bill-explain.png" /></view>
 				<view class="index-alpha-item-text">{{ $t('index.alpha.explain') }}</view>
 			</view>
 			<view class="index-alpha-item" @click="openDialogTest">
-				<view class="index-alpha-item-img"><img src="/static/img/index/shop-search.png" /></view>
+				<view class="index-alpha-item-img"><img src="https://www.fx67ll.com/JTCEE/static/img/index/shop-search.png" /></view>
 				<view class="index-alpha-item-text">{{ $t('index.alpha.site') }}</view>
 			</view>
 			<view class="index-alpha-item" @click="getHelpService">
-				<view class="index-alpha-item-img"><img src="/static/img/index/get-service.png" /></view>
+				<view class="index-alpha-item-img"><img src="https://www.fx67ll.com/JTCEE/static/img/index/get-service.png" /></view>
 				<view class="index-alpha-item-text">{{ $t('index.alpha.help') }}</view>
 			</view>
 		</view>
@@ -98,19 +98,19 @@
 		</view>
 		<view class="index-function-beta">
 			<view class="index-beta-item" @click="goUseExpress">
-				<view class="index-beta-item-img"><img src="/static/img/index/express-use.png" /></view>
+				<view class="index-beta-item-img"><img src="https://www.fx67ll.com/JTCEE/static/img/index/express-use.png" /></view>
 				<view class="index-beta-item-text">{{ $t('index.beta.use') }}</view>
 			</view>
 			<view class="index-beta-item" @click="goGetExpress">
-				<view class="index-beta-item-img"><img src="/static/img/index/express-search.png" /></view>
+				<view class="index-beta-item-img"><img src="https://www.fx67ll.com/JTCEE/static/img/index/express-search.png" /></view>
 				<view class="index-beta-item-text">{{ $t('index.beta.search') }}</view>
 			</view>
 			<view class="index-beta-item" @click="goPackageAdd">
-				<view class="index-beta-item-img"><img src="/static/img/index/express-get.png" /></view>
+				<view class="index-beta-item-img"><img src="https://www.fx67ll.com/JTCEE/static/img/index/express-get.png" /></view>
 				<view class="index-beta-item-text">{{ $t('index.beta.get') }}</view>
 			</view>
 			<view class="index-beta-item" @click="goScanQR">
-				<view class="index-beta-item-img"><img src="/static/img/index/express-scan.png" /></view>
+				<view class="index-beta-item-img"><img src="https://www.fx67ll.com/JTCEE/static/img/index/express-scan.png" /></view>
 				<view class="index-beta-item-text">{{ $t('index.beta.scan') }}</view>
 			</view>
 		</view>
@@ -118,12 +118,12 @@
 		<view class="bottom-menu">
 			<view class="bottom-menu-box">
 				<view class="bottom-menu-item">
-					<view class="bottom-menu-icon"><img src="/static/img/bottom/bottom-home-active.png" /></view>
+					<view class="bottom-menu-icon"><img src="https://www.fx67ll.com/JTCEE/static/img/bottom/bottom-home-active.png" /></view>
 					<view class="bottom-menu-text">{{ $t('bottom_menu.home') }}</view>
 				</view>
 				<view class="bottom-menu-logo"><!-- <img src="" /> --></view>
 				<view class="bottom-menu-item" @click="goUserIndex">
-					<view class="bottom-menu-icon"><img src="/static/img/bottom/bottom-user.png" /></view>
+					<view class="bottom-menu-icon"><img src="https://www.fx67ll.com/JTCEE/static/img/bottom/bottom-user.png" /></view>
 					<view class="bottom-menu-text">{{ $t('bottom_menu.user') }}</view>
 				</view>
 			</view>
@@ -203,7 +203,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 // 卡片空隙
 @card-gap: 36rpx;

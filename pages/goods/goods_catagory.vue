@@ -72,7 +72,7 @@
 
 <script>
 import uniIcons from '@/uni_modules/uni-icons/components/uni-icons/uni-icons.vue';
-import pxToRpx from '@/static/utils/px-to-rpx.js';
+import pxToRpx from '@/utils/px-to-rpx.js';
 export default {
 	components: {
 		uniIcons
@@ -133,7 +133,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 @search-box-padding-bottom: 26rpx;
 

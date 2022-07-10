@@ -219,7 +219,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 @goods-card-margin-top: 20rpx;
 

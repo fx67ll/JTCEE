@@ -38,7 +38,7 @@
 
 			<view class="common-goods-box">
 				<view class="common-goods-item" v-for="(num, index) in goodsListData" :key="index">
-					<view class="common-goods-img"><img src="/static/img/user/user-head.png" /></view>
+					<view class="common-goods-img"><img src="https://www.fx67ll.com/JTCEE/static/img/user/user-head.png" /></view>
 					<view class="common-goods-content">
 						<view class="common-goods-title">任天堂switch收纳包switchlite保护套ns硬包switch盒switcholed硬壳便携lite袋oled硬卡带健身环配件壳全套大各种款式均有</view>
 						<uni-number-box class="common-goods-number" :value="0"></uni-number-box>
@@ -152,7 +152,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 .package-add-box {
 	width: 100%;

@@ -124,7 +124,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url('@/static/style/mixin.less');
+@import url('@/styles/mixin.less');
 
 // 卡片内容两边边距
 @goods-item-gap: 50rpx;
