@@ -35,7 +35,7 @@
 			<!-- #endif -->
 		</view>
 		<view class="goods-pull-index">
-			<view class="goods-pull-item" v-for="(num, index) in listData" :key="index" @click="getGoodsAndBack">
+			<view class="goods-pull-item" v-for="(num, index) in listData" :key="index" @click="goBack">
 				<view class="goods-pull-item-box">
 					<view class="goods-pull-item-left"><img src="/static/img/user/user-head.png" /></view>
 					<view class="goods-pull-item-right">
