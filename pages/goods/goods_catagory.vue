@@ -11,7 +11,7 @@
 			<!-- #endif -->
 			<view class="top-nav" :style="{ '--statusbarheight': statusBarHeight }">
 				<view class="top-nav-back"><uni-icons class="top-nav-back-icon" type="back" size="24" color="#242424" @click="goBack"></uni-icons></view>
-				<view class="top-nav-title">选择商品分类</view>
+				<view class="top-nav-title">{{ $t('goods_catagory.title') }}</view>
 				<view class="top-nav-btn"></view>
 			</view>
 			<view class="top-nav-fake top-nav-fake-middle"></view>
@@ -63,8 +63,8 @@
 		<view class="drawer-button-box-gap goods-button-box-gap"></view>
 		<view class="drawer-button-box goods-button-box">
 			<view class="drawer-button">
-				<view class="drawer-button-item drawer-button-reset" @click="goBack">取消</view>
-				<view class="drawer-button-item drawer-button-submit" @click="submitChoose">确定</view>
+				<view class="drawer-button-item drawer-button-reset" @click="goBack">{{ $t('goods_catagory.button.cancle') }}</view>
+				<view class="drawer-button-item drawer-button-submit" @click="submitChoose">{{ $t('goods_catagory.button.check') }}</view>
 			</view>
 		</view>
 	</view>

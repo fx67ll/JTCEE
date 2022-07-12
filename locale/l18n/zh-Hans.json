@@ -339,6 +339,8 @@
 	"goods_add.button.add": "添加",
 	
 	"goods_choose.title": "选择商品",
-	
-	"goods_catagory": "待处理"
+
+	"goods_catagory.title": "选择商品分类",
+	"goods_catagory.button.cancle": "取消",
+	"goods_catagory.button.check": "确定"
 }
