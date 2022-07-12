@@ -1,7 +1,7 @@
 {
     "name" : "JTCEE",
     "appid" : "__UNI__95CFD70",
-    "description" : "",
+    "description" : "飞鹰快递",
     "versionName" : "0.1.0",
     "versionCode" : 10,
     "locale" : "zh-Hans", // 设置默认语言
@@ -72,5 +72,19 @@
     "uniStatistics" : {
         "enable" : false
     },
-    "vueVersion" : "2"
+    "vueVersion" : "2",
+    "h5" : {
+        "router" : {
+            "mode" : "history",
+            "base" : "/"
+        },
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : true
+            }
+        },
+        "sdkConfigs" : {
+            "maps" : {}
+        }
+    }
 }
