@@ -14,9 +14,9 @@
 	"popup.warning.content": "出现未知错误，请联系管理员！",
 	"popup.warning.confirmText": "返回首页",
 	"popup.warning.cancelText": "关闭",
-	
+
 	"top.nav.search.placeholder": "请输入关键词搜索",
-	
+
 	"bottom_menu.home": "首页",
 	"bottom_menu.user": "我的",
 
@@ -56,7 +56,7 @@
 	"notice_index.express.id": "快递单号",
 	"notice_index.express.time": "签收时间",
 	"notice_index.more": "查看详细",
-	
+
 	"notice_detail.title": "通知详情",
 
 	"index.search.goods": "商品搜索",
@@ -72,7 +72,7 @@
 	"index.beta.search": "查快递",
 	"index.beta.get": "包裹预报",
 	"index.beta.scan": "扫一扫",
-	
+
 	"scan_qr.title": "扫一扫",
 
 	"express_bill.title": "运费计算",
@@ -114,7 +114,7 @@
 	"user_setting.setting.mail.order": "订单状态发生变化是否接收邮件通知",
 	"user_setting.login.out": "退出登录",
 	"user_setting.setting.language": "切换语言",
-	
+
 	"user_setting.mail": "验证/修改邮箱",
 
 	"address_index.tilte": "地址管理",
@@ -193,10 +193,10 @@
 	"invoice_index.card.button.b": "删除",
 	"invoice_index.card.button.c": "取消寄件",
 	"invoice_index.card.button.d": "立即支付",
-	"invoice_index.modal.delete.title":"提示",
-	"invoice_index.modal.delete.content":"删除后无法恢复订单，确认删除该笔订单吗？",
-	"invoice_index.modal.cancle.title":"提示",
-	"invoice_index.modal.cancle.content":"确认取消该笔订单吗？",
+	"invoice_index.modal.delete.title": "提示",
+	"invoice_index.modal.delete.content": "删除后无法恢复订单，确认删除该笔订单吗？",
+	"invoice_index.modal.cancle.title": "提示",
+	"invoice_index.modal.cancle.content": "确认取消该笔订单吗？",
 
 	"invoice_detail.title": "运单状态",
 	"invoice_detail.id": "面单号",
@@ -310,7 +310,7 @@
 	"goods_index.goods.button.all": "全选",
 	"goods_index.goods.button.delete": "删除",
 	"goods_index.goods.button.finish": "完成",
-	
+
 	"goods_detail.title": "商品详情",
 	"goods_detail.content.title": "详情",
 	"goods_detail.content.info": "规格参数",
@@ -318,7 +318,7 @@
 	"goods_detail.content.address": "商品产地",
 	"goods_detail.content.catagory": "商品分类",
 	"goods_detail.content.desc": "商品简介",
-	
+
 	"goods_add.title.add": "添加商品",
 	"goods_add.title.edit": "修改商品",
 	"goods_add.option.image": "商品图片",
@@ -337,8 +337,10 @@
 	"goods_add.option.is.save.my.goods": "是否保存到我的商品",
 	"goods_add.button.scan": "扫码自动填入商品信息",
 	"goods_add.button.add": "添加",
-	
+
 	"goods_choose.title": "选择商品",
-	
-	"goods_catagory": "待处理"
+
+	"goods_catagory.title": "选择商品分类",
+	"goods_catagory.button.cancle": "取消",
+	"goods_catagory.button.check": "确定"
 }
