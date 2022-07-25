@@ -131,7 +131,7 @@
 				<view class="invoice-item-content">
 					<view class="invoice-item-address">
 						<view class="invoice-item-info-address">
-							<text>南京市</text>
+							<text>日本东京</text>
 							<text>何瑞</text>
 						</view>
 						<view class="invoice-item-info-address-status">

@@ -11,8 +11,8 @@
 			<view class="user-info-content">
 				<view class="user-info-head"><img src="/static/img/user/user-head.png" /></view>
 				<view class="user-info-text">
-					<view class="user-info-text-name">神鹰快递</view>
-					<view class="user-info-text-mail">sykd@gmail.com</view>
+					<view class="user-info-text-name">飞鹰快递</view>
+					<view class="user-info-text-mail">eagle@u-touch.co.jp</view>
 				</view>
 			</view>
 		</view>
