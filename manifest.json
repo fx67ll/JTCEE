@@ -88,7 +88,7 @@
         },
         "title" : "uni.fx67ll.com",
         "devServer" : {
-            "https" : false
+            "https" : true
         }
     }
 }
