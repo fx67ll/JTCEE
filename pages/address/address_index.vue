@@ -76,7 +76,8 @@
 								<view class="address-pull-item-top-default" v-if="index === 1">{{ $t('address_index.card.default.address') }}</view>
 							</view>
 							<view class="address-pull-item-bottom">
-								<view class="address-pull-item-address">上海市上海市青浦区朱家镇康耶鲁180号半山国际2单元309室上海市上海市青浦区朱家镇康耶鲁180号半山国际2单元309室</view>
+								<view class="address-pull-item-address" v-if="tabCurrentIndex === 0">上海市上海市青浦区朱家镇康耶鲁180号半山国际2单元309室上海市上海市青浦区朱家镇康耶鲁180号半山国际2单元309室</view>
+								<view class="address-pull-item-address" v-if="tabCurrentIndex === 1">日本東京都台東区浅草橋2丁目29番11号マルケービル9階</view>
 								<view class="address-pull-item-edit" @click="editAddress"><img src="/static/img/address/address-edit.png" /></view>
 							</view>
 						</view>

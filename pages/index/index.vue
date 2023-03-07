@@ -8,9 +8,12 @@
 		<!-- #endif -->
 		<view class="page-bg" :style="{ '--clientheight': clientHeight }"></view>
 		<view class="index-search">
-			<view class="index-search-logo">
+			
+			<!-- 临时不用的方案 -->
+			<!-- <view class="index-search-logo">
 				<img src="/static/img/logo/logo2-3.png">
-			</view>
+			</view> -->
+			
 			<!-- 微信小程序特供搜索框，避开关闭按钮 -->
 			<!-- #ifdef MP-WEIXIN -->
 			<view class="index-search-box index-search-box-wx">
@@ -18,6 +21,7 @@
 				<input class="uni-input index-search-input" confirm-type="search" :placeholder="$t('index.search.goods')" placeholder-class="login-input-placeholder" />
 			</view>
 			<!-- #endif -->
+			
 			<!-- H5平台使用的搜索框 -->
 			<!-- #ifdef H5 -->
 			<view class="index-search-box">
@@ -25,6 +29,7 @@
 				<input class="uni-input index-search-input" confirm-type="search" :placeholder="$t('index.search.goods')" placeholder-class="login-input-placeholder" />
 			</view>
 			<!-- #endif -->
+			
 		</view>
 		<view class="index-swiper">
 			<swiper
@@ -250,7 +255,13 @@ export default {
 			}
 		}
 		.index-search-box {
-			width: calc(100% - 190rpx);
+			
+			// 临时不用的方案
+			// width: calc(100% - 190rpx);
+			
+			// 临时方案
+			width: calc(100% - 70rpx);
+			
 			height: calc(100% - 30rpx);
 			border: 1rpx solid #e9e9e9;
 			border-radius: 34rpx;
