@@ -19,7 +19,7 @@
 		</view>
 
 		<!-- 暂不开放演示 -->
-		<web-view class="html5-qr-code" :style="{ '--clientheight': clientHeight }" src="https://www.fx67ll.com/scan.html" allow="camera"></web-view>
+		<!-- <web-view class="html5-qr-code" :style="{ '--clientheight': clientHeight }" src="https://www.fx67ll.com/scan.html" allow="camera"></web-view> -->
 
 		<!-- 页面警告消息 -->
 		<uni-popup ref="popup" type="dialog">
