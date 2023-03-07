@@ -57,10 +57,11 @@
 					<view class="form-item-title">{{ $t('address_add.option.city.cn') }}</view>
 					<input
 						class="uni-input form-input-default"
+						style="z-index: 9;"
 						type="text"
 						:placeholder="$t('address_add.option.city.placeholder.cn')"
 						placeholder-class="form-input-placeholder"
-						:disabled="true"
+						:disabled="false"
 						:value="addressCityCN"
 						@click="getAddressCityCN"
 					/>
@@ -82,7 +83,7 @@
 						type="text"
 						:placeholder="$t('address_add.option.city.placeholder.jp')"
 						placeholder-class="form-input-placeholder"
-						:disabled="true"
+						:disabled="false"
 						:value="addressCityJP"
 						@click="getAddressCityJP"
 					/>
