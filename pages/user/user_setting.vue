@@ -45,7 +45,7 @@
 						type="error"
 						mode="base"
 						:title="this.$t('popup.warning.title')"
-						content="暂不支持切换日语，国际化功能开发中！"
+						content="国际化功能已支持，暂无精力补充 i18n 中的 ja.json 文件，请等待后续更新版本~"
 						confirmText="确定"
 						cancelText="取消"
 					></uni-popup-dialog>

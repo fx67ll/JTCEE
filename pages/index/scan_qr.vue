@@ -56,6 +56,13 @@ export default {
 			this.addType = option.addType;
 			this.useType = option.useType;
 		}
+		
+		// 为了访问用的提示消息，不做国际化了
+		uni.showToast({
+			title: 'uni-app 网页H5端不支持嵌入小程序自带扫码功能，这里使用嵌入个人开发扫码sdk的方式，个人服务器带宽有限，加载较慢，请耐心等待一会~',
+			icon: 'none',
+			duration: 8888
+		});
 	},
 	data() {
 		return {

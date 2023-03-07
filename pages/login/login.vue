@@ -149,7 +149,14 @@ export default {
 			isru: false
 		};
 	},
-	onLoad() {},
+	onLoad() {
+		// 为了访问用的提示消息，不做国际化了
+		uni.showToast({
+			title: '欢迎访问 uni.fx67ll.com 站点~ 本项目是个人用于练习 uni-app 开发能力的纯静态演示项目，主要是模拟一个境外快递包裹的业务流程，无需输入账号密码点击登录即可查看~',
+			icon: 'none',
+			duration: 8888
+		});
+	},
 	methods: {
 		isLoginCard(val) {
 			this.islc = val;
