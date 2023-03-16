@@ -19,7 +19,7 @@
 		</view>
 
 		<!-- 暂不开放演示 -->
-		<web-view class="html5-qr-code" :style="{ '--clientheight': clientHeight }" src="https://www.fx67ll.com/scan.html" allow="camera"></web-view>
+		<web-view class="html5-qr-code" :style="{ '--clientheight': clientHeight }" src="https://test.fx67ll.com/html5-qrcode/scan.html" allow="camera"></web-view>
 
 		<!-- 页面警告消息 -->
 		<uni-popup ref="popup" type="dialog">
@@ -58,13 +58,13 @@ export default {
 			this.useType = option.useType;
 		}
 
-		// 为了访问用的提示消息，不做国际化了
-		uni.showToast({
-			title:
-				'uni-app 网页H5端不支持嵌入小程序自带扫码功能，这里使用嵌入个人开发扫码sdk的方式，因为sdk暂时不支持非安全加密的http访问，所以如果需要查看可以访问 fx67ll.com/scan.html 来查看展示效果~',
-			icon: 'none',
-			duration: 8888
-		});
+		// 之前不会部署多个https应用的提示，不需要了
+		// uni.showToast({
+		// 	title:
+		// 		'uni-app 网页H5端不支持嵌入小程序自带扫码功能，这里使用嵌入个人开发扫码sdk的方式，因为sdk暂时不支持非安全加密的http访问，所以如果需要查看可以访问 fx67ll.com/scan.html 来查看展示效果~',
+		// 	icon: 'none',
+		// 	duration: 8888
+		// });
 	},
 	data() {
 		return {
